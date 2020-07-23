@@ -1,0 +1,38 @@
+﻿/* Variables */
+:root
+{
+	--non-selected: rgb(231, 240, 247);
+	--selected: rgb(144, 238, 144);
+	--error: rgb(255, 77, 77);
+}
+
+/* Reset */
+
+html, body
+{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	cursor: default;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	overflow: hidden;
+	background-color: var(--non-selected);
+}
+
+body
+{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 130%;
+}
+
+/* Javascript helpers */
+.scrollbar-measure
+{
+	width: 100px;
+	height: 100px;
+	overflow: scroll;
+	position: absolute;
+	left: -1000%;
+}
