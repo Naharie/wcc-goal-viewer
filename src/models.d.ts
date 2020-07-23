@@ -72,7 +72,7 @@ interface JsonData
 	// Left column
 	primaryGoals: PrimaryGoal[],
 	// Center column
-	trackGoals: Track[],
+	tracks: Track[],
 	// Right column
-	courseGoals: Course[]
+	courses: Course[]
 };

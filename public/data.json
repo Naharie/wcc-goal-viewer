@@ -104,7 +104,7 @@
 			]
 		}
 	],
-	"trackGoals":
+	"tracks":
 	[
 		{
 			"track": "HMN",
@@ -964,7 +964,7 @@
 			]
 		}
 	],
-	"courseGoals":
+	"courses":
 	[
 		{
 			"course": "HMN",
