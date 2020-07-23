@@ -1,6 +1,6 @@
 import React from "react";
 
-interface TrackGoalPanelProps
+interface TrackPanelProps
 {
     tracks: Track[];
 }
@@ -22,12 +22,12 @@ const renderReferences = (references: PrimaryReference[]) =>
     return ("(" + text + ")");
 };
 
-const TrackPanel = ({ tracks }: TrackGoalPanelProps) =>
+const TrackPanel = ({ tracks }: TrackPanelProps) =>
     <>
         {
             tracks.map((track, index) =>
-                <div id={"track_" + track.track} className={"mb-1" + (index < tracks.length - 1 ? " border-b-1" : "") }>
-                    <a className="block td-none text-center cursor-pointer">{track.track}</a>
+                <div key={track.track} id={"track_" + track.track} className={"mb-1" + (index < tracks.length - 1 ? " border-b-1" : "") }>
+                    <div className="text-center cursor-pointer">{track.track}</div>
                     <ol type="1">
                         {
                             track.goals.map(goal =>

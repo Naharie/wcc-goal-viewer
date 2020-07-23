@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PrimaryGoalPanel from "./PrimaryGoalPanel";
 import TrackPanel from "./TrackPanel";
+import CoursePanel from "./CoursePanel";
 
 const App = () =>
 {
@@ -32,7 +33,11 @@ const App = () =>
                     <TrackPanel tracks={data.tracks} />
                 </div>
             </div>
-            <div className="flex-2 h-100"></div>
+            <div className="flex-2 h-100">
+                <div className="w-100 mh-0 h-100 overflow-y-scroll scroll-hover pt-0-5">
+                    <CoursePanel courses={data.courses} />
+                </div>
+            </div>
         </div>
     );
 };
