@@ -1,19 +1,20 @@
 import React from "react";
 import Track from "./Track";
-import { HTrack, cloneHTrack } from "../highlight";
+import { HTrack, cloneHTrack, HashMap } from "../highlight";
 
 interface TrackPanelProps
 {
     tracks: Track[];
-    highlight: HTrack[];
-    setHighlight: (value: HTrack[]) => void;
+    highlight: HashMap<HTrack>;
+    setHighlight: (value: HashMap<HTrack>) => void;
 }
 
 const TrackPanel = ({ tracks, highlight, setHighlight }: TrackPanelProps) =>
 {
     const setTrackHighlight = function (value: HTrack)
     {
-        setHighlight(highlight.map(track => track.track === value.track ? value : track));
+        highlight[value.track] = value;
+        setHighlight(highlight);
     };
 
     return (
@@ -24,7 +25,7 @@ const TrackPanel = ({ tracks, highlight, setHighlight }: TrackPanelProps) =>
                         key={track.track}
                         track={track}
                         className={index < tracks.length - 1 ? "border-b-1" : ""}
-                        highlight={cloneHTrack(highlight[index])}
+                        highlight={cloneHTrack(highlight[track.track])}
                         setHighlight={setTrackHighlight}
                     />
                 )

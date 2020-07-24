@@ -1,29 +1,29 @@
 import React, { FC } from "react";
 import PrimaryGoal from "./PrimaryGoal";
-import { HPrimaryGoal, cloneHPrimaryGoal } from "../highlight";
+import { HPrimaryGoal, cloneHPrimaryGoal, HashMap } from "../highlight";
 
 interface PrimaryGoalPanelProps
 {
     goals: PrimaryGoal[];
-    // Guaranteed to be in the same order as goals.
-    highlight: HPrimaryGoal[];
-    setHighlight: (value: HPrimaryGoal[]) => void;
+    highlight: HashMap<HPrimaryGoal>;
+    setHighlight: (value: HashMap<HPrimaryGoal>) => void;
 }
 
 const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight, setHighlight }) =>
 {
     const updateGoalHighlight = function (value: HPrimaryGoal)
     {
-        setHighlight(highlight.map(goal => goal.id === value.id ? value : goal));
+        highlight[value.id] = value;
+        setHighlight(highlight);
     };
 
     return (
         <ol type="I">
-            {goals.map((goal, index) =>
+            {goals.map(goal =>
                 <PrimaryGoal
                     key={goal.id}
                     goal={goal}
-                    highlight={cloneHPrimaryGoal(highlight[index])}
+                    highlight={cloneHPrimaryGoal(highlight[goal.id])}
                     setHighlight={updateGoalHighlight}
                 />
             )}

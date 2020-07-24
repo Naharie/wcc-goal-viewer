@@ -1,3 +1,8 @@
+export interface HashMap<V>
+{
+    [key: string]: V;
+}
+
 export interface HGoal
 {
     id: string;
@@ -14,12 +19,12 @@ export interface HPrimaryGoal
 {
     id: string;
     selected: boolean;
-    children: HGoal[];
+    children: HashMap<HGoal>;
 }
 export interface HTrack
 {
 	track: CourseId;
-	goals: HGoal[];
+	goals: HashMap<HGoal>;
 }
 export interface HCourse
 {
@@ -29,10 +34,33 @@ export interface HCourse
 
 export interface Highlight
 {
-    primaryGoals: HPrimaryGoal[];
-    tracks: HTrack[];
-    courses: HCourse[];
+    primaryGoals: HashMap<HPrimaryGoal>;
+    tracks: HashMap<HTrack>;
+    courses: HashMap<HCourse>;
 }
+
+const mapObject = function <T, U>(object: HashMap<T>, mapping: (value: T) => U): HashMap<U>
+{
+    const result: HashMap<U> = {};
+
+    for (const key in object)
+    {
+        result[key] = mapping(object[key]);
+    }
+
+    return (result);
+};
+const buildMapping = function <T>(values: T[], key: keyof T)
+{
+    const result: HashMap<T> = {};
+
+    for (const value of values)
+    {
+        result[value[key] + ""] = value;
+    }
+
+    return (result);
+};
 
 export const cloneHGoal = (goal: HGoal): HGoal => ({
     id: goal.id,
@@ -47,11 +75,11 @@ export const cloneHYear = (year: HYear): HYear => ({
 export const cloneHPrimaryGoal = (goal: HPrimaryGoal): HPrimaryGoal => ({
     id: goal.id,
     selected: goal.selected,
-    children: goal.children.map(cloneHGoal)
+    children: mapObject(goal.children, cloneHGoal)
 });
 export const cloneHTrack = (track: HTrack): HTrack => ({
     track: track.track,
-    goals: track.goals.map(cloneHGoal)
+    goals: mapObject (track.goals, cloneHGoal)
 });
 export const cloneHCourse = (course: HCourse): HCourse => ({
     course: course.course,
@@ -64,13 +92,13 @@ export const createHighlight = function (data: JsonData): Highlight
         data.primaryGoals.map(primaryGoal => ({
             id: primaryGoal.id,
             selected: false,
-            children: primaryGoal.children.map(child => ({ id: child.id, selected: false }))
+            children: buildMapping (primaryGoal.children.map(child => ({ id: child.id, selected: false })), "id")
         }));
     
     const tracks =
         data.tracks.map (track => ({
             track: track.track,
-            goals: track.goals.map (goal => ({ id: goal.id, selected: false }))
+            goals: buildMapping (track.goals.map (goal => ({ id: goal.id, selected: false })), "id")
         }));
 
     const mapYear = (year: Year) => ({
@@ -91,6 +119,40 @@ export const createHighlight = function (data: JsonData): Highlight
         }));
 
     return ({
-        primaryGoals, tracks, courses
+        primaryGoals: buildMapping(primaryGoals, "id"),
+        tracks: buildMapping(tracks, "track"),
+        courses: buildMapping(courses, "course")
     });
+};
+export const computeTrackHighlight = function (data: JsonData, highlight: Highlight)
+{
+    const result: Highlight = {
+        primaryGoals: highlight.primaryGoals,
+        tracks: mapObject(highlight.tracks, cloneHTrack),
+        courses: highlight.courses
+    };
+
+    for (const track of data.tracks)
+    {
+        const highlightTrack = result.tracks[track.track];
+
+        for (const goal of track.goals)
+        {
+            const selected =
+                goal.references.some (reference =>
+                {
+                    const primaryGoal = result.primaryGoals[reference.goal];
+
+                    return (
+                        reference.subGoals.length === 0 ?
+                            primaryGoal.selected :
+                            reference.subGoals.some(goal => primaryGoal.children[goal].selected)
+                    );
+                });
+
+            highlightTrack.goals[goal.id].selected = selected;
+        }
+    }
+
+    return (result);
 };

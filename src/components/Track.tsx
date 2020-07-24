@@ -15,13 +15,10 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
 {
     const toggleSelected = function (id: string)
     {
-        const goal = highlight.goals.find(goal => goal.id === id);
+        const goal = highlight.goals[id];
 
-        if (goal)
-        {
-            goal.selected = !goal.selected;
-            setHighlight(highlight);
-        }
+        goal.selected = !goal.selected;
+        setHighlight(highlight);
     };
 
     return (
@@ -29,11 +26,11 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
             <div className="text-center cursor-pointer">{track.track}</div>
             <ol type="1">
                 {
-                    track.goals.map((goal, index) =>
+                    track.goals.map(goal =>
                         <TrackGoal
                             key={goal.id}
                             goal={goal}
-                            selected={highlight.goals[index].selected}
+                            selected={highlight.goals[goal.id].selected}
                             setSelected={() => toggleSelected(goal.id)}
                         />
                     )

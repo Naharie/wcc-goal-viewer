@@ -1,11 +1,11 @@
 import React from "react";
 import CourseYear from "./CourseYear";
-import { HCourse } from "../highlight";
+import { HCourse, HashMap } from "../highlight";
 
 interface CoursePanelProps
 {
     courses: Course[];
-    highlight: HCourse[];
+    highlight: HashMap<HCourse>;
 }
 
 const CoursePanel = ({ courses, highlight }: CoursePanelProps) =>
@@ -23,7 +23,7 @@ const CoursePanel = ({ courses, highlight }: CoursePanelProps) =>
                             <CourseYear
                                 key={course.course + "_" + year.yearNumber}
                                 year={year}
-                                highlight={highlight[index].years[yearIndex]}
+                                highlight={highlight[course.course].years[yearIndex]}
                             />
                         )
                     }

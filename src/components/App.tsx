@@ -3,7 +3,7 @@ import PrimaryGoalPanel from "./PrimaryGoalPanel";
 import TrackPanel from "./TrackPanel";
 import CoursePanel from "./CoursePanel";
 import ScrollWrapper from "./ScrollWrapper";
-import { Highlight, createHighlight, HPrimaryGoal, HTrack } from "../highlight";
+import { Highlight, createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight } from "../highlight";
 import LoadingScreen from "./LoadingScreen";
 
 const App = () =>
@@ -14,9 +14,9 @@ const App = () =>
 	    courses: []
     });
     const [highlight, setHighlight] = useState<Highlight>({
-        primaryGoals: [],
-        tracks: [],
-        courses: []
+        primaryGoals: {},
+        tracks: {},
+        courses: {}
     });
     const [isLoading, setLoading] = useState(true);
 
@@ -34,15 +34,16 @@ const App = () =>
             });
     }, []);
 
-    const setHPrimaryGoals = function (value: HPrimaryGoal[])
+    const setHPrimaryGoals = function (value: HashMap<HPrimaryGoal>)
     {
-        setHighlight ({
+        const updated = {
             primaryGoals: value,
             tracks: highlight.tracks,
             courses: highlight.courses
-        });
+        };
+        setHighlight (computeTrackHighlight(data, updated));
     };
-    const setHTracks = function (value: HTrack[])
+    const setHTracks = function (value: HashMap<HTrack>)
     {
         setHighlight ({
             primaryGoals: highlight.primaryGoals,

@@ -20,19 +20,17 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
         }
 
         highlight.selected = !highlight.selected;
-        highlight.children.forEach(child => child.selected = highlight.selected);
+
+        for (const key in highlight.children)
+        {
+            highlight.children[key].selected = highlight.selected;
+        }
 
         setHighlight(highlight);
     };
     const toggleChild = (id: string) =>
     {
-        const child = highlight.children.find(child => child.id === id);
-        
-        if (!child)
-        {
-            return;
-        }
-
+        const child = highlight.children[id];
         child.selected = !child.selected;
 
         if (child.selected)
@@ -42,7 +40,7 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
         }
         else
         {
-            highlight.selected = highlight.children.some(child => child.selected);
+            highlight.selected = Object.values(highlight.children).some(child => child.selected);
             setHighlight(highlight);
         }
     };
@@ -53,10 +51,10 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
             {
                 <ol type="a">
                     {
-                        goal.children.map((child, index) =>
+                        goal.children.map(child =>
                             <li
                                 key={child.id}
-                                className={list("pb-0-2 non-selected", highlight.children[index].selected ? "selected" : "non-selected")}
+                                className={list("pb-0-2 non-selected", highlight.children[child.id].selected ? "selected" : "non-selected")}
                                 onClick={() => toggleChild(child.id)}
                             >
                                 {child.text}
