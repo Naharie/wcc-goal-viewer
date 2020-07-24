@@ -6,10 +6,10 @@ interface PrimaryGoalProps
 {
     goal: PrimaryGoal;
     highlight: HPrimaryGoal;
-    updateHighlight: (value: HPrimaryGoal) => void;
+    setHighlight: (value: HPrimaryGoal) => void;
 }
 
-const PrimaryGoal = ({ goal, highlight, updateHighlight }: PrimaryGoalProps) =>
+const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
 {
     const toggleAll = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) =>
     {
@@ -22,7 +22,7 @@ const PrimaryGoal = ({ goal, highlight, updateHighlight }: PrimaryGoalProps) =>
         highlight.selected = !highlight.selected;
         highlight.children.forEach(child => child.selected = highlight.selected);
 
-        updateHighlight(highlight);
+        setHighlight(highlight);
     };
     const toggleChild = (id: string) =>
     {
@@ -38,12 +38,12 @@ const PrimaryGoal = ({ goal, highlight, updateHighlight }: PrimaryGoalProps) =>
         if (child.selected)
         {
             highlight.selected = true;
-            updateHighlight(highlight);
+            setHighlight(highlight);
         }
         else
         {
             highlight.selected = highlight.children.some(child => child.selected);
-            updateHighlight(highlight);
+            setHighlight(highlight);
         }
     };
 

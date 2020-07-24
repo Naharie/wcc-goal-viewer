@@ -7,14 +7,14 @@ interface PrimaryGoalPanelProps
     goals: PrimaryGoal[];
     // Guaranteed to be in the same order as goals.
     highlight: HPrimaryGoal[];
-    updateHighlight: (value: HPrimaryGoal[]) => void;
+    setHighlight: (value: HPrimaryGoal[]) => void;
 }
 
-const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight, updateHighlight }) =>
+const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight, setHighlight }) =>
 {
     const updateGoalHighlight = function (value: HPrimaryGoal)
     {
-        updateHighlight(highlight.map(goal => goal.id === value.id ? value : goal));
+        setHighlight(highlight.map(goal => goal.id === value.id ? value : goal));
     };
 
     return (
@@ -24,7 +24,7 @@ const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight, updateH
                     key={goal.id}
                     goal={goal}
                     highlight={cloneHPrimaryGoal(highlight[index])}
-                    updateHighlight={updateGoalHighlight}
+                    setHighlight={updateGoalHighlight}
                 />
             )}
         </ol>
