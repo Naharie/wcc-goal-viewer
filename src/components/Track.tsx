@@ -1,7 +1,7 @@
 import React from "react";
 import TrackGoal from "./TrackGoal";
 import { HTrack } from "../highlight";
-import { list } from "../utilities";
+import { list, getNextCourse, scrollIntoView } from "../utilities";
 
 interface TrackProps
 {
@@ -13,6 +13,18 @@ interface TrackProps
 
 const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
 {
+    const scrollToNext = function ()
+    {
+        const next = getNextCourse(track.track);
+        const behavior: ScrollIntoViewOptions = {
+            behavior: "smooth",
+            block: "start",
+            inline: "start"
+        };
+
+        scrollIntoView(document.getElementById("track_" + next));
+        scrollIntoView(document.getElementById("course_" + next));
+    };
     const toggleSelected = function (id: string)
     {
         const goal = highlight.goals[id];
@@ -23,7 +35,7 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
 
     return (
         <div id={"track_" + track.track} className={list("mb-1" + className)}>
-            <div className="text-center cursor-pointer">{track.track}</div>
+            <div className="text-center cursor-pointer" onClick={scrollToNext}>{track.track}</div>
             <ol type="1">
                 {
                     track.goals.map(goal =>
