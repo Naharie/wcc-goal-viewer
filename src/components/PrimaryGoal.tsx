@@ -1,22 +1,72 @@
 import React from "react";
+import { HPrimaryGoal } from "../highlight";
+import { list } from "../utilities";
 
 interface PrimaryGoalProps
 {
     goal: PrimaryGoal;
+    highlight: HPrimaryGoal;
+    updateHighlight: (value: HPrimaryGoal) => void;
 }
 
-const PrimaryGoal = ({ goal }: PrimaryGoalProps) =>
-    <li className="mb-1-3 mb-0-1">
-        {goal.text}
+const PrimaryGoal = ({ goal, highlight, updateHighlight }: PrimaryGoalProps) =>
+{
+    const toggleAll = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) =>
+    {
+        // Avoid toggling everything anytime a sub goal is toggled.
+        if (event.target !== event.currentTarget)
         {
-            <ol type="a">
-                {
-                    goal.children.map(child =>
-                        <li key={child.id} className="mb-0-1">{child.text}</li>
-                    )
-                }
-            </ol>
+            return;
         }
-    </li>;
+
+        highlight.selected = !highlight.selected;
+        highlight.children.forEach(child => child.selected = highlight.selected);
+
+        updateHighlight(highlight);
+    };
+    const toggleChild = (id: string) =>
+    {
+        const child = highlight.children.find(child => child.id === id);
+        
+        if (!child)
+        {
+            return;
+        }
+
+        child.selected = !child.selected;
+
+        if (child.selected)
+        {
+            highlight.selected = true;
+            updateHighlight(highlight);
+        }
+        else
+        {
+            highlight.selected = highlight.children.some(child => child.selected);
+            updateHighlight(highlight);
+        }
+    };
+
+    return (
+        <li className={list("mb-1-3", highlight.selected ? "selected" : "")} onClick={toggleAll}>
+            {goal.text}
+            {
+                <ol type="a">
+                    {
+                        goal.children.map((child, index) =>
+                            <li
+                                key={child.id}
+                                className={list("pb-0-2 non-selected", highlight.children[index].selected ? "selected" : "non-selected")}
+                                onClick={() => toggleChild(child.id)}
+                            >
+                                {child.text}
+                            </li>
+                        )
+                    }
+                </ol>
+            }
+        </li>
+    );
+};
 
 export default PrimaryGoal;

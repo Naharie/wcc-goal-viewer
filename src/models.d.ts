@@ -53,7 +53,7 @@ type Semester = CourseGoal[];
 interface Year
 {
 	// Which year this is.
-	yearNumber: 100 | 200 | 300 | 400,
+	yearNumber: 100 | 200 | 300 | 400;
 	// Goals for semester 1
 	semester1: Semester;
 	// Goals for semester 2

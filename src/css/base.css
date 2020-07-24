@@ -45,6 +45,49 @@ body
 	height: 100%;
 }
 
+/* Spinner */
+/* Shamelessly stolen from Bootstrap: https://getbootstrap.com/ */
+
+@keyframes spinner
+{
+	to
+	{
+		transform: rotate(360deg);
+	}
+}
+
+.spinner
+{
+    display: inline-block;
+    width: 6rem;
+    height: 6rem;
+    vertical-align: text-bottom;
+    border: .25em solid lightgreen;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner .75s linear infinite;
+    animation: spinner .75s linear infinite;
+}
+
+/* Colors */
+
+.non-selected
+{
+	background-color: var(--non-selected);
+}
+
+.selected
+{
+	background-color: var(--selected);
+}
+
+.error
+{
+	background-color: var(--error);
+}
+
+/* Scroll bar trickery */
+
 .scroll-hover:not(:hover)
 {
 	scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
