@@ -11,8 +11,8 @@ export interface HGoal
 export interface HYear
 {
 	yearNumber: 100 | 200 | 300 | 400;
-	semester1: HGoal[];
-	semester2: HGoal[];
+	semester1: HashMap<HGoal>;
+	semester2: HashMap<HGoal>;
 }
 
 export interface HPrimaryGoal
@@ -68,8 +68,8 @@ export const cloneHGoal = (goal: HGoal): HGoal => ({
 });
 export const cloneHYear = (year: HYear): HYear => ({
     yearNumber: year.yearNumber,
-    semester1: year.semester1.map(cloneHGoal),
-    semester2: year.semester2.map(cloneHGoal)
+    semester1: mapObject (year.semester1, cloneHGoal),
+    semester2: mapObject (year.semester2, cloneHGoal)
 });
 
 export const cloneHPrimaryGoal = (goal: HPrimaryGoal): HPrimaryGoal => ({
@@ -103,8 +103,8 @@ export const createHighlight = function (data: JsonData): Highlight
 
     const mapYear = (year: Year) => ({
         yearNumber: year.yearNumber,
-        semester1: year.semester1.map(goal => ({ id: goal.id, selected: false })),
-        semester2: year.semester2.map(goal => ({ id: goal.id, selected: false }))
+        semester1: buildMapping (year.semester1.map(goal => ({ id: goal.id, selected: false })), "id"),
+        semester2: buildMapping (year.semester2.map(goal => ({ id: goal.id, selected: false })), "id")
     });
 
     const courses: HCourse[] =
@@ -124,6 +124,7 @@ export const createHighlight = function (data: JsonData): Highlight
         courses: buildMapping(courses, "course")
     });
 };
+
 export const computeTrackHighlight = function (data: JsonData, highlight: Highlight)
 {
     const result: Highlight = {
@@ -151,6 +152,38 @@ export const computeTrackHighlight = function (data: JsonData, highlight: Highli
                 });
 
             highlightTrack.goals[goal.id].selected = selected;
+        }
+    }
+
+    return (result);
+};
+export const computeCourseHighlight = function (data: JsonData, highlight: Highlight)
+{
+    const result: Highlight = {
+        primaryGoals: highlight.primaryGoals,
+        tracks: highlight.tracks,
+        courses: mapObject(highlight.courses, cloneHCourse)
+    };
+
+    const handleSemester = function (course: Course, semester: Semester, highlight: HashMap<HGoal>)
+    {
+        for (const goal of semester)
+        {
+            const selected = goal.references.some(reference => result.tracks[course.course].goals[reference].selected);
+            highlight[goal.id].selected = selected;
+        }
+    };
+
+    for (const course of data.courses)
+    {
+        const highlightCourse = result.courses[course.course];
+
+        for (const year of course.years)
+        {
+            const highlightYear = highlightCourse.years[year.yearNumber / 100 - 1];
+
+            handleSemester(course, year.semester1, highlightYear.semester1);
+            handleSemester(course, year.semester2, highlightYear.semester2);
         }
     }
 

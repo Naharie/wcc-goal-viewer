@@ -1,11 +1,12 @@
 import React from "react";
-import { HGoal } from "../highlight";
+import { HGoal, HashMap } from "../highlight";
+import { list } from "../utilities";
 
 interface CourseSemesterProps
 {
     year: number;
     semester: Semester;
-    highlight: HGoal[];
+    highlight: HashMap<HGoal>;
 }
 
 const renderReferences = (references: string[]) =>
@@ -18,13 +19,18 @@ const renderReferences = (references: string[]) =>
     return ("(" + references.join(", ") + ")");
 };
 
-const CourseSemester = ({ year, semester }: CourseSemesterProps) =>
+const CourseSemester = ({ year, semester, highlight }: CourseSemesterProps) =>
     <div className="flex-1">
         <div className="text-center cursor-pointer mb-1">{year}</div>
         <ol type="A">
             {
                 semester.map(goal =>
-                    <li className="mb-1-3" key={goal.id}>{goal.text} {renderReferences(goal.references)}</li>
+                    <li
+                        className={list("mb-1-3", highlight[goal.id].selected ? "selected" : "")}
+                        key={goal.id}
+                    >
+                        {goal.text} {renderReferences(goal.references)}
+                    </li>
                 )
             }
         </ol>
