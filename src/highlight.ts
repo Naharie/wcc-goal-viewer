@@ -3,7 +3,7 @@ export interface HGoal
     id: string;
     selected: boolean;
 }
-interface HYear
+export interface HYear
 {
 	yearNumber: 100 | 200 | 300 | 400;
 	semester1: HGoal[];

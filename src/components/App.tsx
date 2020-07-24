@@ -70,7 +70,7 @@ const App = () =>
             </div>
             <div className="flex-2 h-100">
                 <ScrollWrapper className="pt-0-5">
-                    <CoursePanel courses={data.courses} />
+                    <CoursePanel courses={data.courses} highlight={highlight.courses} />
                 </ScrollWrapper>
             </div>
         </div>

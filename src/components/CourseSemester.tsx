@@ -1,9 +1,11 @@
 import React from "react";
+import { HGoal } from "../highlight";
 
 interface CourseSemesterProps
 {
     year: number;
     semester: Semester;
+    highlight: HGoal[];
 }
 
 const renderReferences = (references: string[]) =>

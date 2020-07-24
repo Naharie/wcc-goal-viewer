@@ -1,12 +1,14 @@
 import React from "react";
 import CourseYear from "./CourseYear";
+import { HCourse } from "../highlight";
 
 interface CoursePanelProps
 {
     courses: Course[];
+    highlight: HCourse[];
 }
 
-const CoursePanel = ({ courses }: CoursePanelProps) =>
+const CoursePanel = ({ courses, highlight }: CoursePanelProps) =>
     <>
         {
             courses.map((course, index) =>
@@ -16,9 +18,15 @@ const CoursePanel = ({ courses }: CoursePanelProps) =>
                     className={"flex flex-column align-items-center mb-1" + (index < courses.length - 1 ? " border-b-1" : "")}
                 >
                     <div className="text-center cursor-pointer">{course.course}</div>
-                    {course.years.map(year =>
-                        <CourseYear key={course.course + "_" + year.yearNumber} year={year} />
-                    )}
+                    {
+                        course.years.map((year, yearIndex) =>
+                            <CourseYear
+                                key={course.course + "_" + year.yearNumber}
+                                year={year}
+                                highlight={highlight[index].years[yearIndex]}
+                            />
+                        )
+                    }
                 </div>
             )
         }
