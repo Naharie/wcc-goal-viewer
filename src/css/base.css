@@ -86,6 +86,11 @@ body
 	background-color: var(--error);
 }
 
+.interactive
+{
+	background-color: var(--interactive);
+}
+
 /* Scroll bar trickery */
 
 .scroll-hover:not(:hover)
@@ -97,4 +102,54 @@ body
 .scroll-hover:not(:hover)::-webkit-scrollbar
 {
 	opacity: 0;
+}
+
+/* Scores */
+
+.badge
+{
+	background-color: rgb(135, 206, 250);
+	border-radius: 0.2em;
+	font-size: 1.15em;
+	padding: 0 0.3em;
+	margin-right: 0.2em;
+}
+
+.badge-button:hover
+{
+	background-color: rgb(84, 185, 248);
+}
+
+.dropdown
+{
+	position: relative;
+}
+
+.dropdown-content
+{
+	position: absolute;
+	display: none;
+
+	transform: translate(-20%, 0%);
+
+	background-color: #f1f1f1;
+	border: 1px solid lightgray;
+	border-radius: 0.2em;
+
+	overflow: auto;
+
+	padding: 0.1em;
+	margin-top: 0.1em;
+
+	z-index: 1000;
+}
+
+.dropdown-center
+{
+	transform: translate(-40%, 0%);
+}
+
+.dropdown-show
+{
+	display: block;
 }

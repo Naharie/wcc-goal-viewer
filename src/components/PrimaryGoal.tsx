@@ -1,6 +1,7 @@
 import React from "react";
 import { HPrimaryGoal } from "../highlight";
 import { list } from "../utilities";
+import ScoreList from "./ScoreList";
 
 interface PrimaryGoalProps
 {
@@ -58,11 +59,14 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
                                 onClick={() => toggleChild(child.id)}
                             >
                                 {child.text}
+                                <ScoreList scores={highlight.children[child.id].scores} />
                             </li>
                         )
                     }
                 </ol>
             }
+
+            <ScoreList scores={highlight.scores} />
         </li>
     );
 };

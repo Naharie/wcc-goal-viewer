@@ -3,7 +3,7 @@ import PrimaryGoalPanel from "./PrimaryGoalPanel";
 import TrackPanel from "./TrackPanel";
 import CoursePanel from "./CoursePanel";
 import ScrollWrapper from "./ScrollWrapper";
-import { Highlight, createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, computeCourseHighlight } from "../highlight";
+import { Highlight, createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, computeCourseHighlight, HCourse, computeScores } from "../highlight";
 import LoadingScreen from "./LoadingScreen";
 
 const App = () =>
@@ -57,6 +57,15 @@ const App = () =>
         };
         setHighlight (computeCourseHighlight(data, updated));
     };
+    const setHCourses = function (value: HashMap<HCourse>)
+    {
+        const updated = {
+            primaryGoals: highlight.primaryGoals,
+            tracks: highlight.tracks,
+            courses: value
+        };
+        setHighlight (computeScores(data, updated));
+    };
 
     if (isLoading)
     {
@@ -77,7 +86,7 @@ const App = () =>
             </div>
             <div className="flex-2 h-100">
                 <ScrollWrapper className="pt-0-5">
-                    <CoursePanel courses={data.courses} highlight={highlight.courses} />
+                    <CoursePanel courses={data.courses} highlight={highlight.courses} setHighlight={setHCourses} />
                 </ScrollWrapper>
             </div>
         </div>

@@ -42,6 +42,7 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
                         <TrackGoal
                             key={goal.id}
                             goal={goal}
+                            scores={highlight.goals[goal.id].scores}
                             selected={highlight.goals[goal.id].selected}
                             setSelected={() => toggleSelected(goal.id)}
                         />

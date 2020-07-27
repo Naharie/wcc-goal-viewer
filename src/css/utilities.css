@@ -5,6 +5,11 @@
     display: block;
 }
 
+.inline-block
+{
+    display: inline-block;
+}
+
 .flex
 {
     display: flex;
@@ -65,7 +70,17 @@
     border-bottom: 1px solid black;
 }
 
+.border-r-0-1
+{
+    border-radius: 0.1em;
+}
+
 /* Margin */
+
+.mt-0-5
+{
+    margin-top: 0.5em;
+}
 
 .mb-0-1
 {

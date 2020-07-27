@@ -7,6 +7,7 @@ export interface HGoal
 {
     id: string;
     selected: boolean;
+    scores?: number[];
 }
 export interface HYear
 {
@@ -15,7 +16,7 @@ export interface HYear
 	semester2: HashMap<HGoal>;
 }
 
-export interface HPrimaryGoal
+export interface HPrimaryGoal extends HGoal
 {
     id: string;
     selected: boolean;
@@ -64,18 +65,21 @@ const buildMapping = function <T>(values: T[], key: keyof T)
 
 export const cloneHGoal = (goal: HGoal): HGoal => ({
     id: goal.id,
-    selected: goal.selected
+    selected: goal.selected,
+    scores: goal.scores?.map(value => value)
 });
+export const cloneHSemester = (semester: HashMap<HGoal>) => mapObject(semester, cloneHGoal);
 export const cloneHYear = (year: HYear): HYear => ({
     yearNumber: year.yearNumber,
-    semester1: mapObject (year.semester1, cloneHGoal),
-    semester2: mapObject (year.semester2, cloneHGoal)
+    semester1: cloneHSemester(year.semester1),
+    semester2: cloneHSemester(year.semester2)
 });
 
 export const cloneHPrimaryGoal = (goal: HPrimaryGoal): HPrimaryGoal => ({
     id: goal.id,
     selected: goal.selected,
-    children: mapObject(goal.children, cloneHGoal)
+    children: mapObject(goal.children, cloneHGoal),
+    scores: goal.scores?.map (v => v)
 });
 export const cloneHTrack = (track: HTrack): HTrack => ({
     track: track.track,
@@ -185,6 +189,140 @@ export const computeCourseHighlight = function (data: JsonData, highlight: Highl
             handleSemester(course, year.semester1, highlightYear.semester1);
             handleSemester(course, year.semester2, highlightYear.semester2);
         }
+    }
+
+    return (result);
+};
+
+export const computeScores = function (data: JsonData, highlight: Highlight)
+{
+    const result: Highlight = {
+        primaryGoals: mapObject(highlight.primaryGoals, cloneHPrimaryGoal),
+        tracks: mapObject(highlight.tracks, cloneHTrack),
+        courses: highlight.courses
+    };
+
+    // Reset all the score data
+
+    for (const id in result.primaryGoals)
+    {
+        const primaryGoal = result.primaryGoals[id];
+        primaryGoal.scores = [];
+
+        for (const id in primaryGoal.children)
+        {
+            primaryGoal.children[id].scores = [];
+        }
+    }
+
+    for (const id in result.tracks)
+    {
+        const track = result.tracks[id];
+
+        for (const id in track.goals)
+        {
+            track.goals[id].scores = [];
+        }
+    }
+
+    // Update the tracks with scores from the courses.
+
+    const handleSemester = function (course: Course, semester: Semester, highlight: HashMap<HGoal>)
+    {
+        const track = result.tracks[course.course];
+
+        for (const goal of semester)
+        {
+            const scores = highlight[goal.id].scores ?? [];
+
+            for (const reference of goal.references)
+            {
+                const trackGoal = track.goals[reference];
+
+                trackGoal.scores = trackGoal.scores ?? [];
+                trackGoal.scores.push (...scores);
+            }
+        }
+    };
+
+    for (const course of data.courses)
+    {
+        const hCourse = result.courses[course.course];
+
+        for (const year of course.years)
+        {
+            const hYear = hCourse.years[year.yearNumber / 100 - 1];
+
+            handleSemester(course, year.semester1, hYear.semester1);
+            handleSemester(course, year.semester2, hYear.semester2);
+        }
+    }
+
+    // Update the primary goals with scores from the tracks.
+
+    for (const track of data.tracks)
+    {
+        const hTrack = result.tracks[track.track];
+
+        for (const goal of track.goals)
+        {
+            const hGoal = hTrack.goals[goal.id];
+            const scores = hGoal.scores ?? [];
+
+            if (scores.length === 0)
+            {
+                continue;
+            }
+
+            const score = scores.reduce((a, b) => a + b) / scores.length;
+            hGoal.scores = [ score ];
+
+            for (const reference of goal.references)
+            {
+                const primaryGoal = result.primaryGoals[reference.goal];
+
+                for (const subItem of reference.subGoals)
+                {
+                    const subGoal = primaryGoal.children[subItem];
+                    subGoal.scores = subGoal.scores ?? [];
+                    subGoal.scores.push (score);
+                }
+
+                primaryGoal.scores = primaryGoal.scores ?? [];
+                primaryGoal.scores.push(score);
+            }
+        }
+    }
+
+    // Average the scores on the primary goals.
+
+    for (const id in result.primaryGoals)
+    {
+        const primaryGoal = result.primaryGoals[id];
+
+        for (const id in primaryGoal.children)
+        {
+            const child = primaryGoal.children[id];
+            const scores = child.scores ?? [];
+
+            if (scores.length === 0)
+            {
+                continue;
+            }
+
+            const score = scores.reduce((a, b) => a + b) / scores.length;
+            child.scores = [ score ];
+        }
+
+        const scores = primaryGoal.scores ?? [];
+
+        if (scores.length === 0)
+        {
+            continue;
+        }
+
+        const score = scores.reduce((a, b) => a + b) / scores.length;
+        primaryGoal.scores = [ score ];
     }
 
     return (result);

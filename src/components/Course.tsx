@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import { list, getNextCourse, scrollIntoView } from "../utilities";
 import CourseYear from "./CourseYear";
-import { HCourse } from "../highlight";
+import { HCourse, HYear, cloneHYear } from "../highlight";
 
 interface CourseProps
 {
     course: Course;
     highlight: HCourse;
+    setHighlight: (value: HCourse) => void;
     className?: string;
 }
 
-const Course: FC<CourseProps> = ({ course, highlight, className }) =>
+const Course: FC<CourseProps> = ({ course, highlight, setHighlight, className }) =>
 {
     const scrollToNext = function ()
     {
@@ -25,6 +26,12 @@ const Course: FC<CourseProps> = ({ course, highlight, className }) =>
         scrollIntoView(document.getElementById("course_" + next));
     };
 
+    const setter = (value: HYear) =>
+    {
+        highlight.years[value.yearNumber / 100 - 1] = value;
+        setHighlight(highlight);
+    };
+
     return (
         <div
             key={course.course}
@@ -37,7 +44,8 @@ const Course: FC<CourseProps> = ({ course, highlight, className }) =>
                     <CourseYear
                         key={course.course + "_" + year.yearNumber}
                         year={year}
-                        highlight={highlight.years[yearIndex]}
+                        highlight={cloneHYear (highlight.years[yearIndex])}
+                        setHighlight={setter}
                     />
                 )
             }
