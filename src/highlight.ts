@@ -40,7 +40,11 @@ export interface Highlight
     courses: HashMap<HCourse>;
 }
 
-const mapObject = function <T, U>(object: HashMap<T>, mapping: (value: T) => U): HashMap<U>
+// Well one could use Object.fromEntries in these functions,
+// I would rather not until some research has been done into
+// The performance penalty of doing so (and implicitly)
+// Iterating over all entries in the object twice.
+export const mapObject = function <T, U>(object: HashMap<T>, mapping: (value: T) => U): HashMap<U>
 {
     const result: HashMap<U> = {};
 

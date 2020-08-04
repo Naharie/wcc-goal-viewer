@@ -16,11 +16,6 @@ const Course: FC<CourseProps> = ({ course, highlight, setHighlight, className })
     const scrollToNext = function ()
     {
         const next = getNextCourse(course.course);
-        const behavior: ScrollIntoViewOptions = {
-            behavior: "smooth",
-            block: "start",
-            inline: "start"
-        };
 
         scrollIntoView(document.getElementById("track_" + next));
         scrollIntoView(document.getElementById("course_" + next));

@@ -1,54 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PrimaryGoalPanel from "./PrimaryGoalPanel";
 import TrackPanel from "./TrackPanel";
 import CoursePanel from "./CoursePanel";
 import ScrollWrapper from "./ScrollWrapper";
-import { Highlight, createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, computeCourseHighlight, HCourse, computeScores } from "../highlight";
 import LoadingScreen from "./LoadingScreen";
+import { Highlight, createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, computeCourseHighlight, HCourse, computeScores } from "../highlight";
+import useData from "../hooks/useData";
 
 const App = () =>
 {
-    const [data, setData] = useState<JsonData>({
-        primaryGoals: [],
-	    tracks: [],
-	    courses: []
-    });
     const [highlight, setHighlight] = useState<Highlight>({
         primaryGoals: {},
         tracks: {},
         courses: {}
     });
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, data] = useData(data => setHighlight(createHighlight(data)));
 
-    useEffect (() =>
-    {
-        // No need to use an abort controller here.
-        // The primary app component is always mounted until the page is closed.
-        fetch("./data.json")
-            .then(response => response.json())
-            .then(data =>
-            {
-                setData(data);
-                setHighlight(createHighlight(data));
-                setLoading(false);
-            });
-    }, []);
-
-    const setHPrimaryGoals = function (value: HashMap<HPrimaryGoal>)
+    const setPrimaryGoalHighlight = function (value: HashMap<HPrimaryGoal>)
     {
         const updated = {
             primaryGoals: value,
             tracks: highlight.tracks,
             courses: highlight.courses
         };
-        setHighlight (
-            computeCourseHighlight(
-                data,
-                computeTrackHighlight(data, updated)
-            )
-        );
+        setHighlight (computeCourseHighlight(data, computeTrackHighlight(data, updated)));
     };
-    const setHTracks = function (value: HashMap<HTrack>)
+    const setTrackHighlight = function (value: HashMap<HTrack>)
     {
         const updated = {
             primaryGoals: highlight.primaryGoals,
@@ -57,14 +34,16 @@ const App = () =>
         };
         setHighlight (computeCourseHighlight(data, updated));
     };
-    const setHCourses = function (value: HashMap<HCourse>)
+    const setCourseHighlight = function (value: HashMap<HCourse>)
     {
         const updated = {
             primaryGoals: highlight.primaryGoals,
             tracks: highlight.tracks,
             courses: value
         };
-        setHighlight (computeScores(data, updated));
+        const computed = computeScores(data, updated);
+
+        setHighlight (computed);
     };
 
     if (isLoading)
@@ -76,17 +55,17 @@ const App = () =>
         <div className="flex mh-0 h-100">
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper>
-                    <PrimaryGoalPanel goals={data.primaryGoals} highlight={highlight.primaryGoals} setHighlight={setHPrimaryGoals} />
+                    <PrimaryGoalPanel goals={data.primaryGoals} highlight={highlight.primaryGoals} setHighlight={setPrimaryGoalHighlight} />
                 </ScrollWrapper>
             </div>
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper className="pt-0-5">
-                    <TrackPanel tracks={data.tracks} highlight={highlight.tracks} setHighlight={setHTracks} />
+                    <TrackPanel tracks={data.tracks} highlight={highlight.tracks} setHighlight={setTrackHighlight} />
                 </ScrollWrapper>
             </div>
             <div className="flex-2 h-100">
                 <ScrollWrapper className="pt-0-5">
-                    <CoursePanel courses={data.courses} highlight={highlight.courses} setHighlight={setHCourses} />
+                    <CoursePanel courses={data.courses} highlight={highlight.courses} setHighlight={setCourseHighlight} />
                 </ScrollWrapper>
             </div>
         </div>

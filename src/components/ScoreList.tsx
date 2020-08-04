@@ -45,7 +45,7 @@ const ScoreList: FC<ScoreListProps> = ({ scores, setScores, isEditing }) =>
                 </span>
                 <div className={list(
                     "dropdown-content",
-                    scores?.length ?? 0 > 0 ? "dropdown-center" : null,
+                    (scores?.length ?? 0) > 0 ? "dropdown-center" : null,
                     dropdown ? "dropdown-show" : null
                 )}>
                     {

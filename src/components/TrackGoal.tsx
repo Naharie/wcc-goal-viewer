@@ -1,7 +1,6 @@
 import React from "react";
 import { list } from "../utilities";
 import ScoreList from "./ScoreList";
-import { HGoal } from "../highlight";
 
 interface TrackGoalProps
 {

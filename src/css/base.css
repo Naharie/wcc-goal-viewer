@@ -1,18 +1,8 @@
-﻿/* Variables */
-:root
+﻿:root
 {
-	/* Core */
 	--non-selected: rgb(231, 240, 247);
 	--selected: rgb(144, 238, 144);
 	--error: rgb(255, 77, 77);
-
-	/* Extra colors (for testing) */
-
-	--red: rgb(255, 77, 77);
-	--green: rgb(144, 238, 144);
-	--blue: rgb(77, 77, 255);
-	--yellow: rgb(196, 196, 47);
-	--orange: rgb(230, 130, 47);
 }
 
 /* Reset */

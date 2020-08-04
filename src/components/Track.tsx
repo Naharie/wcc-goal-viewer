@@ -16,11 +16,6 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
     const scrollToNext = function ()
     {
         const next = getNextCourse(track.track);
-        const behavior: ScrollIntoViewOptions = {
-            behavior: "smooth",
-            block: "start",
-            inline: "start"
-        };
 
         scrollIntoView(document.getElementById("track_" + next));
         scrollIntoView(document.getElementById("course_" + next));
