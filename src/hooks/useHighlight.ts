@@ -1,32 +1,21 @@
 import { useState } from "react";
 import { Highlight, HashMap, HGoal, mapObject, cloneHPrimaryGoal, cloneHTrack } from "../highlight";
 import useQuery from "./useQuery";
-import useHistoryState from "./useHistory";
-import { format } from "path";
 
 interface Assessment
 {
     [key: string]: number[];
 }
 
-interface HistoryState
-{
-    assessment: Assessment;
-    query: string;
-}
-
-const useHighlight = () =>
+const useHighlight = (): [Highlight, (value: Highlight) => void] =>
 {
     const [highlight, setHighlight] = useState<Highlight>({
         primaryGoals: {},
         tracks: {},
         courses: {}
     });
-    const [{ assessment: query }, setQuery] = useQuery();
-    const [state, setState] = useHistoryState<HistoryState>({
-        assessment: {},
-        query: ""
-    });
+    //const [{ assessment: query = "" }, setQuery] = useQuery();
+    const [lastSeenQuery, setLastSeenQuery] = useState("");
 
     const formAssessment = (highlight: Highlight) =>
     {
@@ -108,12 +97,13 @@ const useHighlight = () =>
         );
     };
 
+    /*
     // The user entered a url with a query string and the specified query does not match the current internal state.
-    if (query != state.query)
+    if (query != lastSeenQuery)
     {
         const assessment = parseAssessment(query);
 
-        setState({ assessment, query });
+        setLastSeenQuery(query);
         applyAssessment(assessment);
     }
 
@@ -123,11 +113,13 @@ const useHighlight = () =>
         const query = stringifyAssessment(assessment);
 
         setHighlight(value);
-        setQuery({ assessment: query });
-        setState({ assessment, query });
-    };
 
-    return ([ highlight, setter ]);
+        setQuery(query === "" ? {} : { assessment: query });
+        setLastSeenQuery(query);
+    };
+    */
+
+    return ([ highlight, setHighlight ]);
 };
 
 export default useHighlight;

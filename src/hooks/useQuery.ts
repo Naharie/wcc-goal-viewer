@@ -8,11 +8,11 @@ let cache: QueryParameters = {};
 
 const useQuery = (): [QueryParameters, (value: QueryParameters) => void] =>
 {
-    if (location.search !== "" && location.search !== oldQuery)
+    if (window.location.search !== "" && window.location.search !== oldQuery)
     {
         cache = {};
 
-        const pairs = location.search.substring(1).split("&");
+        const pairs = window.location.search.substring(1).split("&");
 
         for (const pair of pairs)
         {
@@ -23,18 +23,18 @@ const useQuery = (): [QueryParameters, (value: QueryParameters) => void] =>
 
     const set = (query: QueryParameters) =>
     {
-        const baseUrl = location.origin + location.pathname + location.hash.split("?")[0];
+        const baseUrl = window.location.origin + window.location.pathname + window.location.hash.split("?")[0];
         const queryString = Object.entries(query).map (([ name, value ]) =>
             encodeURIComponent(name) + "=" + encodeURIComponent(value)
         ).join("&");
 
         if (queryString !== "")
         {
-            history.replaceState(history.state, document.title, baseUrl + "?" + queryString);
+            window.history.replaceState(window.history.state, document.title, baseUrl + "?" + queryString);
         }
         else
         {
-            history.replaceState(history.state, document.title, baseUrl);
+            window.history.replaceState(window.history.state, document.title, baseUrl);
         }
     };
 

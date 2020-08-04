@@ -4,16 +4,13 @@ import TrackPanel from "./TrackPanel";
 import CoursePanel from "./CoursePanel";
 import ScrollWrapper from "./ScrollWrapper";
 import LoadingScreen from "./LoadingScreen";
-import { Highlight, createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, computeCourseHighlight, HCourse, computeScores } from "../highlight";
+import { createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, computeCourseHighlight, HCourse, computeScores, Highlight } from "../highlight";
 import useData from "../hooks/useData";
+import useHighlight from "../hooks/useHighlight";
 
 const App = () =>
 {
-    const [highlight, setHighlight] = useState<Highlight>({
-        primaryGoals: {},
-        tracks: {},
-        courses: {}
-    });
+    const [highlight, setHighlight] = useHighlight();
     const [isLoading, data] = useData(data => setHighlight(createHighlight(data)));
 
     const setPrimaryGoalHighlight = function (value: HashMap<HPrimaryGoal>)

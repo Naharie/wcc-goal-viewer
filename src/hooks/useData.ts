@@ -11,10 +11,14 @@ const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData ] =>
 
     useEffect (() =>
     {
-        const controller = new AbortController();
+        if (!isLoading)
+        {
+            return (() => {});
+        }
+
         let isMounted = true;
 
-        fetch("./data.json", { signal: controller.signal })
+        fetch("./data.json")
             .then(response => response.json())
             .then(data =>
             {
@@ -28,12 +32,8 @@ const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData ] =>
                 setLoading(false);
             });
 
-        return (() =>
-        {
-            isMounted = false;
-            controller.abort();
-        });
-    }, [ onLoad ]);
+        return (() => isMounted = false);
+    }, [ onLoad, isLoading ]);
 
     return ([ isLoading, data ]);
 };
