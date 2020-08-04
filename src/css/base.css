@@ -3,6 +3,8 @@
 	--non-selected: rgb(231, 240, 247);
 	--selected: rgb(144, 238, 144);
 	--error: rgb(255, 77, 77);
+
+	--font: "Times New Roman", Times, serif;
 }
 
 /* Reset */
@@ -25,7 +27,7 @@ html, body
 
 body
 {
-	font-family: "Times New Roman", Times, serif;
+	font-family: var(--font);
 	font-size: 130%;
 }
 
@@ -142,4 +144,23 @@ body
 .dropdown-show
 {
 	display: block;
+}
+
+/* Editor */
+
+textarea
+{
+	font-family: var(--font);
+	font-size: 1em;
+	resize: none;
+	border: none;
+	vertical-align: top;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+textarea::-webkit-scrollbar
+{
+	display: none;
 }
