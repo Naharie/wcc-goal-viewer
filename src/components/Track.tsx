@@ -2,6 +2,8 @@ import React from "react";
 import TrackGoal from "./TrackGoal";
 import { HTrack, HGoal, cloneHGoal } from "../highlight";
 import { list, getNextCourse, scrollIntoView } from "../utilities";
+import useCanEdit from "../utilities/useCanEdit";
+import AddButton from "./AddButton";
 
 interface TrackProps
 {
@@ -13,6 +15,8 @@ interface TrackProps
 
 const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
 {
+    const canEdit = useCanEdit();
+
     const scrollToNext = function ()
     {
         const next = getNextCourse(track.track);
@@ -41,6 +45,7 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
                     )
                 }
             </ol>
+            {canEdit ? <AddButton /> : null}
         </div>
     );
 };

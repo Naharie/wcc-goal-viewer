@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { HPrimaryGoal, HGoal } from "../highlight";
 import GoalElement from "./GoalElement";
 import PrimarySubGoal from "./PrimarySubGoal";
+import AddButton from "./AddButton";
 
 interface PrimaryGoalProps
 {
@@ -12,6 +13,8 @@ interface PrimaryGoalProps
 
 const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
 {
+    const [isEditing, setEditing] = useState(false);
+
     const toggleAll = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) =>
     {
         // Avoid toggling everything anytime a sub goal is toggled.
@@ -46,7 +49,7 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
     };
 
     return (
-        <GoalElement goal={goal} highlight={highlight} onClick={toggleAll}>
+        <GoalElement goal={goal} highlight={highlight} onClick={toggleAll} onToggleEdit={setEditing}>
             {
                 <ol type="a">
                     {
@@ -61,6 +64,7 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
                     }
                 </ol>
             }
+            {isEditing ? <AddButton /> : null}
         </GoalElement>
     );
 };

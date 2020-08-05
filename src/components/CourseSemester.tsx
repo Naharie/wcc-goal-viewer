@@ -1,6 +1,8 @@
 import React from "react";
 import { HGoal, HashMap } from "../highlight";
 import CourseGoal from "./CourseGoal";
+import useCanEdit from "../utilities/useCanEdit";
+import AddButton from "./AddButton";
 
 interface CourseSemesterProps
 {
@@ -12,6 +14,8 @@ interface CourseSemesterProps
 
 const CourseSemester = ({ year, semester, highlight, setHighlight }: CourseSemesterProps) =>
 {
+    const canEdit = useCanEdit();
+
     const setter = (value: HGoal) =>
     {
         highlight[value.id] = value;
@@ -33,6 +37,7 @@ const CourseSemester = ({ year, semester, highlight, setHighlight }: CourseSemes
                     )
                 }
             </ol>
+            {canEdit ? <AddButton /> : null}
         </div>
     );
 };

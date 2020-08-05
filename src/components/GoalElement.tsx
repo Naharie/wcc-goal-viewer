@@ -3,8 +3,8 @@ import { HGoal } from "../highlight";
 import { list } from "../utilities";
 import Textbox from "./Textbox";
 import ScoreList from "./ScoreList";
-import { setServers } from "dns";
 import useCanEdit from "../utilities/useCanEdit";
+import editCache from "../utilities/editCache";
 
 interface GoalElementProps
 {
@@ -15,9 +15,10 @@ interface GoalElementProps
     setScores?: (value: number[]) => void;
 
     onClick: (event: React.MouseEvent<HTMLLIElement>) => void;
+    onToggleEdit?: (isEditing: boolean) => void;
 }
 
-const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, isEditingScores, setScores, onClick }) =>
+const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, isEditingScores, setScores, onClick, ...props }) =>
 {
     const [isEditing, setEditing] = useState(false);
     const text = useRef(goal.text);
@@ -27,6 +28,27 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, isEditin
     {
         if (canEdit)
         {
+            if (props.onToggleEdit)
+            {
+                props.onToggleEdit(!isEditing);
+            }
+
+            // Inverted because this happens before the toggle.
+            if (!isEditing)
+            {
+                if (editCache.goal !== goal)
+                {
+                    editCache.cancelCurrentEditor();
+                    editCache.cancelCurrentEditor = () => setEditing(false);
+                    editCache.goal = goal;
+                }
+            }
+            else
+            {
+                editCache.cancelCurrentEditor = () => {};
+                editCache.goal = { id: "", text: "" };
+            }
+
             setEditing(!isEditing);
         }
     };

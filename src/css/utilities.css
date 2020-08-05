@@ -58,6 +58,13 @@
     width: 100%;
 }
 
+/* Font */
+
+.font-size-2em
+{
+    font-size: 2em;
+}
+
 /* Border */
 
 .border-r-1
