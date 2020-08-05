@@ -1,8 +1,5 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState } from "react";
 import { HGoal } from "../highlight";
-import { list } from "../utilities";
-import ScoreList from "./ScoreList";
-import Textbox from "./Textbox";
 import GoalElement from "./GoalElement";
 
 interface CourseGoalProps

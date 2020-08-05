@@ -2,6 +2,7 @@
 {
 	--non-selected: rgb(231, 240, 247);
 	--selected: rgb(144, 238, 144);
+
 	--error: rgb(255, 77, 77);
 
 	--font: "Times New Roman", Times, serif;
@@ -105,11 +106,15 @@ body
 
 .badge
 {
-	background-color: rgb(135, 206, 250);
 	border-radius: 0.2em;
 	font-size: 1.15em;
 	padding: 0 0.3em;
 	margin-right: 0.2em;
+}
+
+.badge-normal
+{
+	background-color: rgb(135, 206, 250);
 }
 
 .badge-button:hover

@@ -3,10 +3,15 @@ interface QueryParameters
     [key: string]: string;
 }
 
+interface SettableQueryParameters
+{
+    [key: string]: string | null | undefined;
+}
+
 let oldQuery = "";
 let cache: QueryParameters = {};
 
-const useQuery = (): [QueryParameters, (value: QueryParameters) => void] =>
+const useQuery = (): [QueryParameters, (value: SettableQueryParameters) => void] =>
 {
     if (window.location.search !== "" && window.location.search !== oldQuery)
     {
@@ -21,12 +26,18 @@ const useQuery = (): [QueryParameters, (value: QueryParameters) => void] =>
         }
     }
 
-    const set = (query: QueryParameters) =>
+    const set = (query: SettableQueryParameters) =>
     {
         const baseUrl = window.location.origin + window.location.pathname + window.location.hash.split("?")[0];
-        const queryString = Object.entries(query).map (([ name, value ]) =>
-            encodeURIComponent(name) + "=" + encodeURIComponent(value)
-        ).join("&");
+        
+        const queryString =
+            Object.entries(
+                Object.assign({}, cache, query)
+            )
+                .filter(([, value]) => value !== null && value !== undefined)
+                .map (([ name, value ]) =>
+                    encodeURIComponent(name) + "=" + encodeURIComponent(value + "")
+                ).join("&");
 
         if (queryString !== "")
         {

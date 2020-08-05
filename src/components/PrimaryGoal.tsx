@@ -1,8 +1,5 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import { HPrimaryGoal, HGoal } from "../highlight";
-import { list } from "../utilities";
-import ScoreList from "./ScoreList";
-import Textbox from "./Textbox";
 import GoalElement from "./GoalElement";
 import PrimarySubGoal from "./PrimarySubGoal";
 

@@ -4,6 +4,7 @@ import { list } from "../utilities";
 import Textbox from "./Textbox";
 import ScoreList from "./ScoreList";
 import { setServers } from "dns";
+import useCanEdit from "../utilities/useCanEdit";
 
 interface GoalElementProps
 {
@@ -20,8 +21,15 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, isEditin
 {
     const [isEditing, setEditing] = useState(false);
     const text = useRef(goal.text);
+    const canEdit = useCanEdit();
 
-    const toggleEditing = () => setEditing(!isEditing);
+    const toggleEditing = () =>
+    {
+        if (canEdit)
+        {
+            setEditing(!isEditing);
+        }
+    };
     const setScoresWrapper = (value: number[]) =>
     {
         if (setScores !== undefined)

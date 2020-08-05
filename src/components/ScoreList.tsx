@@ -23,7 +23,7 @@ const ScoreList: FC<ScoreListProps> = ({ scores, setScores, isEditing }) =>
     {
         if (setScores)
         {
-            setScores([ ...(scores ?? []), value ]);
+            setScores([...(scores ?? []), value]);
         }
 
         setDropdown(false);
@@ -40,7 +40,7 @@ const ScoreList: FC<ScoreListProps> = ({ scores, setScores, isEditing }) =>
     {
         return (
             <div className="dropdown inline-block">
-                <span className="badge badge-button cursor-pointer" onClick={() => setDropdown(!dropdown)}>
+                <span className="badge badge-normal badge-button cursor-pointer" onClick={() => setDropdown(!dropdown)}>
                     {dropdown ? "×" : "+"}
                 </span>
                 <div className={list(
@@ -49,10 +49,10 @@ const ScoreList: FC<ScoreListProps> = ({ scores, setScores, isEditing }) =>
                     dropdown ? "dropdown-show" : null
                 )}>
                     {
-                        [ 0, 1, 2, 3, 4 ].map(value =>
+                        [0, 1, 2, 3, 4].map(value =>
                             <span
                                 key={value}
-                                className="badge badge-button cursor-pointer"
+                                className="badge badge-normal badge-button cursor-pointer"
                                 onClick={() => addScore(value)}
                             >{value}</span>
                         )
@@ -65,13 +65,26 @@ const ScoreList: FC<ScoreListProps> = ({ scores, setScores, isEditing }) =>
     return (
         <div className="mt-0-5">
             {
-                scores?.map ((score, index) =>
-                    isEditing ?
-                        <span key={index} className="badge badge-button cursor-pointer" onClick={() => removeScore(index)}>
-                            {roundNumber(score)}
-                        </span> :
-                        <span key={index} className="badge">{roundNumber(score)}</span>
-                )
+                scores?.map((score, index) =>
+                {
+                    const rounded = roundNumber(score);
+                    const badgeColor = rounded < 3 ? "error" : "badge-normal";
+
+                    if (isEditing)
+                    {
+                        const classBase = "badge badge-button cursor-pointer";
+
+                        return (
+                            <span key={index} className={list(classBase, badgeColor)} onClick={() => removeScore(index)}>
+                                {rounded}
+                            </span>
+                        );
+                    }
+
+                    return (
+                        <span key={index} className={list("badge", badgeColor)}>{rounded}</span>
+                    );
+                })
             }
             {isEditing ? editMenu() : null}
         </div>

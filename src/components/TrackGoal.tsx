@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useRef } from "react";
+import React from "react";
 import { HGoal } from "../highlight";
 import GoalElement from "./GoalElement";
 

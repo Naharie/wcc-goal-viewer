@@ -8,6 +8,7 @@ import { createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, 
 import useData from "../hooks/useData";
 import useQuery from "../hooks/useQuery";
 import useInitialize from "../hooks/useInitialize";
+import useCanEdit from "../utilities/useCanEdit";
 
 interface Assessment
 {
@@ -132,7 +133,7 @@ const App = () =>
         const query = stringifyAssessment(assessment);
 
         _setHighlight(value);
-        setQuery(query === "" ? {} : { assessment: query });
+        setQuery(query === "" ? {assessment: undefined } : { assessment: query });
     };
 
     const setPrimaryGoalHighlight = function (value: HashMap<HPrimaryGoal>)
