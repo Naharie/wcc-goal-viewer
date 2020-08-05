@@ -85,6 +85,11 @@ body
 
 /* Scroll bar trickery */
 
+.scroll-hover
+{
+	overflow-x: hidden;
+}
+
 .scroll-hover:not(:hover)
 {
 	scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
@@ -154,13 +159,7 @@ textarea
 	font-size: 1em;
 	resize: none;
 	border: none;
+	outline: none;
 	vertical-align: top;
-
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-}
-
-textarea::-webkit-scrollbar
-{
-	display: none;
+	overflow: hidden;
 }

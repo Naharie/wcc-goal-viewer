@@ -1,6 +1,7 @@
 import React from "react";
 import { list } from "../utilities";
 import ScoreList from "./ScoreList";
+import Textbox from "./Textbox";
 
 interface TrackGoalProps
 {
@@ -45,28 +46,10 @@ const TrackGoal = ({ goal, scores, selected, setSelected }: TrackGoalProps) =>
             className={list("mb-1-3", selected ? "selected" : "")}
             onClick={toggleSelection}
         >
-            {goal.text} {renderReferences(goal.references)}
+            <Textbox text={goal.text} selected={selected} isEditing={false} /> {renderReferences(goal.references)}
             <ScoreList scores={scores} />
         </li>
     );
-
-    /*
-    return (
-        <li
-            key={goal.id}
-            className={list("mb-1-3", selected ? "selected" : "")}
-            onClick={toggleSelection}
-        >
-            <textarea
-                className={list("w-100", selected ? "selected" : "non-selected")}
-                defaultValue={goal.text}
-            ></textarea>
-            {renderReferences(goal.references)}
-
-            <ScoreList scores={scores} />
-        </li>
-    );
-    */
 };
 
 export default TrackGoal;
