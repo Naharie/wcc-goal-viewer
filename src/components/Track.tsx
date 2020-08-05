@@ -1,6 +1,6 @@
 import React from "react";
 import TrackGoal from "./TrackGoal";
-import { HTrack } from "../highlight";
+import { HTrack, HGoal, cloneHGoal } from "../highlight";
 import { list, getNextCourse, scrollIntoView } from "../utilities";
 
 interface TrackProps
@@ -20,11 +20,9 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
         scrollIntoView(document.getElementById("track_" + next));
         scrollIntoView(document.getElementById("course_" + next));
     };
-    const toggleSelected = function (id: string)
+    const setGoalHighlight = function (goal: HGoal)
     {
-        const goal = highlight.goals[id];
-
-        goal.selected = !goal.selected;
+        highlight.goals[goal.id] = goal;
         setHighlight(highlight);
     };
 
@@ -37,9 +35,8 @@ const Track = ({ track, className, highlight, setHighlight }: TrackProps) =>
                         <TrackGoal
                             key={goal.id}
                             goal={goal}
-                            scores={highlight.goals[goal.id].scores}
-                            selected={highlight.goals[goal.id].selected}
-                            setSelected={() => toggleSelected(goal.id)}
+                            highlight={cloneHGoal (highlight.goals[goal.id])}
+                            setHighlight={setGoalHighlight}
                         />
                     )
                 }

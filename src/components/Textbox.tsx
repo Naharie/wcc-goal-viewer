@@ -5,36 +5,50 @@ interface TextBoxProps
 {
     selected: boolean;
     isEditing: boolean;
-    text: string;
+    text: React.MutableRefObject<string>;
 }
 
 const Textbox: FC<TextBoxProps> = ({ text, isEditing, selected }) =>
 {
-    const value = useRef(text);
-
     if (!isEditing)
     {
-        return (<>{text}</>);
+        return (<>{text.current}</>);
     }
 
     const computeHeight = (element: HTMLTextAreaElement) =>
     {
+        if (element === null || element === undefined)
+        {
+            return;
+        }
+
         element.style.height = "auto";
         element.style.height = element.scrollHeight + "px";
     };
+    const onCreate = (element: HTMLTextAreaElement) =>
+    {
+        if (element == null)
+        {
+            return;
+        }
+
+        element.focus();
+        element.selectionStart = element.selectionEnd = text.current.length;
+        computeHeight(element);
+    }
     const updateText = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
     {
         const newValue = event.target.value;
-        value.current = newValue;
+        text.current = newValue;
         computeHeight(event.target);
     };
 
     return (
         <textarea
             className={list("w-100", selected ? "selected" : "non-selected")}
-            defaultValue={text}
+            defaultValue={text.current}
             onChange={updateText}
-            ref={computeHeight}
+            ref={onCreate}
         ></textarea>
     );
 };

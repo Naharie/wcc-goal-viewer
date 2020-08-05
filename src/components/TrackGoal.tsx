@@ -1,14 +1,12 @@
-import React from "react";
-import { list } from "../utilities";
-import ScoreList from "./ScoreList";
-import Textbox from "./Textbox";
+import React, { useState, useReducer, useRef } from "react";
+import { HGoal } from "../highlight";
+import GoalElement from "./GoalElement";
 
 interface TrackGoalProps
 {
     goal: TrackGoal;
-    scores: number[] | undefined;
-    selected: boolean;
-    setSelected: (value: boolean) => void;
+    highlight: HGoal;
+    setHighlight: (value: HGoal) => void;
 }
 
 const renderReferences = (references: PrimaryReference[]) =>
@@ -28,28 +26,18 @@ const renderReferences = (references: PrimaryReference[]) =>
     return ("(" + text + ")");
 };
 
-const TrackGoal = ({ goal, scores, selected, setSelected }: TrackGoalProps) =>
+const TrackGoal = ({ goal, highlight, setHighlight }: TrackGoalProps) =>
 {
-    const toggleSelection = (event: React.MouseEvent<HTMLLIElement>) =>
+    const toggleSelection = () =>
     {
-        if (event.target !== event.currentTarget)
-        {
-            return;
-        }
-
-        setSelected(!selected);
-    }
-
+        highlight.selected = !highlight.selected;
+        setHighlight(highlight);
+    };
     return (
-        <li
-            key={goal.id}
-            className={list("mb-1-3", selected ? "selected" : "")}
-            onClick={toggleSelection}
-        >
-            <Textbox text={goal.text} selected={selected} isEditing={false} /> {renderReferences(goal.references)}
-            <ScoreList scores={scores} />
-        </li>
-    );
+        <GoalElement goal={goal} highlight={highlight} onClick={toggleSelection}>
+            {renderReferences(goal.references)}
+        </GoalElement>
+    )
 };
 
 export default TrackGoal;

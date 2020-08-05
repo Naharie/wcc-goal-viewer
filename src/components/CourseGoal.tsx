@@ -1,7 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef } from "react";
 import { HGoal } from "../highlight";
 import { list } from "../utilities";
 import ScoreList from "./ScoreList";
+import Textbox from "./Textbox";
+import GoalElement from "./GoalElement";
 
 interface CourseGoalProps
 {
@@ -18,32 +20,30 @@ const renderReferences = (references: string[]) =>
 const CourseGoal: FC<CourseGoalProps> = ({ goal, highlight, setHighlight }) =>
 {
     const [editingScore, setEditingScore] = useState(false);
-
+    
     const toggleEditingScore = (event: React.MouseEvent<HTMLLIElement>) =>
     {
-        if (event.currentTarget !== event.target)
+        if (event.target === event.currentTarget)
         {
-            return;
+            setEditingScore(!editingScore);
         }
-
-        setEditingScore(!editingScore)
     };
     const setScores = (value: number[]) =>
     {
         highlight.scores = value;
         setHighlight(highlight);
-    }
+    };
 
     return (
-        <li className={list("mb-1-3", highlight.selected ? "selected" : "")} onClick={toggleEditingScore}>
-            {goal.text} {renderReferences(goal.references)}
-            
-            <ScoreList
-                scores={highlight.scores}
-                isEditing={editingScore}
-                setScores={setScores}
-            />
-        </li>
+        <GoalElement
+            goal={goal}
+            highlight={highlight}
+            onClick={toggleEditingScore}
+            isEditingScores={editingScore}
+            setScores={setScores}
+        >
+         {renderReferences(goal.references)}
+        </GoalElement>
     );
 };
 

@@ -1,7 +1,10 @@
-import React from "react";
-import { HPrimaryGoal } from "../highlight";
+import React, { useState, useRef } from "react";
+import { HPrimaryGoal, HGoal } from "../highlight";
 import { list } from "../utilities";
 import ScoreList from "./ScoreList";
+import Textbox from "./Textbox";
+import GoalElement from "./GoalElement";
+import PrimarySubGoal from "./PrimarySubGoal";
 
 interface PrimaryGoalProps
 {
@@ -29,45 +32,39 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
 
         setHighlight(highlight);
     };
-    const toggleChild = (id: string) =>
+    const setChildHighlight = (goal: HGoal) =>
     {
-        const child = highlight.children[id];
-        child.selected = !child.selected;
+        highlight.children[goal.id] = goal;
 
-        if (child.selected)
+        if (goal.selected)
         {
             highlight.selected = true;
-            setHighlight(highlight);
         }
         else
         {
             highlight.selected = Object.values(highlight.children).some(child => child.selected);
-            setHighlight(highlight);
         }
+
+        setHighlight(highlight);
     };
 
     return (
-        <li className={list("mb-1-3", highlight.selected ? "selected" : "")} onClick={toggleAll}>
-            {goal.text}
+        <GoalElement goal={goal} highlight={highlight} onClick={toggleAll}>
             {
                 <ol type="a">
                     {
                         goal.children.map(child =>
-                            <li
+                            <PrimarySubGoal
                                 key={child.id}
-                                className={list("pb-0-2 non-selected", highlight.children[child.id].selected ? "selected" : "non-selected")}
-                                onClick={() => toggleChild(child.id)}
-                            >
-                                {child.text}
-                                <ScoreList scores={highlight.children[child.id].scores} />
-                            </li>
+                                goal={child}
+                                highlight={highlight.children[child.id]}
+                                setHighlight={setChildHighlight}
+                            />
                         )
                     }
                 </ol>
             }
-
-            <ScoreList scores={highlight.scores} />
-        </li>
+        </GoalElement>
     );
 };
 
