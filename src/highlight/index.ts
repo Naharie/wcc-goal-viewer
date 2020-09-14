@@ -1,4 +1,4 @@
-import { Highlight, HashMap, Goal } from "./models";
+import { Highlight, HashMap, Course as HCourse, Goal } from "./models";
 import { JsonData, Year, Course, Semester } from "../models";
 import * as _ from "lodash";
 
@@ -43,7 +43,7 @@ export const createHighlight = function (data: JsonData): Highlight
             semester2: _.keyBy (mapSemester(semester2), "id")
         });
 
-    const courses: Course[] =
+    const courses: HCourse[] =
         data.courses.map (({ course, years }) => ({
             course: course,
             years: [
@@ -134,58 +134,46 @@ export const computeCourseHighlight = function ({ courses }: JsonData, highlight
     return (result);
 };
 
-export const computeScores = function (data: JsonData, highlight: Highlight)
+export const computeScores = function ({ courses, tracks }: JsonData, highlight: Highlight)
 {
     const result: Highlight = {
-        primaryGoals: mapObject(highlight.primaryGoals, cloneHPrimaryGoal),
-        tracks: mapObject(highlight.tracks, cloneHTrack),
+        primaryGoals: _.cloneDeep(highlight.primaryGoals),
+        tracks: _.cloneDeep(highlight.tracks),
         courses: highlight.courses
     };
 
     // Reset all the score data
 
-    for (const id in result.primaryGoals)
+    _.forEach(result.primaryGoals, goal =>
     {
-        const primaryGoal = result.primaryGoals[id];
-        primaryGoal.scores = [];
+        goal.scores = [];
+        _.forEach(goal.children, goal => goal.scores = []);
+    });
 
-        for (const id in primaryGoal.children)
-        {
-            primaryGoal.children[id].scores = [];
-        }
-    }
-
-    for (const id in result.tracks)
-    {
-        const track = result.tracks[id];
-
-        for (const id in track.goals)
-        {
-            track.goals[id].scores = [];
-        }
-    }
+    _.forEach (result.tracks, ({ goals }) =>
+        _.forEach(goals, goal => goal.scores = [])
+    );
 
     // Update the tracks with scores from the courses.
 
-    const handleSemester = function (course: Course, semester: Semester, highlight: HashMap<HGoal>)
+    const handleSemester = function (course: Course, semester: Semester, highlight: HashMap<Goal>)
     {
+        // Get the track matching this course.
         const track = result.tracks[course.course];
 
         for (const goal of semester)
         {
-            const scores = highlight[goal.id].scores ?? [];
+            const { scores } = highlight[goal.id];
 
+            // For each goal we reference, add our scores to its list.
             for (const reference of goal.references)
             {
-                const trackGoal = track.goals[reference];
-
-                trackGoal.scores = trackGoal.scores ?? [];
-                trackGoal.scores.push (...scores);
+                track.goals[reference].scores.push (...scores);
             }
         }
     };
 
-    for (const course of data.courses)
+    for (const course of courses)
     {
         const hCourse = result.courses[course.course];
 
@@ -200,70 +188,22 @@ export const computeScores = function (data: JsonData, highlight: Highlight)
 
     // Update the primary goals with scores from the tracks.
 
-    for (const track of data.tracks)
+    for (const track of tracks)
     {
         const hTrack = result.tracks[track.track];
 
         for (const goal of track.goals)
         {
-            const hGoal = hTrack.goals[goal.id];
-            const scores = hGoal.scores ?? [];
-
-            if (scores.length === 0)
-            {
-                continue;
-            }
-
-            const score = scores.reduce((a, b) => a + b) / scores.length;
-            hGoal.scores = [ score ];
+            const { scores } = hTrack.goals[goal.id];
 
             for (const reference of goal.references)
             {
-                const primaryGoal = result.primaryGoals[reference.goal];
-
-                for (const subItem of reference.subGoals)
-                {
-                    const subGoal = primaryGoal.children[subItem];
-                    subGoal.scores = subGoal.scores ?? [];
-                    subGoal.scores.push (score);
-                }
-
-                primaryGoal.scores = primaryGoal.scores ?? [];
-                primaryGoal.scores.push(score);
+                const { scores: pScores, children } = result.primaryGoals[reference.goal];
+                reference.subGoals.forEach(subItem => children[subItem].scores.push (...scores));
+                pScores.push(...scores);
             }
         }
     }
-
-    // Average the scores on the primary goals.
-
-    for (const id in result.primaryGoals)
-    {
-        const primaryGoal = result.primaryGoals[id];
-
-        for (const id in primaryGoal.children)
-        {
-            const child = primaryGoal.children[id];
-            const scores = child.scores ?? [];
-
-            if (scores.length === 0)
-            {
-                continue;
-            }
-
-            const score = scores.reduce((a, b) => a + b) / scores.length;
-            child.scores = [ score ];
-        }
-
-        const scores = primaryGoal.scores ?? [];
-
-        if (scores.length === 0)
-        {
-            continue;
-        }
-
-        const score = scores.reduce((a, b) => a + b) / scores.length;
-        primaryGoal.scores = [ score ];
-    }
-
+    
     return (result);
 };
