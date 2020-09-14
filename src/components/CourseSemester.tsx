@@ -1,7 +1,7 @@
 import React from "react";
 import { HGoal, HashMap } from "../highlight";
 import CourseGoal from "./CourseGoal";
-import useCanEdit from "../utilities/useCanEdit";
+import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
 
 interface CourseSemesterProps

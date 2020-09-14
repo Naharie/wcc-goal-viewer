@@ -1,6 +1,9 @@
-﻿interface Goal
+﻿/* The shared properties of all goal types. */
+interface Goal
 {
+	/* The description of the goal. */
 	text: string;
+	/* The internal id of the goal. */
 	id: string;
 }
 

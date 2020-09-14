@@ -3,7 +3,7 @@ import { HGoal } from "../highlight";
 import { list } from "../utilities";
 import Textbox from "./Textbox";
 import ScoreList from "./ScoreList";
-import useCanEdit from "../utilities/useCanEdit";
+import useCanEdit from "../hooks/useCanEdit";
 import editCache from "../utilities/editCache";
 
 interface GoalElementProps

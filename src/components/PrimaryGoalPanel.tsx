@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import PrimaryGoal from "./PrimaryGoal";
 import { HPrimaryGoal, cloneHPrimaryGoal, HashMap } from "../highlight";
-import useCanEdit from "../utilities/useCanEdit";
+import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
 
 interface PrimaryGoalPanelProps

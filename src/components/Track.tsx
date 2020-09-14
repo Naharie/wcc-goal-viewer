@@ -2,7 +2,7 @@ import React from "react";
 import TrackGoal from "./TrackGoal";
 import { HTrack, HGoal, cloneHGoal } from "../highlight";
 import { list, getNextCourse, scrollIntoView } from "../utilities";
-import useCanEdit from "../utilities/useCanEdit";
+import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
 
 interface TrackProps
