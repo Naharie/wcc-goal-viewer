@@ -1,4 +1,4 @@
-type HashMap<V> = Record<string, V>;
+export type HashMap<V> = Record<string, V>;
 
 export interface Goal
 {

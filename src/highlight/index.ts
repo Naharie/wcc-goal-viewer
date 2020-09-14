@@ -1,5 +1,5 @@
-import { Highlight, Course } from "./models";
-import { JsonData, Year, Semester } from "../models";
+import { Highlight, HashMap, Goal } from "./models";
+import { JsonData, Year, Course, Semester } from "../models";
 import * as _ from "lodash";
 
 /**
@@ -92,33 +92,42 @@ export const computeTrackHighlight = function ({ tracks }: JsonData, highlight: 
 
     return (result);
 };
-export const computeCourseHighlight = function (data: JsonData, highlight: Highlight)
+export const computeCourseHighlight = function ({ courses }: JsonData, highlight: Highlight)
 {
     const result: Highlight = {
         primaryGoals: highlight.primaryGoals,
         tracks: highlight.tracks,
-        courses: mapObject(highlight.courses, cloneHCourse)
+        courses: _.cloneDeep(highlight.courses)
     };
 
-    const handleSemester = function (course: Course, semester: Semester, highlight: HashMap<HGoal>)
+    const handleSemester = function (course: Course, semester: Semester, highlight: HashMap<Goal>)
     {
         for (const goal of semester)
         {
-            const selected = goal.references.some(reference => result.tracks[course.course].goals[reference].selected);
+            // The track matching the same topic as this course.
+            // In other words, if this is a humanities course,
+            // Then this track will be the humanities track.
+            const { goals } = result.tracks[course.course];
+
+            // A course goal is selected if any of the track goals it references are selected.
+            const selected = goal.references.some(reference => goals[reference].selected);
+
             highlight[goal.id].selected = selected;
         }
     };
 
-    for (const course of data.courses)
+    for (const course of courses)
     {
-        const highlightCourse = result.courses[course.course];
+        /** The highlight data for the course. */
+        const hCourse = result.courses[course.course];
 
         for (const year of course.years)
         {
-            const highlightYear = highlightCourse.years[year.yearNumber / 100 - 1];
+            /** The highlight data for the year. */
+            const hYear = hCourse.years[year.yearNumber / 100 - 1];
 
-            handleSemester(course, year.semester1, highlightYear.semester1);
-            handleSemester(course, year.semester2, highlightYear.semester2);
+            handleSemester(course, year.semester1, hYear.semester1);
+            handleSemester(course, year.semester2, hYear.semester2);
         }
     }
 
