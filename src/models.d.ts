@@ -1,5 +1,5 @@
 ﻿/* The shared properties of all goal types. */
-interface Goal
+export interface Goal
 {
 	/* The description of the goal. */
 	text: string;
@@ -7,7 +7,7 @@ interface Goal
 	id: string;
 }
 
-interface PrimaryReference
+export interface PrimaryReference
 {
 	/**
 	 * The id of the primary goal that is being referenced.
@@ -19,7 +19,7 @@ interface PrimaryReference
 	subGoals: string[];
 }
 
-interface TrackGoal extends Goal
+export interface TrackGoal extends Goal
 {
 	/**
 	 * The primary goals this track goal references.
@@ -27,7 +27,7 @@ interface TrackGoal extends Goal
 	references: PrimaryReference[];
 }
 
-interface CourseGoal extends Goal
+export interface CourseGoal extends Goal
 {
 	/**
 	 * The track goals this course goal references.
@@ -35,25 +35,24 @@ interface CourseGoal extends Goal
 	references: string[];
 }
 
-type CourseId = "HMN" | "THL" | "PHL" | "MTH/SCI" | "MUS/ART" | "TRV" | "LAT" | "OLP";
+export type CourseId = "HMN" | "THL" | "PHL" | "MTH/SCI" | "MUS/ART" | "TRV" | "LAT" | "OLP";
 
-
-interface PrimaryGoal
+export interface PrimaryGoal
 {
 	text: string;
 	id: string;
 	children: Goal[];
 }
 
-interface Track
+export interface Track
 {
 	track: CourseId;
 	goals: TrackGoal[];
 }
 
-type Semester = CourseGoal[];
+export type Semester = CourseGoal[];
 
-interface Year
+export interface Year
 {
 	// Which year this is.
 	yearNumber: 100 | 200 | 300 | 400;
@@ -63,14 +62,14 @@ interface Year
 	semester2: Semester;
 }
 
-interface Course
+export interface Course
 {
 	course: CourseId;
 	// The four years during which the course could be assigned (100, 200, 300, 400).
 	years: [ Year, Year, Year, Year ]
 }
 
-interface JsonData
+export interface JsonData
 {
 	// Left column
 	primaryGoals: PrimaryGoal[],

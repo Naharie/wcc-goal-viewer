@@ -1,165 +1,92 @@
-export interface HashMap<V>
-{
-    [key: string]: V;
-}
+import { Highlight, Course } from "./models";
+import { JsonData, Year, Semester } from "../models";
+import * as _ from "lodash";
 
-export interface HGoal
-{
-    id: string;
-    selected: boolean;
-    scores?: number[];
-}
-export interface HYear
-{
-	yearNumber: 100 | 200 | 300 | 400;
-	semester1: HashMap<HGoal>;
-	semester2: HashMap<HGoal>;
-}
-
-export interface HPrimaryGoal extends HGoal
-{
-    id: string;
-    selected: boolean;
-    children: HashMap<HGoal>;
-}
-export interface HTrack
-{
-	track: CourseId;
-	goals: HashMap<HGoal>;
-}
-export interface HCourse
-{
-	course: CourseId;
-	years: [ HYear, HYear, HYear, HYear ]
-}
-
-export interface Highlight
-{
-    primaryGoals: HashMap<HPrimaryGoal>;
-    tracks: HashMap<HTrack>;
-    courses: HashMap<HCourse>;
-}
-
-// Well one could use Object.fromEntries in these functions,
-// I would rather not until some research has been done into
-// The performance penalty of doing so (and implicitly)
-// Iterating over all entries in the object twice.
-export const mapObject = function <T, U>(object: HashMap<T>, mapping: (value: T) => U): HashMap<U>
-{
-    const result: HashMap<U> = {};
-
-    for (const key in object)
-    {
-        result[key] = mapping(object[key]);
-    }
-
-    return (result);
-};
-const buildMapping = function <T>(values: T[], key: keyof T)
-{
-    const result: HashMap<T> = {};
-
-    for (const value of values)
-    {
-        result[value[key] + ""] = value;
-    }
-
-    return (result);
-};
-
-export const cloneHGoal = (goal: HGoal): HGoal => ({
-    id: goal.id,
-    selected: goal.selected,
-    scores: goal.scores?.map(value => value)
-});
-export const cloneHSemester = (semester: HashMap<HGoal>) => mapObject(semester, cloneHGoal);
-export const cloneHYear = (year: HYear): HYear => ({
-    yearNumber: year.yearNumber,
-    semester1: cloneHSemester(year.semester1),
-    semester2: cloneHSemester(year.semester2)
-});
-
-export const cloneHPrimaryGoal = (goal: HPrimaryGoal): HPrimaryGoal => ({
-    id: goal.id,
-    selected: goal.selected,
-    children: mapObject(goal.children, cloneHGoal),
-    scores: goal.scores?.map (v => v)
-});
-export const cloneHTrack = (track: HTrack): HTrack => ({
-    track: track.track,
-    goals: mapObject (track.goals, cloneHGoal)
-});
-export const cloneHCourse = (course: HCourse): HCourse => ({
-    course: course.course,
-    years: [ cloneHYear(course.years[0]), cloneHYear(course.years[1]), cloneHYear(course.years[2]), cloneHYear(course.years[3]) ]
-});
-
+/**
+ * Creates a highlight object with entries matching the specified data object.
+ * @param data The data to build a highlight map for.
+ */
 export const createHighlight = function (data: JsonData): Highlight
 {
     const primaryGoals =
-        data.primaryGoals.map(primaryGoal => ({
-            id: primaryGoal.id,
+        data.primaryGoals.map(({ id, children }) => ({
+            id,
             selected: false,
-            children: buildMapping (primaryGoal.children.map(child => ({ id: child.id, selected: false })), "id")
+            children: _.keyBy (
+                children.map(({ id }) =>
+                    ({ id, selected: false, scores: [] })
+                ),
+                "id"
+            ),
+            scores: []
         }));
     
     const tracks =
         data.tracks.map (track => ({
             track: track.track,
-            goals: buildMapping (track.goals.map (goal => ({ id: goal.id, selected: false })), "id")
+            goals: _.keyBy (
+                track.goals.map (({ id }) =>
+                    ({ id, selected: false, scores: [] })
+                ),
+                "id"
+            ),
+            scores: []
         }));
 
-    const mapYear = (year: Year) => ({
-        yearNumber: year.yearNumber,
-        semester1: buildMapping (year.semester1.map(goal => ({ id: goal.id, selected: false })), "id"),
-        semester2: buildMapping (year.semester2.map(goal => ({ id: goal.id, selected: false })), "id")
-    });
+    const mapSemester = (semester: Semester) =>
+        semester.map(({ id }) => ({ id, selected: false, scores: [] }));
 
-    const courses: HCourse[] =
-        data.courses.map (course => ({
-            course: course.course,
+    const mapYear = ({ yearNumber, semester1, semester2 }: Year) =>
+        ({
+           yearNumber,
+            semester1: _.keyBy (mapSemester(semester1), "id"),
+            semester2: _.keyBy (mapSemester(semester2), "id")
+        });
+
+    const courses: Course[] =
+        data.courses.map (({ course, years }) => ({
+            course: course,
             years: [
-                mapYear(course.years[0]),
-                mapYear(course.years[1]),
-                mapYear(course.years[2]),
-                mapYear(course.years[3])
+                mapYear(years[0]),
+                mapYear(years[1]),
+                mapYear(years[2]),
+                mapYear(years[3])
             ]
         }));
 
     return ({
-        primaryGoals: buildMapping(primaryGoals, "id"),
-        tracks: buildMapping(tracks, "track"),
-        courses: buildMapping(courses, "course")
+        primaryGoals: _.keyBy(primaryGoals, "id"),
+        tracks: _.keyBy(tracks, "track"),
+        courses: _.keyBy(courses, "course")
     });
 };
 
-export const computeTrackHighlight = function (data: JsonData, highlight: Highlight)
+export const computeTrackHighlight = function ({ tracks }: JsonData, highlight: Highlight)
 {
     const result: Highlight = {
         primaryGoals: highlight.primaryGoals,
-        tracks: mapObject(highlight.tracks, cloneHTrack),
+        tracks: _.cloneDeep(highlight.tracks),
         courses: highlight.courses
     };
 
-    for (const track of data.tracks)
+    for (const track of tracks)
     {
-        const highlightTrack = result.tracks[track.track];
+        // The highlight data for the track.
+        const hTrack = result.tracks[track.track];
 
         for (const goal of track.goals)
         {
-            const selected =
-                goal.references.some (reference =>
-                {
-                    const primaryGoal = result.primaryGoals[reference.goal];
+            // A goal is select if any of the goals it references are selected.
+            hTrack.goals[goal.id].selected = goal.references.some (reference =>
+            {
+                const primaryGoal = result.primaryGoals[reference.goal];
 
-                    return (
-                        reference.subGoals.length === 0 ?
-                            primaryGoal.selected :
-                            reference.subGoals.some(goal => primaryGoal.children[goal].selected)
-                    );
-                });
-
-            highlightTrack.goals[goal.id].selected = selected;
+                return (
+                    reference.subGoals.length === 0 ?
+                        primaryGoal.selected :
+                        reference.subGoals.some(goal => primaryGoal.children[goal].selected)
+                );
+            })
         }
     }
 
