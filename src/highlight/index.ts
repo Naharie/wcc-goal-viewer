@@ -79,12 +79,12 @@ export const computeTrackHighlight = function ({ tracks }: JsonData, highlight: 
             // A goal is select if any of the goals it references are selected.
             hTrack.goals[goal.id].selected = goal.references.some (reference =>
             {
-                const primaryGoal = result.primaryGoals[reference.goal];
+                const { selected, children } = result.primaryGoals[reference.goal];
 
                 return (
                     reference.subGoals.length === 0 ?
-                        primaryGoal.selected :
-                        reference.subGoals.some(goal => primaryGoal.children[goal].selected)
+                        selected :
+                        reference.subGoals.some(goal => children[goal].selected)
                 );
             })
         }
