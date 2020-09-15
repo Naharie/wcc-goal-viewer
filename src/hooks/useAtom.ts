@@ -4,7 +4,7 @@ import { RecursivePartial } from "../types/recursivePartial";
 
 export interface Writeable<T, U>
 {
-    set: (value: U | ((value : T) => U)) => void;
+    set: (value: U | ((value: T) => U)) => void;
 }
 export interface Atom<T> extends Writeable<T, T>
 {
@@ -34,11 +34,12 @@ export const derive = function <T, K extends keyof T>(atom: Atom<T> | Transforme
             }
 
             atom.set(_.merge(atom.get, value));
+            return;
         }
     });
 };
 
-export const useAtom = function <T, U>(atom: (Atom<T> | TransformedAtom<T>) & Writeable<T, U> ): [T, (value: U) => void]
+export const useAtom = function <T, U>(atom: (Atom<T> | TransformedAtom<T>) & Writeable<T, U>): [T, (value: U) => void]
 {
-    return ([ atom.get, atom.set ]);
+    return ([atom.get, atom.set]);
 };
