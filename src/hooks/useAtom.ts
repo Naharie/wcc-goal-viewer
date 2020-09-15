@@ -21,7 +21,11 @@ export const atom = function <T>(initialValue: T): Atom<T>
     return ({ get, set });
 };
 
-export const derive = function <T, K extends keyof T>(atom: Atom<T> | DerivedAtom<T>, key: K): DerivedAtom<T[K]>
+export const derive = function <T, K extends keyof T>(
+    atom: Atom<T> | DerivedAtom<T>,
+    key: K,
+    onSet?: (value: T[K]) => void
+): DerivedAtom<T[K]>
 {
     return ({
         get: atom.get[key],
@@ -29,12 +33,19 @@ export const derive = function <T, K extends keyof T>(atom: Atom<T> | DerivedAto
         {
             if (typeof value === "function")
             {
-                atom.set(current => _.merge(current, value(current[key])));
+                atom.set(current =>
+                {
+                    const result = _.merge(current, { [key]: value(current[key]) }); 
+                    onSet?.(result[key]);
+                    return result;
+                });
                 return;
             }
 
-            atom.set(_.merge(atom.get, value));
-            return;
+            const result = _.merge(atom.get, { [key]: value });
+
+            onSet?.(result[key]);
+            atom.set(result);
         }
     });
 };

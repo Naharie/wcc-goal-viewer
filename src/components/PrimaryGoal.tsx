@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { HPrimaryGoal, HGoal } from "../highlight";
+import { PrimaryGoal as HPrimaryGoal, Goal } from "../highlight/modelds";
+import { PrimaryGoal } from "../models";
 import GoalElement from "./GoalElement";
 import PrimarySubGoal from "./PrimarySubGoal";
 import AddButton from "./AddButton";
+import { DerivedAtom, useAtom, derive } from "../hooks/useAtom";
+import * as _ from "lodash";
 
 interface PrimaryGoalProps
 {
     goal: PrimaryGoal;
-    highlight: HPrimaryGoal;
-    setHighlight: (value: HPrimaryGoal) => void;
+    highlight: DerivedAtom<HPrimaryGoal>;
 }
 
-const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
+const PrimaryGoal = ({ goal, highlight }: PrimaryGoalProps) =>
 {
     const [isEditing, setEditing] = useState(false);
+    const [selected, setSelected] = useAtom(highlight);
 
     const toggleAll = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) =>
     {
@@ -23,33 +26,25 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
             return;
         }
 
-        highlight.selected = !highlight.selected;
-
-        for (const key in highlight.children)
-        {
-            highlight.children[key].selected = highlight.selected;
-        }
-
-        setHighlight(highlight);
+        setSelected ({
+            selected: !selected.selected,
+            children: _.mapValues(selected.children, () => ({ selected: selected.selected }))
+        });
     };
-    const setChildHighlight = (goal: HGoal) =>
+    const updateHighlight = function (goal: Goal)
     {
-        highlight.children[goal.id] = goal;
-
-        if (goal.selected)
-        {
-            highlight.selected = true;
-        }
-        else
-        {
-            highlight.selected = Object.values(highlight.children).some(child => child.selected);
-        }
-
-        setHighlight(highlight);
+        setSelected ({
+            selected:
+                goal.selected ?
+                    true :
+                    _.some(selected.children, child => child.selected)
+        });
     };
+
+    const children = derive(highlight, "children");
 
     return (
-        <GoalElement goal={goal} highlight={highlight} onClick={toggleAll} onToggleEdit={setEditing}>
+        <GoalElement goal={goal} highlight={selected} onClick={toggleAll} onToggleEdit={setEditing}>
             {
                 <ol type="a">
                     {
@@ -57,8 +52,7 @@ const PrimaryGoal = ({ goal, highlight, setHighlight }: PrimaryGoalProps) =>
                             <PrimarySubGoal
                                 key={child.id}
                                 goal={child}
-                                highlight={highlight.children[child.id]}
-                                setHighlight={setChildHighlight}
+                                highlight={derive(children, child.id, updateHighlight)}
                             />
                         )
                     }
