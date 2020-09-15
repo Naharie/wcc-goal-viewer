@@ -1,4 +1,4 @@
-import { Highlight, HashMap, Course as HCourse, Goal } from "./models";
+import { Highlight, HashMap, Course as HCourse, Goal } from "./modelds";
 import { JsonData, Year, Course, Semester } from "../models";
 import * as _ from "lodash";
 

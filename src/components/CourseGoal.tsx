@@ -1,12 +1,13 @@
 import React, { FC, useState } from "react";
-import { HGoal } from "../highlight";
+import { Goal } from "../highlight/modelds";
+import { CourseGoal } from "../models";
 import GoalElement from "./GoalElement";
 
 interface CourseGoalProps
 {
     goal: CourseGoal;
-    highlight: HGoal;
-    setHighlight: (value: HGoal) => void;
+    highlight: Goal;
+    setHighlight: (value: Goal) => void;
 }
 
 const renderReferences = (references: string[]) =>

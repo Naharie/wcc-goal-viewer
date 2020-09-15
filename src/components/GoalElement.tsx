@@ -1,5 +1,5 @@
 import React, { FC, useState, useRef } from "react";
-import { HGoal } from "../highlight";
+import { Goal } from "../highlight/modelds";
 import { list } from "../utilities";
 import Textbox from "./Textbox";
 import ScoreList from "./ScoreList";
