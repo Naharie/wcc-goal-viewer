@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import CourseSemester from "./CourseSemester";
 import { Goal, Year as HYear, HashMap } from "../highlight/modelds";
 import { Year } from "../models";
-import { TransformedAtom, derive } from "../hooks/useAtom";
+import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface CourseYearProps
 {
     year: Year;
-    highlight: TransformedAtom<HYear>;
+    highlight: DerivedAtom<HYear>;
 }
 
 const CourseYear: FC<CourseYearProps> = ({ year, highlight }) =>

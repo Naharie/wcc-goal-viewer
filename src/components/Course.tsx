@@ -1,17 +1,19 @@
 import React, { FC } from "react";
-import { list, getNextCourse, scrollIntoView } from "../utilities";
+import { getNextCourse, scrollIntoView } from "../utilities/scrolling";
+import { list } from "../utilities/css";
 import CourseYear from "./CourseYear";
-import { HCourse, HYear, cloneHYear } from "../highlight";
+import { Course as HCourse } from "../highlight/modelds";
+import { Course } from "../models";
+import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface CourseProps
 {
     course: Course;
-    highlight: HCourse;
-    setHighlight: (value: HCourse) => void;
+    highlight: DerivedAtom<HCourse>;
     className?: string;
 }
 
-const Course: FC<CourseProps> = ({ course, highlight, setHighlight, className }) =>
+const Course: FC<CourseProps> = ({ course, highlight, className }) =>
 {
     const scrollToNext = function ()
     {
@@ -20,12 +22,8 @@ const Course: FC<CourseProps> = ({ course, highlight, setHighlight, className })
         scrollIntoView(document.getElementById("track_" + next));
         scrollIntoView(document.getElementById("course_" + next));
     };
-
-    const setter = (value: HYear) =>
-    {
-        highlight.years[value.yearNumber / 100 - 1] = value;
-        setHighlight(highlight);
-    };
+    
+    const years = derive(highlight, "years");
 
     return (
         <div
@@ -39,8 +37,7 @@ const Course: FC<CourseProps> = ({ course, highlight, setHighlight, className })
                     <CourseYear
                         key={course.course + "_" + year.yearNumber}
                         year={year}
-                        highlight={cloneHYear (highlight.years[yearIndex])}
-                        setHighlight={setter}
+                        highlight={derive(years, yearIndex)}
                     />
                 )
             }

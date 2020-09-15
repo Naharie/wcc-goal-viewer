@@ -10,7 +10,7 @@ export interface Atom<T> extends Writeable<T, T>
 {
     get: T;
 }
-export interface TransformedAtom<T> extends Writeable<T, RecursivePartial<T>>
+export interface DerivedAtom<T> extends Writeable<T, RecursivePartial<T>>
 {
     get: T;
 }
@@ -21,7 +21,7 @@ export const atom = function <T>(initialValue: T): Atom<T>
     return ({ get, set });
 };
 
-export const derive = function <T, K extends keyof T>(atom: Atom<T> | TransformedAtom<T>, key: K): TransformedAtom<T[K]>
+export const derive = function <T, K extends keyof T>(atom: Atom<T> | DerivedAtom<T>, key: K): DerivedAtom<T[K]>
 {
     return ({
         get: atom.get[key],
@@ -39,7 +39,7 @@ export const derive = function <T, K extends keyof T>(atom: Atom<T> | Transforme
     });
 };
 
-export const useAtom = function <T, U>(atom: (Atom<T> | TransformedAtom<T>) & Writeable<T, U>): [T, (value: U) => void]
+export const useAtom = function <T, U>(atom: (Atom<T> | DerivedAtom<T>) & Writeable<T, U>): [T, (value: U) => void]
 {
     return ([atom.get, atom.set]);
 };

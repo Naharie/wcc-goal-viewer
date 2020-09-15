@@ -1,7 +1,7 @@
 import React from "react";
 import { Goal, HashMap } from "../highlight/modelds";
 import { Semester } from "../models";
-import { TransformedAtom, derive } from "../hooks/useAtom";
+import { DerivedAtom, derive } from "../hooks/useAtom";
 import CourseGoal from "./CourseGoal";
 import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
@@ -10,7 +10,7 @@ interface CourseSemesterProps
 {
     year: number;
     semester: Semester;
-    highlight: TransformedAtom<HashMap<Goal>>
+    highlight: DerivedAtom<HashMap<Goal>>
 }
 
 const CourseSemester = ({ year, semester, highlight }: CourseSemesterProps) =>

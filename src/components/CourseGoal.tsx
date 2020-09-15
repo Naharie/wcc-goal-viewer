@@ -2,12 +2,12 @@ import React, { FC, useState } from "react";
 import { Goal } from "../highlight/modelds";
 import { CourseGoal } from "../models";
 import GoalElement from "./GoalElement";
-import { useAtom, TransformedAtom } from "../hooks/useAtom";
+import { useAtom, DerivedAtom } from "../hooks/useAtom";
 
 interface CourseGoalProps
 {
     goal: CourseGoal;
-    highlight: TransformedAtom<Goal>
+    highlight: DerivedAtom<Goal>
 }
 
 const renderReferences = (references: string[]) =>
