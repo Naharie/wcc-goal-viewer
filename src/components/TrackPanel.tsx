@@ -1,22 +1,17 @@
 import React from "react";
 import Track from "./Track";
-import { HTrack, cloneHTrack, HashMap } from "../highlight";
+import { Track as HTrack, HashMap } from "../highlight/modelds";
+import { Track as MTrack } from "../models";
+import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface TrackPanelProps
 {
-    tracks: Track[];
-    highlight: HashMap<HTrack>;
-    setHighlight: (value: HashMap<HTrack>) => void;
+    tracks: MTrack[];
+    highlight: DerivedAtom<HashMap<HTrack>>;
 }
 
-const TrackPanel = ({ tracks, highlight, setHighlight }: TrackPanelProps) =>
+const TrackPanel = ({ tracks, highlight }: TrackPanelProps) =>
 {
-    const setTrackHighlight = function (value: HTrack)
-    {
-        highlight[value.track] = value;
-        setHighlight(highlight);
-    };
-
     return (
         <>
             {
@@ -25,8 +20,7 @@ const TrackPanel = ({ tracks, highlight, setHighlight }: TrackPanelProps) =>
                         key={track.track}
                         track={track}
                         className={index < tracks.length - 1 ? "border-b-1" : ""}
-                        highlight={cloneHTrack(highlight[track.track])}
-                        setHighlight={setTrackHighlight}
+                        highlight={derive(highlight, track.track)}
                     />
                 )
             }
