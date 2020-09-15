@@ -1,10 +1,11 @@
 import React, { FC, useState, useRef } from "react";
-import { Goal } from "../highlight/modelds";
-import { list } from "../utilities";
+import { Goal as HGoal } from "../highlight/modelds";
+import { Goal } from "../models";
+import { list } from "../utilities/css";
 import Textbox from "./Textbox";
 import ScoreList from "./ScoreList";
 import useCanEdit from "../hooks/useCanEdit";
-import editCache from "../utilities/editCache";
+import { editor } from "../utilities/editor";
 
 interface GoalElementProps
 {
@@ -14,7 +15,7 @@ interface GoalElementProps
     isEditingScores?: boolean;
     setScores?: (value: number[]) => void;
 
-    onClick: (event: React.MouseEvent<HTMLLIElement>) => void;
+    onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
     onToggleEdit?: (isEditing: boolean) => void;
 }
 
@@ -28,46 +29,37 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, isEditin
     {
         if (canEdit)
         {
-            if (props.onToggleEdit)
-            {
-                props.onToggleEdit(!isEditing);
-            }
+            props?.onToggleEdit?.(!isEditing);
 
-            // Inverted because this happens before the toggle.
+            // If we are opening the editor
             if (!isEditing)
             {
-                if (editCache.goal !== goal)
+                if (editor.goal !== goal)
                 {
-                    editCache.cancelCurrentEditor();
-                    editCache.cancelCurrentEditor = () => setEditing(false);
-                    editCache.goal = goal;
+                    editor.cancel();
+                    editor.cancel = () => setEditing(false);
+                    editor.goal = goal;
                 }
             }
+            // If we are closing the editor
             else
             {
-                editCache.cancelCurrentEditor = () => {};
-                editCache.goal = { id: "", text: "" };
+                editor.cancel = () => {};
+                editor.goal = undefined;
             }
 
             setEditing(!isEditing);
-        }
-    };
-    const setScoresWrapper = (value: number[]) =>
-    {
-        if (setScores !== undefined)
-        {
-            setScores(value);
         }
     };
 
     return (
         <li
             className={list("mb-1-3", highlight.selected ? "selected" : "")}
-            onClick={event => !isEditing ? onClick(event) : undefined}
+            onClick={event => !isEditing ? onClick?.(event) : undefined}
             onDoubleClick={toggleEditing}
         >
             <Textbox text={text} selected={highlight.selected} isEditing={isEditing} /> {children}
-            <ScoreList scores={highlight.scores} isEditing={isEditingScores} setScores={setScoresWrapper} />
+            <ScoreList scores={highlight.scores} isEditing={isEditingScores} setScores={value => setScores?.(value)} />
         </li>
     );
 };
