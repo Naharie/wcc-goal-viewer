@@ -1,3 +1,5 @@
+import { CourseId } from "../models";
+
 export const courseNames: CourseId[] = [ "HMN", "THL", "PHL", "MTH/SCI", "MUS/ART", "TRV", "LAT", "OLP" ];
 
 /**
