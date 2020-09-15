@@ -1,30 +1,32 @@
 import React, { FC } from "react";
-import { HGoal } from "../highlight";
-import { list } from "../utilities";
+import { Goal as HGoal } from "../highlight/modelds";
+import { Goal } from "../models";
+import { list } from "../utilities/css";
 import ScoreList from "./ScoreList";
+import { DerivedAtom, useAtom } from "../hooks/useAtom";
 
 interface PrimarySubGoalProps
 {
     goal: Goal;
-    highlight: HGoal;
-    setHighlight: (value: HGoal) => void;
+    highlight: DerivedAtom<HGoal>;
 }
 
-const PrimarySubGoal: FC<PrimarySubGoalProps> = ({ goal, highlight, setHighlight }) =>
+const PrimarySubGoal: FC<PrimarySubGoalProps> = ({ goal, highlight }) =>
 {
+    const [selected, setSelected] = useAtom(highlight);
+
     const toggleSelection = () =>
     {
-        highlight.selected = !highlight.selected;
-        setHighlight(highlight);
+        setSelected({ selected: !selected.selected });
     };
 
     return (
         <li
-            className={list("pb-0-2", highlight.selected ? "selected" : "non-selected")}
+            className={list("pb-0-2", selected ? "selected" : "non-selected")}
             onClick={toggleSelection}
         >
             {goal.text}
-            <ScoreList scores={highlight.scores} />
+            <ScoreList scores={selected.scores} />
         </li>
     );
 };
