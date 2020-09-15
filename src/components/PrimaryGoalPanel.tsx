@@ -1,25 +1,20 @@
 import React, { FC } from "react";
 import PrimaryGoal from "./PrimaryGoal";
-import { HPrimaryGoal, cloneHPrimaryGoal, HashMap } from "../highlight";
+import { PrimaryGoal as HPrimaryGoal, HashMap } from "../highlight/modelds";
+import { PrimaryGoal as MPrimaryGoal } from "../models";
 import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
+import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface PrimaryGoalPanelProps
 {
-    goals: PrimaryGoal[];
-    highlight: HashMap<HPrimaryGoal>;
-    setHighlight: (value: HashMap<HPrimaryGoal>) => void;
+    goals: MPrimaryGoal[];
+    highlight: DerivedAtom<HashMap<HPrimaryGoal>>;
 }
 
-const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight, setHighlight }) =>
+const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight }) =>
 {
     const canEdit = useCanEdit();
-
-    const updateGoalHighlight = function (value: HPrimaryGoal)
-    {
-        highlight[value.id] = value;
-        setHighlight(highlight);
-    };
 
     return (
         <>
@@ -28,8 +23,7 @@ const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight, setHigh
                     <PrimaryGoal
                         key={goal.id}
                         goal={goal}
-                        highlight={cloneHPrimaryGoal(highlight[goal.id])}
-                        setHighlight={updateGoalHighlight}
+                        highlight={derive(highlight, goal.id)}
                     />
                 )}
             </ol>
