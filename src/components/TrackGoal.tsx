@@ -1,40 +1,37 @@
 import React from "react";
-import { HGoal } from "../highlight";
+import { Goal } from "../highlight/modelds";
+import { TrackGoal, PrimaryReference } from "../models";
 import GoalElement from "./GoalElement";
+import { DerivedAtom, useAtom } from "../hooks/useAtom";
 
 interface TrackGoalProps
 {
     goal: TrackGoal;
-    highlight: HGoal;
-    setHighlight: (value: HGoal) => void;
+    highlight: DerivedAtom<Goal>;
 }
 
-const renderReferences = (references: PrimaryReference[]) =>
+const renderReferences = (refs: PrimaryReference[]) =>
 {
-    if (references.length === 0)
+    if (refs.length === 0)
     {
         return ("");
     }
 
     const text =
-        references.map(reference =>
-            reference.subGoals.length === 0 ?
-                reference.goal :
-                reference.goal + " " + reference.subGoals.join(", ")
+        refs.map(ref =>
+            [ ref.goal, ref.subGoals.join(", ") ].join(" ")
         ).join("; ");
 
     return ("(" + text + ")");
 };
 
-const TrackGoal = ({ goal, highlight, setHighlight }: TrackGoalProps) =>
+const TrackGoal = ({ goal, highlight }: TrackGoalProps) =>
 {
-    const toggleSelection = () =>
-    {
-        highlight.selected = !highlight.selected;
-        setHighlight(highlight);
-    };
+    const [selected, setSelected] = useAtom(highlight);
+
+    const toggleSelection = () => setSelected({ selected: !selected.selected });
     return (
-        <GoalElement goal={goal} highlight={highlight} onClick={toggleSelection}>
+        <GoalElement goal={goal} highlight={selected} onClick={toggleSelection}>
             {renderReferences(goal.references)}
         </GoalElement>
     )
