@@ -3,12 +3,12 @@ import { getNextCourse, scrollIntoView } from "../utilities/scrolling";
 import { list } from "../utilities/css";
 import CourseYear from "./CourseYear";
 import { Course as HCourse } from "../highlight/modelds";
-import { Course } from "../models";
+import { Course as MCourse } from "../models";
 import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface CourseProps
 {
-    course: Course;
+    course: MCourse;
     highlight: DerivedAtom<HCourse>;
     className?: string;
 }

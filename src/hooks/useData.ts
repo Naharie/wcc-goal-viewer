@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { JsonData } from "../models";
 
 const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData ] =>
 {

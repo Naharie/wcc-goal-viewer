@@ -1,7 +1,7 @@
 import React from "react";
 import TrackGoal from "./TrackGoal";
 import { Track as HTrack, Goal } from "../highlight/modelds";
-import { Track } from "../models";
+import { Track as MTrack } from "../models";
 import { getNextCourse, scrollIntoView } from "../utilities/scrolling";
 import { list } from "../utilities/css";
 import useCanEdit from "../hooks/useCanEdit";
@@ -10,7 +10,7 @@ import { derive, DerivedAtom } from "../hooks/useAtom";
 
 interface TrackProps
 {
-    track: Track;
+    track: MTrack;
     className?: string;
     highlight: DerivedAtom<HTrack>;
 }

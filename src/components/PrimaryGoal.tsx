@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { PrimaryGoal as HPrimaryGoal, Goal } from "../highlight/modelds";
-import { PrimaryGoal } from "../models";
+import { PrimaryGoal as MPrimaryGoal } from "../models";
 import GoalElement from "./GoalElement";
 import PrimarySubGoal from "./PrimarySubGoal";
 import AddButton from "./AddButton";
-import { DerivedAtom, useAtom, derive } from "../hooks/useAtom";
+import { DerivedAtom, readAtom, derive } from "../hooks/useAtom";
 import * as _ from "lodash";
 
 interface PrimaryGoalProps
 {
-    goal: PrimaryGoal;
+    goal: MPrimaryGoal;
     highlight: DerivedAtom<HPrimaryGoal>;
 }
 
 const PrimaryGoal = ({ goal, highlight }: PrimaryGoalProps) =>
 {
     const [isEditing, setEditing] = useState(false);
-    const [selected, setSelected] = useAtom(highlight);
+    const [selected, setSelected] = readAtom(highlight);
 
     const toggleAll = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) =>
     {

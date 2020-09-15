@@ -1,12 +1,12 @@
 import React, { FC, useState } from "react";
 import { Goal } from "../highlight/modelds";
-import { CourseGoal } from "../models";
+import { CourseGoal as MCourseGoal } from "../models";
 import GoalElement from "./GoalElement";
-import { useAtom, DerivedAtom } from "../hooks/useAtom";
+import { readAtom, DerivedAtom } from "../hooks/useAtom";
 
 interface CourseGoalProps
 {
-    goal: CourseGoal;
+    goal: MCourseGoal;
     highlight: DerivedAtom<Goal>
 }
 
@@ -18,7 +18,7 @@ const renderReferences = (references: string[]) =>
 const CourseGoal: FC<CourseGoalProps> = ({ goal, highlight }) =>
 {
     const [editingScore, setEditingScore] = useState(false);
-    const [selected, setSelected] = useAtom(highlight);
+    const [selected, setSelected] = readAtom(highlight);
     
     const toggleEditingScore = (event: React.MouseEvent<HTMLLIElement>) =>
     {

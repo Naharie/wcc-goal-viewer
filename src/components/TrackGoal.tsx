@@ -1,12 +1,12 @@
 import React from "react";
 import { Goal } from "../highlight/modelds";
-import { TrackGoal, PrimaryReference } from "../models";
+import { TrackGoal as MTrackGoal, PrimaryReference } from "../models";
 import GoalElement from "./GoalElement";
-import { DerivedAtom, useAtom } from "../hooks/useAtom";
+import { DerivedAtom, readAtom } from "../hooks/useAtom";
 
 interface TrackGoalProps
 {
-    goal: TrackGoal;
+    goal: MTrackGoal;
     highlight: DerivedAtom<Goal>;
 }
 
@@ -27,7 +27,7 @@ const renderReferences = (refs: PrimaryReference[]) =>
 
 const TrackGoal = ({ goal, highlight }: TrackGoalProps) =>
 {
-    const [selected, setSelected] = useAtom(highlight);
+    const [selected, setSelected] = readAtom(highlight);
 
     const toggleSelection = () => setSelected({ selected: !selected.selected });
     return (

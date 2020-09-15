@@ -3,7 +3,7 @@ import { Goal as HGoal } from "../highlight/modelds";
 import { Goal } from "../models";
 import { list } from "../utilities/css";
 import ScoreList from "./ScoreList";
-import { DerivedAtom, useAtom } from "../hooks/useAtom";
+import { DerivedAtom, readAtom } from "../hooks/useAtom";
 
 interface PrimarySubGoalProps
 {
@@ -13,7 +13,7 @@ interface PrimarySubGoalProps
 
 const PrimarySubGoal: FC<PrimarySubGoalProps> = ({ goal, highlight }) =>
 {
-    const [selected, setSelected] = useAtom(highlight);
+    const [selected, setSelected] = readAtom(highlight);
 
     const toggleSelection = () =>
     {

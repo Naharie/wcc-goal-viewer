@@ -1,22 +1,17 @@
 import React from "react";
-import { HCourse, HashMap, cloneHCourse } from "../highlight";
+import { Course as HCourse, HashMap } from "../highlight/modelds";
+import { Course as MCourse } from "../models";
 import Course from "./Course";
+import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface CoursePanelProps
 {
-    courses: Course[];
-    highlight: HashMap<HCourse>;
-    setHighlight: (value: HashMap<HCourse>) => void;
+    courses: MCourse[];
+    highlight: DerivedAtom<HashMap<HCourse>>;
 }
 
-const CoursePanel = ({ courses, highlight, setHighlight }: CoursePanelProps) =>
+const CoursePanel = ({ courses, highlight }: CoursePanelProps) =>
 {
-    const setter = (value: HCourse) =>
-    {
-        highlight[value.course] = value;
-        setHighlight(highlight);
-    };
-
     return (
         <>
             {
@@ -24,9 +19,8 @@ const CoursePanel = ({ courses, highlight, setHighlight }: CoursePanelProps) =>
                     <Course
                         key={course.course}
                         course={course}
-                        highlight={cloneHCourse (highlight[course.course])}
+                        highlight={derive(highlight, course.course)}
                         className={index < courses.length - 1 ? "border-b-1" : ""}
-                        setHighlight={setter}
                     />
                 )
             }

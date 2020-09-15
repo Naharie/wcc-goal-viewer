@@ -4,10 +4,13 @@ import TrackPanel from "./TrackPanel";
 import CoursePanel from "./CoursePanel";
 import ScrollWrapper from "./ScrollWrapper";
 import LoadingScreen from "./LoadingScreen";
-import { createHighlight, HPrimaryGoal, HTrack, HashMap, computeTrackHighlight, computeCourseHighlight, HCourse, computeScores, Highlight, HGoal, } from "../highlight";
 import useData from "../hooks/useData";
 import useQuery from "../hooks/useQuery";
 import useInitialize from "../hooks/useInitialize";
+import { Highlight, HashMap, Goal as HGoal } from "../highlight/modelds";
+import { makeAtom, derive } from "../hooks/useAtom";
+import { computeScores, createHighlight, computeTrackHighlight, computeCourseHighlight } from "../highlight";
+import * as _ from "lodash";
 
 interface Assessment
 {
@@ -21,6 +24,48 @@ const App = () =>
         tracks: {},
         courses: {}
     });
+
+    const updateHighlight = (value: Highlight) =>
+    {
+        const scored = computeScores(data, value);
+        const trackLevel = computeTrackHighlight(data, scored);
+        const courseLevel = computeCourseHighlight(data, trackLevel);
+
+        return courseLevel;
+    };
+    const setHighlight = (value: Highlight | ((value: Highlight) => Highlight)) =>
+    {
+        if (typeof value === "function")
+        {
+            _setHighlight(current =>
+            {
+                const computed = value(current);
+                const assessment = formAssessment(computed);
+                const query = stringifyAssessment(assessment);
+
+                setQuery(query === "" ? {assessment: undefined } : { assessment: query });
+
+                return updateHighlight(computed);
+            });
+            return;
+        }
+
+        const assessment = formAssessment(value);
+        const query = stringifyAssessment(assessment);
+
+        _setHighlight(updateHighlight(value));
+        setQuery(query === "" ? {assessment: undefined } : { assessment: query });
+    };
+    
+    // Highlight/selection
+
+    const selection = makeAtom(highlight, setHighlight);
+    const primaryGoals = derive(selection, "primaryGoals");
+    const tracks = derive(selection, "tracks");
+    const courses = derive(selection, "courses");
+
+    // Assesments
+
     const [{ assessment: query = "" }, setQuery] = useQuery();
 
     const formAssessment = (highlight: Highlight) =>
@@ -55,14 +100,8 @@ const App = () =>
     };
     const applyAssessment = (assessment: Assessment) =>
     {
-        const result: Highlight = {
-            primaryGoals: highlight.primaryGoals,
-            tracks: highlight.tracks,
-            courses: highlight.courses
-        };
-
         const mapping =
-            Object.values(result.courses)
+            Object.values(highlight.courses)
                 .flatMap(course => course.years)
                 .flatMap(year => [year.semester1, year.semester2])
                 .reduce((left, right) => Object.assign({}, left, right));
@@ -72,7 +111,7 @@ const App = () =>
             mapping[id].scores = assessment[id];
         }
 
-        _setHighlight(computeScores(data, result));
+        _setHighlight(computeScores(data, highlight));
     };
 
     const parseAssessment = (value: string): Assessment =>
@@ -108,11 +147,13 @@ const App = () =>
         );
     };
 
+    // Data setup
+
     const [isLoading, data] = useData(data => _setHighlight(createHighlight(data)));
 
     useInitialize(() =>
     {
-        if (!Object.keys(highlight.courses).length)
+        if (_.isEmpty(highlight.courses))
         {
             return (false);
         }
@@ -126,44 +167,6 @@ const App = () =>
         return (true);
     });
 
-    const setHighlight = (value: Highlight) =>
-    {
-        const assessment = formAssessment(value);
-        const query = stringifyAssessment(assessment);
-
-        _setHighlight(value);
-        setQuery(query === "" ? {assessment: undefined } : { assessment: query });
-    };
-
-    const setPrimaryGoalHighlight = function (value: HashMap<HPrimaryGoal>)
-    {
-        const updated = {
-            primaryGoals: value,
-            tracks: highlight.tracks,
-            courses: highlight.courses
-        };
-        setHighlight(computeCourseHighlight(data, computeTrackHighlight(data, updated)));
-    };
-    const setTrackHighlight = function (value: HashMap<HTrack>)
-    {
-        const updated = {
-            primaryGoals: highlight.primaryGoals,
-            tracks: value,
-            courses: highlight.courses
-        };
-        setHighlight(computeCourseHighlight(data, updated));
-    };
-    const setCourseHighlight = function (value: HashMap<HCourse>)
-    {
-        const updated = {
-            primaryGoals: highlight.primaryGoals,
-            tracks: highlight.tracks,
-            courses: value
-        };
-        const computed = computeScores(data, updated);
-        setHighlight(computed);
-    };
-
     if (isLoading)
     {
         return (<LoadingScreen />);
@@ -173,17 +176,17 @@ const App = () =>
         <div className="flex mh-0 h-100">
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper>
-                    <PrimaryGoalPanel goals={data.primaryGoals} highlight={highlight.primaryGoals} setHighlight={setPrimaryGoalHighlight} />
+                    <PrimaryGoalPanel goals={data.primaryGoals} highlight={primaryGoals} />
                 </ScrollWrapper>
             </div>
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper className="pt-0-5">
-                    <TrackPanel tracks={data.tracks} highlight={highlight.tracks} setHighlight={setTrackHighlight} />
+                    <TrackPanel tracks={data.tracks} highlight={tracks} />
                 </ScrollWrapper>
             </div>
             <div className="flex-2 h-100">
                 <ScrollWrapper className="pt-0-5">
-                    <CoursePanel courses={data.courses} highlight={highlight.courses} setHighlight={setCourseHighlight} />
+                    <CoursePanel courses={data.courses} highlight={courses} />
                 </ScrollWrapper>
             </div>
         </div>
