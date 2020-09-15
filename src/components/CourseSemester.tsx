@@ -1,5 +1,7 @@
 import React from "react";
-import { HGoal, HashMap } from "../highlight";
+import { Goal, HashMap } from "../highlight/modelds";
+import { Semester } from "../models";
+import { TransformedAtom, derive } from "../hooks/useAtom";
 import CourseGoal from "./CourseGoal";
 import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
@@ -8,19 +10,12 @@ interface CourseSemesterProps
 {
     year: number;
     semester: Semester;
-    highlight: HashMap<HGoal>;
-    setHighlight: (value: HashMap<HGoal>) => void;
+    highlight: TransformedAtom<HashMap<Goal>>
 }
 
-const CourseSemester = ({ year, semester, highlight, setHighlight }: CourseSemesterProps) =>
+const CourseSemester = ({ year, semester, highlight }: CourseSemesterProps) =>
 {
     const canEdit = useCanEdit();
-
-    const setter = (value: HGoal) =>
-    {
-        highlight[value.id] = value;
-        setHighlight(highlight);
-    };
 
     return (
         <div className="flex-1">
@@ -31,8 +26,7 @@ const CourseSemester = ({ year, semester, highlight, setHighlight }: CourseSemes
                         <CourseGoal
                             key={goal.id}
                             goal={goal}
-                            highlight={highlight[goal.id]}
-                            setHighlight={setter}
+                            highlight={derive(highlight, goal.id)}
                         />
                     )
                 }
