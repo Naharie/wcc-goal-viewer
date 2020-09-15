@@ -67,7 +67,6 @@ const animateScroll = function (target: HTMLElement, scrollTarget: number, speed
         const modifier = parent.scrollTop < scrollTarget ? 1 : -1;
         const totalSpeed = modifier * speed * elapsed;
 
-        console.log(parent.scrollTop);
         parent.scrollTo(0, parent.scrollTop + totalSpeed);
     }
 

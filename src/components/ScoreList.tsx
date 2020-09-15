@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { list } from "../utilities";
+import { list } from "../utilities/css";
 
 interface ScoreListProps
 {

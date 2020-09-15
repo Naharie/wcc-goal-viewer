@@ -22,7 +22,7 @@ const PrimarySubGoal: FC<PrimarySubGoalProps> = ({ goal, highlight }) =>
 
     return (
         <li
-            className={list("pb-0-2", selected ? "selected" : "non-selected")}
+            className={list("pb-0-2", selected.selected ? "selected" : "non-selected")}
             onClick={toggleSelection}
         >
             {goal.text}
