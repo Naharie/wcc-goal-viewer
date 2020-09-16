@@ -26,7 +26,7 @@ const PrimarySubGoal: FC<PrimarySubGoalProps> = ({ goal, highlight }) =>
             onClick={toggleSelection}
         >
             {goal.text}
-            <ScoreList scores={selected.scores} />
+            <ScoreList scores={selected.scores} averageScores />
         </li>
     );
 };

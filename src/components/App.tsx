@@ -11,6 +11,7 @@ import { Highlight, HashMap, Goal as HGoal } from "../highlight/modelds";
 import { makeAtom, derive } from "../hooks/useAtom";
 import { computeScores, createHighlight, computeTrackHighlight, computeCourseHighlight } from "../highlight";
 import * as _ from "lodash";
+import { update } from "lodash";
 
 interface Assessment
 {
@@ -24,45 +25,46 @@ const App = () =>
         tracks: {},
         courses: {}
     });
-
-    const updateHighlight = (value: Highlight) =>
-    {
-        const scored = computeScores(data, value);
-        const trackLevel = computeTrackHighlight(data, scored);
-        const courseLevel = computeCourseHighlight(data, trackLevel);
-
-        return courseLevel;
-    };
     const setHighlight = (value: Highlight | ((value: Highlight) => Highlight)) =>
     {
         if (typeof value === "function")
         {
-            _setHighlight(current =>
-            {
-                const computed = value(current);
-                const assessment = formAssessment(computed);
-                const query = stringifyAssessment(assessment);
-
-                setQuery(query === "" ? {assessment: undefined } : { assessment: query });
-
-                return updateHighlight(computed);
-            });
+            _setHighlight(current => value(current));
             return;
         }
 
-        const assessment = formAssessment(value);
-        const query = stringifyAssessment(assessment);
-
-        _setHighlight(updateHighlight(value));
-        setQuery(query === "" ? {assessment: undefined } : { assessment: query });
+        _setHighlight(value);
     };
     
     // Highlight/selection
 
+    const updateAssessment = function (value: Highlight)
+    {
+        const assessment = formAssessment(value);
+        const query = stringifyAssessment(assessment);
+
+        setQuery(query === "" ? {assessment: undefined } : { assessment: query });
+    };
+
     const selection = makeAtom(highlight, setHighlight);
-    const primaryGoals = derive(selection, "primaryGoals");
-    const tracks = derive(selection, "tracks");
-    const courses = derive(selection, "courses");
+    const primaryGoals = derive(selection, "primaryGoals", (_, value) =>
+    {
+        return (
+            computeCourseHighlight (
+                data,
+                computeTrackHighlight(data, value)
+            )
+        );
+    });
+    const tracks = derive(selection, "tracks", (_, value) =>
+    {
+        return computeCourseHighlight(data, value);
+    });
+    const courses = derive(selection, "courses", (_, value) =>
+    {
+        updateAssessment(value);
+        return computeScores(data, value);
+    });
 
     // Assesments
 

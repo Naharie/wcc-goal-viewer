@@ -12,6 +12,7 @@ interface GoalElementProps
     goal: Goal;
     highlight: HGoal;
 
+    averageScores?: boolean;
     isEditingScores?: boolean;
     setScores?: (value: number[]) => void;
 
@@ -19,7 +20,7 @@ interface GoalElementProps
     onToggleEdit?: (isEditing: boolean) => void;
 }
 
-const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, isEditingScores, setScores, onClick, ...props }) =>
+const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick, ...props }) =>
 {
     const [isEditing, setEditing] = useState(false);
     const text = useRef(goal.text);
@@ -59,7 +60,12 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, isEditin
             onDoubleClick={toggleEditing}
         >
             <Textbox text={text} selected={highlight.selected} isEditing={isEditing} /> {children}
-            <ScoreList scores={highlight.scores} isEditing={isEditingScores} setScores={value => setScores?.(value)} />
+            <ScoreList
+                scores={highlight.scores}
+                averageScores={props.averageScores}
+                isEditing={props.isEditingScores}
+                setScores={value => props.setScores?.(value)}
+            />
         </li>
     );
 };

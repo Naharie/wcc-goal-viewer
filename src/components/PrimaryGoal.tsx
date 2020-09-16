@@ -28,10 +28,10 @@ const PrimaryGoal = ({ goal, highlight }: PrimaryGoalProps) =>
 
         setSelected ({
             selected: !selected.selected,
-            children: _.mapValues(selected.children, () => ({ selected: selected.selected }))
+            children: _.mapValues(selected.children, () => ({ selected: !selected.selected }))
         });
     };
-    const updateHighlight = function (goal: Goal)
+    const updateHighlight = function (goal: Goal, total: Record<string, Goal>)
     {
         setSelected ({
             selected:
@@ -39,12 +39,14 @@ const PrimaryGoal = ({ goal, highlight }: PrimaryGoalProps) =>
                     true :
                     _.some(selected.children, child => child.selected)
         });
+
+        return total;
     };
 
     const children = derive(highlight, "children");
 
     return (
-        <GoalElement goal={goal} highlight={selected} onClick={toggleAll} onToggleEdit={setEditing}>
+        <GoalElement goal={goal} averageScores highlight={selected} onClick={toggleAll} onToggleEdit={setEditing}>
             {
                 <ol type="a">
                     {

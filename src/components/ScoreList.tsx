@@ -1,16 +1,18 @@
 import React, { FC, useState } from "react";
 import { list } from "../utilities/css";
+import { average } from "../utilities/math";
 
 interface ScoreListProps
 {
     scores?: number[];
+    averageScores?: boolean;
     setScores?: (value: number[]) => void;
     isEditing?: boolean;
 }
 
 const roundNumber = (value: number) => Math.round((value + Number.EPSILON) * 100) / 100;
 
-const ScoreList: FC<ScoreListProps> = ({ scores, setScores, isEditing }) =>
+const ScoreList: FC<ScoreListProps> = ({ scores, averageScores, setScores, isEditing }) =>
 {
     const [dropdown, setDropdown] = useState(false);
 
@@ -62,10 +64,15 @@ const ScoreList: FC<ScoreListProps> = ({ scores, setScores, isEditing }) =>
         );
     };
 
+    const computed =
+        averageScores && scores !== undefined && scores.length > 0 ?
+            [ average(scores) ] :
+            scores;
+
     return (
         <div className="mt-0-5">
             {
-                scores?.map((score, index) =>
+                computed?.map((score, index) =>
                 {
                     const rounded = roundNumber(score);
                     const badgeColor = rounded < 3 ? "error" : "badge-normal";

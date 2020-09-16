@@ -31,7 +31,7 @@ const TrackGoal = ({ goal, highlight }: TrackGoalProps) =>
 
     const toggleSelection = () => setSelected({ selected: !selected.selected });
     return (
-        <GoalElement goal={goal} highlight={selected} onClick={toggleSelection}>
+        <GoalElement goal={goal} averageScores highlight={selected} onClick={toggleSelection}>
             {renderReferences(goal.references)}
         </GoalElement>
     )

@@ -28,7 +28,7 @@ export const makeAtom = function <T>(value: T, set: ((value: T | ((value: T) => 
 export const derive = function <T, K extends keyof T>(
     atom: Atom<T> | DerivedAtom<T>,
     key: K,
-    onSet?: (value: T[K]) => void
+    onSet?: (value: T[K], total: T) => T
 ): DerivedAtom<T[K]>
 {
     return ({
@@ -40,7 +40,12 @@ export const derive = function <T, K extends keyof T>(
                 atom.set(current =>
                 {
                     const result = _.merge(current, { [key]: value(current[key]) }); 
-                    onSet?.(result[key]);
+                    
+                    if (onSet)
+                    {
+                        return onSet(result[key], result);
+                    }
+                    
                     return result;
                 });
                 return;
@@ -48,7 +53,12 @@ export const derive = function <T, K extends keyof T>(
 
             const result = _.merge(atom.get, { [key]: value });
 
-            onSet?.(result[key]);
+            if (onSet)
+            {
+                atom.set (onSet(result[key], result));
+                return;
+            }
+
             atom.set(result);
         }
     });
