@@ -12,6 +12,7 @@ import { makeAtom, derive } from "../hooks/useAtom";
 import { computeScores, createHighlight, computeTrackHighlight, computeCourseHighlight } from "../highlight";
 import * as _ from "lodash";
 import { updateAssessment, parseAssessment, applyAssessment } from "../assessment";
+import { getPrimaryGoalReferences, getTrackGoalReferences } from "../highlight/utilities";
 
 const App = () =>
 {
@@ -30,7 +31,7 @@ const App = () =>
 
         _setHighlight(value);
     };
-    
+
     // Assesments
 
     const [{ assessment: query = "" }, setQuery] = useQuery();
