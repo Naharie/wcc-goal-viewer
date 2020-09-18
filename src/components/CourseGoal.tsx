@@ -12,7 +12,7 @@ interface CourseGoalProps
 
 const renderReferences = (references: string[]) =>
 {
-    return (references.length === 0 ? "" : `${references.join(", ")})`);
+    return (references.length === 0 ? "" : `(${references.join(", ")})`);
 };
 
 const CourseGoal: FC<CourseGoalProps> = ({ goal, highlight }) =>
