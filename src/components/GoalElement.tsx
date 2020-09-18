@@ -64,7 +64,7 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick,
                 scores={highlight.scores}
                 averageScores={props.averageScores}
                 isEditing={props.isEditingScores}
-                setScores={value => props.setScores?.(value)}
+                setScores={props.setScores}
             />
         </li>
     );

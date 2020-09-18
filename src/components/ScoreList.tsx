@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { list } from "../utilities/css";
 import { average } from "../utilities/math";
+import useCanEdit from "../hooks/useCanEdit";
 
 interface ScoreListProps
 {
@@ -15,6 +16,7 @@ const roundNumber = (value: number) => Math.round((value + Number.EPSILON) * 100
 const ScoreList: FC<ScoreListProps> = ({ scores, averageScores, setScores, isEditing }) =>
 {
     const [dropdown, setDropdown] = useState(false);
+    const canEdit = useCanEdit();
 
     if ((scores === undefined || scores.length === 0) && !isEditing)
     {
@@ -23,19 +25,12 @@ const ScoreList: FC<ScoreListProps> = ({ scores, averageScores, setScores, isEdi
 
     const addScore = (value: number) =>
     {
-        if (setScores)
-        {
-            setScores([...(scores ?? []), value]);
-        }
-
+        setScores?.([...(scores ?? []), value]);
         setDropdown(false);
     };
     const removeScore = (entryIndex: number) =>
     {
-        if (isEditing && setScores !== undefined)
-        {
-            setScores(scores?.filter((_, index) => index !== entryIndex) ?? []);
-        }
+        setScores?.(scores?.filter((_, index) => index !== entryIndex) ?? []);
     };
 
     const editMenu = () =>
@@ -77,7 +72,7 @@ const ScoreList: FC<ScoreListProps> = ({ scores, averageScores, setScores, isEdi
                     const rounded = roundNumber(score);
                     const badgeColor = rounded < 3 ? "error" : "badge-normal";
 
-                    if (isEditing)
+                    if (canEdit)
                     {
                         const classBase = "badge badge-button cursor-pointer";
 

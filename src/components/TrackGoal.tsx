@@ -19,7 +19,9 @@ const renderReferences = (refs: PrimaryReference[]) =>
 
     const text =
         refs.map(ref =>
-            [ ref.goal, ref.subGoals.join(", ") ].join(" ")
+            ref.subGoals.length === 0 ?
+                ref.goal :
+                ref.goal + " " + ref.subGoals.join(", ")
         ).join("; ");
 
     return ("(" + text + ")");

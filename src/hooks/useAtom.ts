@@ -25,6 +25,14 @@ export const makeAtom = function <T>(value: T, set: ((value: T | ((value: T) => 
     return ({ get: value, set });
 };
 
+const merger = function <T>(oldValue: T, newValue: T)
+{
+    if (Array.isArray(oldValue) && Array.isArray(newValue))
+    {
+        return newValue;
+    }
+};
+
 export const derive = function <T, K extends keyof T>(
     atom: Atom<T> | DerivedAtom<T>,
     key: K,
@@ -39,7 +47,7 @@ export const derive = function <T, K extends keyof T>(
             {
                 atom.set(current =>
                 {
-                    const result = _.merge(current, { [key]: value(current[key]) }); 
+                    const result = _.mergeWith(current, { [key]: value(current[key]) }, merger); 
                     
                     if (onSet)
                     {
@@ -51,7 +59,7 @@ export const derive = function <T, K extends keyof T>(
                 return;
             }
 
-            const result = _.merge(atom.get, { [key]: value });
+            const result = _.mergeWith(atom.get, { [key]: value }, merger);
 
             if (onSet)
             {

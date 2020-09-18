@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { JsonData } from "../models";
 
-const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData ] =>
+const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData, (value: JsonData) => void ] =>
 {
     const [data, setData] = useState<JsonData>({
         primaryGoals: [],
@@ -36,7 +36,7 @@ const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData ] =>
         return (() => isMounted = false);
     }, [ onLoad, isLoading ]);
 
-    return ([ isLoading, data ]);
+    return ([ isLoading, data, setData ]);
 };
 
 export default useData;
