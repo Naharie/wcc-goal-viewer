@@ -8,7 +8,7 @@ import useData from "../hooks/useData";
 import useQuery from "../hooks/useQuery";
 import useInitialize from "../hooks/useInitialize";
 import { Highlight } from "../highlight/modelds";
-import { makeAtom, derive, useAtom } from "../hooks/useAtom";
+import { makeAtom, derive } from "../hooks/useAtom";
 import { computeScores, createHighlight, computeTrackHighlight, computeCourseHighlight } from "../highlight";
 import * as _ from "lodash";
 import { updateAssessment, parseAssessment, applyAssessment } from "../assessment";
