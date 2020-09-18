@@ -8,11 +8,10 @@ import useData from "../hooks/useData";
 import useQuery from "../hooks/useQuery";
 import useInitialize from "../hooks/useInitialize";
 import { Highlight } from "../highlight/modelds";
-import { makeAtom, derive } from "../hooks/useAtom";
+import { makeAtom, derive, useAtom } from "../hooks/useAtom";
 import { computeScores, createHighlight, computeTrackHighlight, computeCourseHighlight } from "../highlight";
 import * as _ from "lodash";
 import { updateAssessment, parseAssessment, applyAssessment } from "../assessment";
-import { getPrimaryGoalReferences, getTrackGoalReferences } from "../highlight/utilities";
 
 const App = () =>
 {
@@ -21,16 +20,6 @@ const App = () =>
         tracks: {},
         courses: {}
     });
-    const setHighlight = (value: Highlight | ((value: Highlight) => Highlight)) =>
-    {
-        if (typeof value === "function")
-        {
-            _setHighlight(current => value(current));
-            return;
-        }
-
-        _setHighlight(value);
-    };
 
     // Assesments
 
@@ -38,19 +27,20 @@ const App = () =>
 
     // Highlight/selection
 
-    const selection = makeAtom(highlight, setHighlight);
-    const primaryGoals = derive(selection, "primaryGoals", (_, value) => computeCourseHighlight (data, computeTrackHighlight(data, value)));
-    const tracks = derive(selection, "tracks", (_, value) => computeCourseHighlight(data, value));
+    const selection = makeAtom(highlight, _setHighlight);
+    const primaryGoals = derive(selection, "primaryGoals", (_, value) => computeCourseHighlight (_data, computeTrackHighlight(_data, value)));
+    const tracks = derive(selection, "tracks", (_, value) => computeCourseHighlight(_data, value));
     const courses = derive(selection, "courses", (_, value) =>
     {
         updateAssessment(value, setQuery);
-        return computeScores(data, value);
+        return computeScores(_data, value);
     });
 
     // Data setup
 
-    const [isLoading, data, setData] = useData(data => _setHighlight(createHighlight(data)));
-    const original = useMemo(() => _.cloneDeep(data), [ data ]);
+    const [isLoading, _data, _setData] = useData(data => _setHighlight(createHighlight(data)));
+    const data = makeAtom(_data, _setData);
+    const original = useMemo(() => _.cloneDeep(_data), [ _data ]);
 
     useInitialize(() =>
     {
@@ -61,7 +51,7 @@ const App = () =>
 
         if (query !== "")
         {
-            applyAssessment(parseAssessment(query), data, selection);
+            applyAssessment(parseAssessment(query), _data, selection);
         }
 
         return (true);
@@ -76,17 +66,17 @@ const App = () =>
         <div className="flex mh-0 h-100">
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper>
-                    <PrimaryGoalPanel goals={data.primaryGoals} highlight={primaryGoals} />
+                    <PrimaryGoalPanel goals={_data.primaryGoals} highlight={primaryGoals} />
                 </ScrollWrapper>
             </div>
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper className="pt-0-5">
-                    <TrackPanel tracks={data.tracks} highlight={tracks} />
+                    <TrackPanel tracks={_data.tracks} highlight={tracks} />
                 </ScrollWrapper>
             </div>
             <div className="flex-2 h-100">
                 <ScrollWrapper className="pt-0-5">
-                    <CoursePanel courses={data.courses} highlight={courses} />
+                    <CoursePanel courses={_data.courses} highlight={courses} />
                 </ScrollWrapper>
             </div>
         </div>

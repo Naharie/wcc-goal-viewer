@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { JsonData } from "../models";
 
-const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData, (value: JsonData) => void ] =>
+const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData, React.Dispatch<React.SetStateAction<JsonData>> ] =>
 {
     const [data, setData] = useState<JsonData>({
         primaryGoals: [],
