@@ -38,19 +38,8 @@ const App = () =>
     // Highlight/selection
 
     const selection = makeAtom(highlight, setHighlight);
-    const primaryGoals = derive(selection, "primaryGoals", (_, value) =>
-    {
-        return (
-            computeCourseHighlight (
-                data,
-                computeTrackHighlight(data, value)
-            )
-        );
-    });
-    const tracks = derive(selection, "tracks", (_, value) =>
-    {
-        return computeCourseHighlight(data, value);
-    });
+    const primaryGoals = derive(selection, "primaryGoals", (_, value) => computeCourseHighlight (data, computeTrackHighlight(data, value)));
+    const tracks = derive(selection, "tracks", (_, value) => computeCourseHighlight(data, value));
     const courses = derive(selection, "courses", (_, value) =>
     {
         updateAssessment(value, setQuery);
@@ -71,8 +60,7 @@ const App = () =>
 
         if (query !== "")
         {
-            const assessment = parseAssessment(query);
-            applyAssessment(assessment, data, selection);
+            applyAssessment(parseAssessment(query), data, selection);
         }
 
         return (true);
