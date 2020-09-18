@@ -23,22 +23,24 @@ export const getPrimaryGoalReferences = function (highlight: Highlight)
 {
     const references: PrimaryReference[] = [];
 
-    _.forEach(highlight.primaryGoals, primaryGoal =>
-    {
-        if (primaryGoal.selected)
+    _.values(highlight.primaryGoals)
+        .sort()
+        .forEach(primaryGoal =>
         {
-            const children = _.values(primaryGoal.children);
-            const subGoals =
-                children
-                    .filter(child => child.selected)
-                    .map(child => child.id);
+            if (primaryGoal.selected)
+            {
+                const children = _.values(primaryGoal.children);
+                const subGoals =
+                    children
+                        .filter(child => child.selected)
+                        .map(child => child.id);
 
-            references.push({
-                goal: primaryGoal.id,
-                subGoals: subGoals.length === children.length ? [] : subGoals
-            });
-        }
-    });
+                references.push({
+                    goal: primaryGoal.id,
+                    subGoals: subGoals.length === children.length ? [] : subGoals
+                });
+            }
+        });
 
     return references;
 };
@@ -48,6 +50,7 @@ export const getTrackGoalReferences = function (highlight: Highlight, course: Co
     const references: string[] = [];
 
     _.values(highlight.tracks[course].goals)
+        .sort()
         .filter(goal => goal.selected)
         .map(goal => goal.id)
         .forEach(goal => references.push(goal));
