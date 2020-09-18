@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, MutableRefObject } from "react";
 import { JsonData } from "../models";
 
-const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData, React.Dispatch<React.SetStateAction<JsonData>> ] =>
+const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData, MutableRefObject<JsonData> ] =>
 {
     const [data, setData] = useState<JsonData>({
         primaryGoals: [],
 	    tracks: [],
 	    courses: []
     });
+    const ref = useRef<JsonData>(data);
+
     const [isLoading, setLoading] = useState(true);
 
     useEffect (() =>
@@ -28,7 +30,9 @@ const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData, React.D
                     return;
                 }
 
+                ref.current = data;
                 setData(data);
+
                 onLoad(data);
                 setLoading(false);
             });
@@ -36,7 +40,7 @@ const useData = (onLoad: (data: JsonData) => void): [ boolean, JsonData, React.D
         return (() => isMounted = false);
     }, [ onLoad, isLoading ]);
 
-    return ([ isLoading, data, setData ]);
+    return ([ isLoading, data, ref ]);
 };
 
 export default useData;

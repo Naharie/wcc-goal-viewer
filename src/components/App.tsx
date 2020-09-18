@@ -28,7 +28,7 @@ const App = () =>
     // Highlight/selection
 
     const selection = makeAtom(highlight, _setHighlight);
-    const primaryGoals = derive(selection, "primaryGoals", (_, value) => computeCourseHighlight (_data, computeTrackHighlight(_data, value)));
+    const primaryGoals = derive(selection, "primaryGoals", (_, value) => computeCourseHighlight(_data, computeTrackHighlight(_data, value)));
     const tracks = derive(selection, "tracks", (_, value) => computeCourseHighlight(_data, value));
     const courses = derive(selection, "courses", (_, value) =>
     {
@@ -38,9 +38,9 @@ const App = () =>
 
     // Data setup
 
-    const [isLoading, _data, _setData] = useData(data => _setHighlight(createHighlight(data)));
-    const data = makeAtom(_data, _setData);
-    const original = useMemo(() => _.cloneDeep(_data), [ _data ]);
+    const [isLoading, _data, _ref] = useData(data => _setHighlight(createHighlight(data)));
+    const data = makeAtom(_ref.current, v => _ref.current = typeof v === "function" ? v (_ref.current) : v);
+    const original = useMemo(() => _.cloneDeep(_data), [_data]);
 
     useInitialize(() =>
     {
