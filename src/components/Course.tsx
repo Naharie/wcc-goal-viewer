@@ -15,18 +15,18 @@ interface CourseProps
 
 const Course: FC<CourseProps> = ({ course, highlight, className }) =>
 {
-    const scrollToNext = function ()
-    {
-        const next = getNextCourse(course.course);
-
-        scrollIntoView(document.getElementById("track_" + next));
-        scrollIntoView(document.getElementById("course_" + next));
-    };
-    
     const years = derive(course, "years");
     const hYears = derive(highlight, "years");
 
     const courseId = course.get.course;
+
+    const scrollToNext = function ()
+    {
+        const next = getNextCourse(courseId);
+
+        scrollIntoView(document.getElementById("track_" + next));
+        scrollIntoView(document.getElementById("course_" + next));
+    };
 
     return (
         <div
