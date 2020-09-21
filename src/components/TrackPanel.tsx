@@ -6,7 +6,7 @@ import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface TrackPanelProps
 {
-    tracks: MTrack[];
+    tracks: DerivedAtom<MTrack[]>;
     highlight: DerivedAtom<HashMap<HTrack>>;
 }
 
@@ -15,11 +15,11 @@ const TrackPanel = ({ tracks, highlight }: TrackPanelProps) =>
     return (
         <>
             {
-                tracks.map((track, index) =>
+                tracks.get.map((track, index) =>
                     <Track
                         key={track.track}
-                        track={track}
-                        className={index < tracks.length - 1 ? "border-b-1" : ""}
+                        track={derive(tracks, index)}
+                        className={index < tracks.get.length - 1 ? "border-b-1" : ""}
                         highlight={derive(highlight, track.track)}
                     />
                 )

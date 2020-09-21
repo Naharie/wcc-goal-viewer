@@ -10,7 +10,7 @@ import { derive, DerivedAtom } from "../hooks/useAtom";
 
 interface TrackProps
 {
-    track: MTrack;
+    track: DerivedAtom<MTrack>;
     className?: string;
     highlight: DerivedAtom<HTrack>;
 }
@@ -18,26 +18,28 @@ interface TrackProps
 const Track = ({ track, className, highlight }: TrackProps) =>
 {
     const canEdit = useCanEdit();
-    const goals = derive(highlight, "goals");
+    const trackId = track.get.track;
+    const hGoals = derive(highlight, "goals");
+    const goals = derive(track, "goals");
 
     const scrollToNext = function ()
     {
-        const next = getNextCourse(track.track);
+        const next = getNextCourse(trackId);
 
         scrollIntoView(document.getElementById("track_" + next));
         scrollIntoView(document.getElementById("course_" + next));
     };
     
     return (
-        <div id={"track_" + track.track} className={list("mb-1" + className)}>
-            <div className="text-center cursor-pointer" onClick={scrollToNext}>{track.track}</div>
+        <div id={"track_" + trackId} className={list("mb-1" + className)}>
+            <div className="text-center cursor-pointer" onClick={scrollToNext}>{trackId}</div>
             <ol type="1">
                 {
-                    track.goals.map(goal =>
+                    track.get.goals.map((goal, index) =>
                         <TrackGoal
                             key={goal.id}
-                            goal={goal}
-                            highlight={derive(goals, goal.id)}
+                            goal={derive(goals, index)}
+                            highlight={derive(hGoals, goal.id)}
                         />
                     )
                 }

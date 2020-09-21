@@ -9,7 +9,7 @@ import * as _ from "lodash";
 
 interface PrimaryGoalProps
 {
-    goal: MPrimaryGoal;
+    goal: DerivedAtom<MPrimaryGoal>;
     highlight: DerivedAtom<HPrimaryGoal>;
 }
 
@@ -43,18 +43,19 @@ const PrimaryGoal = ({ goal, highlight }: PrimaryGoalProps) =>
         return total;
     };
 
-    const children = derive(highlight, "children");
+    const hChildren = derive(highlight, "children");
+    const children = derive(goal, "children");
 
     return (
         <GoalElement goal={goal} averageScores highlight={selected} onClick={toggleAll} onToggleEdit={setEditing}>
             {
                 <ol type="a">
                     {
-                        goal.children.map(child =>
+                        goal.get.children.map((child, index) =>
                             <PrimarySubGoal
                                 key={child.id}
-                                goal={child}
-                                highlight={derive(children, child.id, updateHighlight)}
+                                goal={derive(children, index)}
+                                highlight={derive(hChildren, child.id, updateHighlight)}
                             />
                         )
                     }

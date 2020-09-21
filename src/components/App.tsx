@@ -66,17 +66,17 @@ const App = () =>
         <div className="flex mh-0 h-100">
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper>
-                    <PrimaryGoalPanel goals={_data.primaryGoals} highlight={primaryGoals} />
+                    <PrimaryGoalPanel goals={derive(data, "primaryGoals")} highlight={primaryGoals} />
                 </ScrollWrapper>
             </div>
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper className="pt-0-5">
-                    <TrackPanel tracks={_data.tracks} highlight={tracks} />
+                    <TrackPanel tracks={derive(data, "tracks")} highlight={tracks} />
                 </ScrollWrapper>
             </div>
             <div className="flex-2 h-100">
                 <ScrollWrapper className="pt-0-5">
-                    <CoursePanel courses={_data.courses} highlight={courses} />
+                    <CoursePanel courses={derive(data, "courses")} highlight={courses} />
                 </ScrollWrapper>
             </div>
         </div>

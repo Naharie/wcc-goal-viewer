@@ -6,7 +6,7 @@ import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface CourseYearProps
 {
-    year: Year;
+    year: DerivedAtom<Year>;
     highlight: DerivedAtom<HYear>;
 }
 
@@ -15,13 +15,13 @@ const CourseYear: FC<CourseYearProps> = ({ year, highlight }) =>
     return (
         <div className="flex justify-content-center w-100">
             <CourseSemester
-                year={year.yearNumber + 1}
-                semester={year.semester1}
+                year={year.get.yearNumber + 1}
+                semester={derive(year, "semester1")}
                 highlight={derive(highlight, "semester1")}
             />
             <CourseSemester
-                year={year.yearNumber + 2}
-                semester={year.semester2}
+                year={year.get.yearNumber + 2}
+                semester={derive(year, "semester2")}
                 highlight={derive(highlight, "semester2")}
             />
         </div>

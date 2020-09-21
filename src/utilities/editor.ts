@@ -2,7 +2,7 @@ import { Goal } from "../models";
 
 interface Editor
 { 
-    goal?: Goal;
+    goal?: string;
     cancel: () => void;
 }
 

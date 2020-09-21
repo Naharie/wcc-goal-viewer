@@ -6,10 +6,11 @@ import Textbox from "./Textbox";
 import ScoreList from "./ScoreList";
 import useCanEdit from "../hooks/useCanEdit";
 import { editor } from "../utilities/editor";
+import { derive, DerivedAtom, readAtom } from "../hooks/useAtom";
 
 interface GoalElementProps
 {
-    goal: Goal;
+    goal: DerivedAtom<Goal>;
     highlight: HGoal;
 
     averageScores?: boolean;
@@ -23,7 +24,6 @@ interface GoalElementProps
 const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick, ...props }) =>
 {
     const [isEditing, setEditing] = useState(false);
-    const text = useRef(goal.text);
     const canEdit = useCanEdit();
 
     const toggleEditing = () =>
@@ -35,11 +35,11 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick,
             // If we are opening the editor
             if (!isEditing)
             {
-                if (editor.goal !== goal)
+                if (editor.goal !== goal.get.id)
                 {
                     editor.cancel();
                     editor.cancel = () => setEditing(false);
-                    editor.goal = goal;
+                    editor.goal = goal.get.id;
                 }
             }
             // If we are closing the editor
@@ -59,7 +59,7 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick,
             onClick={event => !isEditing ? onClick?.(event) : undefined}
             onDoubleClick={toggleEditing}
         >
-            <Textbox text={text} selected={highlight.selected} isEditing={isEditing} /> {children}
+            <Textbox text={derive(goal, "text")} selected={highlight.selected} isEditing={isEditing} /> {children}
             <ScoreList
                 scores={highlight.scores}
                 averageScores={props.averageScores}

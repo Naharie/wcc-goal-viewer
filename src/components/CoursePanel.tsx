@@ -6,7 +6,7 @@ import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface CoursePanelProps
 {
-    courses: MCourse[];
+    courses: DerivedAtom<MCourse[]>;
     highlight: DerivedAtom<HashMap<HCourse>>;
 }
 
@@ -15,12 +15,12 @@ const CoursePanel = ({ courses, highlight }: CoursePanelProps) =>
     return (
         <>
             {
-                courses.map((course, index) =>
+                courses.get.map((course, index) =>
                     <Course
                         key={course.course}
-                        course={course}
+                        course={derive(courses, index)}
                         highlight={derive(highlight, course.course)}
-                        className={index < courses.length - 1 ? "border-b-1" : ""}
+                        className={index < courses.get.length - 1 ? "border-b-1" : ""}
                     />
                 )
             }

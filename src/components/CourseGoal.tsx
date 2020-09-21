@@ -6,7 +6,7 @@ import { readAtom, DerivedAtom } from "../hooks/useAtom";
 
 interface CourseGoalProps
 {
-    goal: MCourseGoal;
+    goal: DerivedAtom<MCourseGoal>;
     highlight: DerivedAtom<Goal>
 }
 
@@ -40,7 +40,7 @@ const CourseGoal: FC<CourseGoalProps> = ({ goal, highlight }) =>
             isEditingScores={editingScore}
             setScores={setScores}
         >
-         {renderReferences(goal.references)}
+         {renderReferences(goal.get.references)}
         </GoalElement>
     );
 };

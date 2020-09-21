@@ -1,18 +1,19 @@
 import React, { FC } from "react";
+import { DerivedAtom } from "../hooks/useAtom";
 import { list } from "../utilities/css";
 
 interface TextBoxProps
 {
     selected: boolean;
     isEditing: boolean;
-    text: React.MutableRefObject<string>;
+    text: DerivedAtom<string>;
 }
 
 const Textbox: FC<TextBoxProps> = ({ text, isEditing, selected }) =>
 {
     if (!isEditing)
     {
-        return (<>{text.current}</>);
+        return (<>{text.get}</>);
     }
 
     const computeHeight = (element: HTMLTextAreaElement) =>
@@ -33,20 +34,19 @@ const Textbox: FC<TextBoxProps> = ({ text, isEditing, selected }) =>
         }
 
         element.focus();
-        element.selectionStart = element.selectionEnd = text.current.length;
+        element.selectionStart = element.selectionEnd = text.get.length;
         computeHeight(element);
     }
     const updateText = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
     {
-        const newValue = event.target.value;
-        text.current = newValue;
+        text.set(event.target.value);
         computeHeight(event.target);
     };
 
     return (
         <textarea
             className={list("w-100", selected ? "selected" : "non-selected")}
-            defaultValue={text.current}
+            defaultValue={text.get}
             onChange={updateText}
             ref={onCreate}
         ></textarea>

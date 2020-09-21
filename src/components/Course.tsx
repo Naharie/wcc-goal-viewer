@@ -8,7 +8,7 @@ import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface CourseProps
 {
-    course: MCourse;
+    course: DerivedAtom<MCourse>;
     highlight: DerivedAtom<HCourse>;
     className?: string;
 }
@@ -23,21 +23,24 @@ const Course: FC<CourseProps> = ({ course, highlight, className }) =>
         scrollIntoView(document.getElementById("course_" + next));
     };
     
-    const years = derive(highlight, "years");
+    const years = derive(course, "years");
+    const hYears = derive(highlight, "years");
+
+    const courseId = course.get.course;
 
     return (
         <div
-            key={course.course}
-            id={"course_" + course.course}
+            key={courseId}
+            id={"course_" + courseId}
             className={list("flex flex-column align-items-center mb-1", className)}
         >
-            <div className="text-center cursor-pointer" onClick={scrollToNext}>{course.course}</div>
+            <div className="text-center cursor-pointer" onClick={scrollToNext}>{courseId}</div>
             {
-                course.years.map((year, yearIndex) =>
+                course.get.years.map((year, yearIndex) =>
                     <CourseYear
-                        key={course.course + "_" + year.yearNumber}
-                        year={year}
-                        highlight={derive(years, yearIndex)}
+                        key={courseId + "_" + year.yearNumber}
+                        year={derive(years, yearIndex)}
+                        highlight={derive(hYears, yearIndex)}
                     />
                 )
             }

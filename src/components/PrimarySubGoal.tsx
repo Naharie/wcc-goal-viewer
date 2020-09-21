@@ -7,7 +7,7 @@ import { DerivedAtom, readAtom } from "../hooks/useAtom";
 
 interface PrimarySubGoalProps
 {
-    goal: Goal;
+    goal: DerivedAtom<Goal>;
     highlight: DerivedAtom<HGoal>;
 }
 
@@ -25,7 +25,7 @@ const PrimarySubGoal: FC<PrimarySubGoalProps> = ({ goal, highlight }) =>
             className={list("pb-0-2", selected.selected ? "selected" : "non-selected")}
             onClick={toggleSelection}
         >
-            {goal.text}
+            {goal.get.text}
             <ScoreList scores={selected.scores} averageScores />
         </li>
     );

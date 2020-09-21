@@ -9,7 +9,7 @@ import AddButton from "./AddButton";
 interface CourseSemesterProps
 {
     year: number;
-    semester: Semester;
+    semester: DerivedAtom<Semester>;
     highlight: DerivedAtom<HashMap<Goal>>
 }
 
@@ -22,10 +22,10 @@ const CourseSemester = ({ year, semester, highlight }: CourseSemesterProps) =>
             <div className="text-center cursor-pointer mb-1">{year}</div>
             <ol type="A">
                 {
-                    semester.map(goal =>
+                    semester.get.map((goal, index) =>
                         <CourseGoal
                             key={goal.id}
-                            goal={goal}
+                            goal={derive(semester, index)}
                             highlight={derive(highlight, goal.id)}
                         />
                     )

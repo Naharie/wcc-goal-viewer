@@ -6,7 +6,7 @@ import { DerivedAtom, readAtom } from "../hooks/useAtom";
 
 interface TrackGoalProps
 {
-    goal: MTrackGoal;
+    goal: DerivedAtom<MTrackGoal>;
     highlight: DerivedAtom<Goal>;
 }
 
@@ -34,7 +34,7 @@ const TrackGoal = ({ goal, highlight }: TrackGoalProps) =>
     const toggleSelection = () => setSelected({ selected: !selected.selected });
     return (
         <GoalElement goal={goal} averageScores highlight={selected} onClick={toggleSelection}>
-            {renderReferences(goal.references)}
+            {renderReferences(goal.get.references)}
         </GoalElement>
     )
 };

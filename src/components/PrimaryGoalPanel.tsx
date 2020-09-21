@@ -8,7 +8,7 @@ import { DerivedAtom, derive } from "../hooks/useAtom";
 
 interface PrimaryGoalPanelProps
 {
-    goals: MPrimaryGoal[];
+    goals: DerivedAtom<MPrimaryGoal[]>;
     highlight: DerivedAtom<HashMap<HPrimaryGoal>>;
 }
 
@@ -19,10 +19,10 @@ const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight }) =>
     return (
         <>
             <ol type="I">
-                {goals.map(goal =>
+                {goals.get.map((goal, index) =>
                     <PrimaryGoal
                         key={goal.id}
-                        goal={goal}
+                        goal={derive(goals, index)}
                         highlight={derive(highlight, goal.id)}
                     />
                 )}
