@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 interface QueryParameters
 {
     [key: string]: string;
@@ -30,11 +32,17 @@ const useQuery = (): [QueryParameters, (value: SettableQueryParameters) => void]
     {
         const baseUrl = window.location.origin + window.location.pathname + window.location.hash.split("?")[0];
         
+        const data =
+            _.pickBy (
+                _.merge (Object.assign({}, cache), query),
+                value => value !== undefined
+            );
+
+        cache = Object.assign({}, data);
+
+
         const queryString =
-            Object.entries(
-                Object.assign({}, cache, query)
-            )
-                .filter(([, value]) => value !== null && value !== undefined)
+                Object.entries(data)
                 .map (([ name, value ]) =>
                     encodeURIComponent(name) + "=" + encodeURIComponent(value + "")
                 ).join("&");
