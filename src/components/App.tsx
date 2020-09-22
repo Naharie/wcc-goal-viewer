@@ -65,7 +65,7 @@ const App = () =>
     }
 
     const editEnv: EditEnv = {
-        updateUrl: () => setQuery({ changes: JSON.stringify(difference(original, data.get)) })
+        updateDiff: () => console.log(difference(original, data.get))
     };
 
     return (

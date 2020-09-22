@@ -46,7 +46,7 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick,
                     editor.cancel = () =>
                     {
                         setEditing(false);
-                        props.env.updateUrl();
+                        props.env.updateDiff();
                     }
                     editor.goal = goal.get.id;
                 }
@@ -56,7 +56,7 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick,
             {
                 editor.cancel = () => {};
                 editor.goal = undefined;
-                props.env.updateUrl();
+                props.env.updateDiff();
             }
 
             setEditing(!isEditing);

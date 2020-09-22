@@ -1,4 +1,4 @@
 export interface EditEnv
 {
-    updateUrl(): void;
+    updateDiff(): void;
 }
