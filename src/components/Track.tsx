@@ -7,15 +7,17 @@ import { list } from "../utilities/css";
 import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
 import { derive, DerivedAtom } from "../hooks/useAtom";
+import { EditEnv } from "../models/environment";
 
 interface TrackProps
 {
     track: DerivedAtom<MTrack>;
     className?: string;
     highlight: DerivedAtom<HTrack>;
+    env: EditEnv;
 }
 
-const Track = ({ track, className, highlight }: TrackProps) =>
+const Track = ({ track, className, highlight, env }: TrackProps) =>
 {
     const canEdit = useCanEdit();
     const trackId = track.get.track;
@@ -40,6 +42,7 @@ const Track = ({ track, className, highlight }: TrackProps) =>
                             key={goal.id}
                             goal={derive(goals, index)}
                             highlight={derive(hGoals, goal.id)}
+                            env={env}
                         />
                     )
                 }

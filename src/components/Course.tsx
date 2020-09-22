@@ -5,15 +5,17 @@ import CourseYear from "./CourseYear";
 import { Course as HCourse } from "../highlight/modelds";
 import { Course as MCourse } from "../models";
 import { DerivedAtom, derive } from "../hooks/useAtom";
+import { EditEnv } from "../models/environment";
 
 interface CourseProps
 {
     course: DerivedAtom<MCourse>;
     highlight: DerivedAtom<HCourse>;
     className?: string;
+    env: EditEnv;
 }
 
-const Course: FC<CourseProps> = ({ course, highlight, className }) =>
+const Course: FC<CourseProps> = ({ course, highlight, className, env }) =>
 {
     const years = derive(course, "years");
     const hYears = derive(highlight, "years");
@@ -41,6 +43,7 @@ const Course: FC<CourseProps> = ({ course, highlight, className }) =>
                         key={courseId + "_" + year.yearNumber}
                         year={derive(years, yearIndex)}
                         highlight={derive(hYears, yearIndex)}
+                        env={env}
                     />
                 )
             }

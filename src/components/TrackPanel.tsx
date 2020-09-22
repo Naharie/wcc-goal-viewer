@@ -3,14 +3,16 @@ import Track from "./Track";
 import { Track as HTrack, HashMap } from "../highlight/modelds";
 import { Track as MTrack } from "../models";
 import { DerivedAtom, derive } from "../hooks/useAtom";
+import { EditEnv } from "../models/environment";
 
 interface TrackPanelProps
 {
     tracks: DerivedAtom<MTrack[]>;
     highlight: DerivedAtom<HashMap<HTrack>>;
+    env: EditEnv;
 }
 
-const TrackPanel = ({ tracks, highlight }: TrackPanelProps) =>
+const TrackPanel = ({ tracks, highlight, env }: TrackPanelProps) =>
 {
     return (
         <>
@@ -21,6 +23,7 @@ const TrackPanel = ({ tracks, highlight }: TrackPanelProps) =>
                         track={derive(tracks, index)}
                         className={index < tracks.get.length - 1 ? "border-b-1" : ""}
                         highlight={derive(highlight, track.track)}
+                        env={env}
                     />
                 )
             }

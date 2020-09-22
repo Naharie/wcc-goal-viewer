@@ -5,14 +5,16 @@ import { PrimaryGoal as MPrimaryGoal } from "../models";
 import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
 import { DerivedAtom, derive } from "../hooks/useAtom";
+import { EditEnv } from "../models/environment";
 
 interface PrimaryGoalPanelProps
 {
     goals: DerivedAtom<MPrimaryGoal[]>;
     highlight: DerivedAtom<HashMap<HPrimaryGoal>>;
+    env: EditEnv;
 }
 
-const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight }) =>
+const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight, env }) =>
 {
     const canEdit = useCanEdit();
 
@@ -24,6 +26,7 @@ const PrimaryGoalPanel: FC<PrimaryGoalPanelProps> = ({ goals, highlight }) =>
                         key={goal.id}
                         goal={derive(goals, index)}
                         highlight={derive(highlight, goal.id)}
+                        env={env}
                     />
                 )}
             </ol>

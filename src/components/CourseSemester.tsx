@@ -5,15 +5,17 @@ import { DerivedAtom, derive } from "../hooks/useAtom";
 import CourseGoal from "./CourseGoal";
 import useCanEdit from "../hooks/useCanEdit";
 import AddButton from "./AddButton";
+import { EditEnv } from "../models/environment";
 
 interface CourseSemesterProps
 {
     year: number;
     semester: DerivedAtom<Semester>;
     highlight: DerivedAtom<HashMap<Goal>>
+    env: EditEnv;
 }
 
-const CourseSemester = ({ year, semester, highlight }: CourseSemesterProps) =>
+const CourseSemester = ({ year, semester, highlight, env }: CourseSemesterProps) =>
 {
     const canEdit = useCanEdit();
 
@@ -27,6 +29,7 @@ const CourseSemester = ({ year, semester, highlight }: CourseSemesterProps) =>
                             key={goal.id}
                             goal={derive(semester, index)}
                             highlight={derive(highlight, goal.id)}
+                            env={env}
                         />
                     )
                 }

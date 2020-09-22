@@ -7,6 +7,7 @@ import ScoreList from "./ScoreList";
 import useCanEdit from "../hooks/useCanEdit";
 import { editor } from "../utilities/editor";
 import { derive, DerivedAtom, readAtom } from "../hooks/useAtom";
+import { EditEnv } from "../models/environment";
 
 interface GoalElementProps
 {
@@ -17,9 +18,13 @@ interface GoalElementProps
     isEditingScores?: boolean;
     setScores?: (value: number[]) => void;
 
+    env: EditEnv;
+
     onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
     onToggleEdit?: (isEditing: boolean) => void;
 }
+
+// TODO: Add the fancy warning indicators.
 
 const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick, ...props }) =>
 {
@@ -38,7 +43,11 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick,
                 if (editor.goal !== goal.get.id)
                 {
                     editor.cancel();
-                    editor.cancel = () => setEditing(false);
+                    editor.cancel = () =>
+                    {
+                        setEditing(false);
+                        props.env.updateUrl();
+                    }
                     editor.goal = goal.get.id;
                 }
             }
@@ -47,6 +56,7 @@ const GoalElement: FC<GoalElementProps> = ({ goal, highlight, children, onClick,
             {
                 editor.cancel = () => {};
                 editor.goal = undefined;
+                props.env.updateUrl();
             }
 
             setEditing(!isEditing);

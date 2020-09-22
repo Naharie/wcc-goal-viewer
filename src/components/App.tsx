@@ -12,6 +12,8 @@ import { makeAtom, derive } from "../hooks/useAtom";
 import { computeScores, createHighlight, computeTrackHighlight, computeCourseHighlight } from "../highlight";
 import * as _ from "lodash";
 import { updateAssessment, parseAssessment, applyAssessment } from "../assessment";
+import { EditEnv } from "../models/environment";
+import { difference } from "../utilities/difference";
 
 const App = () =>
 {
@@ -62,21 +64,25 @@ const App = () =>
         return (<LoadingScreen />);
     }
 
+    const editEnv: EditEnv = {
+        updateUrl: () => setQuery({ changes: JSON.stringify(difference(original, data.get)) })
+    };
+
     return (
         <div className="flex mh-0 h-100">
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper>
-                    <PrimaryGoalPanel goals={derive(data, "primaryGoals")} highlight={primaryGoals} />
+                    <PrimaryGoalPanel goals={derive(data, "primaryGoals")} highlight={primaryGoals} env={editEnv} />
                 </ScrollWrapper>
             </div>
             <div className="flex-1 h-100 border-r-1">
                 <ScrollWrapper className="pt-0-5">
-                    <TrackPanel tracks={derive(data, "tracks")} highlight={tracks} />
+                    <TrackPanel tracks={derive(data, "tracks")} highlight={tracks} env={editEnv} />
                 </ScrollWrapper>
             </div>
             <div className="flex-2 h-100">
                 <ScrollWrapper className="pt-0-5">
-                    <CoursePanel courses={derive(data, "courses")} highlight={courses} />
+                    <CoursePanel courses={derive(data, "courses")} highlight={courses} env={editEnv} />
                 </ScrollWrapper>
             </div>
         </div>

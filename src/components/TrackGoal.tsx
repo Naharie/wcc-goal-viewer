@@ -3,11 +3,13 @@ import { Goal } from "../highlight/modelds";
 import { TrackGoal as MTrackGoal, PrimaryReference } from "../models";
 import GoalElement from "./GoalElement";
 import { DerivedAtom, readAtom } from "../hooks/useAtom";
+import { EditEnv } from "../models/environment";
 
 interface TrackGoalProps
 {
     goal: DerivedAtom<MTrackGoal>;
     highlight: DerivedAtom<Goal>;
+    env: EditEnv;
 }
 
 const renderReferences = (refs: PrimaryReference[]) =>
@@ -27,13 +29,13 @@ const renderReferences = (refs: PrimaryReference[]) =>
     return ("(" + text + ")");
 };
 
-const TrackGoal = ({ goal, highlight }: TrackGoalProps) =>
+const TrackGoal = ({ goal, highlight, env }: TrackGoalProps) =>
 {
     const [selected, setSelected] = readAtom(highlight);
 
     const toggleSelection = () => setSelected({ selected: !selected.selected });
     return (
-        <GoalElement goal={goal} averageScores highlight={selected} onClick={toggleSelection}>
+        <GoalElement goal={goal} averageScores highlight={selected} env={env} onClick={toggleSelection}>
             {renderReferences(goal.get.references)}
         </GoalElement>
     )

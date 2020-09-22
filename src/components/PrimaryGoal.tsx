@@ -6,14 +6,16 @@ import PrimarySubGoal from "./PrimarySubGoal";
 import AddButton from "./AddButton";
 import { DerivedAtom, readAtom, derive } from "../hooks/useAtom";
 import * as _ from "lodash";
+import { EditEnv } from "../models/environment";
 
 interface PrimaryGoalProps
 {
     goal: DerivedAtom<MPrimaryGoal>;
     highlight: DerivedAtom<HPrimaryGoal>;
+    env: EditEnv;
 }
 
-const PrimaryGoal = ({ goal, highlight }: PrimaryGoalProps) =>
+const PrimaryGoal = ({ goal, highlight, env }: PrimaryGoalProps) =>
 {
     const [isEditing, setEditing] = useState(false);
     const [selected, setSelected] = readAtom(highlight);
@@ -47,7 +49,7 @@ const PrimaryGoal = ({ goal, highlight }: PrimaryGoalProps) =>
     const children = derive(goal, "children");
 
     return (
-        <GoalElement goal={goal} averageScores highlight={selected} onClick={toggleAll} onToggleEdit={setEditing}>
+        <GoalElement goal={goal} averageScores highlight={selected} env={env} onClick={toggleAll} onToggleEdit={setEditing}>
             {
                 <ol type="a">
                     {

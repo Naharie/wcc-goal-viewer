@@ -11,6 +11,8 @@ interface PrimarySubGoalProps
     highlight: DerivedAtom<HGoal>;
 }
 
+// TODO: Editor functionality for this element.
+
 const PrimarySubGoal: FC<PrimarySubGoalProps> = ({ goal, highlight }) =>
 {
     const [selected, setSelected] = readAtom(highlight);
