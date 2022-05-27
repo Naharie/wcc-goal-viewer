@@ -1,8 +1,10 @@
 {
-    "cSpell.words": [
-        "flexbox",
-        "prebuild",
-        "prestart",
-        "tailwindcss"
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/public/data.json"
+            ],
+            "url": "./public/data.schema.json"
+        }
     ]
 }
