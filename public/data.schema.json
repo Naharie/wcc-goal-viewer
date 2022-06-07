@@ -20,7 +20,7 @@
                     },
                     "id": {
                         "type": "integer",
-                        "description": "The unique identifier by which this goal will be reffered to in links."
+                        "description": "The unique identifier by which this goal will be referred to in links."
                     },
                     "children": {
                         "type": "array",
@@ -37,13 +37,13 @@
                                 },
                                 "id": {
                                     "type": "integer",
-                                    "description": "The unique identifier by which this goal will be reffered to in links."
+                                    "description": "The unique identifier by which this goal will be referred to in links."
                                 }
                             },
                             "required": [ "text", "ref", "id" ],
-                            "description": "A subgoal that must be met for the parent curriculum goal to be achieved."
+                            "description": "A sub-goal that must be met for the parent curriculum goal to be achieved."
                         },
-                        "description": "The parts or subgoals in order for this curriculum goal to be met."
+                        "description": "The parts or sub-goals in order for this curriculum goal to be met."
                     }
                 },
                 "required": [ "text", "ref", "id", "children" ]
@@ -58,7 +58,7 @@
                 "properties": {
                     "track": {
                         "type": "string",
-                        "description": "The abreviated track name (HMN for Humanities, PHL for Philosophy and so on)."
+                        "description": "The abbreviated track name (HMN for Humanities, PHL for Philosophy and so on)."
                     },
                     "goals": {
                         "type": "array",
@@ -78,19 +78,19 @@
                                                 "type": "string",
                                                 "description": "The reference id of a curriculum goal."
                                             },
-                                            "subgoals": {
+                                            "subGoals": {
                                                 "type": "array",
                                                 "items": {
                                                     "type": "string",
-                                                    "description": "A particular subgoal that this track goal fulfills."
+                                                    "description": "A particular sub-goal that this track goal fulfills."
                                                 },
-                                                "description": "The specific subgoals that this track goal fulfills."
+                                                "description": "The specific sub-goals that this track goal fulfills."
                                             }
                                         },
-                                        "required": [ "goal", "subgoals" ],
-                                        "description": "A curriculum goal and its subgoals that this track goal refers to and is a prerequisite for."
+                                        "required": [ "goal", "sub-goals" ],
+                                        "description": "A curriculum goal and its sub-goals that this track goal refers to and is a prerequisite for."
                                     },
-                                    "description": "The curriculum goals and their subgoals that this track goal refers to and is a prerequisite for."
+                                    "description": "The curriculum goals and their sub-goals that this track goal refers to and is a prerequisite for."
                                 },
                                 "ref": {
                                     "type": "string",
@@ -98,7 +98,7 @@
                                 },
                                 "id": {
                                     "type": "integer",
-                                    "description": "The unique identifier by which this goal will be reffered to in links."
+                                    "description": "The unique identifier by which this goal will be referred to in links."
                                 }
                             },
                             "required": [ "text", "references", "ref", "id" ],
@@ -119,7 +119,7 @@
                 "properties": {
                     "course": {
                         "type": "string",
-                        "description": "The abreviated course name (HMN for Humanities, PHL for Philosophy and so on)."
+                        "description": "The abbreviated course name (HMN for Humanities, PHL for Philosophy and so on)."
                     },
                     "years": {
                         "type": "array",
@@ -155,7 +155,7 @@
                                                 },
                                                 "id": {
                                                     "type": "integer",
-                                                    "description": "The unique identifier by which this goal will be reffered to in links."
+                                                    "description": "The unique identifier by which this goal will be referred to in links."
                                                 }
                                             },
                                             "required": [ "text", "references", "ref", "id" ],
@@ -165,7 +165,7 @@
                                     },
                                     "minItems": 2,
                                     "maxItems": 2,
-                                    "description": "The two academic semesters that comproise this year of the course."
+                                    "description": "The two academic semesters that comprise this year of the course."
                                 }
                             },
                             "required": [ "number", "semesters" ],

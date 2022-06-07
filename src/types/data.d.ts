@@ -12,19 +12,19 @@ export interface CurriculumGoal
      */
     ref: string;
     /**
-     * The unique identifier by which this goal will be reffered to in links.
+     * The unique identifier by which this goal will be referred to in links.
      */
     id: number;
     /**
-     * The parts or subgoals in order for this curriculum goal to be met.
+     * The parts or sub-goals in order for this curriculum goal to be met.
      */
-    children: CurriculumSubgoal[];
+    children: CurriculumSubGoal[];
 }
 
 /**
- * A subgoal of one of the primary goals of the WCC curriculum.
+ * A sub-goal of one of the primary goals of the WCC curriculum.
  */
-export interface CurriculumSubgoal
+export interface CurriculumSubGoal
 {
     /**
      * The text or description of the goal.
@@ -35,7 +35,7 @@ export interface CurriculumSubgoal
      */
     ref: string;
     /**
-     * The unique identifier by which this goal will be reffered to in links.
+     * The unique identifier by which this goal will be referred to in links.
      */
     id: number;
 }
@@ -47,7 +47,7 @@ export interface CurriculumSubgoal
 export interface Track
 {
     /**
-     * The abreviated track name (HMN for Humanities, PHL for Philosophy and so on).
+     * The abbreviated track name (HMN for Humanities, PHL for Philosophy and so on).
      */
     track: string;
     /**
@@ -65,7 +65,7 @@ export interface TrackGoal
      */
     text: string;
     /**
-     * The curriculum goals and their subgoals that this track goal refers to and is a prerequisite for.
+     * The curriculum goals and their sub-goals that this track goal refers to and is a prerequisite for.
      */
     references: TrackGoalReference[];
     /**
@@ -73,7 +73,7 @@ export interface TrackGoal
      */
     ref: string;
     /**
-     * The unique identifier by which this goal will be reffered to in links.
+     * The unique identifier by which this goal will be referred to in links.
      */
     id: number;
 }
@@ -87,9 +87,9 @@ export interface TrackGoalReference
      */
     goal: string;
     /**
-     * The specific subgoals that this track goal fulfills.
+     * The specific sub-goals that this track goal fulfills.
      */
-    subgoals: string[];
+    subGoals: string[];
 }
 
 
@@ -99,7 +99,7 @@ export interface TrackGoalReference
 export interface Course
 {
     /**
-     * The abreviated course name (HMN for Humanities, PHL for Philosophy and so on).
+     * The abbreviated course name (HMN for Humanities, PHL for Philosophy and so on).
      */
     course: string;
     /**
@@ -117,7 +117,7 @@ export interface Year
      */
     number: number;
     /**
-     * The two academic semesters that comproise this year of the course.
+     * The two academic semesters that comprise this year of the course.
      */
     semesters: [ Semester, Semester ];
 }
@@ -143,7 +143,7 @@ export interface SemesterGoal
      */
     ref: string;
     /**
-     * The unique identifier by which this goal will be reffered to in links.
+     * The unique identifier by which this goal will be referred to in links.
      */
     id: number;
 }

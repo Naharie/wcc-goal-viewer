@@ -126,7 +126,7 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": [
+                            "subGoals": [
                                 "b",
                                 "d",
                                 "e"
@@ -134,7 +134,7 @@
                         },
                         {
                             "goal": "VI",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "1",
@@ -145,7 +145,7 @@
                     "references": [
                         {
                             "goal": "VI",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "2",
@@ -156,13 +156,13 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         },
                         {
                             "goal": "VI",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         }
@@ -175,13 +175,13 @@
                     "references": [
                         {
                             "goal": "III",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         },
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         }
@@ -194,11 +194,11 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": []
+                            "subGoals": []
                         },
                         {
                             "goal": "III",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "5",
@@ -209,7 +209,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         }
@@ -222,7 +222,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -235,7 +235,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -253,7 +253,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "1",
@@ -264,7 +264,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -277,7 +277,7 @@
                     "references": [
                         {
                             "goal": "VI",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "3",
@@ -288,7 +288,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "4",
@@ -299,11 +299,11 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": []
+                            "subGoals": []
                         },
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         }
@@ -316,7 +316,7 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": [
+                            "subGoals": [
                                 "e"
                             ]
                         }
@@ -329,7 +329,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "b",
                                 "c"
                             ]
@@ -348,13 +348,13 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         },
                         {
                             "goal": "V",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "1",
@@ -365,7 +365,7 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": [
+                            "subGoals": [
                                 "c",
                                 "d",
                                 "e"
@@ -373,13 +373,13 @@
                         },
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         },
                         {
                             "goal": "VI",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "2",
@@ -390,7 +390,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -403,7 +403,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -416,7 +416,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
@@ -434,7 +434,7 @@
                     "references": [
                         {
                             "goal": "III",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "1",
@@ -445,7 +445,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -458,13 +458,13 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         },
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         }
@@ -477,7 +477,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
@@ -490,7 +490,7 @@
                     "references": [
                         {
                             "goal": "VI",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         }
@@ -503,7 +503,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -521,19 +521,19 @@
                     "references": [
                         {
                             "goal": "III",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         },
                         {
                             "goal": "VI",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         },
                         {
                             "goal": "VI",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
@@ -546,13 +546,13 @@
                     "references": [
                         {
                             "goal": "III",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         },
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "a",
                                 "b"
                             ]
@@ -566,13 +566,13 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         },
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -585,13 +585,13 @@
                     "references": [
                         {
                             "goal": "VI",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         },
                         {
                             "goal": "VI",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
@@ -604,11 +604,11 @@
                     "references": [
                         {
                             "goal": "I",
-                            "subgoals": []
+                            "subGoals": []
                         },
                         {
                             "goal": "III",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
@@ -632,13 +632,13 @@
                     "references": [
                         {
                             "goal": "III",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         },
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
@@ -651,13 +651,13 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         },
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "a"
                             ]
                         }
@@ -670,14 +670,14 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": [
+                            "subGoals": [
                                 "c",
                                 "d"
                             ]
                         },
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
@@ -690,7 +690,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "4",
@@ -706,7 +706,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "1",
@@ -717,7 +717,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "2",
@@ -728,7 +728,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "3",
@@ -739,7 +739,7 @@
                     "references": [
                         {
                             "goal": "VI",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "4",
@@ -750,7 +750,7 @@
                     "references": [
                         {
                             "goal": "VI",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "5",
@@ -761,7 +761,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "6",
@@ -777,7 +777,7 @@
                     "references": [
                         {
                             "goal": "V",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -790,7 +790,7 @@
                     "references": [
                         {
                             "goal": "III",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "2",
@@ -801,11 +801,11 @@
                     "references": [
                         {
                             "goal": "I",
-                            "subgoals": []
+                            "subGoals": []
                         },
                         {
                             "goal": "II",
-                            "subgoals": [
+                            "subGoals": [
                                 "e"
                             ]
                         }
@@ -818,7 +818,7 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": [
+                            "subGoals": [
                                 "d"
                             ]
                         }
@@ -831,7 +831,7 @@
                     "references": [
                         {
                             "goal": "II",
-                            "subgoals": []
+                            "subGoals": []
                         }
                     ],
                     "ref": "5",
@@ -842,7 +842,7 @@
                     "references": [
                         {
                             "goal": "IV",
-                            "subgoals": [
+                            "subGoals": [
                                 "c"
                             ]
                         }
@@ -855,15 +855,15 @@
                     "references": [
                         {
                             "goal": "I",
-                            "subgoals": []
+                            "subGoals": []
                         },
                         {
                             "goal": "III",
-                            "subgoals": []
+                            "subGoals": []
                         },
                         {
                             "goal": "VI",
-                            "subgoals": [
+                            "subGoals": [
                                 "b"
                             ]
                         }
