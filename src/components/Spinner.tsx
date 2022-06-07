@@ -13,10 +13,10 @@ const spin = keyframes`
 
 const Spinner = styled.div`
     display: inline-block;
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
     vertical-align: text-bottom;
-    border: .25em solid #46c768;
+    border: .5em solid #46c768;
     border-right-color: #46c768;
     border-right-color: transparent;
     border-radius: 50%;

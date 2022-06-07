@@ -1,74 +1,50 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { dataLoadCompleted, dataLoadFailed } from "../data/dataSlice";
-import { GoalData } from "../types/data";
+import CenteredContainer from "./CenteredContainer";
 import Spinner from "./Spinner";
 import { useSelector } from "react-redux";
-import { selectGoalData, selectStatus } from "../data/selectors";
-import { Status } from "../data/status";
+import { selectStatus, LoadingStatus } from "../data";
+import useData from "../hooks/useData";
 
-const App = styled.div`
-    text-align: center;
-`;
-
-const AppHeader = styled.header`
-    min-height: 100vh;
+const FlexContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+    min-height: 0;
+    height: 100%;
 `;
-
-const AppLinkBase = styled.a`
-    color: rgb(112, 76, 182);
-`;
-
-const AppLink = ({ href, children }: PropsWithChildren<{ href: string; }>) =>
-    <AppLinkBase href={href} target="_blank" rel="noopener noreferrer">{children}</AppLinkBase>;
-
-const AppCode = styled.code`
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-`;
+const FlexChild = styled.div(({ size = 1}: PropsWithChildren<{ size?: number }>) =>
+    `
+        flex: ${size} ${size} 0;
+        height: 100%;
+        border-right: 1px solid gray;
+    `
+);
 
 export default () =>
 {
-    const dispatch = useAppDispatch();
     const status = useSelector(selectStatus);
 
-    useEffect(() =>
-    {
-        fetch("/data.json")
-            .then(response => response.json())
-            .then((json: GoalData) => dispatch(dataLoadCompleted(json)))
-            .catch((error: Error) => dispatch(dataLoadFailed(error)));
-    }, []);
+    useData();
 
-    if (status === Status.Loading)
+    if (status === LoadingStatus.Loading)
     {
         return (
-            <App>
-                <AppHeader>
-                    <Spinner />
-                </AppHeader>
-            </App>
+            <CenteredContainer>
+                <Spinner />
+            </CenteredContainer>
         );
     }
 
-    return (<App>
-        <AppHeader>
-            <p>Edit <AppCode>src/App.tsx</AppCode> and save to reload.</p>
-            <span>
-                <span>Learn </span>
-                <AppLink href="https://reactjs.org/">React</AppLink>
-                <span>, </span>
-                <AppLink href="https://redux.js.org/">Redux</AppLink>
-                <span>, </span>
-                <AppLink href="https://redux-toolkit.js.org/">Redux Toolkit</AppLink>
-                ,<span> and </span>
-                <AppLink href="https://react-redux.js.org/">React Redux</AppLink>
-            </span>
-        </AppHeader>
-    </App>);
+    return(
+        <FlexContainer>
+            <FlexChild>
+                { /* <PrimaryGoalPanel goals={derive(data, "primaryGoals")} highlight={primaryGoals} env={editEnv} /> */ }
+            </FlexChild>
+            <FlexChild>
+                { /* <TrackPanel tracks={derive(data, "tracks")} highlight={tracks} env={editEnv} /> */ }
+            </FlexChild>
+            <FlexChild size={2}>
+                { /* <CoursePanel courses={derive(data, "courses")} highlight={courses} env={editEnv} /> */ }
+            </FlexChild>
+        </FlexContainer>
+    );
 };
