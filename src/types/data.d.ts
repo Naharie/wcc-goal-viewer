@@ -1,7 +1,4 @@
-/**
- * A top level or primary goal of the WCC curriculum.
- */
-export interface CurriculumGoal
+export interface Goal
 {
     /**
      * The text or description of the goal.
@@ -15,6 +12,13 @@ export interface CurriculumGoal
      * The unique identifier by which this goal will be referred to in links.
      */
     id: number;
+}
+
+/**
+ * A top level or primary goal of the WCC curriculum.
+ */
+export interface CurriculumGoal extends Goal
+{
     /**
      * The parts or sub-goals in order for this curriculum goal to be met.
      */
@@ -24,20 +28,8 @@ export interface CurriculumGoal
 /**
  * A sub-goal of one of the primary goals of the WCC curriculum.
  */
-export interface CurriculumSubGoal
+export interface CurriculumSubGoal extends Goal
 {
-    /**
-     * The text or description of the goal.
-     */
-    text: string;
-    /**
-     * The unique identifier by which this specific goal will be referred to by other goals.
-     */
-    ref: string;
-    /**
-     * The unique identifier by which this goal will be referred to in links.
-     */
-    id: number;
 }
 
 
@@ -58,24 +50,12 @@ export interface Track
 /**
  * A goal particular to the parent track it resides in.
  */
-export interface TrackGoal
+export interface TrackGoal extends Goal
 {
-    /**
-     * The text or description of the goal.
-     */
-    text: string;
     /**
      * The curriculum goals and their sub-goals that this track goal refers to and is a prerequisite for.
      */
     references: TrackGoalReference[];
-    /**
-     * The unique identifier by which this specific goal will be referred to by other goals.
-     */
-    ref: string;
-    /**
-     * The unique identifier by which this goal will be referred to in links.
-     */
-    id: number;
 }
 /**
  * A reference to a primary goal that the track goal supports.
@@ -128,24 +108,12 @@ export type Semester = SemesterGoal[];
 /**
  * A course goal relevant only to the parent semester of the specified year.
  */
-export interface SemesterGoal
+export interface SemesterGoal extends Goal
 {
-    /**
-     * The text or description of the goal.
-     */
-    text: string;
     /**
      * The track goals (of the same course) referenced by this goal.
      */
     references: string[];
-    /**
-     * The unique identifier by which this specific goal will be referred to by other goals.
-     */
-    ref: string;
-    /**
-     * The unique identifier by which this goal will be referred to in links.
-     */
-    id: number;
 }
 
 /**
