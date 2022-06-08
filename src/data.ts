@@ -15,12 +15,16 @@ export interface State
      * If present, the internal exception that should be shown to the user.
      */
     errorMessage?: string;
-    goalData?: GoalData;
+    goalData: GoalData;
 }
 
 const initialState: State = {
     status: LoadingStatus.Loading,
-    goalData: undefined
+    goalData: {
+        curriculumGoals: [],
+        tracks: [],
+        courses: []
+    }
 };
 
 const dataSlice = createSlice({
@@ -29,8 +33,8 @@ const dataSlice = createSlice({
     reducers: {
         dataLoadCompleted: (_, { payload }: { payload: GoalData, type: string }) =>
             ({ status: LoadingStatus.Complete, goalData: payload }),
-        dataLoadFailed: (_, { payload }: { payload: Error, type: string }) =>
-            ({ status: LoadingStatus.Failure, errorMessage: payload.toString() })
+        dataLoadFailed: (state, { payload }: { payload: Error, type: string }) =>
+            ({ status: LoadingStatus.Failure, goalData: state.goalData, errorMessage: payload.toString() })
     }
 });
 
@@ -42,3 +46,6 @@ export const { dataLoadCompleted, dataLoadFailed } = dataSlice.actions;
 export const selectStatus = (state: State) => state.status;
 export const selectErrorMessage = (state: State) => state.errorMessage;
 export const selectGoalData = (state: State) => state.goalData;
+
+export const selectCurriculumGoals = (state: State) => state.goalData.curriculumGoals;
+export const selectCurriculumGoal = (index: number) => (state: State) => state.goalData.curriculumGoals[index];
