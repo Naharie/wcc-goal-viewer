@@ -1,5 +1,3 @@
-@import "./reset.css";
-
 :root
 {
 	--non-selected: rgb(231, 240, 247);
@@ -10,14 +8,15 @@
 	--font: "Times New Roman", Times, serif;
 }
 
-/* Reset */
-
 html, body
 {
     background-color: var(--non-selected);
 
     width: 100%;
 	height: 100%;
+
+	margin: 0;
+	padding: 0;
 
     overflow: hidden;
 
