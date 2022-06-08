@@ -49,3 +49,5 @@ export const selectGoalData = (state: State) => state.goalData;
 
 export const selectCurriculumGoals = (state: State) => state.goalData.curriculumGoals;
 export const selectCurriculumGoal = (index: number) => (state: State) => state.goalData.curriculumGoals[index];
+export const selectCurriculumSubGoal = (index: number, subIndex: number) => (state: State) =>
+    selectCurriculumGoal(index)(state).children[subIndex];

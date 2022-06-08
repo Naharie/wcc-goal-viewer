@@ -2,9 +2,10 @@ import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import CenteredContainer from "./CenteredContainer";
 import Spinner from "./Spinner";
-import { useSelector } from "react-redux";
 import { selectStatus, LoadingStatus } from "../data";
+import { useAppSelector } from "../hooks/redux";
 import useData from "../hooks/useData";
+import CurriculumGoalPanel from "./CurriculumGoalPanel";
 
 const FlexContainer = styled.div`
     display: flex;
@@ -21,7 +22,7 @@ const FlexChild = styled.div(({ size = 1}: PropsWithChildren<{ size?: number }>)
 
 export default () =>
 {
-    const status = useSelector(selectStatus);
+    const status = useAppSelector(selectStatus);
 
     useData();
 
@@ -37,7 +38,7 @@ export default () =>
     return(
         <FlexContainer>
             <FlexChild>
-                { /* <PrimaryGoalPanel goals={derive(data, "primaryGoals")} highlight={primaryGoals} env={editEnv} /> */ }
+                <CurriculumGoalPanel />
             </FlexChild>
             <FlexChild>
                 { /* <TrackPanel tracks={derive(data, "tracks")} highlight={tracks} env={editEnv} /> */ }
