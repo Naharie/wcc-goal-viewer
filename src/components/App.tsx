@@ -6,6 +6,7 @@ import { selectStatus, LoadingStatus } from "../data";
 import { useAppSelector } from "../hooks/redux";
 import useData from "../hooks/useData";
 import CurriculumGoalPanel from "./CurriculumGoalPanel";
+import TrackGoalPanel from "./TrackGoalPanel";
 
 const FlexContainer = styled.div`
     display: flex;
@@ -41,7 +42,7 @@ export default () =>
                 <CurriculumGoalPanel />
             </FlexChild>
             <FlexChild>
-                { /* <TrackPanel tracks={derive(data, "tracks")} highlight={tracks} env={editEnv} /> */ }
+                <TrackGoalPanel />
             </FlexChild>
             <FlexChild size={2}>
                 { /* <CoursePanel courses={derive(data, "courses")} highlight={courses} env={editEnv} /> */ }

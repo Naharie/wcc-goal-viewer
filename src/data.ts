@@ -51,3 +51,8 @@ export const selectCurriculumGoals = (state: State) => state.goalData.curriculum
 export const selectCurriculumGoal = (index: number) => (state: State) => state.goalData.curriculumGoals[index];
 export const selectCurriculumSubGoal = (index: number, subIndex: number) => (state: State) =>
     selectCurriculumGoal(index)(state).children[subIndex];
+
+export const selectTracks = (state: State) => state.goalData.tracks;
+export const selectTrack = (index: number) => (state: State) => state.goalData.tracks[index];
+export const selectTrackGoal = (track: number, goal: number) => (state: State) =>
+    selectTrack(track)(state).goals[goal];
