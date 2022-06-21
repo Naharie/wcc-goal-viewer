@@ -2,9 +2,9 @@
     "json.schemas": [
         {
             "fileMatch": [
-                "/public/data.json"
+                "/data.json"
             ],
-            "url": "./public/data.schema.json"
+            "url": "./data.schema.json"
         }
     ]
 }
