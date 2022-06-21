@@ -1,19 +1,8 @@
-import React, { FC, ForwardedRef, MutableRefObject, PropsWithChildren } from "react";
-import styled from "styled-components";
-import { selectTrack, selectTrackGoal } from "../data";
+import React from "react";
+import { selectTrack } from "../data";
 import { useAppSelector } from "../hooks/redux";
-import GoalElement from "./GoalElement";
-
-const CenteredText = styled.a`
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-`;
-
-const PanelBase = styled.ol`
-    padding-right: 1em;
-`;
+import CenteredLink from "./styled/CenteredLink";
+import GoalElement from "./styled/GoalElement";
 
 interface TrackPanelProps
 {
@@ -27,14 +16,14 @@ const TrackPanel = React.forwardRef<HTMLDivElement, TrackPanelProps>(({ track: i
 
     return (
         <div ref={ref}>
-            <CenteredText>{track.track}</CenteredText>
-            <PanelBase type="1">
+            <CenteredLink>{track.track}</CenteredLink>
+            <ol type="1">
                 {
-                    track.goals.map((goal, subIndex) =>
-                        <GoalElement key={goal.id + offset} selector={selectTrackGoal(index, subIndex)} />
+                    track.goals.map((goal, _) =>
+                        <GoalElement>{goal.text}</GoalElement>
                     )
                 }
-            </PanelBase>
+            </ol>
         </div>
     );
 });

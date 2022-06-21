@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import App from "./components/App";
 
 import "simplebar-react/dist/simplebar.min.css";
+
 import "./css/index.css";
 
 /*

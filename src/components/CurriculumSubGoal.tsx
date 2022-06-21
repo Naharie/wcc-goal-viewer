@@ -1,8 +1,12 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { selectCurriculumSubGoal } from "../data";
-import GoalElement from "./GoalElement";
+import { useAppSelector } from "../hooks/redux";
+import SubGoalElement from "./styled/SubGoalElement";
 
 const CurriculumSubGoal = ({ index, subIndex }: PropsWithChildren<{ index: number, subIndex: number }>) =>
-    <GoalElement selector={selectCurriculumSubGoal(index, subIndex)} isSubGoal={true} />;
+{
+    const goal = useAppSelector(selectCurriculumSubGoal(index, subIndex));
+    return (<SubGoalElement>{goal.text}</SubGoalElement>);
+};
 
 export default CurriculumSubGoal;

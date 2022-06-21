@@ -47,7 +47,7 @@ const TrackGoalPanel = () =>
     }
 
     return (
-        <SimpleBar scrollableNodeProps={{ ref: scrollable }} style={{ maxHeight: "100%", padding: "1.3em 1em 1.3em 0" }}>
+        <SimpleBar scrollableNodeProps={{ ref: scrollable }} style={{ maxHeight: "100%", padding: "1.3em 2em 1.3em 0" }}>
             {realTracks}
             {
                 tracks.slice(0, loopCount).map((_, index) =>

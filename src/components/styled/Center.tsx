@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CenteredContainer = styled.div`
+const Center = styled.div`
     display: flex;
     
     justify-content: center;
@@ -10,4 +10,4 @@ const CenteredContainer = styled.div`
     height: 100%;
 `;
  
- export default CenteredContainer;
+ export default Center;

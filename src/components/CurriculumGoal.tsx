@@ -1,15 +1,16 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { selectCurriculumGoal } from "../data";
 import { useAppSelector } from "../hooks/redux";
 import CurriculumSubGoal from "./CurriculumSubGoal";
-import GoalElement from "./GoalElement";
+import GoalElement from "./styled/GoalElement";
 
 const CurriculumGoal = ({ index }: PropsWithChildren<{ index: number }>) =>
 {
     const goal = useAppSelector(selectCurriculumGoal(index));
 
     return (
-        <GoalElement selector={selectCurriculumGoal(index)}>
+        <GoalElement>
+            {goal.text}
             <ol type="a">
                 {
                     goal.children.map((goal, subIndex) =>
