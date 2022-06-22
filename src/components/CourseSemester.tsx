@@ -1,5 +1,4 @@
-import { selectCourseSemester, selectCourseYear } from "../data";
-import { useAppSelector } from "../hooks/redux";
+import useStore from "../data";
 import CourseGoal from "./CourseGoal";
 
 interface CourseSemesterProps
@@ -11,8 +10,8 @@ interface CourseSemesterProps
 
 const CourseSemester = ({ course, year: yearIndex, semester: semesterIndex }: CourseSemesterProps) =>
 {
-    const year = useAppSelector(selectCourseYear(course, yearIndex));
-    const semester = useAppSelector(selectCourseSemester(course, yearIndex, semesterIndex));
+    const year = useStore(state => state.data.courses[course].years[yearIndex]);
+    const semester = year.semesters[semesterIndex];
 
     if (semester.length === 0)
     {

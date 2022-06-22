@@ -1,5 +1,4 @@
-import { selectCourseGoal } from "../data";
-import { useAppSelector } from "../hooks/redux";
+import useStore from "../data";
 
 interface CourseGoalProps
 {
@@ -11,7 +10,7 @@ interface CourseGoalProps
 
 const CourseGoal = ({ course, year, semester, goal: goalIndex }: CourseGoalProps) =>
 {
-    const goal = useAppSelector(selectCourseGoal(course, year, semester, goalIndex));
+    const goal = useStore(state => state.data.courses[course].years[year].semesters[semester][goalIndex]);
 
     return (
         <li className="list-item mb-4">

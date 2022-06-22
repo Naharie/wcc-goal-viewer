@@ -1,9 +1,8 @@
-import { selectTrack } from "../data";
-import { useAppSelector } from "../hooks/redux";
+import useStore from "../data";
 
 const Track = ({ track: index }: { track: number }) =>
 {
-    const track = useAppSelector(selectTrack(index));
+    const track = useStore(state => state.data.tracks[index]);
 
     return (
         <div className="mx-8">
@@ -11,7 +10,7 @@ const Track = ({ track: index }: { track: number }) =>
             <ol className="list-decimal">
                 {
                     track.goals.map((goal, _) =>
-                        <li className="list-item mb-4">{goal.text}</li>
+                        <li key={goal.id} className="list-item mb-4">{goal.text}</li>
                     )
                 }
             </ol>

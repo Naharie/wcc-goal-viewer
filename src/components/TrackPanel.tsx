@@ -1,12 +1,10 @@
-import { useRef } from "react";
-import { selectTracks } from "../data";
-import { useAppSelector } from "../hooks/redux";
 import SimpleBar from "simplebar-react";
+import useStore from "../data";
 import Track from "./Track";
 
 const TrackPanel = () =>
 {
-    const tracks = useAppSelector(selectTracks);
+    const tracks = useStore(state => state.data.tracks);
 
     return (
         <SimpleBar className="h-full mt-6">

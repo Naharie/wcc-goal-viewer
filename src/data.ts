@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import create from "zustand";
 import { GoalData } from "./types/data";
 
 export enum LoadingStatus
@@ -8,60 +8,32 @@ export enum LoadingStatus
     Failure
 }
 
-export interface State
+export interface Store
 {
-    status: LoadingStatus;
-    /**
-     * If present, the internal exception that should be shown to the user.
-     */
+    loadingStatus: LoadingStatus;
     errorMessage?: string;
-    goalData: GoalData;
+    data: GoalData;
+
+    loadCompleted(goalData: GoalData): void;
+    loadFailed(error: string): void;
 }
 
-const initialState: State = {
-    status: LoadingStatus.Loading,
-    goalData: {
+const useStore = create<Store>(set => ({
+    loadingStatus: LoadingStatus.Loading,
+    data: {
         curriculumGoals: [],
         tracks: [],
         courses: []
-    }
-};
+    },
 
-const dataSlice = createSlice({
-    name: "data",
-    initialState: initialState,
-    reducers: {
-        dataLoadCompleted: (_, { payload }: { payload: GoalData, type: string }) =>
-            ({ status: LoadingStatus.Complete, goalData: payload }),
-        dataLoadFailed: (state, { payload }: { payload: Error, type: string }) =>
-            ({ status: LoadingStatus.Failure, goalData: state.goalData, errorMessage: payload.toString() })
-    }
-});
+    loadCompleted: (data: GoalData) => set(() => ({
+        loadingStatus: LoadingStatus.Complete,
+        data
+    })),
+    loadFailed: (error: string) => set(() => ({
+        loadingStatus: LoadingStatus.Failure,
+        errorMessage: error
+    }))
+}));
 
-export const dataReducer = dataSlice.reducer;
-export const { dataLoadCompleted, dataLoadFailed } = dataSlice.actions;
-
-// Selectors
-
-export const selectStatus = (state: State) => state.status;
-export const selectErrorMessage = (state: State) => state.errorMessage;
-export const selectGoalData = (state: State) => state.goalData;
-
-export const selectCurriculumGoals = (state: State) => state.goalData.curriculumGoals;
-export const selectCurriculumGoal = (index: number) => (state: State) => state.goalData.curriculumGoals[index];
-export const selectCurriculumSubGoal = (index: number, subIndex: number) => (state: State) =>
-    selectCurriculumGoal(index)(state).children[subIndex];
-
-export const selectTracks = (state: State) => state.goalData.tracks;
-export const selectTrack = (index: number) => (state: State) => state.goalData.tracks[index];
-export const selectTrackGoal = (track: number, goal: number) => (state: State) =>
-    selectTrack(track)(state).goals[goal];
-
-export const selectCourses = (state: State) => state.goalData.courses;
-export const selectCourse = (index: number) => (state: State) => state.goalData.courses[index];
-export const selectCourseYear = (index: number, year: number) => (state: State) =>
-    selectCourse(index)(state).years[year];
-export const selectCourseSemester = (index: number, year: number, semester: number) => (state: State) =>
-    selectCourseYear(index, year)(state).semesters[semester];
-export const selectCourseGoal = (index: number, year: number, semester: number, goal: number) => (state: State) =>
-    selectCourseSemester(index, year, semester)(state)[goal];
+export default useStore;

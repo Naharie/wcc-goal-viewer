@@ -1,14 +1,13 @@
 import Spinner from "./Spinner";
-import { selectStatus, LoadingStatus } from "../data";
-import { useAppSelector } from "../hooks/redux";
-import useData from "../hooks/useData";
 import CurriculumPanel from "./CurriculumPanel";
 import TrackPanel from "./TrackPanel";
 import CoursePanel from "./CoursePanel";
+import useStore, { LoadingStatus } from "../data";
+import useData from "../hooks/useData";
 
 export default () =>
 {
-    const status = useAppSelector(selectStatus);
+    const status = useStore(state => state.loadingStatus);
 
     useData();
 

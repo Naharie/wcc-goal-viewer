@@ -1,11 +1,10 @@
-import { selectCourses } from "../data";
-import { useAppSelector } from "../hooks/redux";
 import SimpleBar from "simplebar-react";
+import useStore from "../data";
 import Course from "./Course";
 
 const CoursePanel = () =>
 {
-    const courses = useAppSelector(selectCourses);
+    const courses = useStore(state => state.data.courses);
 
     return (
         <SimpleBar className="h-full mt-6">

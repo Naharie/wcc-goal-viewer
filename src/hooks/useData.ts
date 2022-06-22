@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import { dataLoadCompleted, dataLoadFailed } from "../data";
-import { useAppDispatch } from "./redux";
+import useStore from "../data";
 import { GoalData } from "../types/data";
 
 const useData = () =>
 {
-    const dispatch = useAppDispatch();
+    const loadCompleted = useStore(state => state.loadCompleted);
+    const loadFailed = useStore(state => state.loadFailed);
 
     useEffect(() =>
     {
         fetch("/data.json")
             .then(response => response.json())
-            .then((json: GoalData) => dispatch(dataLoadCompleted(json)))
-            .catch((error: Error) => dispatch(dataLoadFailed(error)));
+            .then((data: GoalData) => loadCompleted(data))
+            .catch((_: Error) => loadFailed("Failed to load goal data"));
     }, []);
 };
 

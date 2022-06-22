@@ -1,11 +1,10 @@
 import { PropsWithChildren } from "react";
-import { selectCurriculumGoal } from "../data";
-import { useAppSelector } from "../hooks/redux";
+import useStore from "../data";
 import CurriculumSubGoal from "./CurriculumSubGoal";
 
 const CurriculumGoal = ({ index }: PropsWithChildren<{ index: number }>) =>
 {
-    const goal = useAppSelector(selectCurriculumGoal(index));
+    const goal = useStore(state => state.data.curriculumGoals[index]);
 
     return (
         <li className="mb-6 list-item">

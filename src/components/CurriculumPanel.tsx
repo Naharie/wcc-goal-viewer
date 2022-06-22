@@ -1,12 +1,10 @@
-import { selectCurriculumGoals } from "../data";
-import { useAppSelector } from "../hooks/redux";
 import SimpleBar from "simplebar-react";
-
 import CurriculumGoal from "./CurriculumGoal";
+import useStore from "../data";
 
 const CurriculumPanel = () =>
 {
-    const goals = useAppSelector(selectCurriculumGoals);
+    const goals = useStore(state => state.data.curriculumGoals);
 
     return (
         <SimpleBar style={{ maxHeight: "100%", padding: "0 1em 1em 0" }}>
