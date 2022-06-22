@@ -1,31 +1,20 @@
-import React from "react";
-import { selectTrack } from "../data";
+import { useRef } from "react";
+import { selectTracks } from "../data";
 import { useAppSelector } from "../hooks/redux";
-import CenteredLink from "./styled/CenteredLink";
-import GoalElement from "./styled/GoalElement";
+import SimpleBar from "simplebar-react";
+import Track from "./Track";
 
-interface TrackPanelProps
+const TrackPanel = () =>
 {
-    track: number;
-    offset?: string;
-}
-
-const TrackPanel = React.forwardRef<HTMLDivElement, TrackPanelProps>(({ track: index, offset = "" }, ref) =>
-{
-    const track = useAppSelector(selectTrack(index));
+    const tracks = useAppSelector(selectTracks);
 
     return (
-        <div ref={ref}>
-            <CenteredLink>{track.track}</CenteredLink>
-            <ol type="1">
-                {
-                    track.goals.map((goal, _) =>
-                        <GoalElement>{goal.text}</GoalElement>
-                    )
-                }
-            </ol>
-        </div>
+        <SimpleBar className="h-full mt-6">
+            {tracks.map((_, index) =>
+                <Track key={index} track={index} />
+            )}
+        </SimpleBar>
     );
-});
+};
 
 export default TrackPanel;

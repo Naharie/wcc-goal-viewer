@@ -56,3 +56,12 @@ export const selectTracks = (state: State) => state.goalData.tracks;
 export const selectTrack = (index: number) => (state: State) => state.goalData.tracks[index];
 export const selectTrackGoal = (track: number, goal: number) => (state: State) =>
     selectTrack(track)(state).goals[goal];
+
+export const selectCourses = (state: State) => state.goalData.courses;
+export const selectCourse = (index: number) => (state: State) => state.goalData.courses[index];
+export const selectCourseYear = (index: number, year: number) => (state: State) =>
+    selectCourse(index)(state).years[year];
+export const selectCourseSemester = (index: number, year: number, semester: number) => (state: State) =>
+    selectCourseYear(index, year)(state).semesters[semester];
+export const selectCourseGoal = (index: number, year: number, semester: number, goal: number) => (state: State) =>
+    selectCourseSemester(index, year, semester)(state)[goal];
