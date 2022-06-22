@@ -1,5 +1,16 @@
+import { useState } from "react";
+
 const Spinner = () =>
-    <div className="
+{
+    const [visible, setVisible] = useState(false);
+
+    if (!visible)
+    {
+        setTimeout(() => setVisible(true), 1000);
+        return null;
+    }
+
+    return (<div className="
         inline-block
         w-48 h-48
         align-text-bottom
@@ -11,6 +22,7 @@ const Spinner = () =>
         rounded-full
 
         animate-spin
-    "></div>;
+    "></div>);
+};
 
 export default Spinner;
