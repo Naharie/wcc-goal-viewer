@@ -1,5 +1,5 @@
 import SimpleBar from "simplebar-react";
-import useStore from "../data";
+import useStore from "../../data";
 import Course from "./Course";
 
 const CoursePanel = () =>

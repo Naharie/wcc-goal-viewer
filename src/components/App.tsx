@@ -1,7 +1,7 @@
 import Spinner from "./Spinner";
-import CurriculumPanel from "./CurriculumPanel";
-import TrackPanel from "./TrackPanel";
-import CoursePanel from "./CoursePanel";
+import CurriculumPanel from "./1 - curriculum/CurriculumPanel";
+import TrackPanel from "./2 - tracks/TrackPanel";
+import CoursePanel from "./3 - courses/CoursePanel";
 import useStore, { LoadingStatus } from "../data";
 import useData from "../hooks/useData";
 

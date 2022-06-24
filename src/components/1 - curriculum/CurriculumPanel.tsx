@@ -1,6 +1,6 @@
 import SimpleBar from "simplebar-react";
 import CurriculumGoal from "./CurriculumGoal";
-import useStore from "../data";
+import useStore from "../../data";
 
 const CurriculumPanel = () =>
 {

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import useStore from "../data";
+import useStore from "../../data";
 
 const CurriculumSubGoal = ({ index, subIndex }: PropsWithChildren<{ index: number, subIndex: number }>) =>
 {

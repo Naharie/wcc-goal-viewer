@@ -1,4 +1,4 @@
-import useStore from "../data";
+import useStore from "../../data";
 import CourseYear from "./CourseYear";
 
 const Course = ({ course: index }: { course: number }) =>

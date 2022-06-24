@@ -1,4 +1,4 @@
-import useStore from "../data";
+import useStore from "../../data";
 import CourseGoal from "./CourseGoal";
 
 interface CourseSemesterProps
