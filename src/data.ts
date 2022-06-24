@@ -1,16 +1,9 @@
 import create from "zustand";
 import { GoalData } from "./types/data";
 
-export enum LoadingStatus
-{
-    Loading,
-    Complete,
-    Failure
-}
-
 export interface Store
 {
-    loadingStatus: LoadingStatus;
+    isLoaded: boolean;
     errorMessage?: string;
     data: GoalData;
 
@@ -19,7 +12,7 @@ export interface Store
 }
 
 const useStore = create<Store>(set => ({
-    loadingStatus: LoadingStatus.Loading,
+    isLoaded: false,
     data: {
         curriculumGoals: [],
         tracks: [],
@@ -27,11 +20,11 @@ const useStore = create<Store>(set => ({
     },
 
     loadCompleted: (data: GoalData) => set(() => ({
-        loadingStatus: LoadingStatus.Complete,
+        isLoaded: true,
         data
     })),
     loadFailed: (error: string) => set(() => ({
-        loadingStatus: LoadingStatus.Failure,
+        isLoaded: true,
         errorMessage: error
     }))
 }));

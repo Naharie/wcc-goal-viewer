@@ -2,16 +2,16 @@ import Spinner from "./Spinner";
 import CurriculumPanel from "./1 - curriculum/CurriculumPanel";
 import TrackPanel from "./2 - tracks/TrackPanel";
 import CoursePanel from "./3 - courses/CoursePanel";
-import useStore, { LoadingStatus } from "../data";
+import useStore from "../data";
 import useData from "../hooks/useData";
 
 export default () =>
 {
-    const status = useStore(state => state.loadingStatus);
+    const isLoaded = useStore(state => state.isLoaded);
 
     useData();
 
-    if (status === LoadingStatus.Loading)
+    if (!isLoaded)
     {
         return (
             <div className="flex justify-center items-center min-h-0 h-full">
