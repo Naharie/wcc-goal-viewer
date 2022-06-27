@@ -1,18 +1,19 @@
-import { FC } from "react";
-import { selectCourseGoal, Selector } from "../../data";
-import useSelector from "../../hooks/useSelector";
-import { Semester } from "../../data/types";
+import { PropsWithChildren } from "react";
+import { useSnapshot } from "valtio";
+import store from "../../data";
 import CourseGoal from "./CourseGoal";
 
 interface CourseSemesterProps
 {
-    semesterNumber: number;
-    selector: Selector<Semester>;
+    course: number;
+    year: number;
+    semester: number;
 }
 
-const CourseSemester: FC<CourseSemesterProps> = ({ semesterNumber, selector }) =>
+const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChildren<CourseSemesterProps>) =>
 {
-    const [semester,, semesterAtom] = useSelector(selector);
+    const view = useSnapshot(store);
+    const semester = view.data.courses[course].years[year].semesters[semesterIndex];
 
     if (semester.length === 0)
     {
@@ -22,11 +23,11 @@ const CourseSemester: FC<CourseSemesterProps> = ({ semesterNumber, selector }) =
     return (
         <div className="flex-1 mb-4 mx-8">
             <a className="block text-center no-underline text-black mb-4">
-                {semesterNumber}
+                {(year + 1) * 100 + semesterIndex + 1}
             </a>
             <ol className="list-[upper-alpha]">
                 {semester.map((goal, index) =>
-                    <CourseGoal key={goal.id} selector={[ selectCourseGoal(semesterAtom, index), index]} />
+                    <CourseGoal key={goal.id} course={course} year={year} semester={semesterIndex} goal={index} />
                 )}
             </ol>
         </div>

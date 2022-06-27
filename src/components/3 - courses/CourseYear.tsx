@@ -1,22 +1,18 @@
-import { FC, useMemo } from "react";
-import { selectSemester, Selector } from "../../data";
-import useSelector from "../../hooks/useSelector";
-import { Year } from "../../data/types";
+import { PropsWithChildren } from "react";
 import CourseSemester from "./CourseSemester";
 
 interface CourseYearProps
 {
-    selector: Selector<Year>;
+    course: number;
+    year: number;
 }
 
-const CourseYear: FC<CourseYearProps> = ({ selector }) =>
+const CourseYear = ({ course, year: yearIndex }: PropsWithChildren<CourseYearProps>) =>
 {
-    const [year,, yearAtom] = useSelector(selector);
-
     return (
         <div className="flex justify-center w-full">
-            <CourseSemester semesterNumber={year.number + 1} selector={[ selectSemester(yearAtom, 0) ]} />
-            <CourseSemester semesterNumber={year.number + 2} selector={[ selectSemester(yearAtom, 1) ]} />
+            <CourseSemester course={course} year={yearIndex} semester={0} />
+            <CourseSemester course={course} year={yearIndex} semester={1} />
         </div>
     );
 };

@@ -1,18 +1,18 @@
 import SimpleBar from "simplebar-react";
 import CurriculumGoal from "./CurriculumGoal";
-import { curriculumGoalsAtom, selectCurriculumGoal } from "../../data";
-import { useAtom } from "jotai";
+import store from "../../data";
+import { useSnapshot } from "valtio";
 
 const CurriculumPanel = () =>
 {
-    const [goals] = useAtom(curriculumGoalsAtom);
+    const view = useSnapshot(store);
 
     return (
         <SimpleBar style={{ maxHeight: "100%", padding: "0 1em 1em 0" }}>
             <ol className="pr-1 list-[upper-roman] ml-12 my-8">
                 {
-                    goals.map((goal, index) =>
-                        <CurriculumGoal key={goal.id} selector={[selectCurriculumGoal(index), index]} />
+                    view.data.curriculumGoals.map((goal, index) =>
+                        <CurriculumGoal key={goal.id} goal={index} />
                     )
                 }
             </ol>

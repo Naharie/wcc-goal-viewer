@@ -1,9 +1,10 @@
-import useSelector from "../../hooks/useSelector";
-import { selectTrack } from "../../data";
+import { useSnapshot } from "valtio";
+import store from "../../data";
 
 const Track = ({ track: index }: { track: number }) =>
 {
-    const [track] = useSelector(selectTrack(index), index);
+    const view = useSnapshot(store);
+    const track = view.data.tracks[index];
 
     return (
         <div className="mx-8">

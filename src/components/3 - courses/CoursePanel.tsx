@@ -1,16 +1,17 @@
-import { useAtom } from "jotai";
 import SimpleBar from "simplebar-react";
-import { coursesAtom, selectCourse } from "../../data";
+import { useSnapshot } from "valtio";
+import store from "../../data";
 import Course from "./Course";
 
 const CoursePanel = () =>
 {
-    const [courses] = useAtom(coursesAtom);
+    const view = useSnapshot(store);
+    const courses = view.data.courses;
 
     return (
         <SimpleBar className="h-full mt-6">
             {courses.map((course, index) =>
-                <Course key={course.course} selector={[selectCourse(index), index]} />
+                <Course key={course.course} course={index} />
             )}
         </SimpleBar>
     );

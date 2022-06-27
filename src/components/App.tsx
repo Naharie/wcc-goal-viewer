@@ -3,25 +3,29 @@ import CurriculumPanel from "./1 - curriculum/CurriculumPanel";
 import TrackPanel from "./2 - tracks/TrackPanel";
 import CoursePanel from "./3 - courses/CoursePanel";
 import useData from "../hooks/useData";
-import { useAtom } from "jotai";
-import { isLoadedAtom } from "../data";
+import { useSnapshot } from "valtio";
+import store from "../data";
 
 export default () =>
 {
-    const [isLoaded] = useAtom(isLoadedAtom);
+    const view = useSnapshot(store);
 
     useData();
-
-    if (!isLoaded)
+    
+    if (view.errorMessage !== null)
     {
+        const reload = () => location.reload();
+
         return (
-            <div className="flex justify-center items-center min-h-0 h-full">
-                <Spinner />
+            <div className="flex flex-col justify-center items-center w-full h-full text-2xl">
+                <div className="inline-block text-center bg-red-300 rounded-md p-4">
+                    {view.errorMessage}<br />
+                    Please reload to try again. If this error occurs again, please report it.
+                </div>
+                <button className="mt-8 bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded-md" onClick={reload}>Reload</button>
             </div>
         );
     }
-    
-    // TODO: Show a overlay when an error message is set.
 
     return(
         <div className="flex min-h-0 h-full">

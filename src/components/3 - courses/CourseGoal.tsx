@@ -1,15 +1,18 @@
-import { Selector } from "../../data";
-import useSelector from "../../hooks/useSelector";
-import { CourseGoal as CourseGoalData } from "../../data/types";
+import { useSnapshot } from "valtio";
+import store from "../../data";
 
 interface CourseGoalProps
 {
-    selector: Selector<CourseGoalData>;
+    course: number;
+    year: number;
+    semester: number;
+    goal: number;
 }
 
-const CourseGoal = ({ selector }: CourseGoalProps) =>
+const CourseGoal = ({ course, year, semester, goal: goalIndex }: CourseGoalProps) =>
 {
-    const [goal] = useSelector(selector);
+    const view = useSnapshot(store);
+    const goal = view.data.courses[course].years[year].semesters[semester][goalIndex];
 
     return (
         <li className="list-item mb-4">

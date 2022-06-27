@@ -1,16 +1,18 @@
 import { PropsWithChildren } from "react";
-import { Selector } from "../../data";
-import useSelector from "../../hooks/useSelector";
-import { CurriculumSubGoal as CurriculumSubGoalData } from "../../data/types";
+import store from "../../data";
+import { useSnapshot } from "valtio";
 
 interface CurriculumSubGoalProps
 {
-    selector: Selector<CurriculumSubGoalData>;
+    curriculumGoal: number;
+    subGoal: number;
 }
 
-const CurriculumSubGoal = ({ selector }: PropsWithChildren<CurriculumSubGoalProps>) =>
+const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChildren<CurriculumSubGoalProps>) =>
 {
-    const [goal] = useSelector(selector);
+    const view = useSnapshot(store);
+    const goal = view.data.curriculumGoals[curriculumGoal].children[subIndex];
+
     return (<li className="list-item">{goal.text}</li>);
 };
 

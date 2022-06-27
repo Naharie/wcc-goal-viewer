@@ -1,11 +1,12 @@
-import { useAtom } from "jotai";
 import SimpleBar from "simplebar-react";
-import { tracksAtom } from "../../data";
+import { useSnapshot } from "valtio";
+import store from "../../data";
 import Track from "./Track";
 
 const TrackPanel = () =>
 {
-    const [tracks] = useAtom(tracksAtom);
+    const view = useSnapshot(store);
+    const tracks = view.data.tracks;
 
     return (
         <SimpleBar className="h-full mt-6">
