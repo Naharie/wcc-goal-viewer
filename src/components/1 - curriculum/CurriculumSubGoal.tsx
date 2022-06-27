@@ -1,9 +1,16 @@
 import { PropsWithChildren } from "react";
-import useStore from "../../data";
+import { Selector } from "../../data";
+import useSelector from "../../hooks/useSelector";
+import { CurriculumSubGoal as CurriculumSubGoalData } from "../../data/types";
 
-const CurriculumSubGoal = ({ index, subIndex }: PropsWithChildren<{ index: number, subIndex: number }>) =>
+interface CurriculumSubGoalProps
 {
-    const goal = useStore(state => state.data.curriculumGoals[index].children[subIndex]);
+    selector: Selector<CurriculumSubGoalData>;
+}
+
+const CurriculumSubGoal = ({ selector }: PropsWithChildren<CurriculumSubGoalProps>) =>
+{
+    const [goal] = useSelector(selector);
     return (<li className="list-item">{goal.text}</li>);
 };
 

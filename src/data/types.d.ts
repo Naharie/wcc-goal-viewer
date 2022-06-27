@@ -104,11 +104,11 @@ export interface Year
 /**
  * A list of all the goals of the course that are only relevant to this semester of the parent year.
  */
-export type Semester = SemesterGoal[];
+export type Semester = CourseGoal[];
 /**
  * A course goal relevant only to the parent semester of the specified year.
  */
-export interface SemesterGoal extends Goal
+export interface CourseGoal extends Goal
 {
     /**
      * The track goals (of the same course) referenced by this goal.

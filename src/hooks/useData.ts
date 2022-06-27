@@ -1,18 +1,33 @@
+import { useAtom } from "jotai";
 import { useEffect } from "react";
-import useStore from "../data";
-import { GoalData } from "../types/data";
+import { coursesAtom, curriculumGoalsAtom, errorMessageAtom, isLoadedAtom, tracksAtom } from "../data";
+import { GoalData } from "../data/types";
 
 const useData = () =>
 {
-    const loadCompleted = useStore(state => state.loadCompleted);
-    const loadFailed = useStore(state => state.loadFailed);
+    const [, setLoaded] = useAtom(isLoadedAtom);
+    const [, setErrorMessage] = useAtom(errorMessageAtom);
+
+    const [, setCurriculumGoals] = useAtom(curriculumGoalsAtom);
+    const [, setTracks] = useAtom(tracksAtom);
+    const [, setCourses] = useAtom(coursesAtom);
 
     useEffect(() =>
     {
         fetch("/data.json")
             .then(response => response.json())
-            .then((data: GoalData) => loadCompleted(data))
-            .catch((_: Error) => loadFailed("Failed to load goal data"));
+            .then((data: GoalData) =>
+            {
+                setCurriculumGoals(data.curriculumGoals);
+                setTracks(data.tracks);
+                setCourses(data.courses);
+                setLoaded(true);
+            })
+            .catch((_: Error) =>
+            {
+                setErrorMessage("Failed to load goal data");
+                setLoaded(true);
+            });
     }, []);
 };
 

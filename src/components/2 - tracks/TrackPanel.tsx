@@ -1,10 +1,11 @@
+import { useAtom } from "jotai";
 import SimpleBar from "simplebar-react";
-import useStore from "../../data";
+import { tracksAtom } from "../../data";
 import Track from "./Track";
 
 const TrackPanel = () =>
 {
-    const tracks = useStore(state => state.data.tracks);
+    const [tracks] = useAtom(tracksAtom);
 
     return (
         <SimpleBar className="h-full mt-6">

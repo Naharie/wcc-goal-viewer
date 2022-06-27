@@ -1,16 +1,15 @@
-import useStore from "../../data";
+import { Selector } from "../../data";
+import useSelector from "../../hooks/useSelector";
+import { CourseGoal as CourseGoalData } from "../../data/types";
 
 interface CourseGoalProps
 {
-    course: number;
-    year: number;
-    semester: number;
-    goal: number;
+    selector: Selector<CourseGoalData>;
 }
 
-const CourseGoal = ({ course, year, semester, goal: goalIndex }: CourseGoalProps) =>
+const CourseGoal = ({ selector }: CourseGoalProps) =>
 {
-    const goal = useStore(state => state.data.courses[course].years[year].semesters[semester][goalIndex]);
+    const [goal] = useSelector(selector);
 
     return (
         <li className="list-item mb-4">

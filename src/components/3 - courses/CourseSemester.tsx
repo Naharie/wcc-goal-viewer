@@ -1,17 +1,18 @@
-import useStore from "../../data";
+import { FC } from "react";
+import { selectCourseGoal, Selector } from "../../data";
+import useSelector from "../../hooks/useSelector";
+import { Semester } from "../../data/types";
 import CourseGoal from "./CourseGoal";
 
 interface CourseSemesterProps
 {
-    course: number;
-    year: number;
-    semester: number;
+    semesterNumber: number;
+    selector: Selector<Semester>;
 }
 
-const CourseSemester = ({ course, year: yearIndex, semester: semesterIndex }: CourseSemesterProps) =>
+const CourseSemester: FC<CourseSemesterProps> = ({ semesterNumber, selector }) =>
 {
-    const year = useStore(state => state.data.courses[course].years[yearIndex]);
-    const semester = year.semesters[semesterIndex];
+    const [semester,, semesterAtom] = useSelector(selector);
 
     if (semester.length === 0)
     {
@@ -21,11 +22,11 @@ const CourseSemester = ({ course, year: yearIndex, semester: semesterIndex }: Co
     return (
         <div className="flex-1 mb-4 mx-8">
             <a className="block text-center no-underline text-black mb-4">
-                {year.number + semesterIndex + 1}
+                {semesterNumber}
             </a>
             <ol className="list-[upper-alpha]">
                 {semester.map((goal, index) =>
-                    <CourseGoal key={goal.id} course={course} year={yearIndex} semester={semesterIndex} goal={index} />
+                    <CourseGoal key={goal.id} selector={[ selectCourseGoal(semesterAtom, index), index]} />
                 )}
             </ol>
         </div>

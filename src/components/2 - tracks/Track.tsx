@@ -1,8 +1,9 @@
-import useStore from "../../data";
+import useSelector from "../../hooks/useSelector";
+import { selectTrack } from "../../data";
 
 const Track = ({ track: index }: { track: number }) =>
 {
-    const track = useStore(state => state.data.tracks[index]);
+    const [track] = useSelector(selectTrack(index), index);
 
     return (
         <div className="mx-8">
