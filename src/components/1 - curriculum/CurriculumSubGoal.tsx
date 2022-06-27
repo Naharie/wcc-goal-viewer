@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import store from "../../data";
 import { useSnapshot } from "valtio";
+import { computeCurriculumToTrackHighlighting } from "../../data/highlight";
 
 interface CurriculumSubGoalProps
 {
@@ -11,9 +12,24 @@ interface CurriculumSubGoalProps
 const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChildren<CurriculumSubGoalProps>) =>
 {
     const view = useSnapshot(store);
+
+    const parentGoal = view.data.curriculumGoals[curriculumGoal];
     const goal = view.data.curriculumGoals[curriculumGoal].children[subIndex];
 
-    return (<li className="list-item rounded-md mt-2">{goal.text}</li>);
+    const parentGoalHighlight = store.highlight.curriculumGoals[parentGoal.ref];
+    const highlighted = view.highlight.curriculumGoals[parentGoal.ref][goal.ref];
+
+    const toggleHighlight = () =>
+    {    
+        parentGoalHighlight[goal.ref] = !parentGoalHighlight[goal.ref];
+        computeCurriculumToTrackHighlighting();
+    };
+
+    return (
+        <li className={"list-item rounded-md mt-2" + (highlighted ? " bg-selected" : "")} onClick={toggleHighlight}>
+            {goal.text}
+        </li>
+    );
 };
 
 export default CurriculumSubGoal;

@@ -9,13 +9,17 @@ interface CourseGoalProps
     goal: number;
 }
 
-const CourseGoal = ({ course, year, semester, goal: goalIndex }: CourseGoalProps) =>
+const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: CourseGoalProps) =>
 {
     const view = useSnapshot(store);
-    const goal = view.data.courses[course].years[year].semesters[semester][goalIndex];
+
+    const course = view.data.courses[courseIndex];
+    const goal = course.years[year].semesters[semester][goalIndex];
+
+    const highlighted = view.highlight.courses[course.course][goal.ref];
 
     return (
-        <li className="list-item mb-4 rounded-md p-1">
+        <li className={"list-item mb-4 rounded-md p-1" + (highlighted ? " bg-selected" : "")}>
             {goal.text}
             {
                 goal.references.length > 0 ? ` (${goal.references.join(", ")})` : ""

@@ -1,5 +1,6 @@
 import { useSnapshot } from "valtio";
 import store from "../../data";
+import { clearCurriculumHighlight, computeTrackToCourseHighlighting } from "../../data/highlight";
 
 interface TrackGoalProps
 {
@@ -7,13 +8,23 @@ interface TrackGoalProps
     goal: number;
 }
 
-const TrackGoal = ({ track, goal: index }: TrackGoalProps) =>
+const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
 {
     const view = useSnapshot(store);
-    const goal = view.data.tracks[track].goals[index];
+
+    const track = view.data.tracks[trackIndex];
+    const goal = track.goals[index];
+    const highlighted = view.highlight.tracks[track.track][goal.ref];
+
+    const toggleHighlight = () =>
+    {
+        store.highlight.tracks[track.track][goal.ref] = !highlighted;
+        clearCurriculumHighlight();
+        computeTrackToCourseHighlighting();
+    };
 
     return (
-        <li className="list-item mb-4 p-1 rounded-md">
+        <li className={"list-item mb-4 p-1 rounded-md" + (highlighted ? " bg-selected" : "")} onClick={toggleHighlight}>
             {goal.text}
             {
                 goal.references.length > 0 ?

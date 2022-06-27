@@ -1,4 +1,4 @@
-import store from ".";
+import store, { Highlight } from ".";
 import { GoalData } from "./types";
 
 export const prepareHighlight = (data: GoalData) =>
@@ -50,4 +50,58 @@ export const prepareHighlight = (data: GoalData) =>
     }
 
     store.highlight = { curriculumGoals, tracks, courses };
+};
+
+export const clearCurriculumHighlight = () =>
+{
+    const highlight = store.highlight;
+
+    for (const goalId in highlight.curriculumGoals)
+    {
+        for (const childId in highlight.curriculumGoals[goalId])
+        {
+            store.highlight.curriculumGoals[goalId][childId] = false;
+        }
+    }
+};
+
+export const computeCurriculumToTrackHighlighting = () =>
+{
+    const curriculumHighlight = store.highlight.curriculumGoals;
+
+    for (const { track, goals } of store.data.tracks)
+    {
+        for (const goal of goals)
+        {
+            store.highlight.tracks[track][goal.ref] = goal.references.some(
+                ref =>
+                    ref.subGoals.length > 0 ?
+                        ref.subGoals.some(subGoalRef => curriculumHighlight[ref.goal][subGoalRef]) :
+                        Object.values(curriculumHighlight[ref.goal]).some(v => v)
+            );
+        }
+    }
+
+    computeTrackToCourseHighlighting();
+};
+
+export const computeTrackToCourseHighlighting = () =>
+{
+    const trackHighlight = store.highlight.tracks;
+
+    for (const { course, years } of store.data.courses)
+    {
+        for (const { semesters } of years)
+        {
+            for (const semester of semesters)
+            {
+                for (const goal of semester)
+                {
+                    store.highlight.courses[course][goal.ref] = goal.references.some(
+                        reference => trackHighlight[course][reference]
+                    );
+                }
+            }
+        }
+    }
 };
