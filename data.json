@@ -1,7 +1,7 @@
 ﻿{
     "curriculumGoals": [
         {
-            "text": "Promote their general physical and emotional health by participation in outdoor and other physical activities.",
+            "text": "Promote their general physical and emotional health by participation in outdoor and other physical activities",
             "ref": "I",
             "id": 0,
             "children": []
@@ -32,7 +32,7 @@
                     "id": 5
                 },
                 {
-                    "text": "learning to articulate the virtues of the Catholic life and, if Catholic, living them.",
+                    "text": "learning to articulate the virtues of the Catholic life and, if Catholic, living them",
                     "ref": "e",
                     "id": 6
                 }
@@ -49,7 +49,7 @@
                     "id": 8
                 },
                 {
-                    "text": "stocking their imaginations with beautiful images and strengthening their own ability to imagine.",
+                    "text": "stocking their imaginations with beautiful images and strengthening their own ability to imagine",
                     "ref": "b",
                     "id": 9
                 }
@@ -71,7 +71,7 @@
                     "id": 12
                 },
                 {
-                    "text": "seeing the connections between academic courses and how all knowledge forms a unity.",
+                    "text": "seeing the connections between academic courses and how all knowledge forms a unity",
                     "ref": "c",
                     "id": 13
                 }
@@ -93,7 +93,7 @@
                     "id": 16
                 },
                 {
-                    "text": "acquiring a spirit of inquiry that sustains creative engagement with truth.",
+                    "text": "acquiring a spirit of inquiry that sustains creative engagement with truth",
                     "ref": "c",
                     "id": 17
                 }
@@ -110,7 +110,7 @@
                     "id": 19
                 },
                 {
-                    "text": "becoming familiar with the traditions and institutions of the Catholic Church as formative for Western civilization and, if Catholic, acculturating as Catholics.",
+                    "text": "becoming familiar with the traditions and institutions of the Catholic Church as formative for Western civilization and, if Catholic, acculturating as Catholics",
                     "ref": "b",
                     "id": 20
                 }
@@ -122,7 +122,7 @@
             "track": "HMN",
             "goals": [
                 {
-                    "text": "Become deeper and more reflective citizens of Western Civilization by standing consciously in a tradition of shared texts, events, people, characters, and ideas.",
+                    "text": "Become deeper and more reflective citizens of Western Civilization by standing consciously in a tradition of shared texts, events, people, characters, and ideas",
                     "references": [
                         {
                             "goal": "II",
@@ -141,7 +141,7 @@
                     "id": 21
                 },
                 {
-                    "text": "Learn about the people and events that shaped Western Civilization.",
+                    "text": "Learn about the people and events that shaped Western Civilization",
                     "references": [
                         {
                             "goal": "VI",
@@ -152,7 +152,7 @@
                     "id": 22
                 },
                 {
-                    "text": "Engage in mature discussion and debate about the questions, problems, and ideas of each specific age, and how these ideas shaped today’s world.",
+                    "text": "Engage in mature discussion and debate about the questions, problems, and ideas of each specific age, and how these ideas shaped today’s world",
                     "references": [
                         {
                             "goal": "V",
@@ -171,7 +171,7 @@
                     "id": 23
                 },
                 {
-                    "text": "Learn how to interpret texts with maturity and nuance by reading the Great Books, aware of generic and historical context within the Western tradition.",
+                    "text": "Learn how to interpret texts with maturity and nuance by reading the Great Books, aware of generic and historical context within the Western tradition",
                     "references": [
                         {
                             "goal": "III",
@@ -190,7 +190,7 @@
                     "id": 24
                 },
                 {
-                    "text": "Engage and form their senses, imagination, and emotions.",
+                    "text": "Engage and form their senses, imagination, and emotions",
                     "references": [
                         {
                             "goal": "II",
@@ -205,7 +205,7 @@
                     "id": 25
                 },
                 {
-                    "text": "Learn to see the universal in the particular.",
+                    "text": "Learn to see the universal in the particular",
                     "references": [
                         {
                             "goal": "IV",
@@ -218,7 +218,7 @@
                     "id": 26
                 },
                 {
-                    "text": "Grow in wonder, the beginning of wisdom.",
+                    "text": "Grow in wonder, the beginning of wisdom",
                     "references": [
                         {
                             "goal": "V",
@@ -231,7 +231,7 @@
                     "id": 27
                 },
                 {
-                    "text": "Integrate what they have learned in other areas of the curriculum by situating authors and texts with respect to one another in time and, by showing how ideas developed in connection to or combat with one another, bring out the conceptual relations between seemingly distant topics.",
+                    "text": "Integrate what they have learned in other areas of the curriculum by situating authors and texts with respect to one another in time and, by showing how ideas developed in connection to or combat with one another, bring out the conceptual relations between seemingly distant topics",
                     "references": [
                         {
                             "goal": "IV",
@@ -249,7 +249,7 @@
             "track": "THL",
             "goals": [
                 {
-                    "text": "Obtain a synoptic view of revealed truth through a well-ordered study of all the major divisions of its subject matter.",
+                    "text": "Obtain a synoptic view of revealed truth through a well-ordered study of all the major divisions of its subject matter",
                     "references": [
                         {
                             "goal": "IV",
@@ -273,7 +273,7 @@
                     "id": 30
                 },
                 {
-                    "text": "Interact directly with the three sources of theology, namely Scripture, Tradition, and the Magisterium.",
+                    "text": "Interact directly with the three sources of theology, namely Scripture, Tradition, and the Magisterium",
                     "references": [
                         {
                             "goal": "VI",
@@ -284,7 +284,7 @@
                     "id": 31
                 },
                 {
-                    "text": "Acquire habits appropriate to interaction with each of these sources individually.",
+                    "text": "Acquire habits appropriate to interaction with each of these sources individually",
                     "references": [
                         {
                             "goal": "V",
@@ -295,7 +295,7 @@
                     "id": 32
                 },
                 {
-                    "text": "Grow in the disposition necessary for any fruitful interaction with any of these sources, namely friendship with God.",
+                    "text": "Grow in the disposition necessary for any fruitful interaction with any of these sources, namely friendship with God",
                     "references": [
                         {
                             "goal": "II",
@@ -312,7 +312,7 @@
                     "id": 33
                 },
                 {
-                    "text": "Learn to articulate the virtues of the Catholic life and grow in a desire to live them.",
+                    "text": "Learn to articulate the virtues of the Catholic life and grow in a desire to live them",
                     "references": [
                         {
                             "goal": "II",
@@ -325,7 +325,7 @@
                     "id": 34
                 },
                 {
-                    "text": "Reflect on what theology, as a practical science, demands of them in the current age.",
+                    "text": "Reflect on what theology, as a practical science, demands of them in the current age",
                     "references": [
                         {
                             "goal": "V",
@@ -344,7 +344,7 @@
             "track": "PHL",
             "goals": [
                 {
-                    "text": "Form the habits of inquiry, dialectic, demonstration, and analogy through applying Trivium skills to concrete considerations.",
+                    "text": "Form the habits of inquiry, dialectic, demonstration, and analogy through applying Trivium skills to concrete considerations",
                     "references": [
                         {
                             "goal": "IV",
@@ -361,7 +361,7 @@
                     "id": 36
                 },
                 {
-                    "text": "Gain insight into the real world by learning the recurrent debates, first principles, and chief conclusions in the major divisions of the perennial philosophy.",
+                    "text": "Gain insight into the real world by learning the recurrent debates, first principles, and chief conclusions in the major divisions of the perennial philosophy",
                     "references": [
                         {
                             "goal": "II",
@@ -386,7 +386,7 @@
                     "id": 37
                 },
                 {
-                    "text": "See how these debates, principles, and conclusions bear upon the content of other disciplines studied in the program, and how those other disciplines illuminate philosophical arguments.",
+                    "text": "See how these debates, principles, and conclusions bear upon the content of other disciplines studied in the program, and how those other disciplines illuminate philosophical arguments",
                     "references": [
                         {
                             "goal": "IV",
@@ -399,7 +399,7 @@
                     "id": 38
                 },
                 {
-                    "text": "Grasp the unity, differences, and connections of the various parts of philosophy through an orderly sequence of study.",
+                    "text": "Grasp the unity, differences, and connections of the various parts of philosophy through an orderly sequence of study",
                     "references": [
                         {
                             "goal": "IV",
@@ -412,7 +412,7 @@
                     "id": 39
                 },
                 {
-                    "text": "Grapple seriously with points of view different from their own, both in the form of theories presented [if not endorsed] in the classic texts studied in the philosophy curriculum and in the form of teacher interventions and student objections that challenge the individual to offer a coherent, reasoned argument.",
+                    "text": "Grapple seriously with points of view different from their own, both in the form of theories presented [if not endorsed] in the classic texts studied in the philosophy curriculum and in the form of teacher interventions and student objections that challenge the individual to offer a coherent, reasoned argument",
                     "references": [
                         {
                             "goal": "V",
@@ -430,7 +430,7 @@
             "track": "MTH/SCI",
             "goals": [
                 {
-                    "text": "Become more attentive to the natural world in its detail and complexity.",
+                    "text": "Become more attentive to the natural world in its detail and complexity",
                     "references": [
                         {
                             "goal": "III",
@@ -441,7 +441,7 @@
                     "id": 41
                 },
                 {
-                    "text": "Grow in a sense of wonder and love for mathematics and natural science.",
+                    "text": "Grow in a sense of wonder and love for mathematics and natural science",
                     "references": [
                         {
                             "goal": "V",
@@ -454,7 +454,7 @@
                     "id": 42
                 },
                 {
-                    "text": "Come to understand what mathematics and science are, what methods and principles are appropriate to them, and how to recognize non-mathematical or non-scientific writing.",
+                    "text": "Come to understand what mathematics and science are, what methods and principles are appropriate to them, and how to recognize non-mathematical or non-scientific writing",
                     "references": [
                         {
                             "goal": "IV",
@@ -473,7 +473,7 @@
                     "id": 43
                 },
                 {
-                    "text": "Acquire a habit of thinking about mathematics and science from their first principles.",
+                    "text": "Acquire a habit of thinking about mathematics and science from their first principles",
                     "references": [
                         {
                             "goal": "IV",
@@ -486,7 +486,7 @@
                     "id": 44
                 },
                 {
-                    "text": "Gain a selective acquaintance with some of the most significant historical developments in science and mathematics.",
+                    "text": "Gain a selective acquaintance with some of the most significant historical developments in science and mathematics",
                     "references": [
                         {
                             "goal": "VI",
@@ -499,7 +499,7 @@
                     "id": 45
                 },
                 {
-                    "text": "Come to understand the relationship between mathematics, science, and other disciplines.",
+                    "text": "Come to understand the relationship between mathematics, science, and other disciplines",
                     "references": [
                         {
                             "goal": "IV",
@@ -517,7 +517,7 @@
             "track": "MUS/ART",
             "goals": [
                 {
-                    "text": "Come to see how great ideas throughout Western history have found concrete expression in culture, and how culture thus formed shapes the people who partake of it.",
+                    "text": "Come to see how great ideas throughout Western history have found concrete expression in culture, and how culture thus formed shapes the people who partake of it",
                     "references": [
                         {
                             "goal": "III",
@@ -542,7 +542,7 @@
                     "id": 47
                 },
                 {
-                    "text": "Observe and interpret works of fine art according to their formal principles and in relationship to the history of ideas.",
+                    "text": "Observe and interpret works of fine art according to their formal principles and in relationship to the history of ideas",
                     "references": [
                         {
                             "goal": "III",
@@ -562,7 +562,7 @@
                     "id": 48
                 },
                 {
-                    "text": "Appreciate the relationship, as expressed in the past and in the present, between beauty and truth, aesthetics and rationality.",
+                    "text": "Appreciate the relationship, as expressed in the past and in the present, between beauty and truth, aesthetics and rationality",
                     "references": [
                         {
                             "goal": "IV",
@@ -581,7 +581,7 @@
                     "id": 49
                 },
                 {
-                    "text": "Become acquainted with the historical development and contextualization of the fine arts.",
+                    "text": "Become acquainted with the historical development and contextualization of the fine arts",
                     "references": [
                         {
                             "goal": "VI",
@@ -600,7 +600,7 @@
                     "id": 50
                 },
                 {
-                    "text": "Gain a better understanding of the process of artistic production.",
+                    "text": "Gain a better understanding of the process of artistic production",
                     "references": [
                         {
                             "goal": "I",
@@ -628,7 +628,7 @@
             "track": "TRV",
             "goals": [
                 {
-                    "text": "Think, write, and speak clearly and effectively, with consideration of the truth and validity of their statements as well as sensitivity to genre, audience, and purpose.",
+                    "text": "Think, write, and speak clearly and effectively, with consideration of the truth and validity of their statements as well as sensitivity to genre, audience, and purpose",
                     "references": [
                         {
                             "goal": "III",
@@ -647,7 +647,7 @@
                     "id": 53
                 },
                 {
-                    "text": "Find, analyze, and synthesize information and use this information judiciously.",
+                    "text": "Find, analyze, and synthesize information and use this information judiciously",
                     "references": [
                         {
                             "goal": "II",
@@ -666,7 +666,7 @@
                     "id": 54
                 },
                 {
-                    "text": "Communicate intelligently, thoughtfully, and persuasively with people of differing opinions and stances.",
+                    "text": "Communicate intelligently, thoughtfully, and persuasively with people of differing opinions and stances",
                     "references": [
                         {
                             "goal": "II",
@@ -686,7 +686,7 @@
                     "id": 55
                 },
                 {
-                    "text": "Understand Grammar, Logic, and Rhetoric both as arts and sciences, seeing them as the foundations for all human thought, discourse, and culture.",
+                    "text": "Understand Grammar, Logic, and Rhetoric both as arts and sciences, seeing them as the foundations for all human thought, discourse, and culture",
                     "references": [
                         {
                             "goal": "IV",
@@ -702,7 +702,7 @@
             "track": "LAT",
             "goals": [
                 {
-                    "text": "Come to love the Latin language and to desire to progress in it further.",
+                    "text": "Come to love the Latin language and to desire to progress in it further",
                     "references": [
                         {
                             "goal": "V",
@@ -713,7 +713,7 @@
                     "id": 57
                 },
                 {
-                    "text": "Learn generally how to learn a language.",
+                    "text": "Learn generally how to learn a language",
                     "references": [
                         {
                             "goal": "IV",
@@ -724,7 +724,7 @@
                     "id": 58
                 },
                 {
-                    "text": "Acquire over the course of two years, the main grammatical principles of Latin and internalize enough vocabulary to converse and learn in the Latin language.",
+                    "text": "Acquire over the course of two years, the main grammatical principles of Latin and internalize enough vocabulary to converse and learn in the Latin language",
                     "references": [
                         {
                             "goal": "IV",
@@ -735,7 +735,7 @@
                     "id": 59
                 },
                 {
-                    "text": "By using Latin inside and outside of the classroom, gain an instinctive connection with past centuries of the western tradition in which Latin was the language of academic and political exchange.",
+                    "text": "By using Latin inside and outside of the classroom, gain an instinctive connection with past centuries of the western tradition in which Latin was the language of academic and political exchange",
                     "references": [
                         {
                             "goal": "VI",
@@ -746,7 +746,7 @@
                     "id": 60
                 },
                 {
-                    "text": "By acquiring a non-vernacular language, increase their sense of citizenship in a society that goes beyond their own nation even in the present time, namely Western Civilization, and, if they are Catholic, the Catholic Church.",
+                    "text": "By acquiring a non-vernacular language, increase their sense of citizenship in a society that goes beyond their own nation even in the present time, namely Western Civilization, and, if they are Catholic, the Catholic Church",
                     "references": [
                         {
                             "goal": "VI",
@@ -757,7 +757,7 @@
                     "id": 61
                 },
                 {
-                    "text": "Be prepared, on completion of the two-year Latin program, to read portions of authentic Latin works in the original language, and to check English translations of more difficult documents against the original language.",
+                    "text": "Be prepared, on completion of the two-year Latin program, to read portions of authentic Latin works in the original language, and to check English translations of more difficult documents against the original language",
                     "references": [
                         {
                             "goal": "V",
@@ -786,7 +786,7 @@
                     "id": 63
                 },
                 {
-                    "text": "Strengthen their imagination and senses through extended contact with natural realities.",
+                    "text": "Strengthen their imagination and senses through extended contact with natural realities",
                     "references": [
                         {
                             "goal": "III",
@@ -797,7 +797,7 @@
                     "id": 64
                 },
                 {
-                    "text": "Learn by experience the importance of a balanced life of mind, body, and spirit.",
+                    "text": "Learn by experience the importance of a balanced life of mind, body, and spirit",
                     "references": [
                         {
                             "goal": "I",
@@ -814,7 +814,7 @@
                     "id": 65
                 },
                 {
-                    "text": "Better grasp community and the common good through the experience of small, self-sufficient communities working in isolated and sometimes difficult situations.",
+                    "text": "Better grasp community and the common good through the experience of small, self-sufficient communities working in isolated and sometimes difficult situations",
                     "references": [
                         {
                             "goal": "II",
@@ -827,7 +827,7 @@
                     "id": 66
                 },
                 {
-                    "text": "Grow in the virtues necessary for both leading and following in the manner proper to a free human being, including teamwork, respect for others, commitment to group decisions, communication, self-awareness, tolerance for adversity and uncertainty, judgment and risk management.",
+                    "text": "Grow in the virtues necessary for both leading and following in the manner proper to a free human being, including teamwork, respect for others, commitment to group decisions, communication, self-awareness, tolerance for adversity and uncertainty, judgment and risk management",
                     "references": [
                         {
                             "goal": "II",
@@ -838,7 +838,7 @@
                     "id": 67
                 },
                 {
-                    "text": "See how what is learned in the Outdoor Leadership Program transfers to the classroom, campus life, and life after graduation.",
+                    "text": "See how what is learned in the Outdoor Leadership Program transfers to the classroom, campus life, and life after graduation",
                     "references": [
                         {
                             "goal": "IV",
@@ -1156,31 +1156,31 @@
                             {
                                 "ref": "49",
                                 "id": 94,
-                                "text": "Begin to understand the literary, philosophical and historical texts from the late Medieval and early and middle Renaissance periods.",
+                                "text": "Begin to understand the literary, philosophical and historical texts from the late Medieval and early and middle Renaissance periods",
                                 "references": []
                             },
                             {
                                 "ref": "50",
                                 "id": 95,
-                                "text": "Study the dramatic changes in thought and culture during these periods, examining: Christian Humanism; the Reformation and Counter-Reformation; the growth of the nation state and Europe's colonization of the world; the growth of rationalism and relativism; the emphasis on science and the subsequent rise of empiricism and skepticism.",
+                                "text": "Study the dramatic changes in thought and culture during these periods, examining: Christian Humanism; the Reformation and Counter-Reformation; the growth of the nation state and Europe's colonization of the world; the growth of rationalism and relativism; the emphasis on science and the subsequent rise of empiricism and skepticism",
                                 "references": []
                             },
                             {
                                 "ref": "51",
                                 "id": 96,
-                                "text": "Begin to understand how the imaginative works of Everyman, Chaucer and Shakespeare tell the story of mankind's pilgrim condition: created for glory and called to greatness, but wounded and weakened by sin.",
+                                "text": "Begin to understand how the imaginative works of Everyman, Chaucer and Shakespeare tell the story of mankind's pilgrim condition: created for glory and called to greatness, but wounded and weakened by sin",
                                 "references": []
                             },
                             {
                                 "ref": "52",
                                 "id": 97,
-                                "text": "Begin to understand the different conceptions of the human condition offered by Luther, Machiavelli and Montaigne, and how those conceptions influence posterity.",
+                                "text": "Begin to understand the different conceptions of the human condition offered by Luther, Machiavelli and Montaigne, and how those conceptions influence posterity",
                                 "references": []
                             },
                             {
                                 "ref": "53",
                                 "id": 98,
-                                "text": "Study the development of genres and literary forms common to this period, from lyric poetry and the sonnet, to drama and the essay.",
+                                "text": "Study the development of genres and literary forms common to this period, from lyric poetry and the sonnet, to drama and the essay",
                                 "references": []
                             },
                             {
@@ -1198,25 +1198,25 @@
                             {
                                 "ref": "55",
                                 "id": 100,
-                                "text": "Read and interpret literary, philosophical and historical texts from the Early Modern Period.",
+                                "text": "Read and interpret literary, philosophical and historical texts from the Early Modern Period",
                                 "references": []
                             },
                             {
                                 "ref": "56",
                                 "id": 101,
-                                "text": "Begin to understand the contributions of the period’s authors to the Literary Tradition.",
+                                "text": "Begin to understand the contributions of the period’s authors to the Literary Tradition",
                                 "references": []
                             },
                             {
                                 "ref": "57",
                                 "id": 102,
-                                "text": "Understand the dramatic changes in Western Culture from the end of the Renaissance, through the Enlightenment and Romantic periods, to the beginnings of Modernism.",
+                                "text": "Understand the dramatic changes in Western Culture from the end of the Renaissance, through the Enlightenment and Romantic periods, to the beginnings of Modernism",
                                 "references": []
                             },
                             {
                                 "ref": "58",
                                 "id": 103,
-                                "text": "Understand the origins of Modernism and its various manifestations, from empiricism and historicism to relativism and secularism.",
+                                "text": "Understand the origins of Modernism and its various manifestations, from empiricism and historicism to relativism and secularism",
                                 "references": []
                             },
                             {
@@ -1417,7 +1417,7 @@
                             {
                                 "ref": "76",
                                 "id": 121,
-                                "text": "discover the meaning and rationale of the traditional “four senses of Scripture,” while learning to explain lectio divina in its simplest form.",
+                                "text": "discover the meaning and rationale of the traditional “four senses of Scripture,” while learning to explain lectio divina in its simplest form",
                                 "references": [
                                     "4",
                                     "5"
@@ -1469,7 +1469,7 @@
                             {
                                 "ref": "82",
                                 "id": 127,
-                                "text": "summarize the nature and method of Theology.",
+                                "text": "summarize the nature and method of Theology",
                                 "references": [
                                     "2"
                                 ]
@@ -1533,7 +1533,7 @@
                             {
                                 "ref": "88",
                                 "id": 133,
-                                "text": "Understand the chief points of the biblical account of creation and providence in Genesis, Job, and Wisdom, and its relationship to scientific accounts of cosmogenesis.",
+                                "text": "Understand the chief points of the biblical account of creation and providence in Genesis, Job, and Wisdom, and its relationship to scientific accounts of cosmogenesis",
                                 "references": [
                                     "1",
                                     "2",
@@ -1544,7 +1544,7 @@
                             {
                                 "ref": "89",
                                 "id": 134,
-                                "text": "Be able to state and explain the main conclusions of Aquinas’s doctrine of creation, providence, evil, and God’s governance of human affairs as presented in the Compendium theologiae.",
+                                "text": "Be able to state and explain the main conclusions of Aquinas’s doctrine of creation, providence, evil, and God’s governance of human affairs as presented in the Compendium theologiae",
                                 "references": [
                                     "1",
                                     "3",
@@ -1555,7 +1555,7 @@
                             {
                                 "ref": "90",
                                 "id": 135,
-                                "text": "Be able to state and explain Aquinas’s doctrine of grace and the theological virtues as presented in the Summa theologiae.",
+                                "text": "Be able to state and explain Aquinas’s doctrine of grace and the theological virtues as presented in the Summa theologiae",
                                 "references": [
                                     "1",
                                     "3",
@@ -1612,7 +1612,7 @@
                             {
                                 "ref": "95",
                                 "id": 140,
-                                "text": "Provide an account of Heaven, Purgatory, Hell that is in accord with the Thomistic tradition, specifically:, the importance and consequences of the resurrection of the body, the nature of the Beatific Vision, the definitive nature of heavenly beatitude, the justice and eternity of hell, the reason for the existence of purgatory, and  an understanding of the concept of Limbo in relation to the foregoing.",
+                                "text": "Provide an account of Heaven, Purgatory, Hell that is in accord with the Thomistic tradition, specifically:, the importance and consequences of the resurrection of the body, the nature of the Beatific Vision, the definitive nature of heavenly beatitude, the justice and eternity of hell, the reason for the existence of purgatory, and  an understanding of the concept of Limbo in relation to the foregoing",
                                 "references": [
                                     "1",
                                     "3",
@@ -1643,13 +1643,13 @@
                             {
                                 "ref": "98",
                                 "id": 143,
-                                "text": "Explain the important terms and ideas of the Christological debate.",
+                                "text": "Explain the important terms and ideas of the Christological debate",
                                 "references": []
                             },
                             {
                                 "ref": "99",
                                 "id": 144,
-                                "text": "Explain and interrelate key points of the doctrine of the Incarnation, especially: those things which are one in Christ and those things which are two, the various modes of knowing, loving, and grace found in Christ, how Christ’s birth and Paschal Mystery must be understood, how Christ’s ministry makes him Head of the Church, all mankind, and the angels.",
+                                "text": "Explain and interrelate key points of the doctrine of the Incarnation, especially: those things which are one in Christ and those things which are two, the various modes of knowing, loving, and grace found in Christ, how Christ’s birth and Paschal Mystery must be understood, how Christ’s ministry makes him Head of the Church, all mankind, and the angels",
                                 "references": [
                                     "1"
                                 ]
@@ -1682,7 +1682,7 @@
                             {
                                 "ref": "102",
                                 "id": 147,
-                                "text": "Explain the Church’s three-fold ministry of teaching, governing and sanctifying with reference to development of doctrine, the Church’s hierarchy, and the effects of the sacraments.",
+                                "text": "Explain the Church’s three-fold ministry of teaching, governing and sanctifying with reference to development of doctrine, the Church’s hierarchy, and the effects of the sacraments",
                                 "references": [
                                     "1"
                                 ]
@@ -1750,7 +1750,7 @@
                             {
                                 "ref": "108",
                                 "id": 153,
-                                "text": "articulate, interconnect, and apply the following principles of Catholic Social Teaching: the dignity of the human person; the common good; the origin, purpose, and limits of civil authority; subsidiarity; the relationship of Church and State; true and false notions of freedom; personal rights, especially the right to religious liberty; private property and the universal destination of goods; participation, or the responsibilities of lay Catholics; solidarity.",
+                                "text": "articulate, interconnect, and apply the following principles of Catholic Social Teaching: the dignity of the human person; the common good; the origin, purpose, and limits of civil authority; subsidiarity; the relationship of Church and State; true and false notions of freedom; personal rights, especially the right to religious liberty; private property and the universal destination of goods; participation, or the responsibilities of lay Catholics; solidarity",
                                 "references": [
                                     "1",
                                     "3",
@@ -1763,7 +1763,7 @@
                             {
                                 "ref": "109",
                                 "id": 154,
-                                "text": "relate the Christian view of individual and communal perfection to the secularism, naturalism, liberalism, and utopianism characteristic of modern thought.",
+                                "text": "relate the Christian view of individual and communal perfection to the secularism, naturalism, liberalism, and utopianism characteristic of modern thought",
                                 "references": [
                                     "2",
                                     "7"
@@ -2356,7 +2356,7 @@
                             {
                                 "ref": "161",
                                 "id": 206,
-                                "text": "Learn to design simple scientific experiments.",
+                                "text": "Learn to design simple scientific experiments",
                                 "references": [
                                     "3",
                                     "4"
@@ -2365,7 +2365,7 @@
                             {
                                 "ref": "162",
                                 "id": 207,
-                                "text": "Learn to utilize probability and statistics to empirically test hypotheses and weigh scientific evidence.",
+                                "text": "Learn to utilize probability and statistics to empirically test hypotheses and weigh scientific evidence",
                                 "references": [
                                     "3",
                                     "4",
@@ -2375,7 +2375,7 @@
                             {
                                 "ref": "163",
                                 "id": 208,
-                                "text": "Learn to interpret data from scientific experiments.",
+                                "text": "Learn to interpret data from scientific experiments",
                                 "references": [
                                     "3",
                                     "4"
@@ -2384,7 +2384,7 @@
                             {
                                 "ref": "164",
                                 "id": 209,
-                                "text": "Learn to identify the characteristics of legitimate scientific reasoning that distinguish it from pseudoscience and quackery.",
+                                "text": "Learn to identify the characteristics of legitimate scientific reasoning that distinguish it from pseudoscience and quackery",
                                 "references": [
                                     "3",
                                     "4",
@@ -2394,7 +2394,7 @@
                             {
                                 "ref": "165",
                                 "id": 210,
-                                "text": "Learn about the historical roots of the modern scientific method, and about the philosophical and epistemological basis of science and scientific reasoning.",
+                                "text": "Learn about the historical roots of the modern scientific method, and about the philosophical and epistemological basis of science and scientific reasoning",
                                 "references": [
                                     "3",
                                     "4",
@@ -2482,7 +2482,7 @@
                             {
                                 "ref": "173",
                                 "id": 218,
-                                "text": "Understand key contributions of Newton, Einstein, and others to our understanding of mechanics.",
+                                "text": "Understand key contributions of Newton, Einstein, and others to our understanding of mechanics",
                                 "references": [
                                     "1",
                                     "4",
@@ -2494,7 +2494,7 @@
                             {
                                 "ref": "174",
                                 "id": 219,
-                                "text": "Be introduced to the development of biological thought in recent centuries.",
+                                "text": "Be introduced to the development of biological thought in recent centuries",
                                 "references": [
                                     "1",
                                     "6"
@@ -2503,7 +2503,7 @@
                             {
                                 "ref": "175",
                                 "id": 220,
-                                "text": "Acquire a basic understanding of genetics, including DNA and inheritance.",
+                                "text": "Acquire a basic understanding of genetics, including DNA and inheritance",
                                 "references": [
                                     "6"
                                 ]
@@ -2511,7 +2511,7 @@
                             {
                                 "ref": "176",
                                 "id": 221,
-                                "text": "learn about the scientific basis and philosophical implications of evolutionary theory.",
+                                "text": "learn about the scientific basis and philosophical implications of evolutionary theory",
                                 "references": [
                                     "1",
                                     "3",
@@ -2523,7 +2523,7 @@
                             {
                                 "ref": "177",
                                 "id": 222,
-                                "text": "be able to articulate a Catholic perspective on evolution.",
+                                "text": "be able to articulate a Catholic perspective on evolution",
                                 "references": [
                                     "1",
                                     "5"
@@ -2597,7 +2597,7 @@
                             {
                                 "ref": "182",
                                 "id": 227,
-                                "text": "Acquire the beginnings of musical praxis in singing and at the keyboard.",
+                                "text": "Acquire the beginnings of musical praxis in singing and at the keyboard",
                                 "references": [
                                     "5"
                                 ]
@@ -2757,31 +2757,31 @@
                             {
                                 "ref": "197",
                                 "id": 242,
-                                "text": "Gain an overview of the liberal arts tradition as a whole and Trivium’s relation to it.",
+                                "text": "Gain an overview of the liberal arts tradition as a whole and Trivium’s relation to it",
                                 "references": []
                             },
                             {
                                 "ref": "198",
                                 "id": 243,
-                                "text": "Understand the purpose of language and the importance of clarity in written and oral expression.",
+                                "text": "Understand the purpose of language and the importance of clarity in written and oral expression",
                                 "references": []
                             },
                             {
                                 "ref": "199",
                                 "id": 244,
-                                "text": "Identify the principal errors in written expression and develop the ability to edit one’s own work.",
+                                "text": "Identify the principal errors in written expression and develop the ability to edit one’s own work",
                                 "references": []
                             },
                             {
                                 "ref": "200",
                                 "id": 245,
-                                "text": "Learn how to formulate a thesis and craft a college-level essay.",
+                                "text": "Learn how to formulate a thesis and craft a college-level essay",
                                 "references": []
                             },
                             {
                                 "ref": "201",
                                 "id": 246,
-                                "text": "Learn how to participate in class discussion.",
+                                "text": "Learn how to participate in class discussion",
                                 "references": []
                             }
                         ],
@@ -2955,7 +2955,7 @@
                             {
                                 "ref": "220",
                                 "id": 265,
-                                "text": "Develop in basic delivery skills for public speaking: body language, projection, pace of speech, enunciation, etc.",
+                                "text": "Develop in basic delivery skills for public speaking: body language, projection, pace of speech, enunciation, etc",
                                 "references": []
                             }
                         ]
@@ -2981,7 +2981,7 @@
                             {
                                 "ref": "223",
                                 "id": 268,
-                                "text": "develop a habit of thought which is dialectical, creative, and synthetic; and, which draws on the full range of the curriculum to answer questions of perennial importance.",
+                                "text": "develop a habit of thought which is dialectical, creative, and synthetic; and, which draws on the full range of the curriculum to answer questions of perennial importance",
                                 "references": []
                             },
                             {
@@ -2993,7 +2993,7 @@
                             {
                                 "ref": "225",
                                 "id": 270,
-                                "text": "learn basic research skills by which they will be able to enter into a conversation beyond the walls of WCC about an author or important question.",
+                                "text": "learn basic research skills by which they will be able to enter into a conversation beyond the walls of WCC about an author or important question",
                                 "references": []
                             }
                         ]

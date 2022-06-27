@@ -17,11 +17,11 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
 
     if (semester.length === 0)
     {
-        return (<div className="flex-1 mb-4 mx-8"></div>);
+        return (<div className="flex-1 mb-4 mx-4"></div>);
     }
 
     return (
-        <div className="flex-1 mb-4 mx-8">
+        <div className="flex-1 mb-4 mx-4">
             <a className="block text-center no-underline text-black mb-4">
                 {(year + 1) * 100 + semesterIndex + 1}
             </a>

@@ -9,7 +9,7 @@ const CoursePanel = () =>
     const courses = view.data.courses;
 
     return (
-        <SimpleBar className="h-full mt-6">
+        <SimpleBar className="h-full pt-6">
             {courses.map((course, index) =>
                 <Course key={course.course} course={index} />
             )}

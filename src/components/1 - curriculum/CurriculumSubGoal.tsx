@@ -13,7 +13,7 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     const view = useSnapshot(store);
     const goal = view.data.curriculumGoals[curriculumGoal].children[subIndex];
 
-    return (<li className="list-item">{goal.text}</li>);
+    return (<li className="list-item rounded-md mt-2">{goal.text}</li>);
 };
 
 export default CurriculumSubGoal;

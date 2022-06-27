@@ -15,8 +15,12 @@ const CourseGoal = ({ course, year, semester, goal: goalIndex }: CourseGoalProps
     const goal = view.data.courses[course].years[year].semesters[semester][goalIndex];
 
     return (
-        <li className="list-item mb-4">
+        <li className="list-item mb-4 rounded-md p-1">
             {goal.text}
+            {
+                goal.references.length > 0 ? ` (${goal.references.join(", ")})` : ""
+            }
+            .
         </li>
     );
 };

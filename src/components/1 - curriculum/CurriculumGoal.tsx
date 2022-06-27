@@ -9,7 +9,7 @@ const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
     const goal = view.data.curriculumGoals[index];
 
     return (
-        <li className="mb-6 list-item">
+        <li className="mb-6 list-item p-1 rounded-md">
             {goal.text}
             <ol className="list-[lower-alpha] mt-1">
                 {

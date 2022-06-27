@@ -9,7 +9,7 @@ const TrackPanel = () =>
     const tracks = view.data.tracks;
 
     return (
-        <SimpleBar className="h-full mt-6">
+        <SimpleBar className="h-full pt-6">
             {tracks.map((_, index) =>
                 <Track key={index} track={index} />
             )}
