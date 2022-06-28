@@ -1,4 +1,4 @@
-import store, { Highlight } from ".";
+import store from ".";
 import { GoalData } from "./types";
 
 export const prepareHighlight = (data: GoalData) =>
