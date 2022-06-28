@@ -1,8 +1,13 @@
 import store, { CurriculumScore } from ".";
 import { GoalData } from "./types";
 
-export const average = (numbers: number[]) =>
+export const average = (numbers: readonly number[]) =>
 {
+    if (numbers.length === 0)
+    {
+        return -1;
+    }
+
     const raw = numbers.reduce((a, b) => a + b) / numbers.length;
     const parts = raw.toString().split(".");
 
@@ -56,7 +61,7 @@ export const prepareScores = (data: GoalData) =>
             {
                 for (const goal of semester)
                 {
-                    scores[goal.ref] = [0];
+                    scores[goal.ref] = [];
                 }
             }
         }
