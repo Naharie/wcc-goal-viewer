@@ -11,6 +11,15 @@ export default () =>
     const view = useSnapshot(store);
 
     useData();
+
+    if (!view.isLoaded)
+    {
+        return (
+            <div className="flex flex-col justify-center items-center w-full h-full text-2xl">
+                <Spinner />
+            </div>
+        )
+    }
     
     if (view.errorMessage !== null)
     {
