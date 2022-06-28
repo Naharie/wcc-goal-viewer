@@ -4,13 +4,14 @@ import ScoreBadge from "./Badge";
 
 interface ScoreSelectorProps
 {
+    value: number;
     onSetScore?: (score: number) => void;
     onDelete?: () => void;
 }
 
 const ScoreSelector = (props: ScoreSelectorProps) =>
 {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(props.value);
     const [open, setOpen] = useState(false);
 
     const openSelector = () => setOpen(true);;
