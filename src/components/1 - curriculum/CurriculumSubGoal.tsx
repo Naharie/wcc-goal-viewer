@@ -2,6 +2,8 @@ import { PropsWithChildren } from "react";
 import store from "../../data";
 import { useSnapshot } from "valtio";
 import { computeCurriculumToTrackHighlighting } from "../../data/highlight";
+import { average } from "../../data/scores";
+import ScoreBadge from "../scores/Badge";
 
 interface CurriculumSubGoalProps
 {
@@ -19,6 +21,8 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     const parentGoalHighlight = store.highlight.curriculumGoals[parentGoal.ref];
     const highlighted = view.highlight.curriculumGoals[parentGoal.ref][goal.ref];
 
+    const score = average(view.scores.curriculumGoals[parentGoal.ref].children[goal.ref]);
+
     const toggleHighlight = () =>
     {    
         parentGoalHighlight[goal.ref] = !parentGoalHighlight[goal.ref];
@@ -28,6 +32,7 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     return (
         <li className={"list-item rounded-md mt-2" + (highlighted ? " bg-selected" : "")} onClick={toggleHighlight}>
             {goal.text}
+            {score > -1 ? <ScoreBadge value={score} /> : null}
         </li>
     );
 };
