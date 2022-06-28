@@ -3,15 +3,16 @@ import React from "react";
 interface ScoreBadgeProps
 {
     value: number;
+    className?: string;
     onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const ScoreBadge = ({ value, onClick } : ScoreBadgeProps) =>
+const ScoreBadge = ({ value, className, onClick } : ScoreBadgeProps) =>
 {
     return (
         <div className={`
             inline-flex justify-center items-center
-            w-12 h-12 rounded-full text-3xl
+            w-10 h-10 rounded-full text-3xl
 
             ${
                 value <= 2 ?
@@ -25,6 +26,7 @@ const ScoreBadge = ({ value, onClick } : ScoreBadgeProps) =>
                         "hover:bg-blue-500"
                     : ""
             }
+            ${className ?? ""}
         `} onClick={onClick}>
             {value}
         </div>

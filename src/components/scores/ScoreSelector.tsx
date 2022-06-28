@@ -1,17 +1,18 @@
 import { useState } from "react";
 import BadgeButton from "./BadgeButton";
-import ScoreBadge from "./Badge";
+import ScoreBadge from "./ScoreBadge";
 
 interface ScoreSelectorProps
 {
     value: number;
+    className?: string;
     onSetScore?: (score: number) => void;
     onDelete?: () => void;
 }
 
 const ScoreSelector = (props: ScoreSelectorProps) =>
 {
-    const [value, setValue] = useState(props.value);
+    const [value, setValue] = [props.value, props.onSetScore ?? (() => {})];
     const [open, setOpen] = useState(false);
 
     const openSelector = () => setOpen(true);;
@@ -19,7 +20,6 @@ const ScoreSelector = (props: ScoreSelectorProps) =>
     {
         setValue(value);
         setOpen(false);
-        props?.onSetScore?.(value);
     };
     const deleteSelector = () =>
     {
@@ -28,7 +28,7 @@ const ScoreSelector = (props: ScoreSelectorProps) =>
     };
 
     return (
-        <div className={`inline-block bg-gray-300 ${open ? "w-72" : "w-12"} h-12 rounded-full text-3xl`}>
+        <div className={`inline-block bg-gray-300 ${open ? "w-60" : "w-10"} h-10 rounded-full text-3xl ${props.className ?? ""}`}>
             {
                 !open ?
                     <ScoreBadge value={value} onClick={openSelector} /> :

@@ -1,5 +1,8 @@
+import React, { useState } from "react";
 import { useSnapshot } from "valtio";
 import store from "../../data";
+import { propagateScores } from "../../data/scores";
+import BadgeButton from "../scores/BadgeButton";
 import ScoreSelector from "../scores/ScoreSelector";
 
 interface CourseGoalProps
@@ -13,6 +16,7 @@ interface CourseGoalProps
 const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: CourseGoalProps) =>
 {
     const view = useSnapshot(store);
+    const [addingScores, setAddingScores] = useState(false);
 
     const course = view.data.courses[courseIndex];
     const goal = course.years[year].semesters[semester][goalIndex];
@@ -20,16 +24,41 @@ const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: Co
     const highlighted = view.highlight.courses[course.course][goal.ref];
     const scores = view.scores.courses[course.course][goal.ref];
 
+    const toggleAddingScores = (event: React.MouseEvent<HTMLLIElement>) =>
+    {
+        if (event.target !== event.currentTarget) return;
+        setAddingScores(value => !value);
+    };
+
+    const addScore = () =>
+    {
+        store.scores.courses[course.course][goal.ref].push(0);
+        propagateScores();
+    };
+    const deleteScore = (index: number) => () =>
+    {
+        store.scores.courses[course.course][goal.ref].splice(index, 1);
+        propagateScores();
+    };
+    const setScore = (index: number) => (score: number) =>
+    {
+        store.scores.courses[course.course][goal.ref][index] = score;
+        propagateScores();
+    };
+
     return (
-        <li className={"list-item mb-4 rounded-md p-1" + (highlighted ? " bg-selected" : "")}>
+        <li className={"list-item mb-4 rounded-md p-1" + (highlighted ? " bg-selected" : "")} onClick={toggleAddingScores}>
             {goal.text}
             {
                 goal.references.length > 0 ? ` (${goal.references.join(", ")})` : ""
             }
             .
-            {scores.map(score =>
-                <ScoreSelector value={score} />
+            <div>
+            {scores.map((score, index) =>
+                <ScoreSelector key={index} className="mr-3" value={score} onSetScore={setScore(index)} onDelete={deleteScore(index)} />
             )}
+            {addingScores ? <BadgeButton value="+" onClick={addScore} /> : null}
+            </div>
         </li>
     );
 };

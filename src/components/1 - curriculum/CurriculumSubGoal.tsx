@@ -3,7 +3,7 @@ import store from "../../data";
 import { useSnapshot } from "valtio";
 import { computeCurriculumToTrackHighlighting } from "../../data/highlight";
 import { average } from "../../data/scores";
-import ScoreBadge from "../scores/Badge";
+import ScoreBadge from "../scores/ScoreBadge";
 
 interface CurriculumSubGoalProps
 {
@@ -32,7 +32,7 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     return (
         <li className={"list-item rounded-md mt-2" + (highlighted ? " bg-selected" : "")} onClick={toggleHighlight}>
             {goal.text}
-            {score > -1 ? <ScoreBadge value={score} /> : null}
+            {score > -1 ? <ScoreBadge className="ml-3" value={score} /> : null}
         </li>
     );
 };

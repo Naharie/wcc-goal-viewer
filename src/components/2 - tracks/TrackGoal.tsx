@@ -2,7 +2,7 @@ import { useSnapshot } from "valtio";
 import store from "../../data";
 import { clearCurriculumHighlight, computeTrackToCourseHighlighting } from "../../data/highlight";
 import { average } from "../../data/scores";
-import ScoreBadge from "../scores/Badge";
+import ScoreBadge from "../scores/ScoreBadge";
 
 interface TrackGoalProps
 {
@@ -43,7 +43,9 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
                     })` : ""
             }
             .
-            {score > -1 ? <ScoreBadge value={score} /> : null}
+            <div>
+                {score > -1 ? <ScoreBadge className="mr-3" value={score} /> : null}
+            </div>
         </li>
     );
 };
