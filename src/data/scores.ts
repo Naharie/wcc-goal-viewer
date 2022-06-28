@@ -1,0 +1,150 @@
+import store, { CurriculumScore } from ".";
+import { GoalData } from "./types";
+
+export const average = (numbers: number[]) =>
+{
+    const raw = numbers.reduce((a, b) => a + b) / numbers.length;
+    const parts = raw.toString().split(".");
+
+    if (parts.length === 1)
+    {
+        return raw;
+    }
+    else
+    {
+        return parseFloat(parts[0] + "." + parts[1].substring(0, 2));
+    }
+}
+
+export const prepareScores = (data: GoalData) =>
+{
+    const curriculumGoals: Record<string, CurriculumScore> = {};
+    const tracks: Record<string, Record<string, number[]>> = {};
+    const courses: Record<string, Record<string, number[]>> = {};
+
+    for (const goal of data.curriculumGoals)
+    {
+        const scores: Record<string, number[]> = {};
+
+        for (const child of goal.children)
+        {
+            scores[child.ref] = [];
+        }
+
+        curriculumGoals[goal.ref] = { score: [], children: scores };
+    }
+
+    for (const track of data.tracks)
+    {
+        const scores: Record<string, number[]> = {};
+
+        for (const goal of track.goals)
+        {
+            scores[goal.ref] = [];
+        }
+
+        tracks[track.track] = scores;
+    }
+
+    for (const course of data.courses)
+    {
+        const scores: Record<string, number[]> = {};
+
+        for (const year of course.years)
+        {
+            for (const semester of year.semesters)
+            {
+                for (const goal of semester)
+                {
+                    scores[goal.ref] = [0];
+                }
+            }
+        }
+
+        courses[course.course] = scores;
+    }
+
+    store.scores = { curriculumGoals, tracks, courses };
+};
+
+export const clearPropagatedScores = () =>
+{
+    const data = store.data;
+    const curriculumGoals: Record<string, CurriculumScore> = {};
+    const tracks: Record<string, Record<string, number[]>> = {};
+
+    for (const goal of data.curriculumGoals)
+    {
+        const scores: Record<string, number[]> = {};
+
+        for (const child of goal.children)
+        {
+            scores[child.ref] = [];
+        }
+
+        curriculumGoals[goal.ref] = { score: [], children: scores };
+    }
+    for (const track of data.tracks)
+    {
+        const scores: Record<string, number[]> = {};
+
+        for (const goal of track.goals)
+        {
+            scores[goal.ref] = [];
+        }
+
+        tracks[track.track] = scores;
+    }
+
+    store.scores.curriculumGoals = curriculumGoals;
+    store.scores.tracks = tracks;
+};
+
+export const propagateScoresToTracks = () =>
+{
+    for (const { course, years } of store.data.courses)
+    {
+        for (const { semesters } of years)
+        {
+            for (const semester of semesters)
+            {
+                for (const goal of semester)
+                {
+                    for (const reference of goal.references)
+                    {
+                        store.scores.tracks[course][reference].push(...store.scores.courses[course][goal.ref]);
+                    }
+                }
+            }
+        }
+    }
+};
+
+export const propagateScoresToCurriculumGoals = () =>
+{
+    for (const { track, goals } of store.data.tracks)
+    {
+        for (const goal of goals)
+        {
+            for (const reference of goal.references)
+            {
+                const scores = store.scores.tracks[track][goal.ref];
+                const curriculumGoal = store.scores.curriculumGoals[reference.goal];
+
+                curriculumGoal.score.push(...scores);
+
+                for (const subGoal of reference.subGoals)
+                {
+                    curriculumGoal.children[subGoal].push(...scores)
+                }
+            }
+        }
+    }
+};
+
+export const propagateScores = () =>
+{
+    clearPropagatedScores();
+    propagateScoresToTracks();
+    propagateScoresToCurriculumGoals();
+};
