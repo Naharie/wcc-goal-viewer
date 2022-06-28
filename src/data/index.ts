@@ -8,23 +8,44 @@ export interface Highlight
     courses: Record<string, Record<string, boolean>>;
 }
 
+export interface CurriculumScore
+{
+    score: number[];
+    children: Record<string, number[]>;
+}
+
+export interface Scores
+{
+    curriculumGoals: Record<string, CurriculumScore>;
+    tracks: Record<string, Record<string, number[]>>;
+    courses: Record<string, Record<string, number[]>>;
+}
+
 export interface Store
 {
     isLoaded: boolean;
     errorMessage: string | null;
+
     data: GoalData;
     highlight: Highlight;
+    scores: Scores;
 }
 
 const store = proxy<Store>({
     isLoaded: false,
     errorMessage: null,
+
     data: {
         curriculumGoals: [],
         tracks: [],
         courses: []
     },
     highlight: {
+        curriculumGoals: {},
+        tracks: {},
+        courses: {}
+    },
+    scores: {
         curriculumGoals: {},
         tracks: {},
         courses: {}
