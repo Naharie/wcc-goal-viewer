@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import store from "../data";
 import { prepareHighlight } from "../data/highlight";
+import { prepareScores } from "../data/scores";
 import { GoalData } from "../data/types";
 
 const useData = () =>
@@ -13,6 +14,7 @@ const useData = () =>
             {
                 store.data = data;
                 prepareHighlight(data);
+                prepareScores(data);
                 store.isLoaded = true;
             })
             .catch((_: Error) =>
