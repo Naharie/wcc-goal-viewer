@@ -4,16 +4,18 @@ import App from "./components/App";
 
 import "simplebar-react/dist/simplebar.min.css";
 import "./css/index.css";
-
-/*
-https://github.com/Naharie/wcc-goal-viewer/tree/06507ed1ec527f8e384eb3c358b273c7af595909
-https://github.com/Naharie/wcc-goal-viewer/tree/06507ed1ec527f8e384eb3c358b273c7af595909/src
-*/
+import store from "./data";
+import { getQuery } from "./utilities/query-parameter";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const root = createRoot(document.getElementById("root")!);
+store.editorEnabled = getQuery()["editor"] === "true";
 
 root.render(
     <React.StrictMode>
-        <App />
+        <DndProvider backend={HTML5Backend}>
+            <App />
+        </DndProvider>
     </React.StrictMode>
 );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSnapshot } from "valtio";
 import store from "../../data";
 import { propagateScores } from "../../data/scores";
+import TextArea from "../editor/TextArea";
 import BadgeButton from "../scores/BadgeButton";
 import ScoreSelector from "../scores/ScoreSelector";
 

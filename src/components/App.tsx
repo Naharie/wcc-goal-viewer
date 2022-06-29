@@ -5,12 +5,21 @@ import CoursePanel from "./3 - courses/CoursePanel";
 import useData from "../hooks/useData";
 import { useSnapshot } from "valtio";
 import store from "../data";
+import SortableList from "./sortable/SortableList";
+import { CSSProperties } from "react";
 
 export default () =>
 {
     const view = useSnapshot(store);
 
     useData();
+
+    const style: CSSProperties = {
+        border: '1px solid gray',
+        padding: '0.5rem 1rem',
+        marginBottom: '.5rem',
+        backgroundColor: 'white',
+    };
 
     if (!view.isLoaded)
     {

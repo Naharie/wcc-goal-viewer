@@ -1,4 +1,5 @@
 import store, { CurriculumScore } from ".";
+import { getQuery, setQueryParameter } from "../utilities/query-parameter";
 import { GoalData } from "./types";
 
 export const average = (numbers: readonly number[]) =>
@@ -20,6 +21,27 @@ export const average = (numbers: readonly number[]) =>
         return parseFloat(parts[0] + "." + parts[1].substring(0, 2));
     }
 }
+
+export const readScoresFromQuery = () =>
+{
+    const query = getQuery();
+    const scores = query["scores"];
+
+    if (scores === undefined) return;
+
+    const courses = scores.split("|").map(course => course.split("@"));
+    if (courses.length === 0) return;
+
+    for (const [name, course] of courses)
+    {
+        for (const [goal, values] of course.split(",").map(goal => goal.split(":")))
+        {
+            store.scores.courses[name][goal] = values.split("").map(v => parseInt(v));
+        }
+    }
+
+    propagateScores();
+};
 
 export const prepareScores = (data: GoalData) =>
 {
@@ -70,6 +92,7 @@ export const prepareScores = (data: GoalData) =>
     }
 
     store.scores = { curriculumGoals, tracks, courses };
+    readScoresFromQuery();
 };
 
 export const clearPropagatedScores = () =>
@@ -152,4 +175,15 @@ export const propagateScores = () =>
     clearPropagatedScores();
     propagateScoresToTracks();
     propagateScoresToCurriculumGoals();
+
+    const scores =
+        Object.entries(store.scores.courses).map(([name, course]) =>
+        {
+            const nested = Object.entries(course).filter(([, scores]) => scores.length > 0).map (([goal, scores]) => goal + ":" + scores.join("")).join(",");
+            return name + "@" + nested;
+        }).filter(value => !value.endsWith("@")).join("|");
+
+    setQueryParameter("scores", scores);
 };
+
+window.addEventListener("popstate", () => readScoresFromQuery());
