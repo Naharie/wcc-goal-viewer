@@ -29,6 +29,10 @@ export interface Store
     data: GoalData;
     highlight: Highlight;
     scores: Scores;
+
+    editorEnabled: boolean;
+    editorKind?: "curriculum-goal" | "curriculum-sub-goal" | "track-goal" | "course-goal";
+    closeEditor?: () => void;
 }
 
 const store = proxy<Store>({
@@ -49,7 +53,9 @@ const store = proxy<Store>({
         curriculumGoals: {},
         tracks: {},
         courses: {}
-    }
+    },
+
+    editorEnabled: false
 });
 
 export default store;
