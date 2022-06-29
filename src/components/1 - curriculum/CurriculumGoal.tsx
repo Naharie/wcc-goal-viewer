@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import { useSnapshot } from "valtio";
 import store from "../../data";
 import { computeCurriculumToTrackHighlighting } from "../../data/highlight";
@@ -15,8 +15,10 @@ const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
 
     const score = average(view.scores.curriculumGoals[goal.ref].score);
 
-    const toggleHighlight = () =>
+    const toggleHighlight = (event: React.MouseEvent<HTMLLIElement>) =>
     {
+        if (event.target !== event.currentTarget) return;
+
         const highlight = store.highlight.curriculumGoals[goal.ref];
 
         for (const key in highlight)
