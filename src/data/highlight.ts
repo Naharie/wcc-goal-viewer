@@ -105,3 +105,25 @@ export const computeTrackToCourseHighlighting = () =>
         }
     }
 };
+
+export const swapTrackReferences = (track: string, refA: string, refB: string) =>
+{
+    const course = store.data.courses.find(({ course }) => course === track);
+    if (course === undefined) return;
+    
+    for (const year of course.years)
+    {
+        for (const semester of year.semesters)
+        {
+            for (const goal of semester)
+            {
+                goal.references = goal.references.map(
+                    reference =>
+                        reference === refA ? refB :
+                        reference === refB ? refA :
+                        reference
+                );
+            }
+        }
+    }
+};

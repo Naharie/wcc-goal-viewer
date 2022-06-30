@@ -1,73 +1,68 @@
-import React from "react";
-import { ReactNode, useCallback, useState } from "react";
-import { useDrop } from "react-dnd";
-import SortableItem from "./SortableItem";
+import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import React, { PropsWithChildren, ReactElement, useState } from "react";
+import Draggable from "./Draggable";
+import Droppable from "./Droppable";
 
 export interface SortableItem
 {
-	id: string;
-	props?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-	value: ReactNode;
+    id: string;
+    value: React.ReactNode;
 }
 
 interface SortableListProps extends React.DetailedHTMLProps<React.OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>
 {
-	items: SortableItem[];
-	allowSorting?: boolean;
-	dragId: string
+    dragId: string;
+    alternativeIds?: string[];
+    items: SortableItem[];
+
+    onSwap?: (idA: string, idB: string) => void;
+    className?: string;
 }
 
-export const SortableList = ({ items: _items, allowSorting = true, dragId, ...listProps }: SortableListProps) =>
+const SortableList = ({ items: initialItems, dragId, onSwap, ...props }: PropsWithChildren<SortableListProps>) =>
 {
-	const [items, setItems] = useState(_items)
+    const [items, setItems] = useState(initialItems);
 
-	const findItem = useCallback(
-		(id: string) =>
-        {
-            for (let index = 0; index < items.length; index++)
-            {
-                if (items[index].id === id) return index;
-            }
+    const dragEnd = (event: DragEndEvent) =>
+    {
+        if (!event.over || event.active.id === event.over.id) return;
+        
+        const [idA, idB] = [
+            event.active.id.toString().replace(dragId, ""),
+            event.over.id.toString().replace(dragId, "")
+        ];
+        
+        const indexA = items.findIndex(item => item.id === idA);
+        const indexB = items.findIndex(item => item.id === idB);
 
-            return -1;
-		},
-		[items],
-	);
-	const moveItem = useCallback(
-		(id: string, target: number) =>
-        {
-			const index = findItem(id);
+        if (indexA === -1 || indexB === -1) return;
 
-			setItems(items.map((v, i) =>
-                i === index ? items[target] :
-                i === target ? items[index] : v
-            ));
-		},
-		[findItem, items, setItems],
-	);
+        setItems(items =>
+            items.map((item, index) =>
+                index === indexA ? items[indexB] :
+                index === indexB ? items[indexA] :
+                item
+            )
+        );
 
-	const [, drop] = useDrop(() => ({ accept: dragId }));
-	
-	if (allowSorting)
-	{
-		return (
-			<ol ref={drop} {...listProps}>
-				{items.map(item =>
-					<SortableItem key={item.id} id={item.id} dragId={dragId} move={moveItem} find={findItem} props={item.props}>{item.value}</SortableItem>
-				)}
-			</ol>
-		);
-	}
-	else
-	{
-		return (
-			<ol {...listProps}>
-				{items.map(item =>
-					<div key={item.id} {...item.props}>{item.value}</div>
-				)}
-			</ol>
-		);
-	}
+        onSwap?.(idA, idB);
+    };
+
+    return (
+        <DndContext onDragEnd={dragEnd}>
+            <ol {...props} className={"flex flex-col justify-center " + (props.className ?? "")}>
+                {
+                    items.map(item =>
+                        <Droppable key={item.id} dragId={dragId + item.id}>
+                            <Draggable dragId={dragId + item.id}>
+                                {item.value}
+                            </Draggable>
+                        </Droppable>
+                    )
+                }
+            </ol>
+        </DndContext>
+    )
 };
 
 export default SortableList;
