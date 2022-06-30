@@ -11,11 +11,30 @@ const Track = ({ track: index }: { track: number }) =>
 
     const goals =
         track.goals.map((goal, goalIndex) => ({
-            id: goal.ref,
+            id: goal.id.toString(),
             value: <TrackGoal key={goal.id} track={index} goal={goalIndex} />
         }));
 
-    const handleSwap = (a: string, b: string) => swapTrackReferences(track.track, a, b);
+    const handleSwap = (a: string, b: string) =>
+    {
+        const track = store.data.tracks[index];
+
+        var i = track.goals.findIndex(goal => goal.id.toString() === a);
+        var j = track.goals.findIndex(goal => goal.id.toString() === b);
+
+        if (i === j || i === -1 || j === -1) return;
+
+        var [goalI, goalJ] = [track.goals[i], track.goals[j]];
+        const [refA, refB] = [goalI.ref, goalJ.ref];
+
+        swapTrackReferences(track.track, refA, refB);
+
+        track.goals[i].ref = refB;
+        track.goals[j].ref = refA;
+
+        track.goals[i] = goalJ;
+        track.goals[j] = goalI;
+    }
 
     return (
         <div className="mx-8">

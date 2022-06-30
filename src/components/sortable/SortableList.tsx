@@ -15,14 +15,12 @@ interface SortableListProps extends React.DetailedHTMLProps<React.OlHTMLAttribut
     alternativeIds?: string[];
     items: SortableItem[];
 
-    onSwap?: (idA: string, idB: string) => void;
+    onSwap: (idA: string, idB: string) => void;
     className?: string;
 }
 
-const SortableList = ({ items: initialItems, dragId, onSwap, ...props }: PropsWithChildren<SortableListProps>) =>
+const SortableList = ({ items, dragId, onSwap, ...props }: PropsWithChildren<SortableListProps>) =>
 {
-    const [items, setItems] = useState(initialItems);
-
     const dragEnd = (event: DragEndEvent) =>
     {
         if (!event.over || event.active.id === event.over.id) return;
@@ -37,15 +35,7 @@ const SortableList = ({ items: initialItems, dragId, onSwap, ...props }: PropsWi
 
         if (indexA === -1 || indexB === -1) return;
 
-        setItems(items =>
-            items.map((item, index) =>
-                index === indexA ? items[indexB] :
-                index === indexB ? items[indexA] :
-                item
-            )
-        );
-
-        onSwap?.(idA, idB);
+        onSwap(idA, idB);
     };
 
     return (
