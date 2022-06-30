@@ -5,6 +5,7 @@ import CoursePanel from "./3 - courses/CoursePanel";
 import useData from "../hooks/useData";
 import { useSnapshot } from "valtio";
 import store from "../data";
+import SortableList from "./sortable/SortableList";
 import { CSSProperties } from "react";
 
 export default () =>
