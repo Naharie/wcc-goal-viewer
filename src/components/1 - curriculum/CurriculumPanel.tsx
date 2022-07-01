@@ -4,6 +4,7 @@ import store from "../../data";
 import { useSnapshot } from "valtio";
 import SortableList from "../sortable/SortableList";
 import { swapCurriculumGoalReferences } from "../../data/highlight";
+import swapGoals from "../../utilities/swap-goals";
 
 const CurriculumPanel = () =>
 {
@@ -19,19 +20,12 @@ const CurriculumPanel = () =>
     {
         const curriculumGoals = store.data.curriculumGoals;
 
-        const indexA = curriculumGoals.findIndex(goal => goal.id.toString() === a);
-        const indexB = curriculumGoals.findIndex(goal => goal.id.toString() === b);
+        const [success, refA, refB] = swapGoals(curriculumGoals, a, b);
 
-        if (indexA === -1 || indexB === -1) return;
-
-        const [goalA, goalB] = [curriculumGoals[indexA], curriculumGoals[indexB]];
-        const [refA, refB] = [goalA.ref, goalB.ref];
-        
-        [goalA.ref, goalB.ref] = [ refB, refA ];
-        swapCurriculumGoalReferences(refA, refB);
-
-        curriculumGoals[indexA] = goalB;
-        curriculumGoals[indexB] = goalA;
+        if (success)
+        {
+            swapCurriculumGoalReferences(refA, refB);
+        }
     };
 
     return (

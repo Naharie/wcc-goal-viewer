@@ -1,6 +1,7 @@
 import { PropsWithChildren, useCallback } from "react";
 import { useSnapshot } from "valtio";
 import store from "../../data";
+import swapGoals from "../../utilities/swap-goals";
 import SortableList from "../sortable/SortableList";
 import CourseGoal from "./CourseGoal";
 
@@ -25,17 +26,7 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
     const handleSwap = (a: string, b: string) =>
     {
         const semester = store.data.courses[course].years[year].semesters[semesterIndex];
-
-        const indexA = semester.findIndex(goal => goal.id.toString() === a);
-        const indexB = semester.findIndex(goal => goal.id.toString() === b);
-
-        const [goalA, goalB] = [semester[indexA], semester[indexB]];
-        const [refA, refB] = [goalA.ref, goalB.ref];
-
-        [goalA.ref, goalB.ref] = [ refB, refA ];
-
-        semester[indexA] = goalB;
-        semester[indexB] = goalA;
+        swapGoals(semester, a, b);
     };
 
     if (semester.length === 0)

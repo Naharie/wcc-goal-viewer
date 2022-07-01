@@ -1,6 +1,7 @@
 import { useSnapshot } from "valtio";
 import store from "../../data";
 import { swapTrackReferences } from "../../data/highlight";
+import swapGoals from "../../utilities/swap-goals";
 import SortableList from "../sortable/SortableList";
 import TrackGoal from "./TrackGoal";
 
@@ -18,22 +19,12 @@ const Track = ({ track: index }: { track: number }) =>
     const handleSwap = (a: string, b: string) =>
     {
         const track = store.data.tracks[index];
-
-        var i = track.goals.findIndex(goal => goal.id.toString() === a);
-        var j = track.goals.findIndex(goal => goal.id.toString() === b);
-
-        if (i === j || i === -1 || j === -1) return;
-
-        var [goalI, goalJ] = [track.goals[i], track.goals[j]];
-        const [refA, refB] = [goalI.ref, goalJ.ref];
-
-        swapTrackReferences(track.track, refA, refB);
-
-        goalI.ref = refB;
-        goalJ.ref = refA;
-
-        track.goals[i] = goalJ;
-        track.goals[j] = goalI;
+        const [success, refA, refB] = swapGoals(track.goals, a, b);
+    
+        if (success)
+        {
+            swapTrackReferences(track.track, refA, refB);
+        }
     }
 
     return (

@@ -3,6 +3,7 @@ import { useSnapshot } from "valtio";
 import store from "../../data";
 import { computeCurriculumToTrackHighlighting, swapCurriculumSubGoalReferences } from "../../data/highlight";
 import { average } from "../../data/scores";
+import swapGoals from "../../utilities/swap-goals";
 import ScoreBadge from "../scores/ScoreBadge";
 import SortableList from "../sortable/SortableList";
 import CurriculumSubGoal from "./CurriculumSubGoal";
@@ -37,21 +38,14 @@ const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
     const handleSwap = (a: string, b: string) =>
     {
         const curriculumGoal = store.data.curriculumGoals[index];
-        const children= curriculumGoal.children;
+        const children = curriculumGoal.children;
 
-        const indexA = children.findIndex(goal => goal.id.toString() === a);
-        const indexB = children.findIndex(goal => goal.id.toString() === b);
+        const [success, refA, refB] = swapGoals(children, a, b);
 
-        if (indexA === -1 || indexB === -1) return;
-
-        const [goalA, goalB] = [children[indexA], children[indexB]];
-        const [refA, refB] = [goalA.ref, goalB.ref];
-        
-        [goalA.ref, goalB.ref] = [ refB, refA ];
-        swapCurriculumSubGoalReferences(curriculumGoal.ref, refA, refB);
-
-        children[indexA] = goalB;
-        children[indexB] = goalA;
+        if (success)
+        {
+            swapCurriculumSubGoalReferences(curriculumGoal.ref, refA, refB);
+        }
     };
 
     return (
