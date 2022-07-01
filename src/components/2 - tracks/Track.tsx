@@ -29,8 +29,8 @@ const Track = ({ track: index }: { track: number }) =>
 
         swapTrackReferences(track.track, refA, refB);
 
-        track.goals[i].ref = refB;
-        track.goals[j].ref = refA;
+        goalI.ref = refB;
+        goalJ.ref = refA;
 
         track.goals[i] = goalJ;
         track.goals[j] = goalI;
@@ -42,6 +42,7 @@ const Track = ({ track: index }: { track: number }) =>
                 <SortableList
                     className="list-decimal"
                     dragId={"track-" + track.track}
+                    lockXAxis
                     items={goals}
                     onSwap={handleSwap}
                 />

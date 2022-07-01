@@ -4,7 +4,7 @@ import { GoalData } from "./types";
 
 export const average = (numbers: readonly number[]) =>
 {
-    if (numbers.length === 0)
+    if (numbers === undefined || numbers.length === 0)
     {
         return -1;
     }

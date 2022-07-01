@@ -106,6 +106,54 @@ export const computeTrackToCourseHighlighting = () =>
     }
 };
 
+// A set of functions used for the drag and drop functionality.
+
+export const swapCurriculumGoalReferences = (refA: string, refB: string) =>
+{
+    for (const track of store.data.tracks)
+    {
+        for (const goal of track.goals)
+        {
+            for (const reference of goal.references)
+            {
+                if (reference.goal === refA)
+                {
+                    reference.goal = refB;
+                }
+                else if (reference.goal === refB)
+                {
+                    reference.goal = refA;
+                }
+            }
+        }
+    }
+};
+export const swapCurriculumSubGoalReferences = (goalRef: string, refA: string, refB: string) =>
+{
+    for (const track of store.data.tracks)
+    {
+        for (const goal of track.goals)
+        {
+            for (const reference of goal.references)
+            {
+                if (reference.goal !== goalRef) continue;
+
+                for (let index = 0; index < reference.subGoals.length; index++)
+                {
+                    if (reference.subGoals[index] === refA)
+                    {
+                        reference.subGoals[index] = refB;
+                    }
+                    else if (reference.subGoals[index] === refB)
+                    {
+                        reference.subGoals[index] = refA;
+                    }
+                }
+            }
+        }
+    }
+};
+
 export const swapTrackReferences = (track: string, refA: string, refB: string) =>
 {
     const course = store.data.courses.find(({ course }) => course === track);
@@ -117,12 +165,17 @@ export const swapTrackReferences = (track: string, refA: string, refB: string) =
         {
             for (const goal of semester)
             {
-                goal.references = goal.references.map(
-                    reference =>
-                        reference === refA ? refB :
-                        reference === refB ? refA :
-                        reference
-                );
+                for (let i = 0; i < goal.references.length; i++)
+                {
+                    if (goal.references[i] === refA)
+                    {
+                        goal.references[i] = refB;
+                    }
+                    else if (goal.references[i] === refB)
+                    {
+                        goal.references[i] = refA;
+                    }
+                }
             }
         }
     }

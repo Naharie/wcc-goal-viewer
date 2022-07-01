@@ -28,7 +28,7 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
     };
 
     return (
-        <li className={"list-item mb-4 p-1 rounded-md " + (highlighted ? "bg-selected" : "")} onClick={toggleHighlight}>
+        <li className={"list-item mb-4 p-1 rounded-md " + (highlighted ? "bg-selected" : "bg-not-selected")} onClick={toggleHighlight}>
             {goal.text}
             {
                 goal.references.length > 0 ?

@@ -12,6 +12,7 @@ export interface SortableItem
 interface SortableListProps extends React.DetailedHTMLProps<React.OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>
 {
     dragId: string;
+    lockXAxis?: boolean;
     alternativeIds?: string[];
     items: SortableItem[];
 
@@ -19,7 +20,7 @@ interface SortableListProps extends React.DetailedHTMLProps<React.OlHTMLAttribut
     className?: string;
 }
 
-const SortableList = ({ items, dragId, onSwap, ...props }: PropsWithChildren<SortableListProps>) =>
+const SortableList = ({ items, dragId, lockXAxis, onSwap, ...props }: PropsWithChildren<SortableListProps>) =>
 {
     const dragEnd = (event: DragEndEvent) =>
     {
@@ -44,7 +45,7 @@ const SortableList = ({ items, dragId, onSwap, ...props }: PropsWithChildren<Sor
                 {
                     items.map(item =>
                         <Droppable key={item.id} dragId={dragId + item.id}>
-                            <Draggable dragId={dragId + item.id}>
+                            <Draggable dragId={dragId + item.id} lockXAxis={lockXAxis}>
                                 {item.value}
                             </Draggable>
                         </Droppable>
