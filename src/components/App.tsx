@@ -5,6 +5,7 @@ import CoursePanel from "./3 - courses/CoursePanel";
 import useData from "../hooks/useData";
 import { useSnapshot } from "valtio";
 import store from "../data";
+import React from "react";
 
 export default () =>
 {
@@ -36,8 +37,18 @@ export default () =>
         );
     }
 
+    const toggleDragging = (event: React.KeyboardEvent<HTMLDivElement>) =>
+    {
+        if (!store.editorEnabled) return;
+
+        if (event.key === "Control")
+        {
+            store.canDrag = !store.canDrag;
+        }
+    };
+
     return(
-        <div className="flex min-h-0 h-full">
+        <div className="flex min-h-0 h-full" onKeyDown={toggleDragging} onKeyUp={toggleDragging}>
             <div className="flex-1 h-full border-solid border-r border-r-gray-500">
                 <CurriculumPanel />
             </div>

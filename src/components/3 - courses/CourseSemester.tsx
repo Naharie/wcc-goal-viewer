@@ -43,6 +43,7 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
                 className="list-[upper-alpha]"
                 dragId={"curriculum-" + course + "-" + year + "-" + semesterIndex}
                 items={goals}
+                allowSorting={view.editorEnabled && view.canDrag && view.editorId === undefined}
                 onSwap={handleSwap}
             />
         </div>

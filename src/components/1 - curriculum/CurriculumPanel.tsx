@@ -34,6 +34,7 @@ const CurriculumPanel = () =>
                 className="pr-1 list-[upper-roman] ml-12 my-8"
                 dragId="curriculum-goals"
                 lockXAxis
+                allowSorting={view.editorEnabled && view.canDrag && view.editorId === undefined}
                 items={goals}
                 onSwap={handleSwap}
             />

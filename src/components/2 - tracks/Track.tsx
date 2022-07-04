@@ -34,6 +34,7 @@ const Track = ({ track: index }: { track: number }) =>
                     className="list-decimal"
                     dragId={"track-" + track.track}
                     lockXAxis
+                allowSorting={view.editorEnabled && view.canDrag && view.editorId === undefined}
                     items={goals}
                     onSwap={handleSwap}
                 />

@@ -57,6 +57,7 @@ const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
                 dragId={"curriculum-goal-" + goal.id}
                 items={subGoals}
                 lockXAxis
+                allowSorting={view.editorEnabled && view.canDrag && view.editorId === undefined}
                 onSwap={handleSwap}
             />
         </li>
