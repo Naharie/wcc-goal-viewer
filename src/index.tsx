@@ -8,7 +8,9 @@ import store from "./data";
 import { getQuery } from "./utilities/query-parameter";
 
 const root = createRoot(document.getElementById("root")!);
+
 store.editorEnabled = getQuery()["editor"] === "true";
+//store.editorId = store.editorEnabled ? 21 : undefined;
 
 root.render(
     <React.StrictMode>

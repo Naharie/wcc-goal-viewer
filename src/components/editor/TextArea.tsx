@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
 
 interface TextAreaProps
@@ -18,9 +18,8 @@ const TextArea = (props: TextAreaProps) =>
     return (
         <ReactTextareaAutosize
             value={text}
-            disabled
             className="resize-none focus:outline-none w-full overflow-hidden bg-not-selected default:bg-not-selected"
-            onChange={update} 
+            onChange={update}
         />
     )
 };
