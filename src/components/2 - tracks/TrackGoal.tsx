@@ -3,6 +3,9 @@ import store from "../../data";
 import { clearCurriculumHighlight, computeTrackToCourseHighlighting } from "../../data/highlight";
 import { average } from "../../data/scores";
 import chooseBackground from "../../utilities/choose-background";
+import GoalText from "../editor/GoalText";
+import TextBox from "../editor/TextBox";
+import TrashCan from "../icons/trash-can";
 import ScoreBadge from "../scores/ScoreBadge";
 
 interface TrackGoalProps
@@ -22,11 +25,23 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
     const dimmed = view.editorId != undefined && view.editorId != goal.id;
 
     const score = average(view.scores.tracks[track.track][goal.ref]);
+    const editable = view.editorId === goal.id;
+
+    const references =
+        goal.references.map(
+            ref =>
+                ref.subGoals.length > 0 ?
+                    ref.goal + " " + ref.subGoals.join(", ") :
+                    ref.goal
+        ).join("; ");
 
     const toggleHighlight = () =>
     {
         if (editable || dimmed) return;
+
         store.highlight.tracks[track.track][goal.ref] = !highlighted;
+        store.lastHighlightedColumn = "tracks";
+
         clearCurriculumHighlight();
         computeTrackToCourseHighlighting();
     };

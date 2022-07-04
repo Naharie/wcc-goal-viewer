@@ -17,13 +17,7 @@ const Draggable = ({ children, dragId, lockXAxis, ...props }: PropsWithChildren<
     } : undefined;
 
     return (
-        <div
-            {...props}
-            ref={setNodeRef}
-            style={style}
-            {...listeners}
-            {...attributes}
-        >
+        <div {...props} ref={setNodeRef} style={style} {...listeners} {...attributes}>
             {children}
         </div>
     );

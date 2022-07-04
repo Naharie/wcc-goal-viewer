@@ -16,6 +16,7 @@ export const prepareHighlight = (data: GoalData) =>
             highlight[child.ref] = false;
         }
 
+        highlight.self = false;
         curriculumGoals[goal.ref] = highlight;
     }
 

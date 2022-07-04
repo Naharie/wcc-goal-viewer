@@ -1,6 +1,7 @@
 import { PropsWithChildren, useCallback } from "react";
 import { useSnapshot } from "valtio";
 import store from "../../data";
+import { computeTrackToCourseHighlighting } from "../../data/highlight";
 import swapGoals from "../../utilities/swap-goals";
 import SortableList from "../sortable/SortableList";
 import CourseGoal from "./CourseGoal";
@@ -18,7 +19,8 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
     const semester = view.data.courses[course].years[year].semesters[semesterIndex];
 
     const goals = 
-        semester.map((goal, index) => ({
+        semester.map((goal, index) =>
+        ({
             id: goal.id.toString(),
             value: <CourseGoal key={goal.id} course={course} year={year} semester={semesterIndex} goal={index} />
         }));
@@ -27,6 +29,7 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
     {
         const semester = store.data.courses[course].years[year].semesters[semesterIndex];
         swapGoals(semester, a, b);
+        computeTrackToCourseHighlighting();
     };
 
     if (semester.length === 0)
@@ -43,6 +46,7 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
                 className="list-[upper-alpha]"
                 dragId={"curriculum-" + course + "-" + year + "-" + semesterIndex}
                 items={goals}
+                lockXAxis
                 allowSorting={view.editorEnabled && view.canDrag && view.editorId === undefined}
                 onSwap={handleSwap}
             />

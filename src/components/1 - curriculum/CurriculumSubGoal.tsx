@@ -4,6 +4,7 @@ import { useSnapshot } from "valtio";
 import { computeCurriculumToTrackHighlighting } from "../../data/highlight";
 import { average } from "../../data/scores";
 import ScoreBadge from "../scores/ScoreBadge";
+import chooseBackground from "../../utilities/choose-background";
 
 interface CurriculumSubGoalProps
 {
@@ -18,7 +19,6 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     const parentGoal = view.data.curriculumGoals[curriculumGoal];
     const goal = view.data.curriculumGoals[curriculumGoal].children[subIndex];
 
-    const parentGoalHighlight = store.highlight.curriculumGoals[parentGoal.ref];
     const highlighted = view.highlight.curriculumGoals[parentGoal.ref][goal.ref];
     const dimmed = view.editorId !== undefined && view.editorId != goal.id;
 
@@ -27,6 +27,13 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     const toggleHighlight = () =>
     {    
         if (dimmed) return;
+
+        const parentHighlight = store.highlight.curriculumGoals[parentGoal.ref];
+
+        parentHighlight[goal.ref] = !parentHighlight[goal.ref];
+        parentHighlight.self = parentHighlight[goal.ref];
+
+        store.lastHighlightedColumn = "curriculum";
         computeCurriculumToTrackHighlighting();
     };
 

@@ -9,7 +9,12 @@ import ScoreBadge from "../scores/ScoreBadge";
 import SortableList from "../sortable/SortableList";
 import CurriculumSubGoal from "./CurriculumSubGoal";
 
-const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
+interface CurriculumGoalProps
+{
+    goal: number;
+}
+
+const CurriculumGoal = ({ goal: index,  }: PropsWithChildren<CurriculumGoalProps>) =>
 {
     const view = useSnapshot(store);
 
@@ -18,7 +23,8 @@ const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
     const dimmed = view.editorId !== undefined && view.editorId != goal.id;
 
     const subGoals =
-        goal.children.map((goal, childIndex) => ({
+        goal.children.map((goal, childIndex) =>
+        ({
             id: goal.id.toString(),
             value: <CurriculumSubGoal key={goal.id} curriculumGoal={index} subGoal={childIndex} />
         }));
@@ -35,6 +41,7 @@ const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
             highlight[key] = !highlighted;
         }
 
+        store.lastHighlightedColumn = "curriculum";
         computeCurriculumToTrackHighlighting();
     };
     const handleSwap = (a: string, b: string) =>
@@ -47,6 +54,11 @@ const CurriculumGoal = ({ goal: index }: PropsWithChildren<{ goal: number }>) =>
         if (success)
         {
             swapCurriculumSubGoalReferences(curriculumGoal.ref, refA, refB);
+        }
+
+        if (store.lastHighlightedColumn === "curriculum")
+        {
+            computeCurriculumToTrackHighlighting();
         }
     };
 

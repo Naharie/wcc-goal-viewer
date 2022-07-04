@@ -1,5 +1,5 @@
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import React, { PropsWithChildren, ReactElement, useState } from "react";
+import { DndContext, DragEndEvent, DragMoveEvent, DragStartEvent } from "@dnd-kit/core";
+import React, { PropsWithChildren, useRef } from "react";
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
 
@@ -12,15 +12,16 @@ export interface SortableItem
 interface SortableListProps extends React.DetailedHTMLProps<React.OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>
 {
     dragId: string;
-    lockXAxis?: boolean;
-    alternativeIds?: string[];
     items: SortableItem[];
+    lockXAxis?: boolean;
+    allowSorting ?: boolean;
 
     onSwap: (idA: string, idB: string) => void;
+
     className?: string;
 }
 
-const SortableList = ({ items, dragId, lockXAxis, onSwap, ...props }: PropsWithChildren<SortableListProps>) =>
+const SortableList = ({ dragId, items, lockXAxis, allowSorting = true, onSwap, ...props }: PropsWithChildren<SortableListProps>) =>
 {
     const dragEnd = (event: DragEndEvent) =>
     {
@@ -43,13 +44,17 @@ const SortableList = ({ items, dragId, lockXAxis, onSwap, ...props }: PropsWithC
         <DndContext onDragEnd={dragEnd}>
             <ol {...props} className={"flex flex-col justify-center " + (props.className ?? "")}>
                 {
-                    items.map(item =>
-                        <Droppable key={item.id} dragId={dragId + item.id}>
-                            <Draggable dragId={dragId + item.id} lockXAxis={lockXAxis}>
-                                {item.value}
-                            </Draggable>
-                        </Droppable>
-                    )
+                    allowSorting ?
+                        items.map(item =>
+                            <Droppable key={item.id} dragId={dragId + item.id} className="cursor-pointer">
+                                <Draggable dragId={dragId + item.id} lockXAxis={lockXAxis}>
+                                    {item.value}
+                                </Draggable>
+                            </Droppable>
+                        ) :
+                        items.map(item =>
+                            <div key={item.id}>{item.value}</div>
+                        )
                 }
             </ol>
         </DndContext>

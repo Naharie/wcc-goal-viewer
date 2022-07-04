@@ -28,6 +28,7 @@ export interface Store
 
     data: GoalData;
     highlight: Highlight;
+    lastHighlightedColumn: "curriculum" | "tracks";
     scores: Scores;
 
     editorEnabled: boolean;
@@ -49,13 +50,14 @@ const store = proxy<Store>({
         tracks: {},
         courses: {}
     },
+    lastHighlightedColumn: "curriculum",
     scores: {
         curriculumGoals: {},
         tracks: {},
         courses: {}
     },
 
-    editorEnabled: false
+    editorEnabled: false,
 });
 
 export default store;
