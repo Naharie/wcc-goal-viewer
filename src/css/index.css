@@ -7,6 +7,9 @@
 	--not-selected: rgb(231, 240, 247);
 	--selected: rgb(113, 234, 113);
 
+	--dim-selected: rgb(67, 136, 67);
+	--dim-not-selected: rgb(111, 115, 118);
+
 	--error: rgb(255, 77, 77);
 }
 
@@ -45,4 +48,11 @@ body
 .simplebar-hover.simplebar-scrollbar::before, .simplebar-dragging > .simplebar-vertical > .simplebar-scrollbar::before
 {
 	background-color: #3daee9;
+}
+
+/* Draggable */
+
+div[role="button"][aria-roledescription="draggable"]
+{
+    cursor: default;
 }

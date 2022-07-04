@@ -9,7 +9,11 @@ module.exports = {
             colors: {
                 "not-selected": "var(--not-selected)",
                 "selected": "var(--selected)",
-                "error": "var(--error)"
+
+                "dim-selected": "var(--dim-selected)",
+                "dim-not-selected": "var(--dim-not-selected)",
+
+                "error": "var(--error)",
             },
         },
     },

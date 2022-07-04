@@ -8,8 +8,10 @@ const TrackPanel = () =>
     const view = useSnapshot(store);
     const tracks = view.data.tracks;
 
+    const dimmed = view.editorId !== undefined;
+
     return (
-        <SimpleBar className="h-full pt-6">
+        <SimpleBar className={"h-full pt-6" + (dimmed ? " bg-dim-not-selected" : "")}>
             {tracks.map((_, index) =>
                 <Track key={index} track={index} />
             )}

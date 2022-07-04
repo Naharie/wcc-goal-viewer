@@ -16,6 +16,7 @@ const CurriculumPanel = () =>
             value: <CurriculumGoal key={goal.id} goal={index} />
         }));
 
+    const dimmed = view.editorId !== undefined;
     const handleSwap = (a: string, b: string) =>
     {
         const curriculumGoals = store.data.curriculumGoals;
@@ -29,7 +30,7 @@ const CurriculumPanel = () =>
     };
 
     return (
-        <SimpleBar style={{ maxHeight: "100%", padding: "0 1em 1em 0" }}>
+        <SimpleBar className={"max-h-full pr-4 pb-4" + (dimmed ? " bg-dim-not-selected" : "")}>
             <SortableList
                 className="pr-1 list-[upper-roman] ml-12 my-8"
                 dragId="curriculum-goals"

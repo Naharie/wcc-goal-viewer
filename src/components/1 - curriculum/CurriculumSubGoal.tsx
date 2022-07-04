@@ -20,17 +20,18 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
 
     const parentGoalHighlight = store.highlight.curriculumGoals[parentGoal.ref];
     const highlighted = view.highlight.curriculumGoals[parentGoal.ref][goal.ref];
+    const dimmed = view.editorId !== undefined && view.editorId != goal.id;
 
     const score = average(view.scores.curriculumGoals[parentGoal.ref].children[goal.ref]);
 
     const toggleHighlight = () =>
     {    
-        parentGoalHighlight[goal.ref] = !parentGoalHighlight[goal.ref];
+        if (dimmed) return;
         computeCurriculumToTrackHighlighting();
     };
 
     return (
-        <li className={"list-item rounded-md mt-2" + (highlighted ? " bg-selected" : "")} onClick={toggleHighlight}>
+        <li className={"list-item rounded-md mt-2" + chooseBackground(highlighted, dimmed)} onClick={toggleHighlight}>
             {goal.text}
             {score > -1 ? <ScoreBadge className="ml-3" value={score} /> : null}
         </li>

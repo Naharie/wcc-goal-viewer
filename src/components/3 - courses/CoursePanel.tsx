@@ -7,9 +7,10 @@ const CoursePanel = () =>
 {
     const view = useSnapshot(store);
     const courses = view.data.courses;
+    const dimmed = view.editorId !== undefined;
 
     return (
-        <SimpleBar className="h-full pt-6">
+        <SimpleBar className={"h-full pt-6" +  (dimmed ? " bg-dim-not-selected" : "")}>
             {courses.map((course, index) =>
                 <Course key={course.course} course={index} />
             )}

@@ -32,7 +32,7 @@ export interface Store
 
     editorEnabled: boolean;
     editorKind?: "curriculum-goal" | "curriculum-sub-goal" | "track-goal" | "course-goal";
-    closeEditor?: () => void;
+    editorId?: number;
 }
 
 const store = proxy<Store>({
