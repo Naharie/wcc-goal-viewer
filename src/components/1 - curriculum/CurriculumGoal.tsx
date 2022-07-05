@@ -53,11 +53,6 @@ const CurriculumGoal = ({ goal: index,  }: PropsWithChildren<CurriculumGoalProps
         {
             swapCurriculumSubGoalReferences(curriculumGoal.ref, refA, refB);
         }
-
-        if (store.lastHighlightedColumn === "curriculum")
-        {
-            computeCurriculumToTrackHighlighting();
-        }
     };
 
     return (

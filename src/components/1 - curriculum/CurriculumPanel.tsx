@@ -22,16 +22,17 @@ const CurriculumPanel = () =>
     const handleSwap = (a: string, b: string) =>
     {
         const curriculumGoals = store.data.curriculumGoals;
-
         const [success, refA, refB] = swapGoals(curriculumGoals, a, b);
 
         if (success)
         {
             swapCurriculumGoalReferences(refA, refB);
-        }
-        if (store.lastHighlightedColumn === "curriculum")
-        {
-            computeCurriculumToTrackHighlighting();
+
+            if (store.lastHighlightedColumn === "curriculum")
+            {
+                const [highlightA, highlightB] = [ store.highlight.curriculumGoals[refA], store.highlight.curriculumGoals[refB] ];
+                [ store.highlight.curriculumGoals[refA], store.highlight.curriculumGoals[refB] ] = [highlightB, highlightA];
+            }
         }
     };
 
