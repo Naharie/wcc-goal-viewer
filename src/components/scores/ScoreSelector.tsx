@@ -15,7 +15,7 @@ const ScoreSelector = (props: ScoreSelectorProps) =>
     const [value, setValue] = [props.value, props.onSetScore ?? (() => {})];
     const [open, setOpen] = useState(false);
 
-    const openSelector = () => setOpen(true);;
+    const openSelector = () => setOpen(true);
     const chooseValue = (value: number) => () =>
     {
         setValue(value);
@@ -27,18 +27,25 @@ const ScoreSelector = (props: ScoreSelectorProps) =>
         props?.onDelete?.();
     };
 
+    const styles = `
+        inline-block
+        bg-gray-300
+        ${open ? "w-60" : "w-10"} h-10
+        rounded-full text-3xl
+        ${props.className ?? ""}
+    `;
+
     return (
-        <div className={`inline-block bg-gray-300 ${open ? "w-60" : "w-10"} h-10 rounded-full text-3xl ${props.className ?? ""}`}>
-            {
-                !open ?
-                    <ScoreBadge value={value} onClick={openSelector} /> :
-                    
-                    <>
-                        {[ 0, 1, 2, 3, 4 ].map(value =>
-                            <ScoreBadge key={value} value={value} onClick={chooseValue(value)} />
-                        )}
-                        <BadgeButton value="×" onClick={deleteSelector} />
-                    </>
+        <div className={styles}>
+            {!open ?
+                <ScoreBadge value={value} onClick={openSelector} /> : 
+                <>
+                    {[ 0, 1, 2, 3, 4 ].map(value =>
+                        <ScoreBadge key={value} value={value} onClick={chooseValue(value)} />
+                    )}
+
+                    <BadgeButton value="×" onClick={deleteSelector} />
+                </>
             }
         </div>
     )

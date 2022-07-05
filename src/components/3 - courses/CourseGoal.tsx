@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSnapshot } from "valtio";
 import store from "../../data";
 import { propagateScores } from "../../data/scores";
-import chooseBackground from "../../utilities/choose-background";
+import GoalBase from "../GoalBase";
 import BadgeButton from "../scores/BadgeButton";
 import ScoreSelector from "../scores/ScoreSelector";
 
@@ -14,7 +14,7 @@ interface CourseGoalProps
     goal: number;
 }
 
-const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex, captureClick }: CourseGoalProps) =>
+const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: CourseGoalProps) =>
 {
     const view = useSnapshot(store);
     const [addingScores, setAddingScores] = useState(false);
@@ -50,19 +50,16 @@ const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex, capt
     };
 
     return (
-        <li className={"list-item mb-4 rounded-md p-1" + chooseBackground(highlighted, dimmed)} onClick={toggleAddingScores}>
-            {goal.text}
-            {
-                goal.references.length > 0 ? ` (${goal.references.join(", ")})` : ""
-            }
-            .
+        <GoalBase goal={goal} highlighted={highlighted} className={"mb-4 p-1"} onClick={toggleAddingScores}>
+            {goal.references.length > 0 ? ` (${goal.references.join(", ")})` : ""}.
+            
             <div>
             {scores.map((score, index) =>
                 <ScoreSelector key={index} className="mr-3" value={score} onSetScore={setScore(index)} onDelete={deleteScore(index)} />
             )}
             {addingScores ? <BadgeButton value="+" onClick={addScore} /> : null}
             </div>
-        </li>
+        </GoalBase>
     );
 };
 

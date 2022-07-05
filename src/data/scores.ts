@@ -25,9 +25,9 @@ export const average = (numbers: readonly number[]) =>
 export const readScoresFromQuery = () =>
 {
     const query = getQuery();
-    const scores = query["scores"];
+    const scores = query["scores"]?.split(" ")?.join("");
 
-    if (scores === undefined) return;
+    if (scores === undefined || scores === "") return;
 
     const courses = scores.split("|").map(course => course.split("@"));
     if (courses.length === 0) return;

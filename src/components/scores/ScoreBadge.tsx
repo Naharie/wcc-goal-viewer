@@ -1,4 +1,5 @@
 import React from "react";
+import useClick from "../../hooks/useClick";
 
 interface ScoreBadgeProps
 {
@@ -9,25 +10,23 @@ interface ScoreBadgeProps
 
 const ScoreBadge = ({ value, className, onClick } : ScoreBadgeProps) =>
 {
+    const [mouseDown, mouseUp] = useClick(onClick ?? (() => {}))
+
+    const [color, hoverColor] =
+        value <= 2 ?
+            ["bg-red-400", "hover:bg-red-600"] :
+            ["bg-blue-400", "hover:bg-blue-500"];
+
     return (
         <div className={`
             inline-flex justify-center items-center
             w-10 h-10 rounded-full text-3xl
-
-            ${
-                value <= 2 ?
-                    "bg-red-400" :
-                    "bg-blue-400"
-            }
-            ${
-                onclick !== undefined ?
-                    value <= 2 ?
-                        "hover:bg-red-600" :
-                        "hover:bg-blue-500"
-                    : ""
-            }
+            ${color}
+            ${onclick && hoverColor}
             ${className ?? ""}
-        `} onClick={onClick}>
+        `}
+            onMouseDown={mouseDown} onMouseUp={mouseUp}
+        >
             {value}
         </div>
     )

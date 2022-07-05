@@ -17,7 +17,10 @@ export const setQuery = (query: Record<string, string>) =>
 {
     const search =
         Object.entries(query)
-        .filter(([name, ]) => name != "" && name != undefined)
+        .filter(([name, value ]) =>
+            name != undefined && name !== ""
+            && value != undefined && value !== ""
+        )
         .map(([name, value]) => encodeURIComponent(name) + "=" + encodeURIComponent(value)).join("&");
     const url = location.toString().split("?")[0] + "?" + search;
 
