@@ -47,7 +47,7 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
                 dragId={"curriculum-" + course + "-" + year + "-" + semesterIndex}
                 items={goals}
                 lockXAxis
-                allowSorting={view.editorEnabled && view.canDrag && view.editorId === undefined}
+                allowSorting={view.editorEnabled && view.editorId === undefined}
                 onSwap={handleSwap}
             />
         </div>
