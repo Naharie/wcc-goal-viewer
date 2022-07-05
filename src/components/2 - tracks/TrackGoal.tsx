@@ -20,8 +20,8 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
     const goal = track.goals[index];
 
     const highlighted = view.highlight.tracks[track.track][goal.ref];
-
     const score = average(view.scores.tracks[track.track][goal.ref]);
+
     const editable = view.editorId === goal.id;
 
     const references =
@@ -51,7 +51,7 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
                     <>
                         <TextBox value={references} className="px-2 border border-solid border-gray-300 border-b-transparent rounded-t-md w-full" />
                         <div className="bg-red-300 px-2 border border-solid border-gray-300 border-t-transparent rounded-b-md w-[99.3%] box-border">
-                            References are expected to be of the form:<br/>
+                            Format references as follows:<br/>
                             II a, b; III b<br />
                             That is: goal sub-goal, ...; goal sub-goal, ...; ...
                         </div>
