@@ -3,8 +3,7 @@ import store from "../../data";
 import { useSnapshot } from "valtio";
 import { computeCurriculumToTrackHighlighting } from "../../data/highlight";
 import { average } from "../../data/scores";
-import ScoreBadge from "../scores/ScoreBadge";
-import chooseBackground from "../../utilities/choose-background";
+import GoalBase from "../GoalBase";
 
 interface CurriculumSubGoalProps
 {
@@ -20,14 +19,10 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     const goal = view.data.curriculumGoals[curriculumGoal].children[subIndex];
 
     const highlighted = view.highlight.curriculumGoals[parentGoal.ref][goal.ref];
-    const dimmed = view.editorId !== undefined && view.editorId != goal.id;
-
     const score = average(view.scores.curriculumGoals[parentGoal.ref].children[goal.ref]);
 
     const toggleHighlight = () =>
     {    
-        if (dimmed) return;
-
         const parentHighlight = store.highlight.curriculumGoals[parentGoal.ref];
 
         parentHighlight[goal.ref] = !parentHighlight[goal.ref];
@@ -38,10 +33,14 @@ const CurriculumSubGoal = ({ curriculumGoal, subGoal: subIndex }: PropsWithChild
     };
 
     return (
-        <li className={"list-item rounded-md mt-2" + chooseBackground(highlighted, dimmed)} onClick={toggleHighlight}>
-            {goal.text}
-            {score > -1 ? <ScoreBadge className="ml-3" value={score} /> : null}
-        </li>
+        <GoalBase
+            goal={goal}
+            highlighted={highlighted}
+            score={score}
+            
+            className="mt-2"
+            onClick={toggleHighlight}
+        />
     );
 };
 

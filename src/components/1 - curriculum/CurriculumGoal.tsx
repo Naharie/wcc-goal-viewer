@@ -1,11 +1,11 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { useSnapshot } from "valtio";
 import store from "../../data";
 import { computeCurriculumToTrackHighlighting, swapCurriculumSubGoalReferences } from "../../data/highlight";
 import { average } from "../../data/scores";
 import chooseBackground from "../../utilities/choose-background";
 import swapGoals from "../../utilities/swap-goals";
-import ScoreBadge from "../scores/ScoreBadge";
+import GoalBase from "../GoalBase";
 import SortableList from "../sortable/SortableList";
 import CurriculumSubGoal from "./CurriculumSubGoal";
 
@@ -20,7 +20,7 @@ const CurriculumGoal = ({ goal: index,  }: PropsWithChildren<CurriculumGoalProps
 
     const goal = view.data.curriculumGoals[index];
     const highlighted = Object.values(view.highlight.curriculumGoals[goal.ref]).some(v => v);
-    const dimmed = view.editorId !== undefined && view.editorId != goal.id;
+    const dimmed = view.editorId != undefined && view.editorId != goal.id;
 
     const subGoals =
         goal.children.map((goal, childIndex) =>
@@ -30,10 +30,8 @@ const CurriculumGoal = ({ goal: index,  }: PropsWithChildren<CurriculumGoalProps
         }));
     const score = average(view.scores.curriculumGoals[goal.ref].score);
 
-    const toggleHighlight = (event: React.MouseEvent<HTMLLIElement>) =>
+    const toggleHighlight = () =>
     {
-        if (event.target !== event.currentTarget || dimmed) return;
-
         const highlight = store.highlight.curriculumGoals[goal.ref];
 
         for (const key in highlight)
@@ -63,18 +61,16 @@ const CurriculumGoal = ({ goal: index,  }: PropsWithChildren<CurriculumGoalProps
     };
 
     return (
-        <li className={"m-1 mb-6 list-item rounded-md" + chooseBackground(highlighted, dimmed)} onClick={toggleHighlight}>
-            {goal.text}
-            {score > -1 ? <ScoreBadge className="ml-3" value={score} /> : null}
+        <GoalBase goal={goal} highlighted={highlighted} score={score} className="m-1 mb-6" onClick={toggleHighlight}>
             <SortableList
                 className={"list-[lower-alpha] mt-1" + chooseBackground(false, dimmed)}
                 dragId={"curriculum-goal-" + goal.id}
                 items={subGoals}
                 lockXAxis
-                allowSorting={view.editorEnabled && view.canDrag && view.editorId === undefined}
+                allowSorting={view.editorEnabled && view.editorId === undefined}
                 onSwap={handleSwap}
             />
-        </li>
+        </GoalBase>
     );
 };
 
