@@ -32,7 +32,6 @@ export interface Store
     scores: Scores;
 
     editorEnabled: boolean;
-    editorKind?: "curriculum-goal" | "curriculum-sub-goal" | "track-goal" | "course-goal";
     editorId?: number;
 }
 
@@ -57,7 +56,7 @@ const store = proxy<Store>({
         courses: {}
     },
 
-    editorEnabled: false,
+    editorEnabled: false
 });
 
 export default store;

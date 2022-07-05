@@ -46,7 +46,7 @@ const SortableList = ({ dragId, items, lockXAxis, allowSorting = true, onSwap, .
                 {
                     allowSorting ?
                         items.map(item =>
-                            <Droppable key={item.id} dragId={dragId + item.id} className="cursor-pointer">
+                            <Droppable key={item.id} dragId={dragId + item.id}>
                                 <Draggable dragId={dragId + item.id} lockXAxis={lockXAxis}>
                                     {item.value}
                                 </Draggable>
