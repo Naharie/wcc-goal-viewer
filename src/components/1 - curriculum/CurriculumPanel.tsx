@@ -3,7 +3,7 @@ import CurriculumGoal from "./CurriculumGoal";
 import store from "../../data";
 import { useSnapshot } from "valtio";
 import SortableList from "../sortable/SortableList";
-import { computeCurriculumToTrackHighlighting, swapCurriculumGoalReferences } from "../../data/highlight";
+import { swapCurriculumGoalReferences } from "../../data/highlight";
 import swapGoals from "../../utilities/swap-goals";
 
 const CurriculumPanel = () =>
