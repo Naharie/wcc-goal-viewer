@@ -9,11 +9,9 @@ interface DraggableProps extends React.DetailedHTMLProps<React.HTMLAttributes<HT
 
 const Draggable = ({ children, dragId, lockXAxis, ...props }: PropsWithChildren<DraggableProps>) =>
 {
-    const {attributes, listeners, setNodeRef, transform} = useDraggable({
-        id: dragId
-    });
+    const {attributes, listeners, setNodeRef, transform} = useDraggable({ id: dragId });
     const style = transform  ? {
-        transform: `translate3d(${lockXAxis ? 0 : transform.x}px, ${transform.y}px, 0)`
+        transform: `translate(${lockXAxis ? 0 : transform.x}px, ${transform.y}px)`
     } : undefined;
 
     return (

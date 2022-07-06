@@ -8,9 +8,7 @@ interface DroppableProps extends React.DetailedHTMLProps<React.HTMLAttributes<HT
 
 const Droppable = ({ children, dragId, ...props }: PropsWithChildren<DroppableProps>) =>
 {
-    const {isOver, setNodeRef} = useDroppable({
-        id: dragId
-    })
+    const {setNodeRef} = useDroppable({ id: dragId });
 
     return (
         <div {...props} ref={setNodeRef} >

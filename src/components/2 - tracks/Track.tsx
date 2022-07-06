@@ -27,16 +27,8 @@ const Track = ({ track: index }: { track: number }) =>
             swapTrackReferences(track.name, refA, refB);
         }
 
-        if (store.lastHighlightedColumn === "curriculum")
-        {
-            computeCurriculumToTrackHighlighting();
-        }
-        else
-        {
-            const [highlightA, highlightB] = [ store.highlight.tracks[track.name][refA], store.highlight.tracks[track.name][refB] ];
-            [ store.highlight.tracks[track.name][refA], store.highlight.tracks[track.name][refB] ] = [highlightB, highlightA];
-            computeTrackToCourseHighlighting();
-        }
+        const [highlightA, highlightB] = [ store.highlight.tracks[track.name][refA], store.highlight.tracks[track.name][refB] ];
+        [ store.highlight.tracks[track.name][refA], store.highlight.tracks[track.name][refB] ] = [highlightB, highlightA];
     }
 
     return (

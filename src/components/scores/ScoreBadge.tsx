@@ -5,7 +5,7 @@ interface ScoreBadgeProps
 {
     value: number;
     className?: string;
-    onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const ScoreBadge = ({ value, className, onClick } : ScoreBadgeProps) =>
