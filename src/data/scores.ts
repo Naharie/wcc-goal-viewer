@@ -1,6 +1,6 @@
 import store, { CurriculumScore } from ".";
 import { getQuery, setQueryParameter } from "../utilities/query-parameter";
-import { GoalData } from "./types";
+import { JsonData } from "./json";
 
 export const average = (numbers: readonly number[]) =>
 {
@@ -43,7 +43,7 @@ export const readScoresFromQuery = () =>
     propagateScores();
 };
 
-export const prepareScores = (data: GoalData) =>
+export const prepareScores = (data: JsonData) =>
 {
     const curriculumGoals: Record<string, CurriculumScore> = {};
     const tracks: Record<string, Record<string, number[]>> = {};
@@ -70,7 +70,7 @@ export const prepareScores = (data: GoalData) =>
             scores[goal.ref] = [];
         }
 
-        tracks[track.track] = scores;
+        tracks[track.name] = scores;
     }
 
     for (const course of data.courses)
@@ -88,7 +88,7 @@ export const prepareScores = (data: GoalData) =>
             }
         }
 
-        courses[course.course] = scores;
+        courses[course.name] = scores;
     }
 
     store.scores = { curriculumGoals, tracks, courses };
@@ -121,7 +121,7 @@ export const clearPropagatedScores = () =>
             scores[goal.ref] = [];
         }
 
-        tracks[track.track] = scores;
+        tracks[track.name] = scores;
     }
 
     store.scores.curriculumGoals = curriculumGoals;
@@ -130,7 +130,7 @@ export const clearPropagatedScores = () =>
 
 export const propagateScoresToTracks = () =>
 {
-    for (const { course, years } of store.data.courses)
+    for (const { name: course, years } of store.data.courses)
     {
         for (const { semesters } of years)
         {
@@ -150,7 +150,7 @@ export const propagateScoresToTracks = () =>
 
 export const propagateScoresToCurriculumGoals = () =>
 {
-    for (const { track, goals } of store.data.tracks)
+    for (const { name: track, goals } of store.data.tracks)
     {
         for (const goal of goals)
         {

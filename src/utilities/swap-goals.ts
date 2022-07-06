@@ -1,4 +1,4 @@
-import { Goal } from "../data/types";
+import { Goal } from "../data/json";
 
 const swapGoals = (goals: Goal[], a: string, b: string): [boolean, string, string] =>
 {

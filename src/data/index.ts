@@ -1,5 +1,5 @@
 import { proxy } from "valtio";
-import { GoalData } from "./types";
+import { JsonData } from "./json";
 
 export interface Highlight
 {
@@ -26,7 +26,7 @@ export interface Store
     isLoaded: boolean;
     errorMessage: string | null;
 
-    data: GoalData;
+    data: JsonData;
     highlight: Highlight;
     lastHighlightedColumn: "curriculum" | "tracks";
     scores: Scores;

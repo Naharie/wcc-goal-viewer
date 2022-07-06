@@ -1,5 +1,11 @@
 import React, { useCallback, useRef } from "react";
 
+/**
+ * Returns a mouse down function and a mouse up function that together simulate a mouse click.
+ * This is necessary because normal clicks can't be registered on draggable elements.
+ * @param handler The function to run on click.
+ * @returns A mouse down function and a mouse up function.
+ */
 const useClick = <T = Element>(handler: (event: React.MouseEvent<T>) => void) =>
 {
     const mousePosition = useRef({ x: 0, y: 0});

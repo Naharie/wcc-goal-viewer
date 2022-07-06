@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactNode } from "react";
 import { useSnapshot } from "valtio";
 import store from "../data";
-import { Goal as GoalElement } from "../data/types";
+import { Goal } from "../data/json";
 import useClick from "../hooks/useClick";
 import chooseBackground from "../utilities/choose-background";
 import GoalText from "./editor/GoalText";
@@ -9,7 +9,7 @@ import ScoreBadge from "./scores/ScoreBadge";
 
 interface GoalProps
 {
-    goal: GoalElement;
+    goal: Goal;
     score?: number;
 
     slotAfterText?: ReactNode;
