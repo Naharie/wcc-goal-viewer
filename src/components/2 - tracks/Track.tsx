@@ -24,7 +24,7 @@ const Track = ({ track: index }: { track: number }) =>
     
         if (success)
         {
-            swapTrackReferences(track.track, refA, refB);
+            swapTrackReferences(track.name, refA, refB);
         }
 
         if (store.lastHighlightedColumn === "curriculum")
@@ -33,18 +33,18 @@ const Track = ({ track: index }: { track: number }) =>
         }
         else
         {
-            const [highlightA, highlightB] = [ store.highlight.tracks[track.track][refA], store.highlight.tracks[track.track][refB] ];
-            [ store.highlight.tracks[track.track][refA], store.highlight.tracks[track.track][refB] ] = [highlightB, highlightA];
+            const [highlightA, highlightB] = [ store.highlight.tracks[track.name][refA], store.highlight.tracks[track.name][refB] ];
+            [ store.highlight.tracks[track.name][refA], store.highlight.tracks[track.name][refB] ] = [highlightB, highlightA];
             computeTrackToCourseHighlighting();
         }
     }
 
     return (
         <div className="mx-8">
-            <a className="block text-center no-underline text-black mb-4">{track.track}</a>
+            <a className="block text-center no-underline text-black mb-4">{track.name}</a>
             <SortableList
                 className="list-decimal"
-                dragId={"track-" + track.track}
+                dragId={"track-" + track.name}
                 lockXAxis
                 allowSorting={view.editorEnabled && view.editorId === undefined}
                 items={goals}

@@ -1,7 +1,7 @@
 import store from ".";
-import { GoalData } from "./types";
+import { JsonData } from "./json";
 
-export const prepareHighlight = (data: GoalData) =>
+export const prepareHighlight = (data: JsonData) =>
 {
     const curriculumGoals: Record<string, Record<string, boolean>> = {};
     const tracks: Record<string, Record<string, boolean>> = {};
@@ -29,7 +29,7 @@ export const prepareHighlight = (data: GoalData) =>
             highlight[goal.ref] = false;
         }
 
-        tracks[track.track] = highlight;
+        tracks[track.name] = highlight;
     }
 
     for (const course of data.courses)
@@ -47,7 +47,7 @@ export const prepareHighlight = (data: GoalData) =>
             }
         }
 
-        courses[course.course] = highlight;
+        courses[course.name] = highlight;
     }
 
     store.highlight = { curriculumGoals, tracks, courses };
@@ -70,7 +70,7 @@ export const computeCurriculumToTrackHighlighting = () =>
 {
     const curriculumHighlight = store.highlight.curriculumGoals;
 
-    for (const { track, goals } of store.data.tracks)
+    for (const { name: track, goals } of store.data.tracks)
     {
         for (const goal of goals)
         {
@@ -90,7 +90,7 @@ export const computeTrackToCourseHighlighting = () =>
 {
     const trackHighlight = store.highlight.tracks;
 
-    for (const { course, years } of store.data.courses)
+    for (const { name: course, years } of store.data.courses)
     {
         for (const { semesters } of years)
         {
@@ -157,7 +157,7 @@ export const swapCurriculumSubGoalReferences = (goalRef: string, refA: string, r
 
 export const swapTrackReferences = (track: string, refA: string, refB: string) =>
 {
-    const course = store.data.courses.find(({ course }) => course === track);
+    const course = store.data.courses.find(({ name: course }) => course === track);
     if (course === undefined) return;
     
     for (const year of course.years)

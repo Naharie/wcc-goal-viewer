@@ -119,7 +119,7 @@
     ],
     "tracks": [
         {
-            "track": "HMN",
+            "name": "HMN",
             "goals": [
                 {
                     "text": "Become deeper and more reflective citizens of Western Civilization by standing consciously in a tradition of shared texts, events, people, characters, and ideas",
@@ -246,7 +246,7 @@
             ]
         },
         {
-            "track": "THL",
+            "name": "THL",
             "goals": [
                 {
                     "text": "Obtain a synoptic view of revealed truth through a well-ordered study of all the major divisions of its subject matter",
@@ -341,7 +341,7 @@
             ]
         },
         {
-            "track": "PHL",
+            "name": "PHL",
             "goals": [
                 {
                     "text": "Form the habits of inquiry, dialectic, demonstration, and analogy through applying Trivium skills to concrete considerations",
@@ -427,7 +427,7 @@
             ]
         },
         {
-            "track": "MTH/SCI",
+            "name": "MTH/SCI",
             "goals": [
                 {
                     "text": "Become more attentive to the natural world in its detail and complexity",
@@ -514,7 +514,7 @@
             ]
         },
         {
-            "track": "MUS/ART",
+            "name": "MUS/ART",
             "goals": [
                 {
                     "text": "Come to see how great ideas throughout Western history have found concrete expression in culture, and how culture thus formed shapes the people who partake of it",
@@ -625,7 +625,7 @@
             ]
         },
         {
-            "track": "TRV",
+            "name": "TRV",
             "goals": [
                 {
                     "text": "Think, write, and speak clearly and effectively, with consideration of the truth and validity of their statements as well as sensitivity to genre, audience, and purpose",
@@ -699,7 +699,7 @@
             ]
         },
         {
-            "track": "LAT",
+            "name": "LAT",
             "goals": [
                 {
                     "text": "Come to love the Latin language and to desire to progress in it further",
@@ -770,7 +770,7 @@
             ]
         },
         {
-            "track": "OLP",
+            "name": "OLP",
             "goals": [
                 {
                     "text": "Grow in humility and wonder through immersion in nature, God’s “first book.”",
@@ -876,7 +876,7 @@
     ],
     "courses": [
         {
-            "course": "HMN",
+            "name": "HMN",
             "years": [
                 {
                     "number": 100,
@@ -1375,7 +1375,7 @@
             ]
         },
         {
-            "course": "THL",
+            "name": "THL",
             "years": [
                 {
                     "number": 100,
@@ -1775,7 +1775,7 @@
             ]
         },
         {
-            "course": "PHL",
+            "name": "PHL",
             "years": [
                 {
                     "number": 100,
@@ -2206,7 +2206,7 @@
             ]
         },
         {
-            "course": "MTH/SCI",
+            "name": "MTH/SCI",
             "years": [
                 {
                     "number": 100,
@@ -2535,7 +2535,7 @@
             ]
         },
         {
-            "course": "MUS/ART",
+            "name": "MUS/ART",
             "years": [
                 {
                     "number": 100,
@@ -2748,7 +2748,7 @@
             ]
         },
         {
-            "course": "TRV",
+            "name": "TRV",
             "years": [
                 {
                     "number": 100,
@@ -3082,7 +3082,7 @@
             ]
         },
         {
-            "course": "LAT",
+            "name": "LAT",
             "years": [
                 {
                     "number": 100,
@@ -3199,7 +3199,7 @@
             ]
         },
         {
-            "course": "OLP",
+            "name": "OLP",
             "years": [
                 {
                     "number": 100,

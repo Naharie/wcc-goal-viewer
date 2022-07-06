@@ -56,7 +56,7 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "track": {
+                    "name": {
                         "type": "string",
                         "description": "The abbreviated track name (HMN for Humanities, PHL for Philosophy and so on)."
                     },
@@ -107,7 +107,7 @@
                         "description": "The list of goals that apply specifically to this track."
                     }
                 },
-                "required": [ "track", "goals" ],
+                "required": [ "name", "goals" ],
                 "description": "A single curriculum track (examples are Humanities (HMN), Theology (THL), Philosophy (PHL), and such.)"
             },
             "description": "The set of curriculum tracks and their goals."
@@ -117,7 +117,7 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "course": {
+                    "name": {
                         "type": "string",
                         "description": "The abbreviated course name (HMN for Humanities, PHL for Philosophy and so on)."
                     },
@@ -176,7 +176,7 @@
                         "description": "The goals that are specific to this course divided by year and semester."
                     }
                 },
-                "required": [ "course", "years" ],
+                "required": [ "name", "years" ],
                 "description": "A single course and its goals divided by year."
             },
             "description": "A listing of specific courses and their goals."

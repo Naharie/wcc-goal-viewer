@@ -10,7 +10,7 @@ const Course = ({ course: index }: PropsWithChildren<{ course: number }>) =>
 
     return (
         <div className="mx-8">
-            <a className="block text-center no-underline text-black mb-4">{course.course}</a>
+            <a className="block text-center no-underline text-black mb-4">{course.name}</a>
             {course.years.map((year, yearIndex) =>
                 <CourseYear key={year.number} course={index} year={yearIndex} />
             )}

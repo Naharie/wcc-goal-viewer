@@ -9,8 +9,9 @@ import { getQuery } from "./utilities/query-parameter";
 
 const root = createRoot(document.getElementById("root")!);
 
+// Enable the editor if a query flag named editor exists.
+// (?editor=true)
 store.editorEnabled = getQuery()["editor"] === "true";
-//store.editorId = store.editorEnabled ? 21 : undefined;
 
 root.render(
     <React.StrictMode>

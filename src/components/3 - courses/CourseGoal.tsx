@@ -22,10 +22,10 @@ const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: Co
     const course = view.data.courses[courseIndex];
     const goal = course.years[year].semesters[semester][goalIndex];
 
-    const highlighted = view.highlight.courses[course.course][goal.ref];
+    const highlighted = view.highlight.courses[course.name][goal.ref];
     const dimmed = view.editorId !== undefined && view.editorId != goal.id;
 
-    const scores = view.scores.courses[course.course][goal.ref];
+    const scores = view.scores.courses[course.name][goal.ref];
 
     const toggleAddingScores = (event: React.MouseEvent<HTMLLIElement>) =>
     {
@@ -35,17 +35,17 @@ const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: Co
 
     const addScore = () =>
     {
-        store.scores.courses[course.course][goal.ref].push(0);
+        store.scores.courses[course.name][goal.ref].push(0);
         propagateScores();
     };
     const deleteScore = (index: number) => () =>
     {
-        store.scores.courses[course.course][goal.ref].splice(index, 1);
+        store.scores.courses[course.name][goal.ref].splice(index, 1);
         propagateScores();
     };
     const setScore = (index: number) => (score: number) =>
     {
-        store.scores.courses[course.course][goal.ref][index] = score;
+        store.scores.courses[course.name][goal.ref][index] = score;
         propagateScores();
     };
 

@@ -19,8 +19,8 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
     const track = view.data.tracks[trackIndex];
     const goal = track.goals[index];
 
-    const highlighted = view.highlight.tracks[track.track][goal.ref];
-    const score = average(view.scores.tracks[track.track][goal.ref]);
+    const highlighted = view.highlight.tracks[track.name][goal.ref];
+    const score = average(view.scores.tracks[track.name][goal.ref]);
 
     const editable = view.editorId === goal.id;
 
@@ -34,7 +34,7 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
 
     const toggleHighlight = () =>
     {
-        store.highlight.tracks[track.track][goal.ref] = !highlighted;
+        store.highlight.tracks[track.name][goal.ref] = !highlighted;
         store.lastHighlightedColumn = "tracks";
 
         clearCurriculumHighlight();
