@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-import store from "../data";
-import { prepareHighlight } from "../data/highlight";
-import { prepareScores } from "../data/scores";
+import { setData, setLoaded } from "../data/actions/goals";
 import { JsonData } from "../data/json";
 
 /**
@@ -15,16 +13,12 @@ const useData = () =>
             .then(response => response.json())
             .then((data: JsonData) =>
             {
-                store.data = data;
-                prepareHighlight(data);
-                prepareScores(data);
-                store.isLoaded = true;
+                setData(data);
+                setLoaded();
             })
             .catch((_: Error) =>
-            {
-                store.errorMessage = "Sorry, something went wrong while loading the goal data.";
-                store.isLoaded = true;
-            });
+                setLoaded("Sorry, something went wrong while loading the goal data.")
+            );
     }, []);
 };
 

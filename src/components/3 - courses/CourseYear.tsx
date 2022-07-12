@@ -11,8 +11,8 @@ const CourseYear = ({ course, year: yearIndex }: PropsWithChildren<CourseYearPro
 {
     return (
         <div className="flex justify-center w-full">
-            <CourseSemester course={course} year={yearIndex} semester={0} />
-            <CourseSemester course={course} year={yearIndex} semester={1} />
+            <CourseSemester course={course} year={yearIndex} semesterIndex={0} />
+            <CourseSemester course={course} year={yearIndex} semesterIndex={1} />
         </div>
     );
 };

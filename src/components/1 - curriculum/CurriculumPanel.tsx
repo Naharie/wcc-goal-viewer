@@ -1,50 +1,28 @@
 import SimpleBar from "simplebar-react";
 import CurriculumGoal from "./CurriculumGoal";
-import store from "../../data";
-import { useSnapshot } from "valtio";
 import SortableList from "../sortable/SortableList";
-import { swapCurriculumGoalReferences } from "../../data/highlight";
-import swapGoals from "../../utilities/swap-goals";
+import useCurriculumGoals from "../../data/views/1 - curriculum/useCurriculumGoals";
 
 const CurriculumPanel = () =>
 {
-    const view = useSnapshot(store);
+    const { goals: curriculumGoals, swapChildren, ...view } = useCurriculumGoals();
 
     const goals =
-        view.data.curriculumGoals.map((goal, index) =>
+        curriculumGoals.map((goal, index) =>
         ({
             id: goal.id.toString(),
-            value: <CurriculumGoal key={goal.id} goal={index} />
+            value: <CurriculumGoal key={goal.id} index={index} />
         }));
 
-    const dimmed = view.editorId !== undefined;
-
-    const handleSwap = (a: string, b: string) =>
-    {
-        const curriculumGoals = store.data.curriculumGoals;
-        const [success, refA, refB] = swapGoals(curriculumGoals, a, b);
-
-        if (success)
-        {
-            swapCurriculumGoalReferences(refA, refB);
-
-            if (store.lastHighlightedColumn === "curriculum")
-            {
-                const [highlightA, highlightB] = [ store.highlight.curriculumGoals[refA], store.highlight.curriculumGoals[refB] ];
-                [ store.highlight.curriculumGoals[refA], store.highlight.curriculumGoals[refB] ] = [highlightB, highlightA];
-            }
-        }
-    };
-
     return (
-        <SimpleBar className={"max-h-full pr-4 pb-4" + (dimmed ? " bg-dim-not-selected" : "")}>
+        <SimpleBar className={"max-h-full pr-4 pb-4" + (view.dimmed ? " bg-dim-not-selected" : "")}>
             <SortableList
                 className="pr-1 list-[upper-roman] ml-12 my-8"
                 dragId="curriculum-goals"
                 lockXAxis
-                allowSorting={view.editorEnabled && view.editorId === undefined}
+                allowSorting={view.allowSorting}
                 items={goals}
-                onSwap={handleSwap}
+                onSwap={swapChildren}
             />
         </SimpleBar>
     );

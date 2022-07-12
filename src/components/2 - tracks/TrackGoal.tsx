@@ -1,28 +1,16 @@
-import { useSnapshot } from "valtio";
-import store from "../../data";
-import { clearCurriculumHighlight, computeTrackToCourseHighlighting } from "../../data/highlight";
-import { average } from "../../data/scores";
+import useTrackGoal from "../../data/views/2 - tracks/useTrackGoal";
 import TextBox from "../editor/TextBox";
 import GoalBase from "../GoalBase";
-import TrashCan from "../icons/trash-can";
 
 interface TrackGoalProps
 {
-    track: number;
-    goal: number;
+    trackIndex: number;
+    index: number;
 }
 
-const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
+const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
 {
-    const view = useSnapshot(store);
-
-    const track = view.data.tracks[trackIndex];
-    const goal = track.goals[index];
-
-    const highlighted = view.highlight.tracks[track.name][goal.ref];
-    const score = average(view.scores.tracks[track.name][goal.ref]);
-
-    const editable = view.editorId === goal.id;
+    const { goal, highlighted, score, editable, toggleHighlight } = useTrackGoal(trackIndex, index);
 
     const references =
         goal.references.map(
@@ -31,15 +19,6 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
                     ref.goal + " " + ref.subGoals.join(", ") :
                     ref.goal
         ).join("; ");
-
-    const toggleHighlight = () =>
-    {
-        store.highlight.tracks[track.name][goal.ref] = !highlighted;
-        store.lastHighlightedColumn = "tracks";
-
-        clearCurriculumHighlight();
-        computeTrackToCourseHighlighting();
-    };
 
     return (
         <GoalBase
@@ -59,9 +38,6 @@ const TrackGoal = ({ track: trackIndex, goal: index }: TrackGoalProps) =>
                 : goal.references.length > 0 ? ` (${references}).` : ""
             }
         >
-            {editable ?
-                <TrashCan className="absolute right-1 box-content p-1 hover:bg-red-500 cursor-pointer rounded-md" /> : null
-            }
             {
                 editable ?
                     <div className="flex flex-row w-full mt-2">

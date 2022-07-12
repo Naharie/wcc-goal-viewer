@@ -5,6 +5,7 @@ import { Goal } from "../data/json";
 import useClick from "../hooks/useClick";
 import chooseBackground from "../utilities/choose-background";
 import GoalText from "./editor/GoalText";
+import TrashCan from "./icons/trash-can";
 import ScoreBadge from "./scores/ScoreBadge";
 
 interface GoalProps
@@ -37,6 +38,9 @@ const GoalBase = ({ goal, score, slotAfterText, ...props }: PropsWithChildren<Go
             className={"list-item rounded-md " + chooseBackground(props.highlighted, dimmed) + (props.className ?? "")}
             onMouseDown={mouseDown} onMouseUp={mouseUp}
         >
+            {editable ?
+                <TrashCan className="absolute right-1 box-content p-1 hover:bg-red-500 cursor-pointer rounded-md" /> : null
+            }
             <GoalText value={goal.text} isEditable={editable} />
             {slotAfterText}
             {score && score > -1 ? <ScoreBadge className="ml-3" value={score} /> : null}

@@ -1,8 +1,5 @@
 import { PropsWithChildren, useCallback } from "react";
-import { useSnapshot } from "valtio";
-import store from "../../data";
-import { computeTrackToCourseHighlighting } from "../../data/highlight";
-import swapGoals from "../../utilities/swap-goals";
+import useCourseSemester from "../../data/views/useCourseSemester";
 import SortableList from "../sortable/SortableList";
 import CourseGoal from "./CourseGoal";
 
@@ -10,13 +7,12 @@ interface CourseSemesterProps
 {
     course: number;
     year: number;
-    semester: number;
+    semesterIndex: number;
 }
 
-const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChildren<CourseSemesterProps>) =>
+const CourseSemester = ({ course, year, semesterIndex }: PropsWithChildren<CourseSemesterProps>) =>
 {
-    const view = useSnapshot(store);
-    const semester = view.data.courses[course].years[year].semesters[semesterIndex];
+    const { semester, allowSorting, swapChildren } = useCourseSemester(course, year, semesterIndex);
 
     const goals = 
         semester.map((goal, index) =>
@@ -24,13 +20,6 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
             id: goal.id.toString(),
             value: <CourseGoal key={goal.id} course={course} year={year} semester={semesterIndex} goal={index} />
         }));
-
-    const handleSwap = (a: string, b: string) =>
-    {
-        const semester = store.data.courses[course].years[year].semesters[semesterIndex];
-        swapGoals(semester, a, b);
-        computeTrackToCourseHighlighting();
-    };
 
     if (semester.length === 0)
     {
@@ -47,8 +36,8 @@ const CourseSemester = ({ course, year, semester: semesterIndex }: PropsWithChil
                 dragId={"curriculum-" + course + "-" + year + "-" + semesterIndex}
                 items={goals}
                 lockXAxis
-                allowSorting={view.editorEnabled && view.editorId === undefined}
-                onSwap={handleSwap}
+                allowSorting={allowSorting}
+                onSwap={swapChildren}
             />
         </div>
     );
