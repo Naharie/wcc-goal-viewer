@@ -1,14 +1,12 @@
 import SimpleBar from "simplebar-react";
-import { useSnapshot } from "valtio";
-import store from "../../data";
+import useData from "../../data";
+import useEditor from "../../data/editor";
 import Track from "./Track";
 
 const TrackPanel = () =>
 {
-    const view = useSnapshot(store);
-    const tracks = view.data.tracks;
-
-    const dimmed = view.editorId !== undefined;
+    const tracks = useData(data => data.tracks);    
+    const dimmed = useEditor(editor => editor.id !== undefined);
 
     return (
         <SimpleBar className={"h-full pt-6" + (dimmed ? " bg-dim-not-selected" : "")}>

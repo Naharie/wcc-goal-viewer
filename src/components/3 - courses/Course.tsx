@@ -1,12 +1,10 @@
 import { PropsWithChildren } from "react";
-import { useSnapshot } from "valtio";
-import store from "../../data";
+import useData from "../../data";
 import CourseYear from "./CourseYear";
 
 const Course = ({ course: index }: PropsWithChildren<{ course: number }>) =>
 {
-    const view = useSnapshot(store);
-    const course = view.data.courses[index];
+    const course = useData(data => data.courses[index]);
 
     return (
         <div className="mx-8">

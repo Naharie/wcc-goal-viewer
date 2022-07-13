@@ -1,13 +1,12 @@
 import SimpleBar from "simplebar-react";
-import { useSnapshot } from "valtio";
-import store from "../../data";
+import useData from "../../data";
+import useEditor from "../../data/editor";
 import Course from "./Course";
 
 const CoursePanel = () =>
 {
-    const view = useSnapshot(store);
-    const courses = view.data.courses;
-    const dimmed = view.editorId !== undefined;
+    const courses = useData(data => data.courses);
+    const dimmed = useEditor(editor => editor.id !== undefined);    
 
     return (
         <SimpleBar className={"h-full pt-6" +  (dimmed ? " bg-dim-not-selected" : "")}>

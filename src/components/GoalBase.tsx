@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, ReactNode } from "react";
-import { useSnapshot } from "valtio";
-import store from "../data";
+import useEditor from "../data/editor";
 import { Goal } from "../data/json";
 import useClick from "../hooks/useClick";
 import chooseBackground from "../utilities/choose-background";
@@ -23,9 +22,8 @@ interface GoalProps
 
 const GoalBase = ({ goal, score, slotAfterText, ...props }: PropsWithChildren<GoalProps>) =>
 {
-    const view = useSnapshot(store);
-    const dimmed = view.editorId != undefined && view.editorId != goal.id;
-    const editable = view.editorId === goal.id;
+    const dimmed = useEditor(editor => editor.id !== undefined && editor.id === goal.id);
+    const editable = useEditor(editor => editor.id === goal.id);
 
     const [mouseDown, mouseUp] = useClick<HTMLLIElement>(event =>
     {

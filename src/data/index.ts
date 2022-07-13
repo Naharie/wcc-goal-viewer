@@ -1,62 +1,20 @@
-import { proxy } from "valtio";
+import produce from "immer";
+import create from "zustand";
 import { JsonData } from "./json";
 
-export interface Highlight
+export interface DataSlice extends JsonData
 {
-    curriculumGoals: Record<string, Record<string, boolean>>;
-    tracks: Record<string, Record<string, boolean>>;
-    courses: Record<string, Record<string, boolean>>;
+    set(data: JsonData): void;
+    update(setter: (slice: DataSlice) => void): void;
 }
 
-export interface CurriculumScore
-{
-    score: number[];
-    children: Record<string, number[]>;
-}
+const useData = create<DataSlice>(set => ({
+    curriculumGoals: [],
+    tracks: [],
+    courses: [],
 
-export interface Scores
-{
-    curriculumGoals: Record<string, CurriculumScore>;
-    tracks: Record<string, Record<string, number[]>>;
-    courses: Record<string, Record<string, number[]>>;
-}
+    set: ({ curriculumGoals, tracks, courses }) => set({ curriculumGoals, tracks, courses }),
+    update: (setter) => set(produce(setter))
+}));
 
-export interface Store
-{
-    isLoaded: boolean;
-    errorMessage: string | null;
-
-    data: JsonData;
-    highlight: Highlight;
-    lastHighlightedColumn: "curriculum" | "tracks";
-    scores: Scores;
-
-    editorEnabled: boolean;
-    editorId?: number;
-}
-
-const store = proxy<Store>({
-    isLoaded: false,
-    errorMessage: null,
-
-    data: {
-        curriculumGoals: [],
-        tracks: [],
-        courses: []
-    },
-    highlight: {
-        curriculumGoals: {},
-        tracks: {},
-        courses: {}
-    },
-    lastHighlightedColumn: "curriculum",
-    scores: {
-        curriculumGoals: {},
-        tracks: {},
-        courses: {}
-    },
-
-    editorEnabled: false
-});
-
-export default store;
+export default useData;

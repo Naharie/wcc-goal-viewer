@@ -1,6 +1,10 @@
-import useTrackGoal from "../../data/views/2 - tracks/useTrackGoal";
+import useData from "../../data";
+import useEditor from "../../data/editor";
+import useHighlight from "../../data/highlight";
+import useScores, { average } from "../../data/scores";
 import TextBox from "../editor/TextBox";
 import GoalBase from "../GoalBase";
+import toggleTrackGoalHighlight from "../../data/actions/highlight/toggle/trackGoalHighlight";
 
 interface TrackGoalProps
 {
@@ -10,7 +14,14 @@ interface TrackGoalProps
 
 const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
 {
-    const { goal, highlighted, score, editable, toggleHighlight } = useTrackGoal(trackIndex, index);
+    const track = useData(data => data.tracks[trackIndex]);
+    const goal = track.goals[index];
+
+    const score = useScores(scores => average(scores.tracks[track.name][goal.ref]));
+    const dimmed = useEditor(editor => editor.id !== undefined && editor.id !== goal.id);
+    const editable = useEditor(editor => editor.id === goal.id);
+
+    const highlighted = useHighlight(highlight => highlight.tracks[track.name][goal.ref]);
 
     const references =
         goal.references.map(
@@ -24,7 +35,7 @@ const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
         <GoalBase
             goal={goal} highlighted={highlighted}
             score={score}
-            className="mb-4 p-1" onClick={toggleHighlight}
+            className="mb-4 p-1" onClick={toggleTrackGoalHighlight(track.name, goal.ref)}
             slotAfterText={
                 editable ?
                     <>

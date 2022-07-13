@@ -1,12 +1,18 @@
 import { useEffect } from "react";
-import { setData, setLoaded } from "../data/actions/goals";
+import useData from "../data";
+import prepareHighlight from "../data/actions/highlight/prepareHighlight";
+import prepareScores from "../data/actions/scores/prepareScores";
 import { JsonData } from "../data/json";
+import useLoadingStatus from "../data/loadingStatus";
 
 /**
  * Fetches the json file containing all the goal data.
  */
-const useData = () =>
+const useFetchData = () =>
 {
+    const setData = useData(data => data.set);
+    const setLoaded = useLoadingStatus(status => status.setLoaded);
+
     useEffect(() =>
     {
         fetch("/data.json")
@@ -14,6 +20,10 @@ const useData = () =>
             .then((data: JsonData) =>
             {
                 setData(data);
+
+                prepareHighlight(data);
+                prepareScores(data);
+
                 setLoaded();
             })
             .catch((_: Error) =>
@@ -22,4 +32,4 @@ const useData = () =>
     }, []);
 };
 
-export default useData;
+export default useFetchData;

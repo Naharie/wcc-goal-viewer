@@ -1,10 +1,13 @@
-import useTrack from "../../data/views/2 - tracks/useTrack";
+import useData from "../../data";
+import swapTrackGoals from "../../data/actions/data/swap/swapTrackGoals";
+import useEditor from "../../data/editor";
 import SortableList from "../sortable/SortableList";
 import TrackGoal from "./TrackGoal";
 
 const Track = ({ track: index }: { track: number }) =>
 {
-    const { track, allowSorting, swapChildren } = useTrack(index);
+    const track = useData(data => data.tracks[index]);    
+    const allowSorting = useEditor(editor => editor.enabled && editor.id === undefined);
 
     const goals =
         track.goals.map((goal, goalIndex) =>
@@ -22,7 +25,7 @@ const Track = ({ track: index }: { track: number }) =>
                 lockXAxis
                 allowSorting={allowSorting}
                 items={goals}
-                onSwap={swapChildren}
+                onSwap={swapTrackGoals(index)}
             />
         </div>
     );

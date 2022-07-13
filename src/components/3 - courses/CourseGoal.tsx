@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useSnapshot } from "valtio";
-import store from "../../data";
-import { propagateScores } from "../../data/scores";
-import useCourseGoal from "../../data/views/3 - courses/useCourseGoal";
+import useData from "../../data";
+import propagateScores from "../../data/actions/scores/propagation/propagateScores";
+import useHighlight from "../../data/highlight";
+import useScores from "../../data/scores";
 import GoalBase from "../GoalBase";
 import BadgeButton from "../scores/BadgeButton";
 import ScoreSelector from "../scores/ScoreSelector";
@@ -17,24 +17,42 @@ interface CourseGoalProps
 
 const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: CourseGoalProps) =>
 {
-    const { goal, scores, editableScores, highlighted} = useCourseGoal(courseIndex, year, semester, goalIndex);
+    const course = useData(data => data.courses[courseIndex]);
+    const goal = course.years[year].semesters[semester][goalIndex];
+    
+    const scores = useScores(scores => scores.courses[course.name][goal.ref]);
+    const updateScores = useScores(scores => scores.update);
+    //const dimmed = useEditor(editor => editor.id !== undefined && editor.id !== goal.id);
+    //const editable = useEditor(editor => editor.id === goal.id);
+    
+    const highlighted = useHighlight(highlight => highlight.courses[course.name][goal.ref]);
+
     const [addingScores, setAddingScores] = useState(false);
 
     const toggleAddingScores = () => setAddingScores(value => !value);
 
     const addScore = () =>
     {
-        editableScores.push(0);
+        updateScores(scores =>
+        {
+            scores.courses[course.name][goal.ref].push(0);
+        });
         propagateScores();
     };
     const deleteScore = (index: number) => () =>
     {
-        editableScores.splice(index, 1);
+        updateScores(scores =>
+        {
+            scores.courses[course.name][goal.ref].splice(index, 1);
+        });
         propagateScores();
     };
     const setScore = (index: number) => (score: number) =>
     {
-        editableScores[index] = score;
+        updateScores(scores =>
+        {
+            scores.courses[course.name][goal.ref][index] = score;
+        });
         propagateScores();
     };
 

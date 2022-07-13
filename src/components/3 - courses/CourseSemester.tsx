@@ -1,5 +1,7 @@
-import { PropsWithChildren, useCallback } from "react";
-import useCourseSemester from "../../data/views/useCourseSemester";
+import { PropsWithChildren } from "react";
+import useData from "../../data";
+import swapCourseGoals from "../../data/actions/data/swap/courseGoals";
+import useEditor from "../../data/editor";
 import SortableList from "../sortable/SortableList";
 import CourseGoal from "./CourseGoal";
 
@@ -12,7 +14,8 @@ interface CourseSemesterProps
 
 const CourseSemester = ({ course, year, semesterIndex }: PropsWithChildren<CourseSemesterProps>) =>
 {
-    const { semester, allowSorting, swapChildren } = useCourseSemester(course, year, semesterIndex);
+    const semester = useData(data => data.courses[course].years[year].semesters[semesterIndex]);
+    const allowSorting = useEditor(editor => editor.enabled && editor.id === undefined);
 
     const goals = 
         semester.map((goal, index) =>
@@ -37,7 +40,7 @@ const CourseSemester = ({ course, year, semesterIndex }: PropsWithChildren<Cours
                 items={goals}
                 lockXAxis
                 allowSorting={allowSorting}
-                onSwap={swapChildren}
+                onSwap={swapCourseGoals(course, year, semesterIndex)}
             />
         </div>
     );

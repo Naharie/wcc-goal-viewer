@@ -1,5 +1,8 @@
 import { PropsWithChildren } from "react";
-import useCurriculumSubGoal from "../../data/views/1 - curriculum/useCurriculumSubGoal";
+import useData from "../../data";
+import toggleCurriculumSubGoalHighlight from "../../data/actions/highlight/toggle/curriculumSubGoalHighlight";
+import useHighlight from "../../data/highlight";
+import useScores, { average } from "../../data/scores";
 import GoalBase from "../GoalBase";
 
 interface CurriculumSubGoalProps
@@ -10,7 +13,10 @@ interface CurriculumSubGoalProps
 
 const CurriculumSubGoal = ({ parentIndex, index }: PropsWithChildren<CurriculumSubGoalProps>) =>
 {
-    const { goal, highlighted, score, toggleHighlight } = useCurriculumSubGoal(parentIndex, index);
+    const parent = useData(data => data.curriculumGoals[parentIndex]);
+    const goal = parent.children[index];
+    const score = useScores(scores =>  average(scores.curriculumGoals[parent.ref].children[goal.ref]));
+    const highlighted = useHighlight(highlight => highlight.curriculumGoals[parent.ref][goal.ref]);
 
     return (
         <GoalBase
@@ -19,7 +25,7 @@ const CurriculumSubGoal = ({ parentIndex, index }: PropsWithChildren<CurriculumS
             score={score}
             
             className="mt-2"
-            onClick={toggleHighlight}
+            onClick={toggleCurriculumSubGoalHighlight(parent.ref, goal.ref)}
         />
     );
 };

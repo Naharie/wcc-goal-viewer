@@ -1,6 +1,6 @@
-import store, { CurriculumScore } from ".";
-import { getQuery, setQueryParameter } from "../utilities/query-parameter";
-import { JsonData } from "./json";
+import produce from "immer";
+import create from "zustand";
+import readScoresFromQuery from "./actions/scores/readFromQuery";
 
 export const average = (numbers: readonly number[]) =>
 {
@@ -22,168 +22,29 @@ export const average = (numbers: readonly number[]) =>
     }
 }
 
-export const readScoresFromQuery = () =>
+export interface CurriculumScore
 {
-    const query = getQuery();
-    const scores = query["scores"]?.split(" ")?.join("");
+    score: number[];
+    children: Record<string, number[]>;
+}
 
-    if (scores === undefined || scores === "") return;
-
-    const courses = scores.split("|").map(course => course.split("@"));
-    if (courses.length === 0) return;
-
-    for (const [name, course] of courses)
-    {
-        for (const [goal, values] of course.split(",").map(goal => goal.split(":")))
-        {
-            store.scores.courses[name][goal] = values.split("").map(v => parseInt(v));
-        }
-    }
-
-    propagateScores();
-};
-
-export const prepareScores = (data: JsonData) =>
+export interface ScoresSlice
 {
-    const curriculumGoals: Record<string, CurriculumScore> = {};
-    const tracks: Record<string, Record<string, number[]>> = {};
-    const courses: Record<string, Record<string, number[]>> = {};
+    curriculumGoals: Record<string, CurriculumScore>;
+    tracks: Record<string, Record<string, number[]>>;
+    courses: Record<string, Record<string, number[]>>;
 
-    for (const goal of data.curriculumGoals)
-    {
-        const scores: Record<string, number[]> = {};
+    update(setter: (slice: ScoresSlice) => void): void;
+}
 
-        for (const child of goal.children)
-        {
-            scores[child.ref] = [];
-        }
+const useScores = create<ScoresSlice>(set => ({
+    curriculumGoals: {},
+    tracks: {},
+    courses: {},
 
-        curriculumGoals[goal.ref] = { score: [], children: scores };
-    }
+    update: (setter) => set(produce(setter))
+}));
 
-    for (const track of data.tracks)
-    {
-        const scores: Record<string, number[]> = {};
-
-        for (const goal of track.goals)
-        {
-            scores[goal.ref] = [];
-        }
-
-        tracks[track.name] = scores;
-    }
-
-    for (const course of data.courses)
-    {
-        const scores: Record<string, number[]> = {};
-
-        for (const year of course.years)
-        {
-            for (const semester of year.semesters)
-            {
-                for (const goal of semester)
-                {
-                    scores[goal.ref] = [];
-                }
-            }
-        }
-
-        courses[course.name] = scores;
-    }
-
-    store.scores = { curriculumGoals, tracks, courses };
-    readScoresFromQuery();
-};
-
-export const clearPropagatedScores = () =>
-{
-    const data = store.data;
-    const curriculumGoals: Record<string, CurriculumScore> = {};
-    const tracks: Record<string, Record<string, number[]>> = {};
-
-    for (const goal of data.curriculumGoals)
-    {
-        const scores: Record<string, number[]> = {};
-
-        for (const child of goal.children)
-        {
-            scores[child.ref] = [];
-        }
-
-        curriculumGoals[goal.ref] = { score: [], children: scores };
-    }
-    for (const track of data.tracks)
-    {
-        const scores: Record<string, number[]> = {};
-
-        for (const goal of track.goals)
-        {
-            scores[goal.ref] = [];
-        }
-
-        tracks[track.name] = scores;
-    }
-
-    store.scores.curriculumGoals = curriculumGoals;
-    store.scores.tracks = tracks;
-};
-
-export const propagateScoresToTracks = () =>
-{
-    for (const { name: course, years } of store.data.courses)
-    {
-        for (const { semesters } of years)
-        {
-            for (const semester of semesters)
-            {
-                for (const goal of semester)
-                {
-                    for (const reference of goal.references)
-                    {
-                        store.scores.tracks[course][reference].push(...store.scores.courses[course][goal.ref]);
-                    }
-                }
-            }
-        }
-    }
-};
-
-export const propagateScoresToCurriculumGoals = () =>
-{
-    for (const { name: track, goals } of store.data.tracks)
-    {
-        for (const goal of goals)
-        {
-            for (const reference of goal.references)
-            {
-                const scores = store.scores.tracks[track][goal.ref];
-                const curriculumGoal = store.scores.curriculumGoals[reference.goal];
-
-                curriculumGoal.score.push(...scores);
-
-                for (const subGoal of reference.subGoals)
-                {
-                    curriculumGoal.children[subGoal].push(...scores)
-                }
-            }
-        }
-    }
-};
-
-export const propagateScores = () =>
-{
-    clearPropagatedScores();
-    propagateScoresToTracks();
-    propagateScoresToCurriculumGoals();
-
-    const scores =
-        Object.entries(store.scores.courses).map(([name, course]) =>
-        {
-            const nested = Object.entries(course).filter(([, scores]) => scores.length > 0).map (([goal, scores]) => goal + ":" + scores.join("")).join(",");
-            return name + "@" + nested;
-        }).filter(value => !value.endsWith("@")).join("|");
-
-    setQueryParameter("scores", scores);
-};
+export default useScores;
 
 window.addEventListener("popstate", () => readScoresFromQuery());

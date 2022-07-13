@@ -2,16 +2,17 @@ import Spinner from "./Spinner";
 import CurriculumPanel from "./1 - curriculum/CurriculumPanel";
 import TrackPanel from "./2 - tracks/TrackPanel";
 import CoursePanel from "./3 - courses/CoursePanel";
-import useData from "../hooks/useData";
-import { useSnapshot } from "valtio";
-import store from "../data";
+import useFetchData from "../hooks/useFetchData";
+import useLoadingStatus from "../data/loadingStatus";
 
 export default () =>
 {
-    const view = useSnapshot(store);
-    useData();
+    const isLoaded = useLoadingStatus(status => status.isLoaded);
+    const errorMessage = useLoadingStatus(status => status.errorMessage);
 
-    if (!view.isLoaded)
+    useFetchData();
+
+    if (!isLoaded)
     {
         return (
             <div className="flex flex-col justify-center items-center w-full h-full text-2xl">
@@ -20,14 +21,14 @@ export default () =>
         )
     }
     
-    if (view.errorMessage !== null)
+    if (errorMessage !== undefined)
     {
         const reload = () => location.reload();
 
         return (
             <div className="flex flex-col justify-center items-center w-full h-full text-2xl">
                 <div className="inline-block text-center bg-red-300 rounded-md p-4">
-                    {view.errorMessage}<br />
+                    {errorMessage}<br />
                     Please reload to try again. If this error occurs again, please report it.
                 </div>
                 <button className="mt-8 bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded-md" onClick={reload}>Reload</button>
