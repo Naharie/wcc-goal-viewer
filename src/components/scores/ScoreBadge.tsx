@@ -13,7 +13,7 @@ const ScoreBadge = ({ value, className, onClick } : ScoreBadgeProps) =>
     const [mouseDown, mouseUp] = useClick(onClick ?? (() => {}))
 
     const [color, hoverColor] =
-        value <= 2 ?
+        value < 3 ?
             ["bg-red-400", "hover:bg-red-600"] :
             ["bg-blue-400", "hover:bg-blue-500"];
 

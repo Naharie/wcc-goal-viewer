@@ -22,9 +22,16 @@ export const setQuery = (query: Record<string, string>) =>
             && value != undefined && value !== ""
         )
         .map(([name, value]) => encodeURIComponent(name) + "=" + encodeURIComponent(value)).join("&");
-    const url = location.toString().split("?")[0] + "?" + search;
 
-    history.pushState(null, "", url);
+    if (search === "")
+    {
+        history.pushState(null, "", location.toString().split("?")[0]);
+    }
+    else
+    {
+        const url = location.toString().split("?")[0] + "?" + search;
+        history.pushState(null, "", url);
+    }
 };
 
 export const setQueryParameter = (parameter: string, value: string) =>

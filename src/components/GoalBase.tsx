@@ -41,7 +41,7 @@ const GoalBase = ({ goal, score, slotAfterText, ...props }: PropsWithChildren<Go
             }
             <GoalText value={goal.text} isEditable={editable} />
             {slotAfterText}
-            {score && score > -1 ? <ScoreBadge className="ml-3" value={score} /> : null}
+            {score !== undefined && score > -1 ? <ScoreBadge className="ml-3" value={score} /> : null}
             {props.children}
         </li>
     )
