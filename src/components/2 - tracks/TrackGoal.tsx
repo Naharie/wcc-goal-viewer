@@ -51,9 +51,13 @@ const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
     {
         const references: TrackGoalReference[] = value.split("; ").filter(part => part.trim() !== "").map(part =>
         {
-            const split = part.indexOf(" ");
-            const goal = part.substring(0, split).trim();
-            const subGoals = part.substring(split + 1).split(", ").map(part => part.trim());
+            if (!part.includes(" "))
+            {
+                return ({ goal: part, subGoals: [] });
+            }
+
+            const [goal, ...subGoalParts] = part.split(" ");
+            const subGoals = subGoalParts.join(" ").split(",").map(part => part.trim());
 
             return ({ goal, subGoals });
         });

@@ -9,6 +9,7 @@ import GoalBase from "../GoalBase";
 import SortableList from "../sortable/SortableList";
 import CurriculumSubGoal from "./CurriculumSubGoal";
 import toggleCurriculumGoalHighlight from "../../data/actions/highlight/toggle/curriculumGoalHighlight";
+import deleteCurriculumGoal from "../../data/actions/data/deletion/curriculumGoal";
 
 interface CurriculumGoalProps
 {
@@ -23,6 +24,9 @@ const CurriculumGoal = ({ index,  }: PropsWithChildren<CurriculumGoalProps>) =>
     const score = useScores(scores => average (scores.curriculumGoals[goal.ref].score));
     const highlighted = useHighlight(highlight => Object.values(highlight.curriculumGoals[goal.ref]).some(v => v));
 
+    const update = useData(data => data.update);
+    const closeEditor = useEditor(editor => editor.closeEditor);
+
     const subGoals =
         goal.children.map((goal, childIndex) =>
         ({
@@ -30,8 +34,31 @@ const CurriculumGoal = ({ index,  }: PropsWithChildren<CurriculumGoalProps>) =>
             value: <CurriculumSubGoal key={goal.id} parentIndex={index} index={childIndex} />
         }));
 
+    const saveGoal = (text: string) =>
+    {
+        update(data =>
+        {
+            data.curriculumGoals[index].text = text;
+        });
+        closeEditor();
+    };
+    const deleteGoal = () =>
+    {
+        deleteCurriculumGoal(index);
+        closeEditor();
+    };
+
     return (
-        <GoalBase goal={goal} highlighted={highlighted} score={score} className="m-1 mb-6" onClick={toggleCurriculumGoalHighlight(goal.ref)}>
+        <GoalBase
+            goal={goal}
+            highlighted={highlighted}
+            score={score}
+            className="m-1 mb-6"
+            onClick={toggleCurriculumGoalHighlight(goal.ref)}
+
+            saveGoal={saveGoal}
+            deleteGoal={deleteGoal}
+        >
             <SortableList
                 className={"list-[lower-alpha] mt-1" + chooseBackground(false, dimmed)}
                 dragId={"curriculum-goal-" + goal.id}

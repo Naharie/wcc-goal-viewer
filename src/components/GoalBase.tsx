@@ -34,11 +34,12 @@ interface GoalProps
 
 const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalProps>) =>
 {
+    const canEdit = useEditor(editor => editor.enabled);
     const dimmed = useEditor(editor => editor.id !== undefined && editor.id !== goal.id);
     const editable = useEditor(editor => editor.id === goal.id);
 
     const goalText = useRef(goal.text);
-    const goalReferences = useRef(references?.value ?? "");
+    const goalReferences = useRef(references?.value?.trim() ?? "");
 
     const [confirmingDelete, setConfirmingDelete] = useState(false);
     
@@ -49,6 +50,8 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
     {
         if (editable || dimmed) return;
         props.onClick?.(event);
+
+        if (!canEdit) return;
 
         const now = Date.now();
 
@@ -75,7 +78,7 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
         references?.saveReferences(goalReferences.current);
     };
 
-    if (references !== undefined)
+    if (references !== undefined && (references.value !== "" || editable))
     {
         const updateReferences = (value: string) => goalReferences.current = value;
 

@@ -1,37 +1,5 @@
 import useHighlight from "../data/highlight";
-
-const convertRomanNumeral = function(numeral: string)
-{
-    const symbols: Record<string, number> = { 
-        "I": 1,
-        "V": 5,
-        "X": 10,
-        "L": 50,
-        "C": 100,
-        "D": 500,
-        "M": 1000
-    };
-
-    let result = 0;
-
-    for (let i = 0; i < numeral.length; i++)
-    {
-        const current = symbols[numeral[i]];
-        const next = symbols[numeral[i+1]];
-
-        if (current < next)
-        {
-            result += next - current
-            i++
-        }
-        else
-        {
-            result += current;
-        }
-    }
-
-    return result; 
-};
+import { fromRomanNumeral } from "../utilities/roman-numerals";
 
 const validator = (references: string) =>
 {
@@ -51,42 +19,21 @@ const validator = (references: string) =>
             return ("Put exactly one space between a semicolon and the next reference.");
         }
 
-        let hasNumeral = false;
-        let [primaryGoal, childGoals] = ["", ""];
+        let [primaryGoal, ...childGoals] = part.split(" ");
+        let childSegment = childGoals.join(" ");
 
-        // Check the curriculum goal reference.
-        for (let j = 1; j < part.length; j++)
+        primaryGoal = primaryGoal.trim();
+
+        for (let j = 0; j < primaryGoal.length; j++)
         {
-            if (numerals.has(part[j]))
+            if (!numerals.has(primaryGoal[j]))
             {
-                hasNumeral = true;
-            }
-
-            if (part[j] === " ")
-            {
-                if (hasNumeral)
+                if (primaryGoal[j] === ",")
                 {
-                    primaryGoal = part.substring(0, j).trim();
-                    childGoals = part.substring(j + 1);
-                    break;
+                    return ("Top level references are separated by semicolons and not commas.");
                 }
 
-                return ("Put exactly one space between a semicolon and the next reference.");
-            }
-            else if (j === part.length - 1)
-            {
-                if (hasNumeral)
-                {
-                    primaryGoal = part.trim();
-                    childGoals = "";
-                    break;
-                }
-
-                return ("Put exactly one space between a semicolon and the next reference.");
-            }
-            else if (!numerals.has(part[j]))
-            {
-                return (`The character ${part[j]} is not valid; all curriculum goal references must be formed using Roman numerals.`);
+                return ("References must be formed using Roman numerals.");
             }
         }
 
@@ -95,7 +42,7 @@ const validator = (references: string) =>
             return (`The reference ${primaryGoal} does not, but must, point to an existing curriculum goal.`);
         }
 
-        const childParts = childGoals.split(",");
+        const childParts = childSegment.split(",");
 
         for (let j = 0; j < childParts.length; j++)
         {
@@ -120,7 +67,7 @@ const validator = (references: string) =>
             }
         }
 
-        let newValue = convertRomanNumeral(primaryGoal);
+        let newValue = fromRomanNumeral(primaryGoal);
 
         if (newValue < lastValue)
         {
