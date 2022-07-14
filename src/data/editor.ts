@@ -1,3 +1,4 @@
+import produce from "immer";
 import create from "zustand";
 
 export interface EditorSlice
@@ -5,8 +6,14 @@ export interface EditorSlice
     enabled: boolean;
     id?: number;
 
-    enableEditor(): void;
+    confirmDeletion?: {
+        yes: () => void;
+        no: () => void;
+    }
 
+    update(setter: (slice: EditorSlice) => void): void;
+
+    enableEditor(): void;
     openEditor(goalId: number): void;
     closeEditor(): void;
 }
@@ -14,6 +21,10 @@ export interface EditorSlice
 const useEditor = create<EditorSlice>((set, get) => ({
     enabled: false,
     id: undefined,
+
+    confirmDeletion: undefined,
+
+    update: (setter) => set(produce(setter)),
 
     enableEditor()
     {

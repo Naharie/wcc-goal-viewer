@@ -6,9 +6,6 @@ import chooseBackground from "../utilities/choose-background";
 import GoalText from "./editor/GoalText";
 import ValidatedTextBox from "./editor/ValidatedTextBox";
 import ScoreBadge from "./scores/ScoreBadge";
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
 
 interface GoalProps
 {
@@ -33,6 +30,8 @@ interface GoalProps
 
 const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalProps>) =>
 {
+    const updateEditor = useEditor(editor => editor.update);
+    const confirmDeletion = useEditor(editor => editor.confirmDeletion);
     const canEdit = useEditor(editor => editor.enabled);
     const dimmed = useEditor(editor => editor.id !== undefined && editor.id !== goal.id);
     const editable = useEditor(editor => editor.id === goal.id);
@@ -67,7 +66,28 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
 
     const updateGoalText = (value: string) => goalText.current = value;
 
-    const deleteGoal = () => setConfirmingDelete(true);
+    const deleteGoal = () =>
+    {
+        updateEditor(editor =>
+        {
+            const closeConfirmation = () =>
+            {
+                updateEditor(editor =>
+                {
+                    editor.confirmDeletion = undefined;
+                });
+            };
+
+            editor.confirmDeletion = {
+                yes: () =>
+                {
+                    props.deleteGoal?.();
+                    closeConfirmation();
+                },
+                no: closeConfirmation
+            };
+        });
+    }
     const closeEditor = useEditor(editor => editor.closeEditor);
     const saveChanges = () =>
     {
@@ -85,46 +105,15 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
             <ValidatedTextBox value={goalReferences.current} validator={references.validator} textChanged={updateReferences} /> :
             goalReferences.current.length > 0 ? ` (${goalReferences.current}).` : ".";
     }
-    // Modal Dialog to confirm deletes
-    if (editable)
-    {
-        const deleteGoal = () =>
-        {
-            props.deleteGoal?.();
-            setConfirmingDelete(false);
-        };
-        const cancelDelete = () =>
-        {
-            setConfirmingDelete(false);
-        };
-
-        deleteModal =
-            <Modal
-            isOpen={editable && confirmingDelete}
-            contentLabel="Label"
-            className={`
-                bg-white
-                absolute
-                top-[50%] left-[50%]
-                translate-x-[-50%] translate-y-[-50%]
-                w-96 p-4
-                rounded-md
-            `}
-            overlayClassName="absolute top-0 left-0 w-full h-full bg-gray-700 bg-opacity-75"
-            >
-                Are you sure you want to delete this goal?<br />
-                THIS CAN NOT BE UNDONE!
-
-                <div className="flex w-full pt-4">
-                    <button className="flex-1 bg-red-400 hover:bg-red-500 rounded-l-md" onClick={deleteGoal}>Yes</button>
-                    <button className="flex-1 bg-gray-400 hover:bg-gray-500 rounded-r-md" onClick={cancelDelete}>No</button>
-                </div>
-            </Modal>;
-    }
 
     return (
         <li
-            className={"relative list-item rounded-md " + chooseBackground(props.highlighted, dimmed) + (props.className ?? "")}
+            className={
+                "relative list-item rounded-md " +
+                chooseBackground(props.highlighted, dimmed) +
+                (editable && confirmDeletion === undefined ? " z-[200] " : " " ) +
+                (props.className ?? "")
+            }
             onMouseDown={mouseDown} onMouseUp={mouseUp}
         >
             <GoalText value={goalText.current} isEditable={editable} textChanged={updateGoalText} />
