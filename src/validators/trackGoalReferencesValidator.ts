@@ -1,16 +1,50 @@
 import useHighlight from "../data/highlight";
 
+const convertRomanNumeral = function(numeral: string)
+{
+    const symbols: Record<string, number> = { 
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000
+    };
+
+    let result = 0;
+
+    for (let i = 0; i < numeral.length; i++)
+    {
+        const current = symbols[numeral[i]];
+        const next = symbols[numeral[i+1]];
+
+        if (current < next)
+        {
+            result += next - current
+            i++
+        }
+        else
+        {
+            result += current;
+        }
+    }
+
+    return result; 
+};
+
 const validator = (references: string) =>
 {
     const parts = references.split(";");
     const numerals = new Set([ "I", "V", "X", "L", "C", "D", "M" ]);
 
     const isLetter = (char: string) => char >= "a" && char <= "z";
+    let lastValue = 0;
 
     for (let i = 0; i < parts.length; i++)
     {
         let part = parts[i];
-        if (part === "") continue;
+        if (part.trim() === "" && i === parts.length - 1) continue;
 
         if (i > 0 && !part.startsWith(" "))
         {
@@ -85,6 +119,16 @@ const validator = (references: string) =>
                 return (`The reference ${primaryGoal} ${reference} does not, but must, point to an existing curriculum sub goal.`);
             }
         }
+
+        let newValue = convertRomanNumeral(primaryGoal);
+
+        if (newValue < lastValue)
+        {
+            debugger;
+            return ("References must be sorted in ascending order.");
+        }
+
+        lastValue = newValue;
     }
 
     return true;

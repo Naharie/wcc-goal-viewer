@@ -27,7 +27,9 @@ interface GoalProps
     deleteGoal?: () => void;
 
     className?: string;
+
     onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
+    onDoubleClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalProps>) =>
@@ -39,11 +41,23 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
     const goalReferences = useRef(references?.value ?? "");
 
     const [confirmingDelete, setConfirmingDelete] = useState(false);
+    
+    const openEditor = useEditor(editor => editor.openEditor);
+    const lastClick = useRef(0);
 
     const [mouseDown, mouseUp] = useClick<HTMLLIElement>(event =>
     {
         if (editable || dimmed) return;
         props.onClick?.(event);
+
+        const now = Date.now();
+
+        if (now - lastClick.current < 250)
+        {
+            openEditor(goal.id);
+        }
+
+        lastClick.current = now;
     });
 
     let slotAfterText: ReactNode = null;
@@ -112,7 +126,7 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
             onMouseDown={mouseDown} onMouseUp={mouseUp}
         >
             {editable ?
-                <TrashCan className="absolute top-1 right-[-2rem] box-content p-1 hover:bg-red-500 cursor-pointer rounded-md" onClick={deleteGoal} /> : null
+                <TrashCan className="bg-dim-not-selected absolute top-1 right-[-2rem] box-content p-1 hover:bg-red-500 cursor-pointer rounded-md z-50" onClick={deleteGoal} /> : null
             }
             <GoalText value={goalText.current} isEditable={editable} textChanged={updateGoalText} />
             
