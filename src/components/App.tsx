@@ -55,7 +55,7 @@ export default () =>
                 <div className="flex-[2_2_0] h-full border-solid border-r border-r-gray-500">
                     <CoursePanel />
                 </div>
-                {editorOpen ? <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-75 z-[100]"></div> : null}
+                {/*editorOpen ? <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-75 z-[100]"></div> : null*/}
             </div>
             <Modal
                 isOpen={confirmDeletion !== undefined}

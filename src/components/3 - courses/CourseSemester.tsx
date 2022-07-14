@@ -1,9 +1,8 @@
 import { PropsWithChildren } from "react";
 import useData from "../../data";
+import addCourseGoal from "../../data/actions/data/addition/courseGoal";
 import swapCourseGoals from "../../data/actions/data/swap/courseGoals";
 import useEditor from "../../data/editor";
-import { nextLowercaseLetter, nextUppercaseLetter } from "../../utilities/alphabet";
-import nextGoalId from "../../utilities/goal-id";
 import SortableList from "../sortable/SortableList";
 import CourseGoal from "./CourseGoal";
 
@@ -16,8 +15,8 @@ interface CourseSemesterProps
 
 const CourseSemester = ({ course: course, year, semesterIndex }: PropsWithChildren<CourseSemesterProps>) =>
 {
-    const update = useData(data => data.update);
     const editorEnabled = useEditor(editor => editor.enabled);
+    const dimmed = useEditor(editor => editor.id !== undefined);
 
     const semester = useData(data => data.courses[course].years[year].semesters[semesterIndex]);
     const allowSorting = useEditor(editor => editor.enabled && editor.id === undefined);
@@ -31,18 +30,8 @@ const CourseSemester = ({ course: course, year, semesterIndex }: PropsWithChildr
 
     const addGoal = () =>
     {
-        update(data =>
-        {
-            const semester = data.courses[course].years[year].semesters[semesterIndex];
-            const id = nextGoalId();
-            const ref = semester.length === 0 ? "A" : nextUppercaseLetter(semester[semester.length - 1].ref);
-
-            semester.push({
-                text: "== PLACEHOLDER ==",
-                id, ref,
-                references: []
-            });
-        });
+        if (dimmed) return;
+        addCourseGoal(course, year, semesterIndex);
     };
 
     if (semester.length === 0)
@@ -63,11 +52,11 @@ const CourseSemester = ({ course: course, year, semesterIndex }: PropsWithChildr
                 allowSorting={allowSorting}
                 onSwap={swapCourseGoals(course, year, semesterIndex)}
             />
-            {/*editorEnabled ?
+            {editorEnabled ?
                 <div className="flex justify-center items-center pt-2 pb-6">
-                    <button className="w-full bg-gray-400 hover:bg-gray-500 rounded-md text-center" onClick={addGoal}>+</button>
+                    <button className={`w-full ${dimmed ? "bg-gray-600" : "bg-gray-400"} hover:bg-gray-500 rounded-md text-center`} onClick={addGoal}>+</button>
                 </div> :
-            null*/}
+            null}
         </div>
     );
 };

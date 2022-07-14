@@ -8,6 +8,7 @@ import TrackGoal from "./TrackGoal";
 const Track = ({ track: index }: { track: number }) =>
 {
     const editorEnabled = useEditor(editor => editor.enabled);
+    const dimmed = useEditor(editor => editor.id !== undefined);
 
     const track = useData(data => data.tracks[index]);    
     const allowSorting = useEditor(editor => editor.enabled && editor.id === undefined);
@@ -19,7 +20,11 @@ const Track = ({ track: index }: { track: number }) =>
             value: <TrackGoal key={goal.id} trackIndex={index} index={goalIndex} />
         }));
 
-    const addGoal = () => addTrackGoal(index);
+    const addGoal = () =>
+    {
+        if (dimmed) return;
+        addTrackGoal(index);
+    }
 
     return (
         <div className="mx-8">
@@ -34,7 +39,7 @@ const Track = ({ track: index }: { track: number }) =>
             />
             {editorEnabled ?
                 <div className="flex justify-center items-center pt-2 pb-6">
-                    <button className="w-full bg-gray-400 hover:bg-gray-500 rounded-md text-center" onClick={addGoal}>+</button>
+                    <button className={`w-full ${dimmed ? "bg-gray-600" : "bg-gray-400"} hover:bg-gray-500 rounded-md text-center`} onClick={addGoal}>+</button>
                 </div> :
             null}
         </div>
