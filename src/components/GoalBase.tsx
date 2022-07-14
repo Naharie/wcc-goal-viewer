@@ -5,7 +5,6 @@ import useClick from "../hooks/useClick";
 import chooseBackground from "../utilities/choose-background";
 import GoalText from "./editor/GoalText";
 import ValidatedTextBox from "./editor/ValidatedTextBox";
-import TrashCan from "./icons/trash-can";
 import ScoreBadge from "./scores/ScoreBadge";
 import Modal from "react-modal";
 
@@ -128,9 +127,6 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
             className={"relative list-item rounded-md " + chooseBackground(props.highlighted, dimmed) + (props.className ?? "")}
             onMouseDown={mouseDown} onMouseUp={mouseUp}
         >
-            {editable ?
-                <TrashCan className="bg-dim-not-selected absolute top-1 right-[-2rem] box-content p-1 hover:bg-red-500 cursor-pointer rounded-md z-50" onClick={deleteGoal} /> : null
-            }
             <GoalText value={goalText.current} isEditable={editable} textChanged={updateGoalText} />
             
             {slotAfterText}
@@ -143,6 +139,7 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
                     {deleteModal}
                     <div className="flex w-full mt-2">
                         <button className="flex-1 bg-gray-400 hover:bg-gray-500 rounded-l-md" onClick={saveChanges}>Done</button>
+                        <button className="flex-1 bg-gray-400 hover:bg-red-500 rounded-1-md" onClick={deleteGoal}>Delete</button>
                         <button className="flex-1 bg-gray-400 hover:bg-gray-500 rounded-r-md" onClick={closeEditor}>Cancel</button>
                     </div>
                 </>
