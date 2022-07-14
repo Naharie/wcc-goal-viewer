@@ -14,6 +14,7 @@ const root = createRoot(document.getElementById("root")!);
 if (getQuery()["editor"] === "true")
 {
     useEditor.getState().enableEditor();
+    useEditor.getState().openEditor(21);
 }
 
 root.render(
