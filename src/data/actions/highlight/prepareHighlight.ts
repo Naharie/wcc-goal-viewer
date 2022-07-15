@@ -1,5 +1,5 @@
 import useHighlight from "../../highlight";
-import { JsonData } from "../../json";
+import { JsonData } from "../../validation";
 
 const prepareHighlight = (data: JsonData) =>
 {

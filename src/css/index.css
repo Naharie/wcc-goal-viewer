@@ -56,3 +56,11 @@ div[role="button"][aria-roledescription="draggable"]
 {
     cursor: default;
 }
+
+/* Import and Export */
+
+.hidden
+{
+	position: fixed;
+	top: -1000em;
+}

@@ -1,4 +1,4 @@
-import { JsonData } from "../../json";
+import { JsonData } from "../../../validation";
 
 const swapTrackReferences = (data: JsonData, track: string, refA: string, refB: string) =>
 {

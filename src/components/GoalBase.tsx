@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactNode, useRef, useState } from "react";
 import useEditor from "../data/editor";
-import { Goal } from "../data/json";
+import { Goal } from "../data/validation";
 import useClick from "../hooks/useClick";
 import chooseBackground from "../utilities/choose-background";
 import GoalText from "./editor/GoalText";

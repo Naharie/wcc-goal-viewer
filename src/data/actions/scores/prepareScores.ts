@@ -1,4 +1,4 @@
-import { JsonData } from "../../json";
+import { JsonData } from "../../validation";
 import useScores, { CurriculumScore } from "../../scores";
 import readScoresFromQuery from "./readFromQuery";
 

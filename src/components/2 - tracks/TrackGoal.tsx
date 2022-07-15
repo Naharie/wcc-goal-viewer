@@ -6,7 +6,7 @@ import toggleTrackGoalHighlight from "../../data/actions/highlight/toggle/trackG
 import validator from "../../validators/trackGoalReferencesValidator";
 import deleteTrackGoal from "../../data/actions/data/deletion/trackGoal";
 import useEditor from "../../data/editor";
-import { TrackGoalReference } from "../../data/json";
+import { TrackGoalReference } from "../../data/validation";
 
 interface TrackGoalProps
 {
@@ -28,8 +28,8 @@ const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
     const references =
         goal.references.map(
             reference =>
-                reference.subGoals.length > 0 ?
-                    reference.goal + " " + reference.subGoals.join(", ") :
+                reference.subGoals?.length ?? 0 > 0 ?
+                    reference.goal + " " + reference.subGoals?.join(", ") ?? "" :
                     reference.goal
         ).join("; ");
 

@@ -19,7 +19,7 @@ const propagateScoresToCurriculumGoals = () =>
     
                     curriculumGoal.score.push(...scores);
     
-                    for (const subGoal of reference.subGoals)
+                    for (const subGoal of reference.subGoals ?? [])
                     {
                         curriculumGoal.children[subGoal].push(...scores)
                     }

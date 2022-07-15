@@ -1,4 +1,4 @@
-import { JsonData } from "../../../json";
+import { JsonData } from "../../../validation";
 
 const swapCurriculumGoalReferences = (data: JsonData, refA: string, refB: string) =>
 {

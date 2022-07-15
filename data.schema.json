@@ -48,7 +48,6 @@
                 },
                 "required": [ "text", "ref", "id", "children" ]
             },
-            "minItems": 1,
             "description": "The top level set of goals that are to be met by the curriculum as a whole through the completion of the track and course goals."
         },
         "tracks": {

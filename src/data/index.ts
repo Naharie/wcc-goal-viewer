@@ -1,6 +1,6 @@
 import produce from "immer";
 import create from "zustand";
-import { JsonData } from "./json";
+import { JsonData } from "./validation";
 
 export interface DataSlice extends JsonData
 {

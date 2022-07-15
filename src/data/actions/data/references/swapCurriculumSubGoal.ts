@@ -1,4 +1,4 @@
-import { JsonData } from "../../../json";
+import { JsonData } from "../../../validation";
 
 const swapCurriculumSubGoalReferences = (data: JsonData, goalRef: string, refA: string, refB: string) =>
 {
@@ -9,6 +9,8 @@ const swapCurriculumSubGoalReferences = (data: JsonData, goalRef: string, refA: 
             for (const reference of goal.references)
             {
                 if (reference.goal !== goalRef) continue;
+
+                if (!reference.subGoals) return;
 
                 for (let index = 0; index < reference.subGoals.length; index++)
                 {

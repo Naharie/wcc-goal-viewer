@@ -17,8 +17,8 @@ const computeCurriculumToTrackHighlighting = () =>
             {
                 highlight.tracks[track][goal.ref] = goal.references.some(
                     ref =>
-                        ref.subGoals.length > 0 ?
-                            ref.subGoals.some(subGoalRef => curriculumHighlight[ref.goal][subGoalRef]) :
+                        ref.subGoals?.length ?? 0 > 0 ?
+                            ref.subGoals?.some(subGoalRef => curriculumHighlight[ref.goal][subGoalRef]) ?? false :
                             Object.values(curriculumHighlight[ref.goal]).some(v => v)
                 );
             }
