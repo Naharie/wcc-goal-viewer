@@ -75,6 +75,8 @@ const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: Co
         {
             data.courses[courseIndex].years[year].semesters[semester][goalIndex].references = references;
         });
+
+        propagateScores();
     };
     const deleteGoal = () =>
     {
