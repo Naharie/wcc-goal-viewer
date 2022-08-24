@@ -1,0 +1,3294 @@
+﻿{
+    "curriculumGoals": [
+        {
+            "text": "Promote their general physical and emotional health by participation in outdoor and other physical activities",
+            "ref": "I",
+            "id": 0,
+            "children": []
+        },
+        {
+            "text": "Grow in personal virtue, including:",
+            "ref": "II",
+            "id": 1,
+            "children": [
+                {
+                    "text": "the virtues of courage and self-restraint;",
+                    "ref": "a",
+                    "id": 2
+                },
+                {
+                    "text": "dealing equitably with others;",
+                    "ref": "b",
+                    "id": 3
+                },
+                {
+                    "text": "learning the principles of leadership and how to make effective decisions;",
+                    "ref": "c",
+                    "id": 4
+                },
+                {
+                    "text": "learning to articulate the nature of the common good and how to act in light of it;",
+                    "ref": "d",
+                    "id": 5
+                },
+                {
+                    "text": "learning to articulate the virtues of the Catholic life and, if Catholic, living them",
+                    "ref": "e",
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "text": "Strengthen their exterior and interior senses, including:",
+            "ref": "III",
+            "id": 7,
+            "children": [
+                {
+                    "text": "learning to see and hear with more attention to detail and greater appreciation of the object perceived;",
+                    "ref": "a",
+                    "id": 8
+                },
+                {
+                    "text": "stocking their imaginations with beautiful images and strengthening their own ability to imagine",
+                    "ref": "b",
+                    "id": 9
+                }
+            ]
+        },
+        {
+            "text": "Acquire a generalist’s grasp of the Arts and Sciences, including:",
+            "ref": "IV",
+            "id": 10,
+            "children": [
+                {
+                    "text": "the first principles and chief conclusions or debates of each major area of study at the College;",
+                    "ref": "a",
+                    "id": 11
+                },
+                {
+                    "text": "the habit of explaining natural and cultural phenomena in terms of their root causes;",
+                    "ref": "b",
+                    "id": 12
+                },
+                {
+                    "text": "seeing the connections between academic courses and how all knowledge forms a unity",
+                    "ref": "c",
+                    "id": 13
+                }
+            ]
+        },
+        {
+            "text": "Become independent and lifelong learners, through:",
+            "ref": "V",
+            "id": 14,
+            "children": [
+                {
+                    "text": "learning how to interpret texts and how to find, analyze, and synthesize information;",
+                    "ref": "a",
+                    "id": 15
+                },
+                {
+                    "text": "learning to speak and write well and to discuss effectively, including the ability to engage respectfully those whose points of view are different from their own in a dialectical process of persuading and being persuaded;",
+                    "ref": "b",
+                    "id": 16
+                },
+                {
+                    "text": "acquiring a spirit of inquiry that sustains creative engagement with truth",
+                    "ref": "c",
+                    "id": 17
+                }
+            ]
+        },
+        {
+            "text": "Acculturate as members of a larger community, including:",
+            "ref": "VI",
+            "id": 18,
+            "children": [
+                {
+                    "text": "acculturating as citizens of Western civilization and, in particular, mentally join the “conversation” of the past centuries;",
+                    "ref": "a",
+                    "id": 19
+                },
+                {
+                    "text": "becoming familiar with the traditions and institutions of the Catholic Church as formative for Western civilization and, if Catholic, acculturating as Catholics",
+                    "ref": "b",
+                    "id": 20
+                }
+            ]
+        }
+    ],
+    "tracks": [
+        {
+            "name": "HMN",
+            "goals": [
+                {
+                    "text": "Become deeper and more reflective citizens of Western Civilization by standing consciously in a tradition of shared texts, events, people, characters, and ideas",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": [
+                                "b",
+                                "d",
+                                "e"
+                            ]
+                        },
+                        {
+                            "goal": "VI",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 21
+                },
+                {
+                    "text": "Learn about the people and events that shaped Western Civilization",
+                    "references": [
+                        {
+                            "goal": "VI",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 22
+                },
+                {
+                    "text": "Engage in mature discussion and debate about the questions, problems, and ideas of each specific age, and how these ideas shaped today’s world",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "b"
+                            ]
+                        },
+                        {
+                            "goal": "VI",
+                            "subGoals": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 23
+                },
+                {
+                    "text": "Learn how to interpret texts with maturity and nuance by reading the Great Books, aware of generic and historical context within the Western tradition",
+                    "references": [
+                        {
+                            "goal": "III",
+                            "subGoals": [
+                                "a"
+                            ]
+                        },
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 24
+                },
+                {
+                    "text": "Engage and form their senses, imagination, and emotions",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": []
+                        },
+                        {
+                            "goal": "III",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "5",
+                    "id": 25
+                },
+                {
+                    "text": "Learn to see the universal in the particular",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "ref": "6",
+                    "id": 26
+                },
+                {
+                    "text": "Grow in wonder, the beginning of wisdom",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "7",
+                    "id": 27
+                },
+                {
+                    "text": "Integrate what they have learned in other areas of the curriculum by situating authors and texts with respect to one another in time and, by showing how ideas developed in connection to or combat with one another, bring out the conceptual relations between seemingly distant topics",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "8",
+                    "id": 28
+                }
+            ]
+        },
+        {
+            "name": "THL",
+            "goals": [
+                {
+                    "text": "Obtain a synoptic view of revealed truth through a well-ordered study of all the major divisions of its subject matter",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 29
+                },
+                {
+                    "text": "Come to understand the way in which theology as a speculative science is the “queen of the sciences.”",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 30
+                },
+                {
+                    "text": "Interact directly with the three sources of theology, namely Scripture, Tradition, and the Magisterium",
+                    "references": [
+                        {
+                            "goal": "VI",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 31
+                },
+                {
+                    "text": "Acquire habits appropriate to interaction with each of these sources individually",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 32
+                },
+                {
+                    "text": "Grow in the disposition necessary for any fruitful interaction with any of these sources, namely friendship with God",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": []
+                        },
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "ref": "5",
+                    "id": 33
+                },
+                {
+                    "text": "Learn to articulate the virtues of the Catholic life and grow in a desire to live them",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": [
+                                "e"
+                            ]
+                        }
+                    ],
+                    "ref": "6",
+                    "id": 34
+                },
+                {
+                    "text": "Reflect on what theology, as a practical science, demands of them in the current age",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "7",
+                    "id": 35
+                }
+            ]
+        },
+        {
+            "name": "PHL",
+            "goals": [
+                {
+                    "text": "Form the habits of inquiry, dialectic, demonstration, and analogy through applying Trivium skills to concrete considerations",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "b"
+                            ]
+                        },
+                        {
+                            "goal": "V",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 36
+                },
+                {
+                    "text": "Gain insight into the real world by learning the recurrent debates, first principles, and chief conclusions in the major divisions of the perennial philosophy",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": [
+                                "c",
+                                "d",
+                                "e"
+                            ]
+                        },
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "a"
+                            ]
+                        },
+                        {
+                            "goal": "VI",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 37
+                },
+                {
+                    "text": "See how these debates, principles, and conclusions bear upon the content of other disciplines studied in the program, and how those other disciplines illuminate philosophical arguments",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 38
+                },
+                {
+                    "text": "Grasp the unity, differences, and connections of the various parts of philosophy through an orderly sequence of study",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 39
+                },
+                {
+                    "text": "Grapple seriously with points of view different from their own, both in the form of theories presented [if not endorsed] in the classic texts studied in the philosophy curriculum and in the form of teacher interventions and student objections that challenge the individual to offer a coherent, reasoned argument",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "5",
+                    "id": 40
+                }
+            ]
+        },
+        {
+            "name": "MTH/SCI",
+            "goals": [
+                {
+                    "text": "Become more attentive to the natural world in its detail and complexity",
+                    "references": [
+                        {
+                            "goal": "III",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 41
+                },
+                {
+                    "text": "Grow in a sense of wonder and love for mathematics and natural science",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 42
+                },
+                {
+                    "text": "Come to understand what mathematics and science are, what methods and principles are appropriate to them, and how to recognize non-mathematical or non-scientific writing",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "a"
+                            ]
+                        },
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 43
+                },
+                {
+                    "text": "Acquire a habit of thinking about mathematics and science from their first principles",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 44
+                },
+                {
+                    "text": "Gain a selective acquaintance with some of the most significant historical developments in science and mathematics",
+                    "references": [
+                        {
+                            "goal": "VI",
+                            "subGoals": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "ref": "5",
+                    "id": 45
+                },
+                {
+                    "text": "Come to understand the relationship between mathematics, science, and other disciplines",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "6",
+                    "id": 46
+                }
+            ]
+        },
+        {
+            "name": "MUS/ART",
+            "goals": [
+                {
+                    "text": "Come to see how great ideas throughout Western history have found concrete expression in culture, and how culture thus formed shapes the people who partake of it",
+                    "references": [
+                        {
+                            "goal": "III",
+                            "subGoals": [
+                                "b"
+                            ]
+                        },
+                        {
+                            "goal": "VI",
+                            "subGoals": [
+                                "a"
+                            ]
+                        },
+                        {
+                            "goal": "VI",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 47
+                },
+                {
+                    "text": "Observe and interpret works of fine art according to their formal principles and in relationship to the history of ideas",
+                    "references": [
+                        {
+                            "goal": "III",
+                            "subGoals": [
+                                "a"
+                            ]
+                        },
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 48
+                },
+                {
+                    "text": "Appreciate the relationship, as expressed in the past and in the present, between beauty and truth, aesthetics and rationality",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "c"
+                            ]
+                        },
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 49
+                },
+                {
+                    "text": "Become acquainted with the historical development and contextualization of the fine arts",
+                    "references": [
+                        {
+                            "goal": "VI",
+                            "subGoals": [
+                                "a"
+                            ]
+                        },
+                        {
+                            "goal": "VI",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 50
+                },
+                {
+                    "text": "Gain a better understanding of the process of artistic production",
+                    "references": [
+                        {
+                            "goal": "I",
+                            "subGoals": []
+                        },
+                        {
+                            "goal": "III",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "5",
+                    "id": 51
+                },
+                {
+                    "text": "== PLACEHOLDER ==",
+                    "references": [],
+                    "ref": "6",
+                    "id": 52
+                }
+            ]
+        },
+        {
+            "name": "TRV",
+            "goals": [
+                {
+                    "text": "Think, write, and speak clearly and effectively, with consideration of the truth and validity of their statements as well as sensitivity to genre, audience, and purpose",
+                    "references": [
+                        {
+                            "goal": "III",
+                            "subGoals": [
+                                "a"
+                            ]
+                        },
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 53
+                },
+                {
+                    "text": "Find, analyze, and synthesize information and use this information judiciously",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": [
+                                "c"
+                            ]
+                        },
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 54
+                },
+                {
+                    "text": "Communicate intelligently, thoughtfully, and persuasively with people of differing opinions and stances",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": [
+                                "c",
+                                "d"
+                            ]
+                        },
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 55
+                },
+                {
+                    "text": "Understand Grammar, Logic, and Rhetoric both as arts and sciences, seeing them as the foundations for all human thought, discourse, and culture",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 56
+                }
+            ]
+        },
+        {
+            "name": "LAT",
+            "goals": [
+                {
+                    "text": "Come to love the Latin language and to desire to progress in it further",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 57
+                },
+                {
+                    "text": "Learn generally how to learn a language",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 58
+                },
+                {
+                    "text": "Acquire over the course of two years, the main grammatical principles of Latin and internalize enough vocabulary to converse and learn in the Latin language",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 59
+                },
+                {
+                    "text": "By using Latin inside and outside of the classroom, gain an instinctive connection with past centuries of the western tradition in which Latin was the language of academic and political exchange",
+                    "references": [
+                        {
+                            "goal": "VI",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 60
+                },
+                {
+                    "text": "By acquiring a non-vernacular language, increase their sense of citizenship in a society that goes beyond their own nation even in the present time, namely Western Civilization, and, if they are Catholic, the Catholic Church",
+                    "references": [
+                        {
+                            "goal": "VI",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "5",
+                    "id": 61
+                },
+                {
+                    "text": "Be prepared, on completion of the two-year Latin program, to read portions of authentic Latin works in the original language, and to check English translations of more difficult documents against the original language",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "6",
+                    "id": 62
+                }
+            ]
+        },
+        {
+            "name": "OLP",
+            "goals": [
+                {
+                    "text": "Grow in humility and wonder through immersion in nature, God’s “first book.”",
+                    "references": [
+                        {
+                            "goal": "V",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "1",
+                    "id": 63
+                },
+                {
+                    "text": "Strengthen their imagination and senses through extended contact with natural realities",
+                    "references": [
+                        {
+                            "goal": "III",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "2",
+                    "id": 64
+                },
+                {
+                    "text": "Learn by experience the importance of a balanced life of mind, body, and spirit",
+                    "references": [
+                        {
+                            "goal": "I",
+                            "subGoals": []
+                        },
+                        {
+                            "goal": "II",
+                            "subGoals": [
+                                "e"
+                            ]
+                        }
+                    ],
+                    "ref": "3",
+                    "id": 65
+                },
+                {
+                    "text": "Better grasp community and the common good through the experience of small, self-sufficient communities working in isolated and sometimes difficult situations",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": [
+                                "d"
+                            ]
+                        }
+                    ],
+                    "ref": "4",
+                    "id": 66
+                },
+                {
+                    "text": "Grow in the virtues necessary for both leading and following in the manner proper to a free human being, including teamwork, respect for others, commitment to group decisions, communication, self-awareness, tolerance for adversity and uncertainty, judgment and risk management",
+                    "references": [
+                        {
+                            "goal": "II",
+                            "subGoals": []
+                        }
+                    ],
+                    "ref": "5",
+                    "id": 67
+                },
+                {
+                    "text": "See how what is learned in the Outdoor Leadership Program transfers to the classroom, campus life, and life after graduation",
+                    "references": [
+                        {
+                            "goal": "IV",
+                            "subGoals": [
+                                "c"
+                            ]
+                        }
+                    ],
+                    "ref": "6",
+                    "id": 68
+                },
+                {
+                    "text": "Through extended physical activities, develop skills, such as coordination, balance, and practical initiative",
+                    "references": [
+                        {
+                            "goal": "I",
+                            "subGoals": []
+                        },
+                        {
+                            "goal": "III",
+                            "subGoals": []
+                        },
+                        {
+                            "goal": "VI",
+                            "subGoals": [
+                                "b"
+                            ]
+                        }
+                    ],
+                    "ref": "7",
+                    "id": 69
+                }
+            ]
+        }
+    ],
+    "courses": [
+        {
+            "name": "HMN",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "1",
+                                "id": 70,
+                                "text": "Read and interpret texts from Greek antiquity",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "5",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "2",
+                                "id": 71,
+                                "text": "Engage in thoughtful questions and debates over various aspects of Ancient Greek intellectual history and literature",
+                                "references": [
+                                    "3",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "3",
+                                "id": 72,
+                                "text": "Understand and appreciate the places of Hesiod and Homer in the literary canon",
+                                "references": [
+                                    "2",
+                                    "4",
+                                    "5",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "4",
+                                "id": 73,
+                                "text": "Understand and appreciate the places of Aeschylus, Sophocles, and Aristophanes in the literary canon",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "5",
+                                "id": 74,
+                                "text": "Understand and appreciate the place of Plato in the philosophical tradition",
+                                "references": [
+                                    "2",
+                                    "4",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "6",
+                                "id": 75,
+                                "text": "Understand and interpret the role of Ancient Greece in shaping Western Civilization",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "7",
+                                "id": 76,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "8",
+                                "id": 77,
+                                "text": "Read and interpret texts from the Greek drama, history, and philosophy",
+                                "references": [
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "9",
+                                "id": 78,
+                                "text": "Engage in thoughtful questions and debates over various aspects of Greek intellectual history and literature",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "10",
+                                "id": 79,
+                                "text": "Understand and appreciate the places of Sophocles, Euripides, and Aristophanes in the literary canon",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "11",
+                                "id": 80,
+                                "text": "Understand and interpret the role of Greece in shaping Western Civilization",
+                                "references": [
+                                    "1",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "12",
+                                "id": 81,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "semesters": [
+                        [
+                            {
+                                "ref": "37",
+                                "id": 82,
+                                "text": "To apprentice students in the art of reading texts from Ancient Rome with sympathy and imagination",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "5",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "38",
+                                "id": 83,
+                                "text": "To engage in thoughtful questions and debates over various aspects of Ancient Roman intellectual history and literature, such as the shift from republic to empire",
+                                "references": [
+                                    "3",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "39",
+                                "id": 84,
+                                "text": "To understand how Virgil, Cicero, and Livy reflect on the virtues of Roman citizenship and the challenges to Rome’s stability",
+                                "references": [
+                                    "2",
+                                    "4",
+                                    "5",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "40",
+                                "id": 85,
+                                "text": "To see how Cicero, Lucretius, Virgil, and Ovid and Marcus Aurelius define Rome’s responsibility to civil justice in relationship to the harmony of the cosmic order",
+                                "references": [
+                                    "2",
+                                    "4",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "41",
+                                "id": 86,
+                                "text": "To apprehend the enduring presence of Ancient Rome in shaping Western civilization",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "42",
+                                "id": 87,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "43",
+                                "id": 88,
+                                "text": "Read and interpret texts from the Late Middle Ages",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "5",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "44",
+                                "id": 89,
+                                "text": "Engage in thoughtful questions and debates over various aspects of late medieval intellectual history and literature",
+                                "references": [
+                                    "3",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "45",
+                                "id": 90,
+                                "text": "Understand and appreciate the place of Augustine, Boethius, and Dante in the literary canon",
+                                "references": [
+                                    "2",
+                                    "4",
+                                    "5",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "46",
+                                "id": 91,
+                                "text": "Understand and appreciate the places of popes and emperors in the philosophical tradition",
+                                "references": [
+                                    "2",
+                                    "4",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "47",
+                                "id": 92,
+                                "text": "Understand and interpret the role of the Late Middle Ages in shaping Western Civilization",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "48",
+                                "id": 93,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ]
+                    ],
+                    "number": 200
+                },
+                {
+                    "semesters": [
+                        [
+                            {
+                                "ref": "49",
+                                "id": 94,
+                                "text": "Begin to understand the literary, philosophical and historical texts from the late Medieval and early and middle Renaissance periods",
+                                "references": []
+                            },
+                            {
+                                "ref": "50",
+                                "id": 95,
+                                "text": "Study the dramatic changes in thought and culture during these periods, examining: Christian Humanism; the Reformation and Counter-Reformation; the growth of the nation state and Europe's colonization of the world; the growth of rationalism and relativism; the emphasis on science and the subsequent rise of empiricism and skepticism",
+                                "references": []
+                            },
+                            {
+                                "ref": "51",
+                                "id": 96,
+                                "text": "Begin to understand how the imaginative works of Everyman, Chaucer and Shakespeare tell the story of mankind's pilgrim condition: created for glory and called to greatness, but wounded and weakened by sin",
+                                "references": []
+                            },
+                            {
+                                "ref": "52",
+                                "id": 97,
+                                "text": "Begin to understand the different conceptions of the human condition offered by Luther, Machiavelli and Montaigne, and how those conceptions influence posterity",
+                                "references": []
+                            },
+                            {
+                                "ref": "53",
+                                "id": 98,
+                                "text": "Study the development of genres and literary forms common to this period, from lyric poetry and the sonnet, to drama and the essay",
+                                "references": []
+                            },
+                            {
+                                "ref": "54",
+                                "id": 99,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "55",
+                                "id": 100,
+                                "text": "Read and interpret literary, philosophical and historical texts from the Early Modern Period",
+                                "references": []
+                            },
+                            {
+                                "ref": "56",
+                                "id": 101,
+                                "text": "Begin to understand the contributions of the period’s authors to the Literary Tradition",
+                                "references": []
+                            },
+                            {
+                                "ref": "57",
+                                "id": 102,
+                                "text": "Understand the dramatic changes in Western Culture from the end of the Renaissance, through the Enlightenment and Romantic periods, to the beginnings of Modernism",
+                                "references": []
+                            },
+                            {
+                                "ref": "58",
+                                "id": 103,
+                                "text": "Understand the origins of Modernism and its various manifestations, from empiricism and historicism to relativism and secularism",
+                                "references": []
+                            },
+                            {
+                                "ref": "59",
+                                "id": 104,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ]
+                    ],
+                    "number": 300
+                },
+                {
+                    "semesters": [
+                        [
+                            {
+                                "ref": "60",
+                                "id": 105,
+                                "text": "Read and interpret texts from the American political and literary tradition",
+                                "references": [
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "61",
+                                "id": 106,
+                                "text": "Engage in thoughtful questions and debates over the roots of the American political tradition and to relate it to early American literature as well as to nineteenth century literature and 20th and 21st century criticism",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "62",
+                                "id": 107,
+                                "text": "Understand and appreciate the places of Melville and Twain in the literary tradition",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "63",
+                                "id": 108,
+                                "text": "Understand and appreciate the places of Madison, Hamilton, Jefferson, Washington, Lincoln, in the philosophical tradition",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "64",
+                                "id": 109,
+                                "text": "Understand and interpret the role of social contract theory and the role of the Roman, Judeo-Christian, and British sources of American culture and to understand the American influence upon the shape of Western Civilization",
+                                "references": [
+                                    "1",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "65",
+                                "id": 110,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "66",
+                                "id": 111,
+                                "text": "Read and interpret texts from the modern and postmodern periods",
+                                "references": [
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "67",
+                                "id": 112,
+                                "text": "Engage in thoughtful questions and debates over various aspects of modern and postmodern intellectual history and literature",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "68",
+                                "id": 113,
+                                "text": "Understand and appreciate the places of Dostoevsky, Conrad, Joyce, Faulkner, Eliot, O'Connor and major 20th century poets in the literary tradition",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "69",
+                                "id": 114,
+                                "text": "Understand and appreciate the places of Nietzsche, Heidegger, and Maritain in the philosophical tradition",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "70",
+                                "id": 115,
+                                "text": "Understand and interpret the role of modernism and postmodernism in shaping Western Civilization",
+                                "references": [
+                                    "1",
+                                    "8"
+                                ]
+                            },
+                            {
+                                "ref": "71",
+                                "id": 116,
+                                "text": "Cultivate the imagination, emotions, and memory through the memorization and recitation of lyric poetry",
+                                "references": [
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ]
+                    ],
+                    "number": 400
+                }
+            ]
+        },
+        {
+            "name": "THL",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "72",
+                                "id": 117,
+                                "text": "acquire general knowledge of the narrative and the fundamental theological content of the narrative books of Sacred Scripture",
+                                "references": [
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "73",
+                                "id": 118,
+                                "text": "know and be able to summarize accurately the stages of salvation history according to chronological periods and key figures;",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "74",
+                                "id": 119,
+                                "text": "unify the above information into a holistic understanding of the origin, movement, and goal of the history of salvation as presented in Scripture;",
+                                "references": [
+                                    "1",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "75",
+                                "id": 120,
+                                "text": "gain awareness of rhetorical techniques, structures, genres, and aims of the human authors of biblical texts, so as to read the Bible more intelligently;",
+                                "references": [
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "76",
+                                "id": 121,
+                                "text": "discover the meaning and rationale of the traditional “four senses of Scripture,” while learning to explain lectio divina in its simplest form",
+                                "references": [
+                                    "4",
+                                    "5"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "77",
+                                "id": 122,
+                                "text": "Acquire general knowledge of the narrative and the fundamental theological content of the narrative books of Sacred Scripture;",
+                                "references": [
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "78",
+                                "id": 123,
+                                "text": "know and be able to summarize accurately the stages of salvation history according to chronological periods and key figures;",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "79",
+                                "id": 124,
+                                "text": "unify the above information into a holistic understanding of the origin, movement, and goal of the history of salvation as presented in Scripture;",
+                                "references": [
+                                    "1",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "80",
+                                "id": 125,
+                                "text": "describe theological faith, how it relates to reason;",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "81",
+                                "id": 126,
+                                "text": "describe how the authorities of Scripture, Magisterium, and Tradition relate to one another;",
+                                "references": [
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "82",
+                                "id": 127,
+                                "text": "summarize the nature and method of Theology",
+                                "references": [
+                                    "2"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 200,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "83",
+                                "id": 128,
+                                "text": "divide the text of the Gospel of John and comment on its major themes",
+                                "references": [
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "84",
+                                "id": 129,
+                                "text": "summarize and explain the classical Catholic doctrine of God as presented in Aquinas’s Compendium Theologiae, chapters 1–35",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "85",
+                                "id": 130,
+                                "text": "recount the positions of Arius and Alexander as well as the response made by various Fathers and Councils of the period",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "86",
+                                "id": 131,
+                                "text": "articulate and respond to difficulties concerning traditional Trinitarian dogma, using in particular Aquinas’s Compendium Theologiae, chapters 36–56",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "87",
+                                "id": 132,
+                                "text": "begin to reflect on how philosophy serves as a handmaiden to theology’s account of the one and triune God",
+                                "references": [
+                                    "2"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "88",
+                                "id": 133,
+                                "text": "Understand the chief points of the biblical account of creation and providence in Genesis, Job, and Wisdom, and its relationship to scientific accounts of cosmogenesis",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "89",
+                                "id": 134,
+                                "text": "Be able to state and explain the main conclusions of Aquinas’s doctrine of creation, providence, evil, and God’s governance of human affairs as presented in the Compendium theologiae",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "90",
+                                "id": 135,
+                                "text": "Be able to state and explain Aquinas’s doctrine of grace and the theological virtues as presented in the Summa theologiae",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "91",
+                                "id": 136,
+                                "text": "Grasp some of the chief conclusions of and be able to comment on the teaching of Augustine, the Council of Carthage, and the Synod of Orange on grace, free will, and sin",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 300,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "92",
+                                "id": 137,
+                                "text": "Articulate the Catholic understanding of the fallen human condition: the loss of original integrity and the resulting death, pain, and concupiscence, and the transmission of original sin",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "93",
+                                "id": 138,
+                                "text": "Use Scripture to explain the basic story of the fall and redemption, specifically: explain Genesis’ account of the fall;  articulate how the Levitical law and the teachings of Ecclesiastes and Ps. 51 were responses to the resultant condition, and present the end of the Incarnation as found in the Gospel of Mark, and the letters of St. Paul",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "94",
+                                "id": 139,
+                                "text": "Articulate the Catholic understanding of Christ’s saving work to explain how the Incarnation rescues us from sin, guilt, ignorance, and death, brings us in-to a more intimate divine union with God, and enables us to participate in the divine nature even in the midst of suffering",
+                                "references": [
+                                    "1",
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "95",
+                                "id": 140,
+                                "text": "Provide an account of Heaven, Purgatory, Hell that is in accord with the Thomistic tradition, specifically:, the importance and consequences of the resurrection of the body, the nature of the Beatific Vision, the definitive nature of heavenly beatitude, the justice and eternity of hell, the reason for the existence of purgatory, and  an understanding of the concept of Limbo in relation to the foregoing",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "96",
+                                "id": 141,
+                                "text": "Be able to reflect on the suffering of the fallen condition using the testimony of Scripture, the witness of the Fathers and Doctors of the Church, and the teaching of the Magisterium in order to provide a synthetic response to modern questions in a personally meaningful way",
+                                "references": [
+                                    "3",
+                                    "5"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "97",
+                                "id": 142,
+                                "text": "Recall the historical setting, theological debates surrounding, and the doctrinal definitions of the Councils of Ephesus, Chalcedon, Constantinople III, and the icon controversy with the aid of the Fathers of the Church",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "98",
+                                "id": 143,
+                                "text": "Explain the important terms and ideas of the Christological debate",
+                                "references": []
+                            },
+                            {
+                                "ref": "99",
+                                "id": 144,
+                                "text": "Explain and interrelate key points of the doctrine of the Incarnation, especially: those things which are one in Christ and those things which are two, the various modes of knowing, loving, and grace found in Christ, how Christ’s birth and Paschal Mystery must be understood, how Christ’s ministry makes him Head of the Church, all mankind, and the angels",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "100",
+                                "id": 145,
+                                "text": "Use Scripture, the Church’s Magisterium, and the work of certain Fathers and Doctors of the Church to explain key Christological dogmas in a personally meaningful way that can address modern questions",
+                                "references": [
+                                    "3",
+                                    "4"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 400,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "101",
+                                "id": 146,
+                                "text": "Explain how and why the Church is both a visible society and the Mystical Body of Christ, and elucidate how the Church’s union with the humanity of Christ causes her to be the universal sacrament of salvation for the human race",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "102",
+                                "id": 147,
+                                "text": "Explain the Church’s three-fold ministry of teaching, governing and sanctifying with reference to development of doctrine, the Church’s hierarchy, and the effects of the sacraments",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "103",
+                                "id": 148,
+                                "text": "Articulate the essence of liturgy as divine cultus and how it is the “source and summit” of the Christian life",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "104",
+                                "id": 149,
+                                "text": "define a sacrament in general, establish their necessity for salvation, and discuss the rationale and purpose of each of the seven sacraments, especially baptism, their gateway, and the Eucharist, their pinnacle",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "105",
+                                "id": 150,
+                                "text": "give an account of how the sacraments are connected together in and for the living of the Christian life in the world",
+                                "references": [
+                                    "2",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "106",
+                                "id": 151,
+                                "text": "articulate principles of the individual Christian life, including the objectivity of moral truth, the relationship of conscience and law, and the universal call to holiness",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "107",
+                                "id": 152,
+                                "text": "explain the importance of the family as the primary society and distinguish the ways in which the religious life and the married life are paths of Christian perfection",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "108",
+                                "id": 153,
+                                "text": "articulate, interconnect, and apply the following principles of Catholic Social Teaching: the dignity of the human person; the common good; the origin, purpose, and limits of civil authority; subsidiarity; the relationship of Church and State; true and false notions of freedom; personal rights, especially the right to religious liberty; private property and the universal destination of goods; participation, or the responsibilities of lay Catholics; solidarity",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "6",
+                                    "7"
+                                ]
+                            },
+                            {
+                                "ref": "109",
+                                "id": 154,
+                                "text": "relate the Christian view of individual and communal perfection to the secularism, naturalism, liberalism, and utopianism characteristic of modern thought",
+                                "references": [
+                                    "2",
+                                    "7"
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "PHL",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "110",
+                                "id": 155,
+                                "text": "understand the relationship between words and thought and the importance of clear definition",
+                                "references": [
+                                    "1",
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "111",
+                                "id": 156,
+                                "text": "have a basic understanding of how Aristotle’s ten genera and Porphyry’s post-predicables relate to thoughts and words",
+                                "references": [
+                                    "2",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "112",
+                                "id": 157,
+                                "text": "acquire a beginner’s understanding of analogical predication and its importance in philosophy",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "113",
+                                "id": 158,
+                                "text": "understand the formation and evaluation of syllogisms",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "114",
+                                "id": 159,
+                                "text": "Begin to acquire the habits of philosophical thought",
+                                "references": [
+                                    "1",
+                                    "5"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "115",
+                                "id": 160,
+                                "text": "understand the emergence of philosophical reasoning about nature against the backdrop of mythology and debate the perennial positions taken about nature as represented by the Presocratics, Plato, and Aristotle",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "116",
+                                "id": 161,
+                                "text": "derive and define the principles of nature, comparing and contrasting accidental and substantial change, relating the science of nature to mathematics and metaphysics, discovering and explaining the four kinds of causes, investigating the presence in nature of final causality, seeing the relations between nature, art, and chance, and working towards a definition of motion",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "117",
+                                "id": 162,
+                                "text": "see and make analogies between differing levels of natural phenomena and rational activity, and so acquire a set of tools that assist in approaching new conceptual territory",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "118",
+                                "id": 163,
+                                "text": "gain clarity on views of nature that played a major role in the unfolding of Christian theology in the ancient and medieval periods",
+                                "references": [
+                                    "3"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 200,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "119",
+                                "id": 164,
+                                "text": "State and explain Aristotle’s definition of the soul",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "120",
+                                "id": 165,
+                                "text": "Give an account of the different kinds of soul and their powers, with particular attention to the outer senses, the inner senses, appetition, and intellection",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "121",
+                                "id": 166,
+                                "text": "Contrast Aristotle’s account of how man understands with that of Plato, and comment on its implications for man’s understanding of himself, of things lower than himself, and of things higher than himself",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "122",
+                                "id": 167,
+                                "text": "Propose a defense of the incorruptibility and immortality of the human soul, as well as of the appropriateness of the human body for such a soul",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "123",
+                                "id": 168,
+                                "text": "Explain what is meant by the statement that man is made “in the image of God.”",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "124",
+                                "id": 169,
+                                "text": "Summarize evidence for intelligence in animals and elucidate how human intelligence is different in kind, not merely in degree, from such intelligence",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "125",
+                                "id": 170,
+                                "text": "Relate Presocratic theories of the soul to modern tendencies in philosophical anthropology and biological science, and comment on the limits of scientific method when applied to living things, especially man",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            }
+                        ],
+                        []
+                    ]
+                },
+                {
+                    "number": 300,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "126",
+                                "id": 171,
+                                "text": "obtain a thorough and rigorous understanding of Aristotle’s Nicomachean Ethics as a model of ethical inquiry, with its dialectic about differing viewpoints, demonstrations of conclusions, and frequent applications to everyday life",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "127",
+                                "id": 172,
+                                "text": "become familiar, through Aquinas, with the tradition of the four cardinal virtues as well as the comparison and contrast of natural virtues with the infused and theological virtues",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "128",
+                                "id": 173,
+                                "text": "be able to present and critique different understandings of happiness and the “good for man,” as well as the various kinds, causes, and effects of friendship",
+                                "references": [
+                                    "2",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "129",
+                                "id": 174,
+                                "text": "articulate how virtue is human excellence; how virtues and vices can be understood in terms of excess, defect, and mean, how virtue is linked to pleasure and happiness, and how character [ēthos], reason [logos], and emotion [pathos] are intertwined",
+                                "references": [
+                                    "2",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "130",
+                                "id": 175,
+                                "text": "explain how contemplation, political prudence, virtue, and human flourishing are goals of moral inquiry and practice",
+                                "references": [
+                                    "2",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "131",
+                                "id": 176,
+                                "text": "obtain a basic understanding of the Enlightenment abandonment of the Aristotelian mode of ethical inquiry",
+                                "references": [
+                                    "2",
+                                    "3",
+                                    "5"
+                                ]
+                            }
+                        ],
+                        []
+                    ]
+                },
+                {
+                    "number": 400,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "132",
+                                "id": 177,
+                                "text": "the principles, causes, and elements of the polis or political community",
+                                "references": [
+                                    "2",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "133",
+                                "id": 178,
+                                "text": "happiness—the “good-for-man” or human flourishing—as the goal not only of individual moral action but of the political order as such",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "134",
+                                "id": 179,
+                                "text": "the relationship between virtue [especially prudence], politics, law, and the common good",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "135",
+                                "id": 180,
+                                "text": "the possible or ideal relationship between the temporal political order and the spiritual or supernatural order",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "136",
+                                "id": 181,
+                                "text": "the obligations placed upon rulers and ruled by the natural law and the divine law",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "137",
+                                "id": 182,
+                                "text": "the relative strengths and weaknesses of different types of regimes, democratic, aristocratic, and monarchic",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "5"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "138",
+                                "id": 183,
+                                "text": "explain the nature, subject matter, and goal of metaphysics",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "139",
+                                "id": 184,
+                                "text": "explain the analogical nature of being and its division by act and potency",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "140",
+                                "id": 185,
+                                "text": "state the first principle of demonstration, show how it can be argued for, and explain possible reasons for its rejection",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "141",
+                                "id": 186,
+                                "text": "understand the composite nature of physical substances and substantiality as the primary mode of existence of finite beings",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "142",
+                                "id": 187,
+                                "text": "understand the relationship between substance and essence",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "143",
+                                "id": 188,
+                                "text": "explain the relationship between essence and existence and the resulting implication for the nature of the First Cause",
+                                "references": [
+                                    "1",
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "144",
+                                "id": 189,
+                                "text": "give arguments from natural reason for the existence of the First Cause, and respond to common objections to these arguments; and",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "145",
+                                "id": 190,
+                                "text": "understand the procession of the multitude of finite beings from the First Cause",
+                                "references": [
+                                    "1",
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "146",
+                                "id": 191,
+                                "text": "Understand the intellectual origins of modern metaphysical thought as a consequence of certain late-medieval movements, such as fideism and nominalism",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "147",
+                                "id": 192,
+                                "text": "understand and engage anti-Aristotelian accounts of reality",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "5"
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "MTH/SCI",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "148",
+                                "id": 193,
+                                "text": "Acquire knowledge and skills necessary for the study of nature",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "149",
+                                "id": 194,
+                                "text": "Document observations of natural phenomena through field journals, sketches, species accounts, and field research reports",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "150",
+                                "id": 195,
+                                "text": "Create and present a phenology of natural events or processes",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            }
+                        ],
+                        []
+                    ]
+                },
+                {
+                    "number": 200,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "151",
+                                "id": 196,
+                                "text": "Strengthen their understanding of the nature and relation of mathematical entities, especially the geometry of solids and the method of exhaustion",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "152",
+                                "id": 197,
+                                "text": "Prepare and demonstrate the propositions in Books XI–XIII of Euclid’s Elements and selected propositions of Apollonius’s Conics",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "153",
+                                "id": 198,
+                                "text": "Acquire skill in logical technique and presentation",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "154",
+                                "id": 199,
+                                "text": "Learn about the fundamental nature of the three conic sections",
+                                "references": [
+                                    "1",
+                                    "5",
+                                    "6"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "155",
+                                "id": 200,
+                                "text": "be able to articulate a basic philosophical understanding of mathematics and its relationship to the natural world",
+                                "references": [
+                                    "3",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "156",
+                                "id": 201,
+                                "text": "experience mathematics as a liberal art",
+                                "references": [
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "157",
+                                "id": 202,
+                                "text": "learn about the historical development of mathematics and mathematical reasoning",
+                                "references": [
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "158",
+                                "id": 203,
+                                "text": "become more familiar with basic principles of mathematical reasoning and grow in the mathematical sophistication necessary to quantitatively investigate the natural sciences",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "159",
+                                "id": 204,
+                                "text": "further develop an aesthetic appreciation for mathematics",
+                                "references": [
+                                    "1"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 300,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "160",
+                                "id": 205,
+                                "text": "Acquire the foundational knowledge necessary to apply the scientific method in subsequent courses",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "161",
+                                "id": 206,
+                                "text": "Learn to design simple scientific experiments",
+                                "references": [
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "162",
+                                "id": 207,
+                                "text": "Learn to utilize probability and statistics to empirically test hypotheses and weigh scientific evidence",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "163",
+                                "id": 208,
+                                "text": "Learn to interpret data from scientific experiments",
+                                "references": [
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "164",
+                                "id": 209,
+                                "text": "Learn to identify the characteristics of legitimate scientific reasoning that distinguish it from pseudoscience and quackery",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "165",
+                                "id": 210,
+                                "text": "Learn about the historical roots of the modern scientific method, and about the philosophical and epistemological basis of science and scientific reasoning",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "6"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "166",
+                                "id": 211,
+                                "text": "Experience using the scientific method to pose questions and test hypotheses about the natural world",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "167",
+                                "id": 212,
+                                "text": "Learn how to quantify, summarize and interpret measurements of natural phenomena; in particular utilizing probability and statistics to empirically test hypotheses and weigh scientific evidence",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "168",
+                                "id": 213,
+                                "text": "Develop, execute, and present an independent scientific study in a field setting",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "169",
+                                "id": 214,
+                                "text": "Examine scientific studies and topics relevant to the stewardship of natural resources; in particular reflecting on readings from A Sand County Almanac, the Reading packet, and other courses at WCC",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "6"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 400,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "170",
+                                "id": 215,
+                                "text": "Articulate differences and similarities between ancient and modern methods and aims of scientific inquiry;",
+                                "references": [
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "171",
+                                "id": 216,
+                                "text": "Be acquainted with some of the most common misconceptions about modern science and its method",
+                                "references": [
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "172",
+                                "id": 217,
+                                "text": "Understand the method, scope, and limitations of natural philosophy in relation to modern science",
+                                "references": [
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "173",
+                                "id": 218,
+                                "text": "Understand key contributions of Newton, Einstein, and others to our understanding of mechanics",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "6"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "174",
+                                "id": 219,
+                                "text": "Be introduced to the development of biological thought in recent centuries",
+                                "references": [
+                                    "1",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "175",
+                                "id": 220,
+                                "text": "Acquire a basic understanding of genetics, including DNA and inheritance",
+                                "references": [
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "176",
+                                "id": 221,
+                                "text": "learn about the scientific basis and philosophical implications of evolutionary theory",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "5",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "177",
+                                "id": 222,
+                                "text": "be able to articulate a Catholic perspective on evolution",
+                                "references": [
+                                    "1",
+                                    "5"
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "MUS/ART",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "number": 200,
+                    "semesters": [
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "number": 300,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "178",
+                                "id": 223,
+                                "text": "Show familiarity with the elements, language and cultural context of a wide range of art and liturgical music up to the Baroque era;",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "179",
+                                "id": 224,
+                                "text": "Show an understanding of music as a liberal art in the Quadrivium, i.e., how its elements are rooted in the physical nature of sound and how these are susceptible of mathematical analysis;",
+                                "references": [
+                                    "1",
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "180",
+                                "id": 225,
+                                "text": "Grasp the enduring relation between musical beauty and truth, aesthetics and rationality;",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "181",
+                                "id": 226,
+                                "text": "Identify the foremost characteristics of the major composers and periods of western “classical” music from the Middle Ages through the Baroque period;",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "182",
+                                "id": 227,
+                                "text": "Acquire the beginnings of musical praxis in singing and at the keyboard",
+                                "references": [
+                                    "5"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "183",
+                                "id": 228,
+                                "text": "further their understanding of music as a liberal art, i.e., in terms of its elements and principles",
+                                "references": [
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "184",
+                                "id": 229,
+                                "text": "identify the main figures and characteristics of Western art music from the Classical period to the present",
+                                "references": [
+                                    "1",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "185",
+                                "id": 230,
+                                "text": "discuss the psychological, ethical and spiritual dimensions and implications of music from different periods and styles",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "186",
+                                "id": 231,
+                                "text": "explain the Catholic understanding of sacred music as articulated by the Magisterium of the Church",
+                                "references": [
+                                    "3",
+                                    "4"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 400,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "187",
+                                "id": 232,
+                                "text": "Identify a great number of artistic works, identifying those works within their stylistic period and geographical location",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "188",
+                                "id": 233,
+                                "text": "To philosophize with a greater ability, being aware of how art serves reason as her handmaiden",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "189",
+                                "id": 234,
+                                "text": "Respond to a work of art with confidence and eloquence; \"read\" a work of art with sensitivity to its formal elements, historical context, and philosophical significance",
+                                "references": [
+                                    "5",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "190",
+                                "id": 235,
+                                "text": "Visit Europe, as a pilgrim or tourist, with sensitivity and appreciation",
+                                "references": [
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "191",
+                                "id": 236,
+                                "text": "Be prepared to be a sophisticated patron of the arts, for the betterment of the Church",
+                                "references": [
+                                    "2"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "192",
+                                "id": 237,
+                                "text": "Identify a great number of artistic works, identifying those works within their stylistic period and geographical location",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "193",
+                                "id": 238,
+                                "text": "To philosophize with a greater ability, being aware of how art serves reason as her handmaiden",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "194",
+                                "id": 239,
+                                "text": "Respond to a work of art with confidence and eloquence; \"read\" a work of art with sensitivity to its formal elements, historical context, and philosophical significance",
+                                "references": [
+                                    "5",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "195",
+                                "id": 240,
+                                "text": "Visit Europe, as a pilgrim or tourist, with sensitivity and appreciation",
+                                "references": [
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "196",
+                                "id": 241,
+                                "text": "Be prepared to be a sophisticated patron of the arts, for the betterment of the Church",
+                                "references": [
+                                    "2"
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TRV",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "197",
+                                "id": 242,
+                                "text": "Gain an overview of the liberal arts tradition as a whole and Trivium’s relation to it",
+                                "references": []
+                            },
+                            {
+                                "ref": "198",
+                                "id": 243,
+                                "text": "Understand the purpose of language and the importance of clarity in written and oral expression",
+                                "references": []
+                            },
+                            {
+                                "ref": "199",
+                                "id": 244,
+                                "text": "Identify the principal errors in written expression and develop the ability to edit one’s own work",
+                                "references": []
+                            },
+                            {
+                                "ref": "200",
+                                "id": 245,
+                                "text": "Learn how to formulate a thesis and craft a college-level essay",
+                                "references": []
+                            },
+                            {
+                                "ref": "201",
+                                "id": 246,
+                                "text": "Learn how to participate in class discussion",
+                                "references": []
+                            }
+                        ],
+                        []
+                    ]
+                },
+                {
+                    "number": 200,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "202",
+                                "id": 247,
+                                "text": "Understand the foundations of rhetorical theory",
+                                "references": [
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "203",
+                                "id": 248,
+                                "text": "Use a thesis statement to organize an essay, supported with pertinent examples and enthymemes",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "204",
+                                "id": 249,
+                                "text": "Understand and practice revision on essays",
+                                "references": [
+                                    "1",
+                                    "2",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "205",
+                                "id": 250,
+                                "text": "Understand, recognize, and use the three appeals in written rhetoric",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "206",
+                                "id": 251,
+                                "text": "Know and use the Common Topics",
+                                "references": [
+                                    "2",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "207",
+                                "id": 252,
+                                "text": "Understand the rhetorical options available for Introductions and Conclusions",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "208",
+                                "id": 253,
+                                "text": "Organize essays according to the classical oration design",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "209",
+                                "id": 254,
+                                "text": "Compose a title that is both rhetorically compelling and informative",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "210",
+                                "id": 255,
+                                "text": "Use a variety of rhetorical styles, choosing that style according to the parameters of a specific assignment",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "211",
+                                "id": 256,
+                                "text": "Construct rhetorically sophisticated sentences, using variety to create interest and dictate pace",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "212",
+                                "id": 257,
+                                "text": "Recognize and deploy the rhetorical figures of speech",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "213",
+                                "id": 258,
+                                "text": "Analyze the style of a piece of prose",
+                                "references": [
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "214",
+                                "id": 259,
+                                "text": "Consider the philosophical, rhetorical, and political implications of style in specific and rhetoric in general",
+                                "references": [
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "215",
+                                "id": 260,
+                                "text": "Produce short examples of rhetorically compelling political discourse and deliver a variety of short politically relevant speeches drawn from the Progymnasmata",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "216",
+                                "id": 261,
+                                "text": "Deliver longer, composed orations, recited from memory in the context of a political debate, and employ other political debate skills: extemporaneous speaking and question and answer skills",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "217",
+                                "id": 262,
+                                "text": "propose a convincing solution to a political problem within the scope of the student",
+                                "references": [
+                                    "2",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "218",
+                                "id": 263,
+                                "text": "Be able to speak effectively about political concerns",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "219",
+                                "id": 264,
+                                "text": "Gain a basic knowledge of the American political regime in order to be able to engage in appropriate political discourse",
+                                "references": [
+                                    "1",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "220",
+                                "id": 265,
+                                "text": "Develop in basic delivery skills for public speaking: body language, projection, pace of speech, enunciation, etc",
+                                "references": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 300,
+                    "semesters": [
+                        [],
+                        [
+                            {
+                                "ref": "221",
+                                "id": 266,
+                                "text": "put all their trivium skills together in a single project [arguing, analyzing, writing with clarity and beauty, speaking with persuasive power];",
+                                "references": []
+                            },
+                            {
+                                "ref": "222",
+                                "id": 267,
+                                "text": "prepare for the senior thesis [Trivium 401];",
+                                "references": []
+                            },
+                            {
+                                "ref": "223",
+                                "id": 268,
+                                "text": "develop a habit of thought which is dialectical, creative, and synthetic; and, which draws on the full range of the curriculum to answer questions of perennial importance",
+                                "references": []
+                            },
+                            {
+                                "ref": "224",
+                                "id": 269,
+                                "text": "appreciate how various disciplinary modes of thinking enable us to appreciate a great author;",
+                                "references": []
+                            },
+                            {
+                                "ref": "225",
+                                "id": 270,
+                                "text": "learn basic research skills by which they will be able to enter into a conversation beyond the walls of WCC about an author or important question",
+                                "references": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "number": 400,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "226",
+                                "id": 271,
+                                "text": "bring together, in a formal way, the reasoning and writing skills that have been cultivated during the previous three years of the Trivium curriculum and indeed of the entire unified body of disciplines contained in the College curriculum",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "227",
+                                "id": 272,
+                                "text": "frame a significant question of the sort that the texts in the curriculum themselves frame, and, in dialogue with one or more such texts and under the direction of a professor, refine, explore, and answer the question in a thoughtful manner",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "228",
+                                "id": 273,
+                                "text": "demonstrate the ability to find, analyze, and synthesize information pertinent to the thesis and use this information judiciously",
+                                "references": [
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "229",
+                                "id": 274,
+                                "text": "Communicate evidence, arguments, and conclusions persuasively and with a sensitivity to audience and purpose",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "ref": "230",
+                                "id": 275,
+                                "text": "bring together, in a formal way, the reasoning and speaking skills that have been cultivated during the previous three years of the Trivium curriculum and indeed of the entire unified body of disciplines contained in the College curriculum",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            {
+                                "ref": "231",
+                                "id": 276,
+                                "text": "craft a thesis for his oration with an eye to the truth and validity of his statements and which is intimately related to his written thesis",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "232",
+                                "id": 277,
+                                "text": "Synthesize the information of the written thesis in a creative and judicious way that best corresponds to the genre of an oration",
+                                "references": [
+                                    "1",
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "233",
+                                "id": 278,
+                                "text": "Communicate evidence, arguments, and conclusions persuasively and with a sensitivity to audience and purpose and be able to adequately respond to the questions of that audience",
+                                "references": [
+                                    "1",
+                                    "3"
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "LAT",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "234",
+                                "id": 279,
+                                "text": "be able to articulate an argument as to why we should study Latin and how that study strengthens our understanding of western tradition and our relationship with the Catholic Church",
+                                "references": [
+                                    "3",
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "235",
+                                "id": 280,
+                                "text": "master the material in Chapters 1-12 of Oerberg's Familia Romana [e.g., the complete noun system]",
+                                "references": [
+                                    "1",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "236",
+                                "id": 281,
+                                "text": "demonstrate command of a fundamental practical vocabulary",
+                                "references": [
+                                    "1",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "237",
+                                "id": 282,
+                                "text": "read, write, and speak elementary Latin with some facility",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "5"
+                                ]
+                            }
+                        ],
+                        []
+                    ]
+                },
+                {
+                    "number": 200,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "238",
+                                "id": 283,
+                                "text": "Master the material in Chapters 1-30 of Oerberg's Familia Romana [i.e., the complete verbal system in the indicative]",
+                                "references": [
+                                    "1",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "239",
+                                "id": 284,
+                                "text": "Demonstrate command of fundamental practical vocabulary",
+                                "references": [
+                                    "1",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "240",
+                                "id": 285,
+                                "text": "Read, write and speak Latin at an intermediate level",
+                                "references": [
+                                    "1",
+                                    "3",
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "241",
+                                "id": 286,
+                                "text": "Learn basic language learning skills that you will continue to utilize in the remainder of the Latin sequence",
+                                "references": [
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "242",
+                                "id": 287,
+                                "text": "Learn many prayers and loci communes excerpted from the missal and common liturgical activities",
+                                "references": [
+                                    "3"
+                                ]
+                            }
+                        ],
+                        []
+                    ]
+                },
+                {
+                    "number": 300,
+                    "semesters": [
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "number": 400,
+                    "semesters": [
+                        [],
+                        []
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "OLP",
+            "years": [
+                {
+                    "number": 100,
+                    "semesters": [
+                        [
+                            {
+                                "ref": "243",
+                                "id": 288,
+                                "text": "form a working relationship with an animal with a mind of its own in order to develop self-awareness and a humble realization of what they can and cannot control in a situation",
+                                "references": [
+                                    "1"
+                                ]
+                            },
+                            {
+                                "ref": "244",
+                                "id": 289,
+                                "text": "directly experience a natural and living but non-human creature in order to gain an immediate sense of what “natural” and “living” mean",
+                                "references": [
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "245",
+                                "id": 290,
+                                "text": "recognize the responsibility and hard work required to care for an animal, particularly an animal that in turn works for man in order to help him accomplish his tasks, in order to understand their relationship to nature as human begins created to exercise proper dominion over the world",
+                                "references": [
+                                    "1",
+                                    "2"
+                                ]
+                            },
+                            {
+                                "ref": "246",
+                                "id": 291,
+                                "text": "gain an experiential, hands-on connection with American, Western and Wyoming culture in order to acculturate as citizens of the western world",
+                                "references": [
+                                    "4",
+                                    "6"
+                                ]
+                            },
+                            {
+                                "ref": "247",
+                                "id": 292,
+                                "text": "experience what it is like develop a complex physical skill, progressing from the fundamentals to the more advanced",
+                                "references": [
+                                    "3"
+                                ]
+                            },
+                            {
+                                "ref": "248",
+                                "id": 293,
+                                "text": "grow in the leadership virtues of communication, judgment and decision-making, tolerance for adversity, self-awareness and more by working in an uncontrolled environment where things can change at a moment’s notice",
+                                "references": [
+                                    "5"
+                                ]
+                            },
+                            {
+                                "ref": "249",
+                                "id": 294,
+                                "text": "Learn the challenging dynamics of not only working with a group of individual humans but also a group of individual horses and how to manage such a group to accomplish a task",
+                                "references": [
+                                    "4"
+                                ]
+                            }
+                        ],
+                        []
+                    ]
+                },
+                {
+                    "number": 200,
+                    "semesters": [
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "number": 300,
+                    "semesters": [
+                        [],
+                        []
+                    ]
+                },
+                {
+                    "number": 400,
+                    "semesters": [
+                        [],
+                        []
+                    ]
+                }
+            ]
+        }
+    ]
+}

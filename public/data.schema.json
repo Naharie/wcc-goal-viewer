@@ -1,0 +1,185 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://wyomingcatholic.edu/goals/data.schema.json",
+    "title": "WCC Curriculum Goals",
+    "description": "A complete listing of the curriculum, track, and track goals of WCC.",
+    "type": "object",
+    "properties": {
+        "curriculumGoals": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "type": "string",
+                        "description": "The text or description of the goal."
+                    },
+                    "ref": {
+                        "type": "string",
+                        "description": "The unique identifier by which this specific goal will be referred to by other goals."
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The unique identifier by which this goal will be referred to in links."
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "text": {
+                                    "type": "string",
+                                    "description": "The text or description of the goal."
+                                },
+                                "ref": {
+                                    "type": "string",
+                                    "description": "The unique identifier by which this specific goal will be referred to by other goals."
+                                },
+                                "id": {
+                                    "type": "integer",
+                                    "description": "The unique identifier by which this goal will be referred to in links."
+                                }
+                            },
+                            "required": [ "text", "ref", "id" ],
+                            "description": "A sub-goal that must be met for the parent curriculum goal to be achieved."
+                        },
+                        "description": "The parts or sub-goals in order for this curriculum goal to be met."
+                    }
+                },
+                "required": [ "text", "ref", "id", "children" ]
+            },
+            "description": "The top level set of goals that are to be met by the curriculum as a whole through the completion of the track and course goals."
+        },
+        "tracks": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The abbreviated track name (HMN for Humanities, PHL for Philosophy and so on)."
+                    },
+                    "goals": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "text": {
+                                    "type": "string",
+                                    "description": "The text or description of the goal."
+                                },
+                                "references": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "goal": {
+                                                "type": "string",
+                                                "description": "The reference id of a curriculum goal."
+                                            },
+                                            "subGoals": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "description": "A particular sub-goal that this track goal fulfills."
+                                                },
+                                                "description": "The specific sub-goals that this track goal fulfills."
+                                            }
+                                        },
+                                        "required": [ "goal", "sub-goals" ],
+                                        "description": "A curriculum goal and its sub-goals that this track goal refers to and is a prerequisite for."
+                                    },
+                                    "description": "The curriculum goals and their sub-goals that this track goal refers to and is a prerequisite for."
+                                },
+                                "ref": {
+                                    "type": "string",
+                                    "description": "The unique identifier by which this specific goal will be referred to by other goals."
+                                },
+                                "id": {
+                                    "type": "integer",
+                                    "description": "The unique identifier by which this goal will be referred to in links."
+                                }
+                            },
+                            "required": [ "text", "references", "ref", "id" ],
+                            "description": "A goal that applies specifically to its parent track and no other."
+                        },
+                        "description": "The list of goals that apply specifically to this track."
+                    }
+                },
+                "required": [ "name", "goals" ],
+                "description": "A single curriculum track (examples are Humanities (HMN), Theology (THL), Philosophy (PHL), and such.)"
+            },
+            "description": "The set of curriculum tracks and their goals."
+        },
+        "courses": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The abbreviated course name (HMN for Humanities, PHL for Philosophy and so on)."
+                    },
+                    "years": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "number": {
+                                    "type": "integer",
+                                    "description": "The academic year number (100, 200, 300, 400)."
+                                },
+                                "semesters": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "text": {
+                                                    "type": "string",
+                                                    "description": "The text or description of the goal."
+                                                },
+                                                "references": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "description": "A track goal (of the same course) referenced by this goal."
+                                                    },
+                                                    "description": "The track goals (of the same course) referenced by this goal."
+                                                },
+                                                "ref": {
+                                                    "type": "string",
+                                                    "description": "The unique identifier by which this specific goal will be referred to by other goals."
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "description": "The unique identifier by which this goal will be referred to in links."
+                                                }
+                                            },
+                                            "required": [ "text", "references", "ref", "id" ],
+                                            "description": "A goal specific to the parent academic semester of the specified year of the specified course."
+                                        },
+                                        "description": "One of the two academic semesters that comprise this year of the course."
+                                    },
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "description": "The two academic semesters that comprise this year of the course."
+                                }
+                            },
+                            "required": [ "number", "semesters" ],
+                            "description": "All the goals applicable to the specified year of the course."
+                        },
+                        "minItems": 4,
+                        "maxItems": 4,
+                        "description": "The goals that are specific to this course divided by year and semester."
+                    }
+                },
+                "required": [ "name", "years" ],
+                "description": "A single course and its goals divided by year."
+            },
+            "description": "A listing of specific courses and their goals."
+        }
+    },
+    "required": [ "curriculumGoals", "tracks", "courses" ]
+}
