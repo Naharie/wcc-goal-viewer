@@ -6,7 +6,7 @@ The first column lists Program Goals; the second, Track Goals; and the third, Co
 
 A public version can be found [here](https://wyomingcatholic.edu/goals.html). When you are ready for more, try adding ?editor=true to the end of the url to enable the editor functionality used for maintenance. Please not that the public version is partially broken due to edits made by WCC's webmaster, so consider cloning this repository to try everything locally.
 
-Select a program goal:
+Selecting a program goal:
 ![](./gifs/PrimaryGoal.gif)
 
 Selecting a track goal:
