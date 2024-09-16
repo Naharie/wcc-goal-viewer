@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
-import useData from "../../data";
 import CourseYear from "./CourseYear";
+import { useData } from "../../data";
 
 const Course = ({ course: index }: PropsWithChildren<{ course: number }>) =>
 {

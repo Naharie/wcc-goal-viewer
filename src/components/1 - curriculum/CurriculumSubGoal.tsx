@@ -1,11 +1,9 @@
-import { PropsWithChildren } from "react";
-import useData from "../../data";
-import deleteCurriculumSubGoal from "../../data/actions/data/deletion/curriculumSubGoal";
-import toggleCurriculumSubGoalHighlight from "../../data/actions/highlight/toggle/curriculumSubGoalHighlight";
-import useEditor from "../../data/editor";
-import useHighlight from "../../data/highlight";
-import useScores, { average } from "../../data/scores";
+import { useEditor } from "../../data/editor";
 import GoalBase from "../GoalBase";
+import { useCurriculumSubGoalScores } from "../../data/scores";
+import average from "../../utilities/average";
+import { toggleCurriculumSubGoalHighlight, useCurriculumSubGoalHighlight } from "../../data/highlight";
+import { deleteCurriculumSubGoal, updateCurriculumSubGoal, useData } from "../../data";
 
 interface CurriculumSubGoalProps
 {
@@ -13,22 +11,18 @@ interface CurriculumSubGoalProps
     index: number;
 }
 
-const CurriculumSubGoal = ({ parentIndex, index }: PropsWithChildren<CurriculumSubGoalProps>) =>
+const CurriculumSubGoal = ({ parentIndex, index }: CurriculumSubGoalProps) =>
 {
     const parent = useData(data => data.curriculumGoals[parentIndex]);
     const goal = parent.children[index];
-    const score = useScores(scores =>  average(scores.curriculumGoals[parent.ref].children[goal.ref]));
-    const highlighted = useHighlight(highlight => highlight.curriculumGoals[parent.ref][goal.ref]);
+    const score = average(useCurriculumSubGoalScores(parent.ref, goal.ref));
+    const highlighted = useCurriculumSubGoalHighlight(parent.ref, goal.ref);
 
-    const update = useData(data => data.update);
     const closeEditor = useEditor(editor => editor.closeEditor);
 
     const saveGoal = (text: string) =>
     {
-        update(data =>
-        {
-            data.curriculumGoals[parentIndex].children[index].text = text;
-        });
+        updateCurriculumSubGoal(parentIndex, index, text);
         closeEditor();
     };
     const deleteGoal = () =>
@@ -44,7 +38,7 @@ const CurriculumSubGoal = ({ parentIndex, index }: PropsWithChildren<CurriculumS
             score={score}
             
             className="mt-2"
-            onClick={toggleCurriculumSubGoalHighlight(parent.ref, goal.ref)}
+            onClick={() => toggleCurriculumSubGoalHighlight(parent.ref, goal.ref)}
 
             saveGoal={saveGoal}
             deleteGoal={deleteGoal}

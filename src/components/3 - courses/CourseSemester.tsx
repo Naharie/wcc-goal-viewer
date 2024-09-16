@@ -1,10 +1,8 @@
 import { PropsWithChildren } from "react";
-import useData from "../../data";
-import addCourseGoal from "../../data/actions/data/addition/courseGoal";
-import swapCourseGoals from "../../data/actions/data/swap/courseGoals";
-import useEditor from "../../data/editor";
+import { useEditor } from "../../data/editor";
 import SortableList from "../sortable/SortableList";
 import CourseGoal from "./CourseGoal";
+import { addCourseGoal, swapCourseGoals, useData } from "../../data";
 
 interface CourseSemesterProps
 {

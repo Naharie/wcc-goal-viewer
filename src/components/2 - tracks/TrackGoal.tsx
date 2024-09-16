@@ -1,12 +1,11 @@
-import useData from "../../data";
-import useHighlight from "../../data/highlight";
-import useScores, { average } from "../../data/scores";
 import GoalBase from "../GoalBase";
-import toggleTrackGoalHighlight from "../../data/actions/highlight/toggle/trackGoalHighlight";
 import validator from "../../validators/trackGoalReferencesValidator";
-import deleteTrackGoal from "../../data/actions/data/deletion/trackGoal";
-import useEditor from "../../data/editor";
+import { useEditor } from "../../data/editor";
 import { TrackGoalReference } from "../../data/validation";
+import { useTrackGoalScores } from "../../data/scores";
+import average from "../../utilities/average";
+import { toggleTrackGoalHighlight, useTrackGoalHighlight } from "../../data/highlight";
+import { deleteTrackGoal, updateTrackGoal, useData } from "../../data";
 
 interface TrackGoalProps
 {
@@ -17,28 +16,24 @@ interface TrackGoalProps
 const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
 {
     const track = useData(data => data.tracks[trackIndex]);
-    const update = useData(data => data.update);
     const closeEditor = useEditor(editor => editor.closeEditor);
 
     const goal = track.goals[index];
-
-    const score = useScores(scores => average(scores.tracks[track.name][goal.ref]));
-    const highlighted = useHighlight(highlight => highlight.tracks[track.name][goal.ref]);
+    const score = average(useTrackGoalScores(track.name, goal.ref));
+    const highlighted = useTrackGoalHighlight(track.name, goal.ref);
 
     const references =
         goal.references.map(
             reference =>
                 reference.subGoals?.length ?? 0 > 0 ?
-                    reference.goal + " " + reference.subGoals?.join(", ") ?? "" :
-                    reference.goal
+                    reference.goal + " " + reference.subGoals?.join(", ") ?? "" : reference.goal
         ).join("; ");
+
+    
 
     const saveGoal = (text: string) =>
     {
-        update(data =>
-        {
-            data.tracks[trackIndex].goals[index].text = text;
-        });
+        updateTrackGoal(trackIndex, index, text, goal.references);
         closeEditor();
     };
     const deleteGoal = () =>
@@ -62,10 +57,7 @@ const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
             return ({ goal, subGoals });
         });
 
-        update(data =>
-        {
-            data.tracks[trackIndex].goals[index].references = references;
-        });
+        updateTrackGoal(trackIndex, index, goal.text, references);
     };
 
     return (
@@ -78,7 +70,7 @@ const TrackGoal = ({ trackIndex, index }: TrackGoalProps) =>
             saveGoal={saveGoal}
             deleteGoal={deleteGoal}
 
-            onClick={toggleTrackGoalHighlight(track.name, goal.ref)}
+            onClick={() => toggleTrackGoalHighlight(track.name, goal.ref)}
         >
         </GoalBase>
     );

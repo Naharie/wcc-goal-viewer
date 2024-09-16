@@ -1,17 +1,14 @@
 import { PropsWithChildren } from "react";
-import useData from "../../data";
-import swapCurriculumSubGoals from "../../data/actions/data/swap/curriculumSubGoals";
-import useEditor from "../../data/editor";
-import useHighlight from "../../data/highlight";
-import useScores, { average } from "../../data/scores";
+import { useEditor } from "../../data/editor";
+import { toggleCurriculumGoalHighlight, useCurriculumGoalHighlight } from "../../data/highlight";
 import chooseBackground from "../../utilities/choose-background";
 import GoalBase from "../GoalBase";
 import SortableList from "../sortable/SortableList";
 import CurriculumSubGoal from "./CurriculumSubGoal";
-import toggleCurriculumGoalHighlight from "../../data/actions/highlight/toggle/curriculumGoalHighlight";
-import deleteCurriculumGoal from "../../data/actions/data/deletion/curriculumGoal";
-import addCurriculumSubGoal from "../../data/actions/data/addition/curriculumSubGoal";
 import useClick from "../../hooks/useClick";
+import average from "../../utilities/average";
+import { useCurriculumGoalScores } from "../../data/scores";
+import { addCurriculumSubGoal, deleteCurriculumGoal, swapCurriculumSubGoals, updateCurriculumGoal, useData } from "../../data";
 
 interface CurriculumGoalProps
 {
@@ -26,10 +23,9 @@ const CurriculumGoal = ({ index }: PropsWithChildren<CurriculumGoalProps>) =>
     const dimmed = useEditor(editor => editor.id !== undefined && editor.id !== goal.id);
 
     const allowSorting = useEditor(editor => editor.enabled && editor.id === undefined);
-    const score = useScores(scores => average (scores.curriculumGoals[goal.ref].score));
-    const highlighted = useHighlight(highlight => Object.values(highlight.curriculumGoals[goal.ref]).some(v => v));
+    const score = average(useCurriculumGoalScores(goal.ref));
+    const highlighted = useCurriculumGoalHighlight(goal.ref);
 
-    const update = useData(data => data.update);
     const closeEditor = useEditor(editor => editor.closeEditor);
 
     const subGoals =
@@ -39,19 +35,10 @@ const CurriculumGoal = ({ index }: PropsWithChildren<CurriculumGoalProps>) =>
             value: <CurriculumSubGoal key={goal.id} parentIndex={index} index={childIndex} />
         }));
 
-    const addGoal = () =>
-    {
-        console.log("Add Goal");
-        if (dimmed) return;
-        addCurriculumSubGoal(index);
-    };
-
+    const addGoal = () => !dimmed && addCurriculumSubGoal(index);
     const saveGoal = (text: string) =>
     {
-        update(data =>
-        {
-            data.curriculumGoals[index].text = text;
-        });
+        updateCurriculumGoal(index, text);
         closeEditor();
     };
     const deleteGoal = () =>
@@ -68,7 +55,7 @@ const CurriculumGoal = ({ index }: PropsWithChildren<CurriculumGoalProps>) =>
             highlighted={highlighted}
             score={score}
             className="m-1 mb-6"
-            onClick={toggleCurriculumGoalHighlight(goal.ref)}
+            onClick={() => toggleCurriculumGoalHighlight(goal.ref)}
 
             saveGoal={saveGoal}
             deleteGoal={deleteGoal}

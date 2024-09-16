@@ -5,7 +5,9 @@ import App from "./components/App";
 import "simplebar-react/dist/simplebar.min.css";
 import "./css/index.css";
 import { getQuery } from "./utilities/query-parameter";
-import useEditor from "./data/editor";
+import { enableEditor } from "./data/editor";
+import { readScoresFromQuery } from "./data/scores";
+import { fetchData } from "./fetchData";
 
 const root = createRoot(document.getElementById("root")!);
 
@@ -13,8 +15,11 @@ const root = createRoot(document.getElementById("root")!);
 // (?editor=true)
 if (getQuery()["editor"] === "true")
 {
-    useEditor.getState().enableEditor();
+    enableEditor();
 }
+
+fetchData();
+window.addEventListener("popstate", () => readScoresFromQuery());
 
 root.render(
     <React.StrictMode>

@@ -1,7 +1,5 @@
-import useData from "../../data";
-import addTrackGoal from "../../data/actions/data/addition/trackGoal";
-import swapTrackGoals from "../../data/actions/data/swap/swapTrackGoals";
-import useEditor from "../../data/editor";
+import { addTrackGoal, swapTrackGoals, useData } from "../../data";
+import { useEditor } from "../../data/editor";
 import SortableList from "../sortable/SortableList";
 import TrackGoal from "./TrackGoal";
 
@@ -20,11 +18,7 @@ const Track = ({ track: index }: { track: number }) =>
             value: <TrackGoal key={goal.id} trackIndex={index} index={goalIndex} />
         }));
 
-    const addGoal = () =>
-    {
-        if (dimmed) return;
-        addTrackGoal(index);
-    }
+    const addGoal = () => !dimmed && addTrackGoal(index);
 
     return (
         <div className="mx-8">

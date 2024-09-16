@@ -1,4 +1,4 @@
-import useHighlight from "../data/highlight";
+import { useHighlight } from "../data/highlight";
 import { fromRomanNumeral } from "../utilities/roman-numerals";
 
 const validator = (text: string) =>

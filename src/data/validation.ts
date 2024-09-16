@@ -99,3 +99,4 @@ export interface Course extends ArrayElement<JsonData["courses"]> {}
 export interface Year extends ArrayElement<Course["years"]> {}
 export interface Semester extends ArrayElement<Year["semesters"]> {}
 export interface CourseGoal extends ArrayElement<Semester> {}
+export type CourseGoalReference = ArrayElement<CourseGoal["references"]>;

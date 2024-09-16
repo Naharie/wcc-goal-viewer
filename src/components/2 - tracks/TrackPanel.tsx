@@ -1,7 +1,7 @@
 import SimpleBar from "simplebar-react";
-import useData from "../../data";
-import useEditor from "../../data/editor";
+import { useEditor } from "../../data/editor";
 import Track from "./Track";
+import { useData } from "../../data";
 
 const TrackPanel = () =>
 {

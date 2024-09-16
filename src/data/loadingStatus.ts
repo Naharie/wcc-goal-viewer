@@ -5,17 +5,19 @@ export interface LoadingStatusSlice
     isLoaded: boolean;
     errorMessage?: string;
 
-    setLoaded(errorMessage?: string): void;
+    setLoaded(): void;
+    setError(errorMessage: string): void;
 }
 
-const useLoadingStatus = create<LoadingStatusSlice>(set => ({
+export const useLoadingStatus = create<LoadingStatusSlice>(set => ({
     isLoaded: false,
     errorMessage: undefined,
 
-    setLoaded(errorMessage?: string)
-    {
-        set({ isLoaded: true, errorMessage });
-    }
+    setLoaded: () => set({ isLoaded: true, errorMessage: undefined }),
+    setError: (errorMessage?: string) => set({ isLoaded: true, errorMessage })
 }));
 
-export default useLoadingStatus;
+const state = useLoadingStatus.getState();
+
+export const setLoaded = state.setLoaded;
+export const setError = state.setError;

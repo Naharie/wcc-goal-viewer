@@ -1,10 +1,8 @@
 import SimpleBar from "simplebar-react";
 import CurriculumGoal from "./CurriculumGoal";
 import SortableList from "../sortable/SortableList";
-import useData from "../../data";
-import useEditor from "../../data/editor";
-import swapCurriculumGoals from "../../data/actions/data/swap/curriculumGoals";
-import addCurriculumGoal from "../../data/actions/data/addition/curriculumGoal";
+import { useEditor } from "../../data/editor";
+import { addCurriculumGoal, swapCurriculumGoals, useData } from "../../data";
 
 const CurriculumPanel = () =>
 {
@@ -21,11 +19,7 @@ const CurriculumPanel = () =>
             value: <CurriculumGoal key={goal.id} index={index} />
         }));
 
-    const addGoal = () =>
-    {
-        if (dimmed) return;
-        addCurriculumGoal();
-    };
+    const addGoal = () => !dimmed && addCurriculumGoal();
 
     return (
         <SimpleBar className={"max-h-full pr-4 pb-4" + (dimmed ? " bg-dim-not-selected" : "")}>

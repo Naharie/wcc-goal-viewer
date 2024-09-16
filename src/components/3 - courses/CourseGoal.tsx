@@ -1,14 +1,12 @@
 import { useState } from "react";
-import useData from "../../data";
-import deleteCourseGoal from "../../data/actions/data/deletion/courseGoal";
-import propagateScores from "../../data/actions/scores/propagation/propagateScores";
-import useEditor from "../../data/editor";
-import useHighlight from "../../data/highlight";
-import useScores from "../../data/scores";
+import { closeEditor } from "../../data/editor";
 import validator from "../../validators/courseGoalReferencesValidator";
 import GoalBase from "../GoalBase";
 import BadgeButton from "../scores/BadgeButton";
 import ScoreSelector from "../scores/ScoreSelector";
+import { addCourseGoalScore, deleteCourseGoalScore, propagateScores, setCourseGoalScore, useCourseGoalScores } from "../../data/scores";
+import { useCourseGoalHighlight } from "../../data/highlight";
+import { deleteCourseGoal, updateCourseGoal, useData } from "../../data";
 
 interface CourseGoalProps
 {
@@ -20,62 +18,29 @@ interface CourseGoalProps
 
 const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: CourseGoalProps) =>
 {
-    const update = useData(data => data.update);
-    const closeEditor = useEditor(editor => editor.closeEditor);
-
     const course = useData(data => data.courses[courseIndex]);
     const goal = course.years[year].semesters[semester][goalIndex];
     
-    const scores = useScores(scores => scores.courses[course.name][goal.ref]);
-    const updateScores = useScores(scores => scores.update);
+    const scores = useCourseGoalScores(course.name, goal.ref);
     
-    const highlighted = useHighlight(highlight => highlight.courses[course.name][goal.ref]);
+    const highlighted = useCourseGoalHighlight(course.name, goal.ref);
     const [addingScores, setAddingScores] = useState(false);
 
     const toggleAddingScores = () => setAddingScores(value => !value);
 
-    const addScore = () =>
-    {
-        updateScores(scores =>
-        {
-            scores.courses[course.name][goal.ref].push(0);
-        });
-        propagateScores();
-    };
-    const deleteScore = (index: number) => () =>
-    {
-        updateScores(scores =>
-        {
-            scores.courses[course.name][goal.ref].splice(index, 1);
-        });
-        propagateScores();
-    };
-    const setScore = (index: number) => (score: number) =>
-    {
-        updateScores(scores =>
-        {
-            scores.courses[course.name][goal.ref][index] = score;
-        });
-        propagateScores();
-    };
+    const addScore = () => addCourseGoalScore(course.name, goal.ref);
+    const deleteScore = (index: number) => () => deleteCourseGoalScore(course.name, goal.ref)(index);
+    const setScore = setCourseGoalScore(course.name, goal.ref);
 
     const saveGoal = (text: string) =>
     {
-        update(data =>
-        {
-            data.courses[courseIndex].years[year].semesters[semester][goalIndex].text = text;
-        });
+        updateCourseGoal(courseIndex, year, semester, goalIndex, text, goal.references);
         closeEditor();
     };
     const saveReferences = (value: string) =>
     {
         const references = value.split(", ").map(part => part.trim()).filter(part => part !== "");
-
-        update(data =>
-        {
-            data.courses[courseIndex].years[year].semesters[semester][goalIndex].references = references;
-        });
-
+        updateCourseGoal(courseIndex, year, semester, goalIndex, goal.text, references);
         propagateScores();
     };
     const deleteGoal = () =>
@@ -100,9 +65,9 @@ const CourseGoal = ({ course: courseIndex, year, semester, goal: goalIndex }: Co
         >   
             <div>
                 {scores.map((score, index) =>
-                    <ScoreSelector key={index} className="mr-3" value={score} onSetScore={setScore(index)} onDelete={deleteScore(index)} />
+                    <ScoreSelector key={index} className="mr-3" value={score} onSelectScore={setScore(index)} onDelete={deleteScore(index)} />
                 )}
-                {addingScores ? <BadgeButton value="+" onClick={addScore} /> : null}
+                {addingScores && <BadgeButton value="+" onClick={addScore} />}
             </div>
         </GoalBase>
     );

@@ -1,4 +1,4 @@
-import useData from "../data";
+import { useData } from "../data";
 
 const validator = (trackName: string) => (value: string): true | string =>
 {

@@ -21,7 +21,7 @@ const useClick = <T = Element>(handler: (event: React.MouseEvent<T>) => void) =>
         var distX = Math.abs(event.clientX - mousePosition.current.x);
         var distY = Math.abs(event.clientY - mousePosition.current.y);
 
-        if (distX !== 0|| distY !== 0) return;
+        if (distX !== 0 || distY !== 0) return;
         handler(event);
     }, [ handler ]);
 

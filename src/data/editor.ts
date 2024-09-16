@@ -1,7 +1,12 @@
-import produce from "immer";
 import create from "zustand";
 
-export interface EditorSlice
+export interface DeletionProxy
+{
+    yes: () => void;
+    no: () => void;
+}
+
+export interface EditorStore
 {
     enabled: boolean;
     id?: number;
@@ -11,34 +16,39 @@ export interface EditorSlice
         no: () => void;
     }
 
-    update(setter: (slice: EditorSlice) => void): void;
+    startDeletion(proxy: DeletionProxy): void;
+    stopDeletion(): void;
 
     enableEditor(): void;
+    disableEditor(): void;
+
     openEditor(goalId: number): void;
     closeEditor(): void;
 }
 
-const useEditor = create<EditorSlice>((set, get) => ({
+export const useEditor = create<EditorStore>(set => ({
     enabled: false,
     id: undefined,
 
     confirmDeletion: undefined,
 
-    update: (setter) => set(produce(setter)),
+    enableEditor: () => set({ enabled: true }),
+    disableEditor: () => set({ enabled: false }),
 
-    enableEditor()
-    {
-        set({ enabled: true });
-    },
+    openEditor: (goalId: number) => set({ enabled: true, id: goalId }),
+    closeEditor: () => set({ id: undefined }),
 
-    openEditor(goalId: number)
-    {
-        set({ enabled: true, id: goalId });
-    },
-    closeEditor()
-    {
-        set({ id: undefined });
-    }
+    startDeletion: proxy => set({ confirmDeletion: proxy }),
+    stopDeletion: () => set({ confirmDeletion: undefined })
 }));
 
-export default useEditor;
+const state = useEditor.getState();
+
+export const enableEditor = state.enableEditor;
+export const disableEditor = state.disableEditor;
+
+export const openEditor = state.openEditor;
+export const closeEditor = state.closeEditor;
+
+export const startDeletion = state.startDeletion;
+export const stopDeletion = state.stopDeletion;

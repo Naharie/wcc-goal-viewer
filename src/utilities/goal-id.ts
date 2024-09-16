@@ -1,4 +1,4 @@
-import useData from "../data";
+import { useData } from "../data";
 
 let goalId = -1;
 

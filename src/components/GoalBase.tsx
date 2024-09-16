@@ -1,11 +1,11 @@
-import React, { PropsWithChildren, ReactNode, useRef, useState } from "react";
-import useEditor from "../data/editor";
+import React, { PropsWithChildren, ReactNode, useRef } from "react";
 import { Goal } from "../data/validation";
 import useClick from "../hooks/useClick";
 import chooseBackground from "../utilities/choose-background";
 import GoalText from "./editor/GoalText";
 import ValidatedTextBox from "./editor/ValidatedTextBox";
 import ScoreBadge from "./scores/ScoreBadge";
+import { closeEditor, openEditor, startDeletion, stopDeletion, useEditor } from "../data/editor";
 
 interface GoalProps
 {
@@ -30,7 +30,6 @@ interface GoalProps
 
 const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalProps>) =>
 {
-    const updateEditor = useEditor(editor => editor.update);
     const confirmDeletion = useEditor(editor => editor.confirmDeletion);
     const canEdit = useEditor(editor => editor.enabled);
     const dimmed = useEditor(editor => editor.id !== undefined && editor.id !== goal.id);
@@ -39,9 +38,6 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
     const goalText = useRef(goal.text);
     const goalReferences = useRef(references?.value?.trim() ?? "");
 
-    const [confirmingDelete, setConfirmingDelete] = useState(false);
-    
-    const openEditor = useEditor(editor => editor.openEditor);
     const lastClick = useRef(0);
 
     const [mouseDown, mouseUp] = useClick<HTMLLIElement>(event =>
@@ -68,31 +64,18 @@ const GoalBase = ({ goal, score, references, ...props }: PropsWithChildren<GoalP
 
     const deleteGoal = () =>
     {
-        updateEditor(editor =>
-        {
-            const closeConfirmation = () =>
+        startDeletion({
+            yes: () =>
             {
-                updateEditor(editor =>
-                {
-                    editor.confirmDeletion = undefined;
-                });
-            };
-
-            editor.confirmDeletion = {
-                yes: () =>
-                {
-                    props.deleteGoal?.();
-                    closeConfirmation();
-                },
-                no: closeConfirmation
-            };
+                props.deleteGoal?.();
+                stopDeletion();
+            },
+            no: stopDeletion
         });
     }
-    const closeEditor = useEditor(editor => editor.closeEditor);
     const saveChanges = () =>
     {
         closeEditor();
-
         props.saveGoal?.(goalText.current);
         references?.saveReferences(goalReferences.current);
     };

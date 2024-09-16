@@ -6,13 +6,13 @@ interface ScoreSelectorProps
 {
     value: number;
     className?: string;
-    onSetScore?: (score: number) => void;
+    onSelectScore?: (score: number) => void;
     onDelete?: () => void;
 }
 
 const ScoreSelector = (props: ScoreSelectorProps) =>
 {
-    const [value, setValue] = [props.value, props.onSetScore ?? (() => {})];
+    const [value, setValue] = [props.value, props.onSelectScore ?? (() => {})];
     const [open, setOpen] = useState(false);
 
     const openSelector = () => setOpen(true);
